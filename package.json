@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/serve.mjs",
-    "check": "node --check dist/report-navigation.js && node --check dist/quote-effect.js && node --check dist/icl-viewer.js && node --check dist/model-math.js && node --check dist/narrative.js && node --check dist/app.js && node --check dist/charts.js && node --check dist/showcase.js && node --check dist/research.js && node --check scripts/serve.mjs",
+    "check": "node --check dist/viz.js && node --check dist/report-navigation.js && node --check dist/quote-effect.js && node --check dist/icl-viewer.js && node --check dist/model-math.js && node --check dist/narrative.js && node --check dist/app.js && node --check dist/charts.js && node --check dist/showcase.js && node --check dist/research.js && node --check scripts/serve.mjs",
     "validate": "node scripts/validate-data.mjs && node scripts/validate-icl.mjs"
   }
 }

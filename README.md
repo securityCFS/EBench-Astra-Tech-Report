@@ -26,6 +26,19 @@ npm run validate
 - POC has its own zero-shot compositional experiment tab with four recordings. It is outside the 26-task EBench benchmark and uses independently retrained comparison policies.
 - A filterable video library covers every benchmark task. The 510-episode dot plot distinguishes 237 successes, 188 incomplete positive-score episodes and 85 zero-score episodes.
 
+## Interactive figures (design refresh)
+
+`dist/viz.js` and `dist/refresh.css` add linked, tooltip-driven figures on top of the existing tables; every figure reads the same JSON as the tables and changes no reported value.
+
+- Overall bars gain a track and an optional **95% interval** toggle (Wilson interval on 510 episodes; ignores task clustering).
+- Task-attribute charts are dot-strip profiles: all eight systems on one line per group, emphasized systems drawn larger, the best system ringed. Chips emphasize rather than hide.
+- The comparison matrix has a fourth view, **GPT-6-Astra vs. field**: signed per-task difference to the best (or median) other system; a bar opens that task's episode.
+- Episode outcomes are one row per task, one square per episode, sortable and filterable by attribute or outcome class.
+- Perturbation results are drawn as a slope chart in the capability section and in the generalization dialog.
+- Paired ICL results are dumbbells (zero-shot → single-shot ICL, per seed) in the ablation dialog and under the ICL case study.
+- Execution timing appears as a log-axis bar chart in the Safety section and the protocol dialog.
+- Key figures above each analytical section are computed from `report-figures.json`; the reading-progress bar, back-to-top button, section anchors and scroll reveal respect `prefers-reduced-motion`. On phones the Contents toggle sits at the bottom edge so it no longer covers headings.
+
 ## Editing handoff
 
 See [docs/HANDOFF.md](docs/HANDOFF.md) for file responsibilities, scientific distinctions, data provenance, POC conditions, and pending author revisions. In particular, final Implications wording and POC checkpoint labels are not approved research conclusions.

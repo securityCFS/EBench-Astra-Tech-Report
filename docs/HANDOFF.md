@@ -9,7 +9,9 @@ This is a dependency-free static site. `dist/` contains the authored website sou
 - `dist/style.css`: shared original chart, table, dialog and video primitives.
 - `dist/app.js`: report narrative, main findings, case tabs, videos, supplementary dialogs.
 - `dist/narrative.js`: source-grounded analytical synthesis; see `docs/REPORT-COPY.md` for the editorial brief and source map.
-- `dist/charts.js`: SVG bar charts, metric/model selection, sortable task heatmap.
+- `dist/charts.js`: overall SVG bars (with the optional Wilson-interval toggle), dot-strip capability profiles, sortable task heatmap.
+- `dist/viz.js`: shared figure toolkit — tooltip, linked model highlighting, dot strips, per-task outcome rows, Astra-versus-field bars, perturbation slopes, paired-ICL dumbbells, execution-timing bars, reading widgets.
+- `dist/refresh.css`: design-refresh layer loaded after `showcase.css`; tokens, figure styles, key-figure strips, widgets and the phone placement of the Contents toggle.
 - `dist/showcase.js`: featured demo switching, case focus, stage controls, decorative canvas.
 - `dist/research.js`: main-page comparison matrices, POC, behavioral evidence, episode dots, video library.
 - `dist/data/`: chart/table data and selected-episode metadata. Raw field ID `FastWAM` remains stable; visible name is **Fast-WAM**.
@@ -118,3 +120,16 @@ A Safety in execution subsection now follows emerging capabilities and precedes 
 Remove blanket statements that latency or safety cannot be assessed because they are not in the current manuscript. The author confirmed 30 Hz simulation and requested trajectory-based comparison with URDF and hardware limits. The conclusion no longer carries the unsolicited disclaimer. The limitations entry now opens Evaluation protocol and execution measurements, with a three-case timing table, separate clocks for simulator duration and policy wall duration, and joint-limit analysis methodology.
 
 Reproduction: python scripts/analyze-execution-timing.py astra_web_evidence_20260918_core.zip. Output: dist/data/execution-timing.json. Values and definitions are documented in REPORT-COPY.md. No pure-inference latency or hardware-limit exceedance is inferred from policy wall time or sparse joint samples. The exact URDF/hardware comparison has not yet been incorporated into this calculation; do not substitute an unrelated robot configuration.
+
+
+## Design refresh (2026-09-18)
+
+Branch `design/interactive-refresh`. The refresh keeps every author decision above: light reading surfaces, dark header/footer, blue/indigo/cool-gray series, no masthead summary strip, no PDF links, single-shot ICL wording, the collapsed 26-task library, and the reading order. It adds figures and interaction without changing any reported number:
+
+- Key figures above the mobile/precision/horizon prose are generated from `report-figures.json` (previously the hard-coded metric blocks in `app.js` were overwritten by `narrative.js` and never displayed). Prose still comes from `narrative.js`.
+- Task-attribute charts are dot-strip profiles showing all eight systems; legend chips emphasize a system instead of hiding it. Hovering a system dims the others in every linked figure.
+- Comparison matrix view **GPT-6-Astra vs. field** and the per-task outcome rows are derived from `tasks.json` and `episodes.json`; selecting a task opens its selected episode through the existing `data-task-video` handler.
+- Slope, dumbbell and timing figures are inserted next to the tables they summarize (`decorateAppendix` / `drawFigures` in `app.js`; `initTimingCharts` in `research.js`).
+- The **95% interval** toggle on the overall chart is off by default and labelled as an episode-level Wilson interval that ignores task clustering; it is a presentation aid, not a new reported statistic.
+- The leaderboard rows are generated from `report-figures.json`; the duplicated `models` array in `app.js` was removed.
+- Browser QA in this revision: headless Chromium at 1440 and 390 px, zero console errors, every dialog and tab exercised. Videos were not yet pulled from LFS during the screenshots; layout was checked with placeholder frames.

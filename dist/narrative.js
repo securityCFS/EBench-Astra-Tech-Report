@@ -93,7 +93,7 @@ function initNarrative(){
  document.querySelectorAll('[data-narrative]').forEach(el=>el.innerHTML=narrativeHTML(el.dataset.narrative));
  $('#mobile-content .finding-story').innerHTML=narrativeHTML('mobile');
  $('#mobile-content .finding-story').classList.add('report-prose');
- $('#mobile-content').insertAdjacentHTML('beforeend',`<div class="report-prose shift-analysis"><h3>Robustness to changed scenes is not unseen-task composition</h3>${narrativeHTML('shifts')}<button class="appendix-link" data-appendix="generalization">Compare the four perturbation settings ↗</button></div>`);
+ $('#mobile-content').insertAdjacentHTML('beforeend',`<div class="report-prose shift-analysis"><h3>Robustness to changed scenes is not unseen-task composition</h3>${narrativeHTML('shifts')}<div class="viz-figure" data-slopes data-viz-linked></div><div class="viz-legend"><span>Success rate under each controlled perturbation; GPT-6-Astra and OpenWAM-α are emphasized. Hover a line to isolate a system.</span></div><button class="appendix-link" data-appendix="generalization">Compare the four perturbation settings ↗</button></div>`);
  const library=$('#video-library');
  library.addEventListener('toggle',()=>{if(!library.open)library.querySelectorAll('video').forEach(v=>v.pause());});
 }
