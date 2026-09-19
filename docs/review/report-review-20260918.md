@@ -1,7 +1,7 @@
 # 技术报告评审：How Frontier Language Models Reshape Embodied Policies — A Comprehensive Evaluation of GPT-6-Astra on EBench
 
 评审对象：`securityCFS/Ebench-Astra-Tech-Report` main 分支 `809fe38`（网页版 `dist/index.html` + `narrative.js` + 数据 `dist/data/`）。
-评审日期：2026-09-18。所有数值核对均基于仓库内 `report-figures.json`、`report-tasks.csv`、`episodes.json`、`ablations.json`、`execution-timing.json`。
+评审日期：2026-09-18；2026-09-19 修订，采纳作者对协议、精细操作证据和 zero-shot 预算的三点回应。所有数值核对均基于仓库内 `report-figures.json`、`report-tasks.csv`、`episodes.json`、`ablations.json`、`execution-timing.json`。
 
 ---
 
@@ -12,9 +12,9 @@
 优点是可验证性极高：510 集逐集结果、26 个完整 ICL 输入包（417 段文本 + 365 张图）、来源哈希、逐 seed 消融、执行日志时序分析，都能在页面上直接查看和下载。这在同类 "frontier model 做具身评测" 的报告中很少见。
 
 主要问题有四个：
-1. **统计强度不足以支撑排名类结论。** 单次运行、每任务 20 集、无置信区间。任务宏平均 SR 的标准误约 7 pp（任务间 SD 35 pp），"第二名"与第三名 Qwen-RobotManip 的差距只有 1.15 pp。
+1. **排名类结论没有附带不确定性。** 每任务 20/15 集是 EBench 的固定协议，八个系统一致，这不是作者的取样选择；但任务宏平均 SR 的标准误仍约 7 pp（任务间 SD 35 pp），"第二名"与第三名 Qwen-RobotManip 的差距只有 1.15 pp。需要的是报告区间并软化排名措辞，不需要新实验。
 2. **三个任务属性维度互相嵌套，报告却把它们当成三个独立发现来讲。** 4 个高精度任务全部是固定基座 + 短程；7 个长程任务全部是移动任务。"移动操作强"、"精细操作弱"、"长程弱"在很大程度上是同一批任务从不同角度的复述。
-3. **主实验没有 zero-shot 基线**，ICL 的贡献只有 8 对小样本消融；同时 Agent 没有 token / 时间 / 调用次数上限，而对比策略是实时闭环。这两点让"第二名"的可比性打了折扣。
+3. **ICL 的贡献与推理成本没有在正文中交代。** 主实验全部为 single-shot ICL。作者说明原因是预算（两个 Pro 订阅加约 1500 美元 API）以及 zero-shot 试跑成本高、表现差；这个理由合理，"对比策略都在大规模数据上后训练，给 Agent 一个示范是对等设置"的公平性论证也站得住。两者都应写进论文，并把已经花掉的成本作为每集成本报告出来；Agent 无 token / 时间 / 调用上限而对比策略为实时闭环这一点，也应在同一处说明。
 4. **标题与引言的口径远大于证据**。"Reshape Embodied Policies"、"paradigm shift"、"unimaginable level of adaptability" 与后文谨慎的 caveat 风格不一致；页面上没有任何相关工作引用。
 
 数据里其实还有几个**被低估的更强结论**（见第 6 节）：在 12 个"移动 + 短程"任务上 Astra 以 73.2% 领先 OpenWAM-α 的 65.3%；在四种扰动条件下 Astra 的波动幅度只有 6.6 pp，是所有系统中最稳定的。这些比"总体第二名"更能说明 Astra 的能力形状。
@@ -86,10 +86,10 @@
 ## 5. 分析的弱点与方法学问题
 
 ### 5.1 统计强度与不确定性（最重要）
-- 所有结论基于**单次运行**。每任务 20 集，一个任务 SR 的 95% 二项区间宽度约 ±20 pp；26 任务宏平均的标准误 ≈ 7 pp（Astra 任务间 SD = 35.2 pp）。
+- 每任务 20 或 15 集由 EBench 协议固定，八个系统相同，因此相对比较是同口径的。但一个任务 SR 的 95% 二项区间宽度仍约 ±20 pp；26 任务宏平均的标准误 ≈ 7 pp（Astra 任务间 SD = 35.2 pp）。
 - 总体 SR 46.73% 与 Qwen-RobotManip 45.58% 差 1.15 pp，与 π₀.₅ 差 5.3 pp——**"ranks second on both metrics" 在统计上不可区分**。与 OpenWAM-α 的 8.59 pp 差距在 episode 级二项近似下 z ≈ 2.7，但考虑任务聚类后也只是勉强显著。
 - 对比模型的数字来自线上 leaderboard `taskOverview`（每模型 1 次提交），同样没有方差。本仓库同事的另一份分析（eb-harness `docs/astra_benchmark_analysis.md`）中 π₀.₅ 三次运行 SR SD = 1.2 pp，说明策略侧噪声并不小。
-- **建议**：至少给出 episode-level Wilson 区间与 task-level bootstrap 区间；把排名表述改成"与 OpenWAM-α 有差距、与 Qwen-RobotManip / π₀.₅ 处于同一区间"；如果预算允许，对 Astra 做 3 seeds × 510 集。
+- **建议**：给出 episode-level Wilson 区间与 task-level bootstrap 区间，把排名表述改成"与 OpenWAM-α 有差距、与 Qwen-RobotManip / π₀.₅ 处于同一区间"。这不需要新实验；问题在结论措辞，不在取样设计。若想单独估计 Agent 自身的随机性，可在两三个任务上重复同一批 seed，但这不是本报告必须做的。
 
 ### 5.2 任务属性维度互相嵌套（被报告忽略的混杂）
 交叉表（来自 `report-figures.json`）：
@@ -106,17 +106,18 @@
 
 - **全部 High-precision 任务 ⊂ Fixed**；**全部 Long-horizon 任务 ⊂ Mobile**；Fixed 任务全部是 Short。
 - 因此报告第 01 节"mobile 强（56.58 vs 60.18）、tabletop 弱（20.00 vs 42.14）"和第 02 节"precision 从 60.60 掉到 11.25"很大程度上是**同一组 7 个固定基座任务**的两种描述，不是两个独立发现。报告只在 fineprint 里写了 "Groups overlap"，正文叙事却把它们当成两条证据链。
+- 需要说明：精细操作失败本身有独立证据，glasses、peg、gear、nut 的对比视频和动作日志都显示 Astra 能到达邻域但无法完成对准，这个结论不受本节影响。本节要求的是：(a) 正文明确写出三个维度嵌套，避免读者把同一批任务当成三条证据；(b) 固定基座中 Low/Medium 三个任务（frame、flip_cup、put_glass）落后 30 到 80 pp，精度解释不了，需要单独讨论；(c) 既然日志在手，把"到达邻域后的对准重试次数"统计出来，视觉证据就能变成数字。
 - 更细的拆分（我按仓库数据重算）反而更有说服力，见第 6 节。
 
-### 5.3 ICL 贡献没有在主实验中测量
+### 5.3 ICL 贡献没有在主实验中测量（作者说明：预算所限）
 - 主实验 510 集全部是 single-shot ICL，**没有 zero-shot 对照**。报告自己承认 "the headline result cannot measure the improvement due to demonstrations alone"。
 - 消融只有 8 对新鲜配对（frame / gear）+ 5 对历史 dishwasher 对照：SR 0/8 → 3/8，但 Score 4 升 3 降 1 平。样本量不足以支持 "ICL turns intent into a suitable interaction strategy" 的一般性说法。
 - ICL 包由另一个 GPT-6-Astra 实例自动生成，**没有任何示范质量控制或质量指标**。26 个包的关键帧数（10–18）与文本量差异明显，完全可以做一个"示范质量 / 长度 vs 任务 SR"的相关分析，数据已经在仓库里。
-- 建议：至少在 26 任务 × 5 seed（一种扰动条件）上补 zero-shot；或者把消融扩展到所有 4 个高精度任务 + 3 个 Astra 明显落后的 tabletop 任务。
+- 作者说明未跑 zero-shot 主实验的原因是预算（两个 Pro 订阅加约 1500 美元 API），且试跑显示 zero-shot 成本更高、表现更差；给 Agent 一个示范，与对比策略在大规模数据上的后训练相比，是对等甚至更保守的设置。这两点都合理，建议直接写进 Setup 或 Limitations，并把 8 对新鲜配对与 5 对历史 dishwasher 对照明确表述为"预算内能做的 zero-shot 信号"。ICL 贡献未测仍应列为 limitation。
 
 ### 5.4 计算预算不对等与执行时长
 - "The policy phase has no additional aggregate token, tool-call, or wall-clock cap." Agent 每集可用 12–84 分钟 wall time、最多 54 次工具调用（coffee 013），而 VLA/WAM 是固定频率的闭环策略。报告用 "environment-level comparisons, not matched inference-cost measurements" 一句话带过，**但这直接影响"第二名"的意义**。
-- 每集成本（token 数、美元、调用次数）完全没有报告。510 集的总 wall time 按三集均值估算在 200–400 小时量级，这应该在主文出现，而不是只在 "Evaluation protocol & execution measurements" 弹窗。
+- 每集成本（token 数、美元、调用次数）完全没有报告。作者在讨论中给出的总投入（两个 Pro 订阅加约 1500 美元 API，覆盖 510 集主实验、消融与案例）正是缺失的数字，折算后约每集几美元量级，建议直接写进论文。510 集的总 wall time 按三集均值估算在 200–400 小时量级，也应在主文出现，而不是只在 "Evaluation protocol & execution measurements" 弹窗。
 - 建议：给出每集 token / 调用次数 / wall time 的分布（全部 510 集的日志应该都有），并至少画一张 SR-vs-cost 的 Pareto 图与 VLA 对照。
 
 ### 5.5 定性案例的选择偏差
@@ -187,8 +188,8 @@
 1. 给所有汇总指标加置信区间；把"第二名"改写为区间表述。
 2. 在 Setup 明确说明三个属性维度嵌套关系，并用第 6 节的细分子组替换或补充现在的 mobility/precision/horizon 三张图。
 3. 注明 510 集 = 4 扰动条件 × 5 seed，主实验无"无扰动"条件。
-4. 报告每集 token / 调用 / wall time 分布与总成本；把 wall/sim 比放进正文。
-5. 补 zero-shot 对照（至少一种扰动条件 × 26 任务），或明确把 ICL 贡献列为未测。
+4. 报告每集 token / 调用 / wall time 分布与总成本（总成本数字作者已有）；把 wall/sim 比放进正文。
+5. 在 Setup 或 Limitations 写明未跑 zero-shot 主实验的原因（预算、试跑观察）与 ICL 设置的公平性论证，把 ICL 贡献列为未测。
 
 **应该（影响可信度）**
 6. 对 273 个未完成 episode 做失败编码并给出计数。
