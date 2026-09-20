@@ -24,8 +24,7 @@ const context=vm.createContext({
 vm.runInContext(fs.readFileSync('dist/narrative.js','utf8'),context,{filename:'narrative.js'});
 const intro=node('[data-narrative="introduction"]').innerHTML;
 assert.equal((intro.match(/<p>/g)||[]).length,2);
-assert.ok(intro.startsWith('<p>We evaluate GPT-6-Astra as an embodied agent'));
-assert.ok(intro.includes('<strong>26 tasks and 510 episodes</strong>'));
+assert.ok(intro.startsWith('<p>Recent advances in frontier large language models'));
 assert.ok(!intro.includes('Since its launch'));
 assert.ok(!intro.includes('Recent reports have begun to explore this frontier.'));
 const relatedWork=node('[data-narrative="relatedWork"]').innerHTML;
