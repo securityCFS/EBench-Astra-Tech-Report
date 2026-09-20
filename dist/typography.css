@@ -1,7 +1,7 @@
 /* Fixed report typography, centered in the space left by the visible contents panel. */
 :root {
   --shell: 960px;
-  --toc-width: 220px;
+  --toc-width: 300px;
   --body-size: 16px;
   --body-leading: 1.55;
   --note-size: 14px;
@@ -70,7 +70,7 @@ body main :is(p, li, dd, blockquote),
 body #appendix-dialog #appendix-body :is(p, li, dd, blockquote) {
   font-size: var(--body-size) !important;
   line-height: var(--body-leading) !important;
-  text-align: center;
+  text-align: left;
   text-indent: 0;
   letter-spacing: normal;
 }
@@ -99,16 +99,28 @@ body main .report-prose p { padding-left: 0; padding-right: 0; }
 body main #introduction .opening-quote blockquote p {
   font-size: 30px !important;
   line-height: 1.35 !important;
-  text-align: center;
+  text-align: center !important;
   margin-bottom: 0;
 }
-body main .opening-quote figcaption { text-align: center; font-size: 14px; line-height: 1.5; }
+body main .opening-quote figcaption { text-align: center !important; font-size: 14px; line-height: 1.5; }
 
-/* Compact controls, captions and tables share the centered text alignment. */
+/* Compact sizes for controls, captions and tables. */
 body :is(button, input, select, summary) { font-size: 14px !important; line-height: 1.45; }
 body .header nav a { font-size: 15px; }
-body #report-toc-links a { font-size: 15px; line-height: 1.4; padding-block: 6px; }
-body #report-toc-links .toc-subsection { font-size: 14px; }
+body #report-toc-links a {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 6px;
+  align-items: start;
+  padding: 6px 12px;
+  font-size: 15px;
+  line-height: 1.4;
+  text-align: left;
+}
+body #report-toc-links .toc-subsection { padding-left: 26px; font-size: 14px; }
+#report-toc-links .toc-number { white-space: nowrap; }
+#report-toc-links .toc-label { min-width: 0; white-space: nowrap; }
+#report-toc-links .toc-label:only-child { grid-column: 1 / -1; }
 body main :is(.fineprint, .figure-caption, .insight-note, .viz-caption, figcaption,
   .chart-readout, .profile-note, .viz-legend, .heat-legend, .episode-caption,
   .episode-source-links, .method-details a, .model-reference-entry a) {
@@ -123,11 +135,19 @@ body main .video-label > span { font-size: 14px; line-height: 1.4; text-align: c
 .episode-outcome small { font-size: 14px; }
 .episode-speaker span, .episode-playback, .episode-log time { font-size: 14px; }
 .episode-raw pre, .episode-prompt, .icl-json { font-size: 13px; line-height: 1.5; }
-#overall .metric-success { font-size: 60px; }
-#overall .metric-success > span { font-size: 28px; }
-#overall .metric-score b { font-size: 25px; }
-#overall .metric-primary > .metric-label,
-#overall .metric-score > .metric-label { font-size: 14px !important; }
+#overall .overall-metric > .metric-label { font-size: 14px !important; margin-bottom: 12px; }
+#overall .metric-current { display: flex; justify-content: center; align-items: baseline; gap: 16px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+#overall .metric-number { display: inline-flex; align-items: baseline; gap: 4px; color: #3456ef; }
+#overall .metric-number strong { font-size: 60px; line-height: 1; letter-spacing: -2px; font-weight: 600; }
+#overall .metric-unit { font-size: 24px; }
+#overall .metric-rank { font-size: 22px; color: #617594; }
+#overall .leaderboard th:first-child,
+#overall .leaderboard td:first-child { text-align: left !important; }
+#overall .leaderboard th button { display: inline-flex; align-items: center; gap: 5px; padding: 6px 4px; border: 0; border-radius: 4px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+#overall .leaderboard th[aria-sort="descending"] button { color: #3456ef; font-weight: 600; }
+#overall .leaderboard th button:hover { background: #e8edfa; }
+#overall .leaderboard th button:focus-visible { outline: 2px solid #3456ef; outline-offset: 2px; }
+#overall .sort-indicator { font-size: 12px; }
 .icl-card-copy > strong { font-size: 21px; line-height: 1.35; }
 .icl-card-copy > span:not(.eyebrow), .icl-card-copy > b { font-size: 15px; line-height: 1.5; }
 .research-questions strong { font-size: 18px; line-height: 1.4; }
@@ -147,10 +167,8 @@ body > footer.report-footer {
 .report-citation pre, .report-citation code { font-size: 13px; line-height: 1.5; }
 
 
-/* Apply the selected alignment consistently across legacy component styles. */
-body :is(h1, h2, h3, h4, p, li, dt, dd, blockquote, figcaption, caption,
-  th, td, button, input, select, summary, label, pre, code),
-body #report-toc-links a,
+/* Center headings and controls within the shared article column. */
+body :is(h1, h2, h3, h4, th, td, button, input, select, summary, label),
 body .insight-table .subgroup-label,
 body .gap-row strong,
 body .perturbation-row > strong,
@@ -158,12 +176,18 @@ body .failure-depth-row > span:last-child {
   text-align: center !important;
 }
 
+/* Align paragraph lines to the left; their outer column remains centered. */
+body main :is(p, li, dt, dd, blockquote, figcaption, caption, pre, code),
+body #appendix-dialog #appendix-body :is(p, li, dt, dd, blockquote, figcaption, caption, pre, code),
+body .report-footer :is(p, pre, code) {
+  text-align: left !important;
+}
+
 .hero-actions,
 .footer-resource-links,
 body main :is(.explorer-links, .method-details, .episode-source-links, .icl-case-links) {
   justify-content: center;
 }
-#overall .metric-values { justify-content: center; }
 .report-footer .footer-marks { align-items: center; }
 .report-reference-list li { padding-left: 0; }
 .report-reference-list li::before { position: static; margin-right: 8px; }
