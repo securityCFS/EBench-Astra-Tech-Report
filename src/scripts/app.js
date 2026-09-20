@@ -31,7 +31,7 @@ const section = (id, n, heading, sub, body) =>
 const watch = (text) => '';
 function renderAnalysis() {
   $('#mobile-content').innerHTML =
-    `<div class="finding-grid"><div class="finding-story"><div class="finding-metric"><strong>56.58<span>%</span></strong><p>SR on 19 mobile tasks</p></div><p>Only 3.60 percentage points behind OpenWAM-α, compared with a wider gap on tabletop tasks. Mobile manipulation is a relative strength compared with tabletop tasks.</p><div class="task-highlights"><button data-appendix="results"><strong>100<small>%</small></strong><span>Remote to holder · 20/20</span></button><button data-appendix="results"><strong>90<small>%</small></strong><span>Bookmark placement · 18/20</span></button></div><p class="fineprint">Bookmark SR is 35 pp above the next-best model. These are end-to-end task results, not isolated recognition measurements.</p></div>${reportChart('mobility')}</div><div class="evidence-pair">${mainVideo('remote_to_holder', '000', 'Remote to holder', 'GPT-6-Astra 100% task SR; OpenWAM-α 65%.')}${mainVideo('bookmark_on_book', '000', 'Bookmark placement', 'GPT-6-Astra 90% task SR; next-best π₀.₅ 55%.')}</div>`;
+    `<div class="finding-grid"><div class="finding-story"><div class="finding-metric"><strong>56.58<span>%</span></strong><p>SR on 19 mobile tasks</p></div><p>Only 3.60 percentage points behind OpenWAM-α, compared with a wider gap on tabletop tasks. Mobile manipulation is a relative strength compared with tabletop tasks.</p><div class="task-highlights"><button data-appendix="results"><strong>100<small>%</small></strong><span>Remote to holder · 20/20</span></button><button data-appendix="results"><strong>90<small>%</small></strong><span>Bookmark placement · 18/20</span></button></div><p class="fineprint">Bookmark SR is 35 pp above the next-best model. These are end-to-end task results, not isolated recognition measurements.</p></div></div><div class="evidence-pair">${mainVideo('remote_to_holder', '000', 'Remote to holder', 'GPT-6-Astra 100% task SR; OpenWAM-α 65%.')}${mainVideo('bookmark_on_book', '000', 'Bookmark placement', 'GPT-6-Astra 90% task SR; next-best π₀.₅ 55%.')}</div>`;
   renderLimits('precision');
   initVideos();
   initCharts();
@@ -131,7 +131,7 @@ function renderCaseSection(activeCase) {
 }
 const notes = {
   sources: [
-    'Model References',
+    '1.1 Model References',
     `<ol class="model-references"><li><strong>GPT-6-Astra</strong><p>OpenAI (2026). <cite>GPT-6 Astra: A new generation of intelligence</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://openai.com/index/gpt-6-astra/" target="_blank" rel="noopener">Official release ${reportIcon('external-link')}</a></div></li><li><strong>OpenWAM-α</strong><p>Wang et al. (2026). <cite>OpenWAM: An Open, Modular Exploration Towards Systematic World-Action Model Pretraining</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2609.07398" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/OpenWAM-Official/OpenWAM" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>Qwen-RobotManip</strong><p>Qwen Team (2026). <cite>Qwen-RobotManip Technical Report: Alignment Unlocks Scale for Robotic Manipulation Foundation Models</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2606.17846" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/QwenLM/Qwen-RobotManip" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>π₀.₅</strong><p>Physical Intelligence et al. (2025). <cite>π₀.₅: a Vision-Language-Action Model with Open-World Generalization</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2504.16054" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/Physical-Intelligence/openpi" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>InternVLA-A1.5</strong><p>InternVLA-A1.5 team (2026). <cite>InternVLA-A1.5: Unifying Understanding, Latent Foresight, and Action for Compositional Generalization</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://internrobotics.github.io/internvla-a15.github.io/reference-assets/paper/InternVLA_A1_5.pdf" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/InternRobotics/InternVLA-A-series" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>π₀</strong><p>Black et al. (2024). <cite>π₀: A Vision-Language-Action Flow Model for General Robot Control</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2410.24164" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/Physical-Intelligence/openpi" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>GigaBrain-0.7</strong><p>GigaBrain Team et al. (2026). <cite>GigaBrain-0.7: Scaling Embodied Foundation Models to Emergent Capabilities with a Three-System Architecture</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2608.15875" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/open-gigaai/giga-brain-0" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>Fast-WAM</strong><p>Yuan et al. (2026). <cite>Fast-WAM: Do World Action Models Need Test-time Future Imagination?</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2603.16666" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/yuantianyuan01/FastWAM" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li></ol><h3>Leaderboard snapshot · September 17, 2026</h3><p>The comparison uses seven attributable model submissions. GPT-6-Astra results are computed from the 510 retained episode outcomes. Headline SR and Score give equal weight to each of the 26 tasks.</p><h3>Reported totals and episode-derived values</h3><p><strong>Overall comparator values retain the leaderboard’s reported totals</strong> from its taskOverview responses. Per-task and task-group values are recomputed from episodeList records. In five models, the overall Score differs from the recomputed mean in the last displayed decimal; the difference does not change the ranking.</p><div class="table-scroll timing-measurements" tabindex="0" role="region" aria-label="Score source comparison"><table class="report-table report-table--plain"><thead><tr><th scope="col">Model</th><th scope="col">Reported overall Score</th><th scope="col">Mean of task Scores</th></tr></thead><tbody><tr><th scope="row">OpenWAM-α</th><td>0.7005</td><td>0.7006</td></tr><tr><th scope="row">Qwen-RobotManip</th><td>0.6081</td><td>0.6082</td></tr><tr><th scope="row">π₀.₅</th><td>0.5441</td><td>0.5442</td></tr><tr><th scope="row">π₀</th><td>0.4748</td><td>0.4747</td></tr><tr><th scope="row">Fast-WAM</th><td>0.3712</td><td>0.3711</td></tr></tbody></table></div><p>The archived responses do not explain the final-digit discrepancy; both values are shown.</p>`,
   ],
   protocol: [
@@ -168,7 +168,7 @@ function openAppendix(key) {
   $('#appendix-dialog').classList.remove('icl-dialog');
   let content = notes[key];
   if (key === 'study-limitations')
-    content = ['Study Limitations', $('#study-limitations-content').innerHTML];
+    content = ['7 Study Limitations', $('#study-limitations-content').innerHTML];
   if (key === 'generalization')
     content = ['Across benchmark perturbations', kitComparisonTable('generalization')];
   if (key === 'full-comparison')
@@ -471,14 +471,17 @@ document.addEventListener('click', (e) => {
   bar.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
 });
 
+function playGroupLabel(playing) {
+  return `${playing ? 'Pause' : 'Play'} both ${reportIcon(playing ? 'pause' : 'play')}`;
+}
+
 function enhanceEvidence(root) {
   root.querySelectorAll('.evidence-pair:not(.case-videos)').forEach((pair) => {
     if (pair.closest('.evidence-stage')) return;
     const stage = document.createElement('div');
     stage.className = 'evidence-stage';
     pair.before(stage);
-    stage.innerHTML =
-      '<div class="evidence-stage-heading"><span>OBSERVE THE EXECUTION</span><button class="play-group" aria-pressed="false">Play both <span aria-hidden="true">▷</span></button></div>';
+    stage.innerHTML = `<div class="evidence-stage-heading"><span>OBSERVE THE EXECUTION</span><button type="button" class="play-group" aria-pressed="false">${playGroupLabel(false)}</button></div>`;
     stage.append(pair);
   });
 }
@@ -488,9 +491,7 @@ document.addEventListener('click', async (e) => {
   const videos = [...b.closest('.evidence-stage').querySelectorAll('video')];
   const play = b.getAttribute('aria-pressed') !== 'true';
   b.setAttribute('aria-pressed', String(play));
-  b.innerHTML = play
-    ? 'Pause both <span aria-hidden="true">Ⅱ</span>'
-    : 'Play both <span aria-hidden="true">▷</span>';
+  b.innerHTML = playGroupLabel(play);
   for (const v of videos) {
     if (play) {
       v.muted = true;
@@ -498,8 +499,9 @@ document.addEventListener('click', async (e) => {
       try {
         await v.play();
       } catch {
-        b.setAttribute('aria-pressed', 'false');
-        b.textContent = 'Play both ▷';
+        const playing = videos.some((video) => !video.paused && !video.ended);
+        b.setAttribute('aria-pressed', String(playing));
+        b.innerHTML = playGroupLabel(playing);
       }
     } else v.pause();
   }
@@ -538,9 +540,7 @@ for (const event of ['play', 'pause', 'ended'])
       const playing = [...stage.querySelectorAll('video')].some((v) => !v.paused && !v.ended),
         button = stage.querySelector('.play-group');
       button.setAttribute('aria-pressed', String(playing));
-      button.innerHTML = playing
-        ? 'Pause both <span aria-hidden="true">Ⅱ</span>'
-        : 'Play both <span aria-hidden="true">▷</span>';
+      button.innerHTML = playGroupLabel(playing);
     },
     true,
   );

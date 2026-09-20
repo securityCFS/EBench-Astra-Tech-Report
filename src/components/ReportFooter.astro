@@ -45,8 +45,7 @@ import { icon } from '../lib/icons.js';
   <div class="report-citation" id="citation">
     <p class="citation-prompt">If you find this work useful, please cite:</p>
     <pre is:raw><code>@techreport{yao2026frontier,
-  title       = {How Frontier Large Language Models
-                 Reshape Embodied Policies},
+  title       = {How Frontier Large Language Models Reshape Embodied Policies},
   author      = {Yao, Yifei and Zou, Yude and Jiao, Guanbo and
                  Gao, Ning and Guo, Haoyu and
                  Wang, Yukai and Chen, Jiantong and Zhu, Zihou and
@@ -126,8 +125,11 @@ import { icon } from '../lib/icons.js';
     }
 
     .report-citation pre {
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
+      white-space: pre;
+      overflow-wrap: normal;
+      word-break: normal;
+      overflow-x: auto;
+      text-align: left;
       font-size: 0.875rem;
       line-height: 1.7;
       background: #1e3049;

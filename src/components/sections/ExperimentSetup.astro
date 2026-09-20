@@ -6,96 +6,224 @@ import ExecutionDemo from '../ExecutionDemo.astro';
 
 <section id="setup" class="section setup-showcase">
   <div class="section-inner">
-    <h2>Benchmark composition and evaluation protocol</h2>
+    <h2>2 Benchmark composition and evaluation protocol</h2>
     <div class="report-prose">
-      <p>
-        The main evaluation covers the 26 EBench test-mini tasks in nine scene categories: 19 mobile
-        and seven tabletop tasks, spanning household, retail, and industrial settings. Controlled
-        variations change objects, backgrounds, instructions, and their combinations. We report{' '}
-        <strong>equal-weight task means</strong> for complete success (SR) and normalized terminal
-        partial credit (Score), using 510 retained episodes.
-      </p>
-      <h3>Agentic control and learned policies</h3>
-      <p>
-        GPT-6-Astra runs with <code>high</code> reasoning effort. It requests end-effector (EEF)
-        poses, gripper and base targets, and action durations; a fixed execution interface carries
-        out those requests.{' '}
-        <strong>
-          No learned vision-language-action (VLA) or world-action model (WAM) policy generates or
-          refines its actions
-        </strong>
-        . <strong>The agent receives new observations when a tool call returns</strong>, after the
-        whole waypoint sequence has run. The interface logs execution in chunks of up to eight
-        physics steps; the model makes its next decision after the complete call.
-      </p>
-      <p>
-        The VLA/WAM policies are trained on the publicly released EBench dataset, which contains{' '}
-        <strong>6,600 episodes across 26 tasks</strong>. For task-specific adaptation, GPT-6-Astra
-        receives <strong>one historical demonstration per task, without parameter updates</strong>.
-        A separate GPT-6-Astra instance running with <code>high</code> reasoning effort reviews one
-        video trajectory from the training set and{' '}
-        <strong>autonomously selects the keyframes and writes the accompanying prompts</strong>. The
-        resulting ICL package contains 10–18 annotated keyframes, operation phases, arm roles, and
-        selected state/action examples. Every episode of a task uses the same package. The model
-        adapts the procedure to live observations without task-specific parameter updates or
-        coordinate replay.
-      </p>
-      <h3>Observations and evaluation conditions</h3>
-      <p>
-        GPT-6-Astra receives RGB observations from the{' '}
-        <strong>overview, left wrist, and right wrist cameras</strong>. All three views are provided
-        at the start of an episode; subsequent tool calls return the camera views requested by the
-        model. The accompanying state includes{' '}
-        <strong>
-          end-effector poses, gripper state, base pose, and the current simulator timestep
-        </strong>
-        . Joint states are used by the execution interface and recorded in the logs. During
-        execution, the model receives{' '}
-        <strong>
-          no depth data, ground-truth object poses, camera calibration, segmentation, intermediate
-          task scores, or subgoal-completion signals
-        </strong>
-        . The simulator timestep indicates elapsed steps; the task’s maximum physics-step budget is
-        not supplied to the model.
-      </p>
-      <p>
-        We impose no additional aggregate cap on the model’s{' '}
-        <strong>token budget, total tool calls or inference time</strong>. Physical execution
-        follows the <strong>same task-specific step limits as the baseline policies</strong>.
-        GPT-6-Astra may end its action sequence with a termination signal;{' '}
-        <strong>the server determines task success and Score</strong>. All eight models are compared
-        on the same task suite and evaluation metrics.
-      </p>
-      <h3>A separate test of unseen composition</h3>
-      <p>
-        The proof-of-concept (POC) experiment sits <strong>outside the 26-task cohort</strong>.
-        Comparison policies are retrained on its atomic skills and familiar objects, but the
-        evaluated task combinations are unseen.{' '}
-        <strong>No ground-truth (GT) trajectories are available for the composed POC tasks</strong>,
-        so all models use <strong>zero-shot execution</strong>. This tests whether they can
-        understand and compose a new task from familiar skills.
-      </p>
-      <DemonstrationCard />
-      <div class="method-details">
-        <button class="appendix-link" data-appendix="protocol">
-          Evaluation protocol <Fragment set:html={icon('external-link')} />
-        </button>
-        <a
-          href="https://internrobotics.github.io/EBench-doc/getting-started/overview/"
-          target="_blank"
-          rel="noopener"
-        >
-          Benchmark overview <Fragment set:html={icon('external-link')} />
-        </a>
-        <a
-          href="https://internrobotics.github.io/EBench-doc/getting-started/overview/"
-          target="_blank"
-          rel="noopener"
-        >
-          Evaluation metrics <Fragment set:html={icon('external-link')} />
-        </a>
-      </div>
+      <section
+        id="evaluation-tasks"
+        class="setup-subsection"
+        aria-labelledby="evaluation-tasks-title"
+      >
+        <h3 id="evaluation-tasks-title">2.1 Evaluation tasks</h3>
+        <p>
+          The study comprises a main EBench evaluation and a separate, small-scale proof of concept
+          (POC) on task composition.
+        </p>
+        <h4>2.1.1 EBench: generalization under controlled variations</h4>
+        <p>
+          The main evaluation covers <strong>26 tasks and 510 episodes</strong> in the EBench
+          test-mini suite, spanning nine scene categories across household, retail, and industrial
+          settings. The tasks include <strong>19 mobile and 7 tabletop tasks</strong>, with
+          annotations for mobility, manipulation precision, and task horizon. Controlled variations
+          in objects, backgrounds, instructions, and their combinations probe generalization under
+          changing conditions.
+        </p>
+        <h4>2.1.2 Beyond EBench: unseen task compositions</h4>
+        <p>
+          The compositional POC sits <strong>outside the 26-task main evaluation</strong>. It asks a
+          robot to place a bookmark and then a pen on the same open book. Both atomic tasks,{' '}
+          <strong>Bookmark on Book</strong> and <strong>Pen on Book</strong>, appear in the
+          comparison policies' training data, with familiar objects; their ordered combination is
+          unseen. This probes whether familiar atomic tasks can be organized into a complete
+          sequence that satisfies a compound instruction. It is a small-scale compositional
+          experiment, not a separate benchmark of unseen objects or unseen atomic tasks.
+        </p>
+      </section>
+
+      <section
+        id="adaptation-protocol"
+        class="setup-subsection"
+        aria-labelledby="adaptation-protocol-title"
+      >
+        <h3 id="adaptation-protocol-title">2.2 Model adaptation and evaluation protocol</h3>
+        <h4>Main evaluation: learned policies and one-shot ICL</h4>
+        <p>
+          The VLA/WAM policies are trained on the publicly released EBench dataset, which contains{' '}
+          <strong>6,600 episodes across 26 tasks</strong>. We compare Astra with seven learned
+          policies using their reported EBench leaderboard results.
+        </p>
+        <p>
+          GPT-6-Astra runs with <code class="reasoning-effort-highlight">high</code> reasoning
+          effort and receives{' '}
+          <strong>one annotated demonstration per task, without parameter updates</strong>. A
+          separate GPT-6-Astra instance reviews one video trajectory from the training set,
+          autonomously selects keyframes, and writes the accompanying prompts. Every episode of a
+          task uses the same ICL package. Astra uses that demonstration as context for live
+          decisions, rather than replaying its coordinates.
+        </p>
+        <DemonstrationCard />
+        <p>
+          Physical execution in the main evaluation follows the{' '}
+          <strong>same task-specific physics-step limits as the baseline policies</strong>. We
+          impose no additional aggregate cap on Astra's tokens, tool calls, or inference time. Astra
+          may issue a termination signal before the execution limit; the server determines the final
+          task success and Score. If the policy stops early, the runner holds the robot and advances
+          the simulator to obtain that terminal result.
+        </p>
+        <p>
+          Within each task, <strong>success rate (SR)</strong> is the fraction of successful
+          episodes, and <strong>Score</strong> is the mean normalized terminal partial credit under
+          that task's scoring rules. The main evaluation aggregates these task means with{' '}
+          <strong>equal weight across all 26 tasks</strong>.
+        </p>
+        <h4>Compositional POC: zero-shot execution</h4>
+        <p>
+          Comparison policies are retrained on the atomic-task data described above. No ground-truth
+          trajectories are available for the composed task, and all models use{' '}
+          <strong>zero-shot execution of the unseen combination</strong>; Astra receives no
+          in-context demonstration for it. The POC reports success and partial-completion scores
+          over <strong>10 rollouts per method</strong>, separately from the EBench results. These
+          rollouts are not included in the main evaluation's 510 episodes or headline task averages.
+        </p>
+      </section>
+
+      <section
+        id="observations-control"
+        class="setup-subsection"
+        aria-labelledby="observations-control-title"
+      >
+        <h3 id="observations-control-title">2.3 Observations and direct robot control</h3>
+        <h4>Inputs: camera views and robot state</h4>
+        <p>
+          GPT-6-Astra receives{' '}
+          <strong>RGB images from the overview, left wrist, and right wrist cameras</strong>,
+          together with end-effector poses, gripper state, base pose, and the current simulator
+          timestep. All three views are supplied initially; subsequent tool calls return the camera
+          views requested by the model.
+        </p>
+        <p>
+          The model receives{' '}
+          <strong>
+            no depth data, ground-truth object poses, camera calibration, segmentation, intermediate
+            task scores, or subgoal-completion signals
+          </strong>
+          . The timestep reports elapsed simulation steps; the task's maximum physics-step budget is
+          not supplied to the model.
+        </p>
+        <h4>Outputs: action requests through a fixed interface</h4>
+        <p>
+          Astra requests{' '}
+          <strong>end-effector (EEF) poses, gripper and base targets, and action durations</strong>.
+          A fixed robot execution interface carries out those requests.{' '}
+          <strong>No learned VLA or WAM generates or refines Astra's actions.</strong>
+        </p>
+        <p>
+          The interaction follows an <strong>observation–decision–execution–feedback loop</strong>:
+          Astra interprets the current images and state, chooses the next action request, and waits
+          while the interface executes it.{' '}
+          <strong>Updated observations arrive when the complete tool call returns</strong>, after
+          its waypoint sequence has run. Those observations inform the next decision; the model does
+          not receive a new decision point after each internal execution chunk.
+        </p>
+
+        <details class="setup-protocol-details">
+          <summary>Evaluation protocol</summary>
+          <div class="setup-protocol-body">
+            <h4>Demonstration construction</h4>
+            <p>
+              The demonstration-annotation instance also uses <code>high</code> reasoning effort.
+              Each ICL package contains 10–18 annotated keyframes, operation phases, arm roles, and
+              selected state/action examples.
+            </p>
+            <h4>Tool calls and internal execution</h4>
+            <p>
+              An <code>execute_eef</code> call can request up to six waypoints, each with up to 64
+              physics steps. The interface records and confirms execution in chunks of up to eight
+              steps; model feedback follows the complete call. Joint states are used by the
+              execution interface and recorded in the logs.
+            </p>
+            <h4>Main-evaluation records and comparison scope</h4>
+            <p>
+              The retained main cohort contains 510 unique task/seed results; resumed execution
+              stages and terminal holding are parts of those episodes. The archived leaderboard
+              records do not establish identical camera inputs, control interfaces, scene revisions,
+              or inference budgets across models.
+            </p>
+            <div class="method-details">
+              <button class="appendix-link" data-appendix="protocol">
+                Full main-evaluation protocol and provenance{' '}
+                <Fragment set:html={icon('external-link')} />
+              </button>
+              <a
+                href="https://internrobotics.github.io/EBench-doc/getting-started/overview/"
+                target="_blank"
+                rel="noopener"
+              >
+                Benchmark overview <Fragment set:html={icon('external-link')} />
+              </a>
+              <a
+                href="https://internrobotics.github.io/EBench-doc/getting-started/overview/"
+                target="_blank"
+                rel="noopener"
+              >
+                Evaluation metrics <Fragment set:html={icon('external-link')} />
+              </a>
+            </div>
+          </div>
+        </details>
+        <ExecutionDemo />
+      </section>
     </div>
-    <ExecutionDemo />
   </div>
 </section>
+
+<style>
+  .setup-subsection {
+    margin-block: 2.75rem 0;
+    text-align: left;
+    scroll-margin-top: calc(var(--header-height) + 1.5rem);
+  }
+  .setup-subsection > h3 {
+    margin: 0 0 1.25rem;
+    font-size: 1.875rem;
+  }
+  .setup-subsection > h4 {
+    margin: 1.75rem 0 0.875rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .reasoning-effort-highlight {
+    background-color: #5b616b;
+    color: #fff;
+    padding: 0.1em 0.3em;
+    border-radius: 0.2em;
+  }
+  .setup-protocol-details {
+    margin-block: 1.75rem 2.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+  }
+  .setup-protocol-details > summary {
+    padding: 1rem 1.25rem;
+    color: var(--ink);
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .setup-protocol-body {
+    padding: 0.25rem 1.25rem 1.25rem;
+  }
+  .setup-protocol-body h4 {
+    margin: 1rem 0 0.75rem;
+    font-size: 1.125rem;
+  }
+  .setup-protocol-body p {
+    font-size: 1rem;
+  }
+  .setup-protocol-body .method-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    margin-top: 1.25rem;
+    font-size: 1rem;
+  }
+</style>

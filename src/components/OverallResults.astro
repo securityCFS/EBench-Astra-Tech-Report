@@ -6,10 +6,25 @@ import { buildOverallRanking } from '../lib/overall-ranking.js';
 const ranking = buildOverallRanking(reportFigures, onlineTotals);
 const astra = ranking.find((model) => model.key === 'Astra (ICL)')!;
 const successRate = (astra.sr * 100).toFixed(2);
+const astraRank = ranking.indexOf(astra) + 1;
 ---
 
 <div class="overall-results">
+  <div class="overall-summary">
+    <h3>GPT-6-Astra + Single-shot In-Context Learning (ICL)</h3>
+    <div class="overall-metrics" role="status" aria-live="polite" aria-atomic="true">
+      <p class="overall-metric-label">Task-averaged success rate</p>
+      <div class="overall-metric-display">
+        <strong class="overall-value">{successRate}</strong>
+        <span class="overall-unit">%</span>
+        <span class="overall-position" aria-label={`Rank ${astraRank} of ${ranking.length}`}>
+          {astraRank}/{ranking.length}
+        </span>
+      </div>
+    </div>
+  </div>
   <div class="overall-comparison">
+    <h4>Comparison across models</h4>
     <div
       class="table-scroll overall-table-scroll"
       tabindex="0"
@@ -26,14 +41,36 @@ const successRate = (astra.sr * 100).toFixed(2);
           <tr>
             <th scope="col">Model</th>
             <th scope="col" aria-sort="descending">
-              SR (%)
+              <button type="button" class="overall-sort" data-overall-sort="sr" aria-pressed="true">
+                SR (%){' '}
+                <span class="overall-sort-arrow" aria-hidden="true">
+                  ↓
+                </span>
+              </button>
             </th>
-            <th scope="col">Score</th>
+            <th scope="col">
+              <button
+                type="button"
+                class="overall-sort"
+                data-overall-sort="score"
+                aria-pressed="false"
+              >
+                Score{' '}
+                <span class="overall-sort-arrow" aria-hidden="true">
+                  ↕
+                </span>
+              </button>
+            </th>
           </tr>
         </thead>
         <tbody>
           {ranking.map(({ key, label, sr, score }, index) => (
-            <tr class:list={{ highlight: key === 'Astra (ICL)' }}>
+            <tr
+              class:list={{ highlight: key === 'Astra (ICL)' }}
+              data-key={key}
+              data-sr={sr}
+              data-score={score}
+            >
               <th scope="row">
                 <span class="overall-rank">{index + 1}</span>
                 {label}
@@ -57,35 +94,59 @@ const successRate = (astra.sr * 100).toFixed(2);
       </table>
     </div>
   </div>
-
-  <div class="overall-summary">
-    <h3>GPT-6-Astra + Single-shot In-Context Learning (ICL)</h3>
-    <div class="overall-metrics">
-      <div>
-        <p class="overall-metric-label">Task-averaged success rate</p>
-        <strong class="overall-success">
-          {successRate}
-          <span>%</span>
-        </strong>
-      </div>
-      <div class="overall-score">
-        <b>{astra.score.toFixed(4)}</b>
-        <span class="overall-metric-label">Score</span>
-      </div>
-    </div>
-    <p class="overall-ranking">
-      GPT-6-Astra <strong>ranks third in success rate</strong> and <strong>second in Score</strong>{' '}
-      in the overall comparison.
-    </p>
-  </div>
 </div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.overall-results').forEach((root) => {
+    const body = root.querySelector<HTMLTableSectionElement>('tbody')!;
+    const rows = Array.from(body.querySelectorAll<HTMLTableRowElement>('tr'));
+    const astraRow = rows.find((row) => row.dataset.key === 'Astra (ICL)')!;
+    const buttons = root.querySelectorAll<HTMLButtonElement>('[data-overall-sort]');
+
+    function sortBy(metric: 'sr' | 'score') {
+      const ordered = [...rows].sort(
+        (a, b) => Number(b.dataset[metric]) - Number(a.dataset[metric]),
+      );
+      ordered.forEach((row, index) => {
+        row.querySelector('.overall-rank')!.textContent = String(index + 1);
+        body.append(row);
+      });
+      buttons.forEach((button) => {
+        const active = button.dataset.overallSort === metric;
+        button.setAttribute('aria-pressed', String(active));
+        if (active) button.closest('th')!.setAttribute('aria-sort', 'descending');
+        else button.closest('th')!.removeAttribute('aria-sort');
+        button.querySelector('.overall-sort-arrow')!.textContent = active ? '↓' : '↕';
+      });
+      const isSuccess = metric === 'sr';
+      const value = Number(astraRow.dataset[metric]);
+      const rank = ordered.indexOf(astraRow) + 1;
+      root.querySelector('.overall-value')!.textContent = isSuccess
+        ? (value * 100).toFixed(2)
+        : value.toFixed(4);
+      root.querySelector('.overall-unit')!.textContent = isSuccess ? '%' : 'Score';
+      root.querySelector('.overall-metric-label')!.textContent = isSuccess
+        ? 'Task-averaged success rate'
+        : 'Task-averaged Score';
+      const position = root.querySelector('.overall-position')!;
+      position.textContent = `${rank}/${rows.length}`;
+      position.setAttribute('aria-label', `Rank ${rank} of ${rows.length}`);
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        sortBy(button.dataset.overallSort === 'score' ? 'score' : 'sr');
+      });
+    });
+  });
+</script>
 
 <style>
   .overall-results {
     display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-    align-items: start;
-    gap: clamp(1.5rem, 4vw, 3.5rem);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.65fr);
+    align-items: center;
+    column-gap: clamp(1.5rem, 4vw, 3.5rem);
     margin-top: 2.5rem;
   }
 
@@ -93,11 +154,25 @@ const successRate = (astra.sr * 100).toFixed(2);
     min-width: 0;
   }
 
+  .overall-comparison {
+    display: contents;
+  }
+
+  .overall-comparison h4 {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0 0 0.75rem;
+    text-align: left;
+  }
+
   .overall-table-scroll {
+    grid-column: 2;
+    grid-row: 2;
     width: 100%;
     max-width: 100%;
     overflow-x: auto;
     overscroll-behavior-x: contain;
+    margin: 0;
   }
 
   .overall-comparison table {
@@ -123,6 +198,25 @@ const successRate = (astra.sr * 100).toFixed(2);
     white-space: nowrap;
   }
 
+  .overall-sort {
+    display: inline-flex;
+    align-items: center;
+    justify-content: end;
+    gap: 0.25em;
+    padding: 0.25rem 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .overall-sort[aria-pressed='true'] {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
   .overall-rank {
     display: inline-block;
     min-width: 1.5em;
@@ -145,6 +239,8 @@ const successRate = (astra.sr * 100).toFixed(2);
   }
 
   .overall-summary {
+    grid-column: 1;
+    grid-row: 2;
     align-self: center;
   }
 
@@ -156,11 +252,11 @@ const successRate = (astra.sr * 100).toFixed(2);
     text-wrap: balance;
   }
 
-  .overall-metrics {
+  .overall-metric-display {
     display: flex;
     flex-wrap: wrap;
-    align-items: end;
-    gap: 1rem 1.25rem;
+    align-items: baseline;
+    gap: 0.3rem;
     font-variant-numeric: tabular-nums;
   }
 
@@ -171,50 +267,44 @@ const successRate = (astra.sr * 100).toFixed(2);
     line-height: 1.4;
   }
 
-  .overall-success {
+  .overall-value {
     display: block;
     color: var(--accent);
-    font-size: clamp(3.25rem, 5vw, 4.5rem);
+    font-size: clamp(2.75rem, 4vw, 4.5rem);
     font-weight: 600;
     line-height: 1.1;
     letter-spacing: -0.035em;
     white-space: nowrap;
   }
 
-  .overall-success span {
-    margin-left: 0.1em;
-    font-size: 0.4em;
-    letter-spacing: 0;
+  .overall-unit {
+    color: var(--accent);
+    font-size: 1.5rem;
   }
 
-  .overall-score {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.35rem;
-    padding-bottom: 0.3rem;
-  }
-
-  .overall-score b {
-    font-size: 1.625rem;
-    font-weight: 400;
-    line-height: 1.2;
-  }
-
-  .overall-score .overall-metric-label {
-    margin: 0;
-  }
-
-  .overall-ranking {
-    margin: 1.5rem 0 0;
-    font-size: 1.125rem;
-    line-height: 1.6;
+  .overall-position {
+    margin-left: 0.5rem;
+    color: var(--muted);
+    font-size: 1.5rem;
   }
 
   @media (max-width: 48rem) {
     .overall-results {
       grid-template-columns: minmax(0, 1fr);
-      gap: 2rem;
+      row-gap: 1.5rem;
+    }
+    .overall-summary {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .overall-comparison h4 {
+      grid-column: 1;
+      grid-row: 2;
+      margin: 0;
+    }
+    .overall-table-scroll {
+      grid-column: 1;
+      grid-row: 3;
     }
   }
 </style>
