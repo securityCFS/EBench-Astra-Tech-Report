@@ -30,12 +30,11 @@ import ExecutionDemo from '../ExecutionDemo.astro';
         <h4>Beyond EBench: unseen task compositions</h4>
         <p>
           The compositional POC sits <strong>outside the 26-task main evaluation</strong>. It asks a
-          robot to place a bookmark and then a pen on the same open book. Both atomic tasks,{' '}
-          <strong>Bookmark on Book</strong> and <strong>Pen on Book</strong>, appear in the
-          comparison policies' training data, with familiar objects; their ordered combination is
-          unseen. This probes whether familiar atomic tasks can be organized into a complete
-          sequence that satisfies a compound instruction. It is a small-scale compositional
-          experiment, not a separate benchmark of unseen objects or unseen atomic tasks.
+          robot to place a bookmark and then a pen on the same open book, combining the familiar
+          <strong>Bookmark on Book</strong> task with <strong>Pen on Book</strong>, which is absent
+          from robot-policy training. The{' '}
+          <a href="#case-poc-setting">compositional evaluation setting</a> details the training-task
+          coverage, prescribed sequence, and scoring protocol.
         </p>
       </section>
 

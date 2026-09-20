@@ -168,7 +168,7 @@ function openAppendix(key) {
   $('#appendix-dialog').classList.remove('icl-dialog');
   let content = notes[key];
   if (key === 'study-limitations')
-    content = ['07 Study Limitations', $('#study-limitations-content').innerHTML];
+    content = ['08 Study Limitations', $('#study-limitations-content').innerHTML];
   if (key === 'generalization')
     content = ['Across benchmark perturbations', kitComparisonTable('generalization')];
   if (key === 'full-comparison')
