@@ -102,6 +102,41 @@
   #cross-group-chart .report-table th[scope='colgroup'] {
     text-align: center;
   }
+  #mobile-content > .finding-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #cross-group-chart .capability-table-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+  #cross-group-chart .capability-dimension {
+    width: 9rem;
+    min-width: 9rem;
+    max-width: 9rem;
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: var(--table-surface);
+    text-align: left;
+    white-space: normal;
+    font-weight: 600;
+  }
+  #cross-group-chart .capability-subgroup {
+    min-width: 8rem;
+    position: sticky;
+    left: 9rem;
+    z-index: 2;
+    background: var(--table-surface);
+    text-align: left;
+    white-space: nowrap;
+  }
+  #cross-group-chart .insight-astra {
+    background: var(--accent-soft);
+  }
+  #cross-group-chart tbody th[scope='rowgroup'] {
+    border-bottom: 1px solid #91a2bd;
+  }
   .report-table--heat {
     min-width: 48rem;
     border-spacing: 2px;

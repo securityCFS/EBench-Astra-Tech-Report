@@ -23,14 +23,88 @@ async function initAnalysisInsights() {
   const label = (id) => data.models.find((m) => m.id === id).label;
   const model = (id) => esc(label(id));
   const groupRoot = document.getElementById('cross-group-chart');
-  groupRoot.innerHTML = `<div class="insight-table-scroll"><table class="report-table report-table--plain insight-table"><thead><tr><th scope="col" rowspan="2">Subgroup</th><th scope="colgroup" colspan="${data.models.length}">Success rate (%)</th></tr><tr>${data.models.map((m) => `<th scope="col" ${m.id === astra ? 'class="insight-astra"' : ''}>${model(m.id)}</th>`).join('')}</tr></thead><tbody>${data.groups
-    .map((g) => {
-      const best = Math.max(...Object.values(g.rates));
-      return `<tr><th scope="row"><span class="subgroup-label">${esc(g.label)}<small>${g.n} tasks</small></span></th>${data.models.map((m) => `<td class="${m.id === astra ? 'insight-astra' : ''}">${Math.abs(g.rates[m.id] - best) < 1e-8 ? '<strong>' : ''}${number(g.rates[m.id])}${Math.abs(g.rates[m.id] - best) < 1e-8 ? '</strong>' : ''}</td>`).join('')}</tr>`;
-    })
-    .join(
-      '',
-    )}</tbody></table></div><p class="insight-note">Each task has equal weight within its subgroup. <a href="#study-limitations">Benchmark limitations ${reportIcon('external-link')}</a></p>`;
+  const tableGroups = [
+    {
+      label: 'Operating Mode',
+      rows: [
+        ['Mobile', 'Mobile'],
+        ['Tabletop', 'Fixed'],
+      ].map(([label, mode]) => {
+        const subset = tasks.filter((task) => task.mobility === mode);
+        return {
+          id: `mode-${mode.toLowerCase()}`,
+          label,
+          n: subset.length,
+          values: (metric) =>
+            data.models.map((m) => chartAggregate(m.id, metric, 'mobility', mode, subset)),
+        };
+      }),
+    },
+    ...[
+      [
+        'Horizon',
+        [
+          ['mobile-short', 'Short'],
+          ['mobile-long', 'Long'],
+        ],
+      ],
+      [
+        'Precision',
+        [
+          ['fixed-low-medium', 'Low / Medium'],
+          ['fixed-high', 'High'],
+        ],
+      ],
+    ].map(([label, rows]) => ({
+      label,
+      rows: rows.map(([id, label]) => {
+        const group = data.groups.find((group) => group.id === id);
+        const subset = tasks.filter((task) => group.tasks.includes(task.task));
+        return {
+          id,
+          label,
+          n: group.n,
+          values: (metric) =>
+            data.models.map((m) =>
+              metric === 'sr'
+                ? group.rates[m.id] / 100
+                : subset.reduce((sum, task) => sum + Number(task[m.id + '_score']), 0) /
+                  subset.length,
+            ),
+        };
+      }),
+    })),
+  ];
+  let groupMetric = 'sr';
+  groupRoot.innerHTML = `<div class="capability-table-controls"><div class="chart-metrics" role="group" aria-label="Capability comparison metric"><button type="button" data-metric="sr" aria-pressed="true">SR (%)</button><button type="button" data-metric="score" aria-pressed="false">Score</button></div></div><div class="insight-table-scroll" tabindex="0" role="region" aria-label="Performance by operating mode, horizon and precision"></div><p class="insight-note" id="capability-table-note">Each task has equal weight within its subgroup. Horizon compares the 19 mobile tasks; Precision compares the 7 tabletop tasks. <strong>Bold</strong>: best in row; shaded column: GPT-6-Astra. <a href="#study-limitations">Benchmark limitations ${reportIcon('external-link')}</a></p>`;
+  initSegmentedControl(groupRoot.querySelector('.chart-metrics'));
+  function drawCapabilityTable() {
+    const metricLabel = groupMetric === 'sr' ? 'Success rate (%)' : 'Score (0–1)';
+    const format = (value) => (groupMetric === 'sr' ? (value * 100).toFixed(2) : value.toFixed(4));
+    groupRoot.querySelector('.insight-table-scroll').innerHTML =
+      `<table class="report-table report-table--plain insight-table capability-results" data-metric="${groupMetric}" aria-label="Capability comparison: ${metricLabel}" aria-describedby="capability-table-note"><thead><tr><th scope="col" rowspan="2" class="capability-dimension">Dimension</th><th scope="col" rowspan="2" class="capability-subgroup">Subgroup</th><th scope="colgroup" colspan="${data.models.length}">${metricLabel}</th></tr><tr>${data.models.map((m) => `<th scope="col" ${m.id === astra ? 'class="insight-astra"' : ''}>${model(m.id)}</th>`).join('')}</tr></thead>${tableGroups
+        .map(
+          (group) =>
+            `<tbody>${group.rows
+              .map((row, index) => {
+                const values = row.values(groupMetric);
+                const best = Math.max(...values);
+                return `<tr data-subgroup="${row.id}">${index === 0 ? `<th scope="rowgroup" rowspan="2" class="capability-dimension">${esc(group.label)}</th>` : ''}<th scope="row" class="capability-subgroup"><span class="subgroup-label">${esc(row.label)}<small>${row.n} tasks</small></span></th>${data.models.map((m, i) => `<td data-model="${m.id}" data-value="${values[i]}" class="${m.id === astra ? 'insight-astra' : ''}">${Math.abs(values[i] - best) < 1e-8 ? `<strong>${format(values[i])}</strong>` : format(values[i])}</td>`).join('')}</tr>`;
+              })
+              .join('')}</tbody>`,
+        )
+        .join('')}</table>`;
+  }
+  groupRoot.addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-metric]');
+    if (!button || button.dataset.metric === groupMetric) return;
+    groupMetric = button.dataset.metric;
+    groupRoot
+      .querySelectorAll('button[data-metric]')
+      .forEach((control) => control.setAttribute('aria-pressed', String(control === button)));
+    drawCapabilityTable();
+  });
+  drawCapabilityTable();
 
   const fixed = document.getElementById('fixed-task-evidence');
   fixed.innerHTML = `<div class="insight-table-scroll"><table class="report-table report-table--plain insight-table fixed-insight-table"><thead><tr><th scope="col" rowspan="2">Task</th><th scope="colgroup" colspan="2">Success rate (%)</th><th scope="col" rowspan="2">Video</th></tr><tr><th scope="col">GPT-6-Astra</th><th scope="col">Qwen-RobotManip</th></tr></thead><tbody>${data.groups

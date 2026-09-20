@@ -323,20 +323,20 @@ async function expectProfileValues(
   }
 }
 
-test('profile tables retain all models and the persistent keyboard-operated metric pill', async ({
+test('merged capability table retains all six subgroups and the persistent keyboard-operated metric pill', async ({
   page,
 }) => {
   await ready(page);
-  const chart = page.locator('#mobile-content [data-chart="mobility"]');
-  await expect(chart.locator('.profile-results')).toBeVisible();
-  await expect(chart.locator('tbody tr')).toHaveCount(8);
+  const chart = page.locator('#cross-group-chart');
+  await expect(chart.locator('.capability-results')).toBeVisible();
+  await expect(chart.locator('tbody tr')).toHaveCount(6);
   await expect(chart.locator('svg, canvas, .chart-series, [data-series]')).toHaveCount(0);
   const pill = await chart.locator('.segmented-control__indicator').elementHandle();
   const score = chart.locator('button[data-metric="score"]');
   await score.click();
   await expect(score).toHaveAttribute('aria-pressed', 'true');
   await expect(chart.locator('table')).toHaveAccessibleName(/Score \(0–1\)/);
-  await expectPillAligned(page, '#mobile-content .chart-metrics');
+  await expectPillAligned(page, '#cross-group-chart .chart-metrics');
   expect(
     await chart
       .locator('.segmented-control__indicator')
@@ -346,7 +346,7 @@ test('profile tables retain all models and the persistent keyboard-operated metr
   await expect(chart.locator('button[data-metric="sr"]')).toBeFocused();
   await expect(chart.locator('button[data-metric="sr"]')).toHaveAttribute('aria-pressed', 'true');
   await expect(chart.locator('table')).toHaveAccessibleName(/Success rate/);
-  await expect(chart.locator('tbody tr')).toHaveCount(8);
+  await expect(chart.locator('tbody tr')).toHaveCount(6);
 });
 
 test('every profile and appendix copy preserves all exact group aggregates in both metrics', async ({
@@ -357,11 +357,9 @@ test('every profile and appendix copy preserves all exact group aggregates in bo
     await page.request.get('/data/report-figures.json')
   ).json();
   const tasks: Record<string, string>[] = await (await page.request.get('/data/tasks.json')).json();
-  for (const kind of Object.keys(profileGroups) as ProfileKind[]) {
-    if (kind !== 'mobility') await page.locator(`[data-limit="${kind}"]`).click();
-    const profile = page.locator(
-      `${kind === 'mobility' ? '#mobile-content' : '#limits-content'} [data-chart="${kind}"]`,
-    );
+  for (const kind of ['precision', 'horizon'] as const) {
+    await page.locator(`[data-limit="${kind}"]`).click();
+    const profile = page.locator(`#limits-content [data-chart="${kind}"]`);
     for (const metric of ['sr', 'score'] as const) {
       await profile.locator(`button[data-metric="${metric}"]`).click();
       await expectProfileValues(profile, kind, metric, figures, tasks);
