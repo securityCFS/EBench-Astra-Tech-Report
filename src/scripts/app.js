@@ -280,7 +280,7 @@ document.addEventListener('click', (e) => {
     dialog.classList.remove('icl-dialog');
     $('#appendix-body').scrollTop = 0;
     $('#appendix-body').innerHTML =
-      `<button class="appendix-link" data-appendix="results">← All task results</button><h2 id="appendix-title">${title(d.task)}</h2>${mainVideo(d.task, d.seed, 'GPT-6-Astra · ICL', '')}`;
+      `<button class="appendix-link" data-appendix="results">← All task results</button><h2 id="appendix-title">${title(d.task)}</h2>${mainVideo(d.task, d.seed, 'GPT-6-Astra + ICL', '')}`;
     if (!$('#appendix-dialog').open) $('#appendix-dialog').showModal();
     initVideos();
   }

@@ -1,6 +1,6 @@
 <section id="case-poc" class="section" aria-labelledby="case-poc-title">
   <div class="section-inner">
-    <h2 id="case-poc-title">06 Compositional completion</h2>
+    <h2 id="case-poc-title">06 Compositional generalization</h2>
     <section
       id="case-poc-setting"
       class="case-study-section"
@@ -9,18 +9,14 @@
       <h3 id="case-poc-setting-title">Evaluation setting</h3>
       <div class="report-prose">
         <p>
-          We further evaluate a composite task that requires placing a bookmark and a pen on the
-          same open book. <strong>Bookmark on Book</strong> and pen-placement tasks with other
-          targets (a pen holder or a ruler) appear in the robot-policy training set, whereas{' '}
-          <strong>Pen on Book</strong> does not. This setting therefore tests more than the
-          sequencing of two familiar tasks: the combined objective includes an atomic task absent
-          from the robot-policy training data.
-        </p>
-        <p>
-          The prescribed sequence places the bookmark first and then the pen. We evaluate each
-          method over <strong>10 rollouts</strong> using zero-shot execution of the composite task;
-          GPT-6-Astra receives no in-context demonstrations. Partial credit of 0.5 points is awarded
-          for correctly completing the first object placement in the prescribed sequence.
+          Beyond Ebench, we further evaluate a compositional unseen task that requires placing a bookmark and a pen on the
+          same open book sequentially. Bookmark on book and pen-placement tasks with other
+          targets (in a pen holder or on a ruler) appear in the robot-policy training set, whereas
+          pen on book does not. This setting therefore tests more than the
+          sequencing of two familiar tasks: the combined objective includes an sub-task absent
+          from the robot-policy training data. Each method is evaluated over 10 rollouts and GPT-6-Astra receives
+          no in-context demonstrations. The prescribed sequence places the bookmark first and then the pen and
+          the partial credit of 0.5 points is awarded for correctly completing the first object placement in the prescribed sequence.
         </p>
       </div>
     </section>
