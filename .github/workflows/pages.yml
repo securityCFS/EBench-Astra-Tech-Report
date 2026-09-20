@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.ref == 'refs/heads/clean'
+    if: github.ref == 'refs/heads/clean' || github.ref == 'refs/heads/001'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
