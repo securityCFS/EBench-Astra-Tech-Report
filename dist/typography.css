@@ -1,0 +1,176 @@
+/* Fixed report typography, centered in the space left by the visible contents panel. */
+:root {
+  --shell: 960px;
+  --toc-width: 220px;
+  --body-size: 16px;
+  --body-leading: 1.55;
+  --note-size: 14px;
+}
+
+body {
+  --toc-space: 0px;
+  --article-left: calc(var(--toc-space) + 32px);
+  min-width: calc(var(--shell) + var(--toc-space) + 64px);
+  font-size: var(--body-size);
+  line-height: var(--body-leading);
+  text-align: center;
+}
+
+body[data-toc-open="true"] { --toc-space: var(--toc-width); }
+body .report-toc { width: var(--toc-width); }
+
+body > .cosmos,
+body > main > .section,
+body > main > #introduction {
+  padding-left: var(--article-left);
+  padding-right: 32px;
+}
+
+body > main > .section > .section-inner,
+body > .cosmos > .showcase-hero {
+  width: var(--shell);
+  max-width: var(--shell);
+  margin-left: auto;
+  margin-right: auto;
+  padding-inline: 0;
+}
+
+.hero-copy,
+.hero-copy .report-authors,
+.hero-copy .authors,
+.hero-copy .report-subtitle {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: center;
+  text-wrap: wrap;
+}
+
+.hero-copy { padding: 36px 0 20px; }
+.hero-copy h1 {
+  font-size: 44px;
+  line-height: 1.16;
+  letter-spacing: -1px;
+  text-align: center;
+  text-wrap: wrap;
+  margin-bottom: 16px;
+}
+.hero-copy .report-subtitle { font-size: 21px; line-height: 1.4; margin-bottom: 18px; }
+.report-authors .authors { font-size: 17px; line-height: 1.55; margin-bottom: 10px; }
+.report-authors .authors sup { font-size: 11px; }
+.report-authors .affiliations,
+.report-authors .author-note { font-size: 14px; line-height: 1.5; text-align: center; }
+.hero-actions { justify-content: center; margin-top: 18px; }
+.hero-actions > a { font-size: 15px; }
+.hero-actions > a,
+.hero-actions .coming-soon { padding: 8px 14px; }
+
+/* These scoped priorities supersede legacy component typography, including dialogs. */
+body main :is(p, li, dd, blockquote),
+body #appendix-dialog #appendix-body :is(p, li, dd, blockquote) {
+  font-size: var(--body-size) !important;
+  line-height: var(--body-leading) !important;
+  text-align: center;
+  text-indent: 0;
+  letter-spacing: normal;
+}
+body main p,
+body #appendix-dialog #appendix-body p { margin-top: 0; margin-bottom: 14px; }
+body #introduction .report-prose p + p { margin-top: 0; }
+body main .report-prose { font-size: var(--body-size); line-height: var(--body-leading); }
+body main :is(h2, h3, h4) { text-align: center; letter-spacing: normal; }
+body main h2,
+body #appendix-dialog h2 { font-size: 32px !important; line-height: 1.25; margin-bottom: 20px; }
+body main h3,
+body #appendix-dialog #appendix-body h3 { font-size: 24px !important; line-height: 1.3; }
+body main h4,
+body #appendix-dialog h4 { font-size: 19px !important; line-height: 1.4; }
+
+body main :is(.section-heading, .results-extra, .explorer-links, .paired-mini,
+  .paired-summary, .poc-protocol, .outcome-heading, .outcome-layout,
+  .case-description, .case-insight, .shift-analysis) {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: center;
+}
+body main .report-prose p { padding-left: 0; padding-right: 0; }
+.opening-quote { padding: 20px 24px; margin-bottom: 24px; }
+body main #introduction .opening-quote blockquote p {
+  font-size: 30px !important;
+  line-height: 1.35 !important;
+  text-align: center;
+  margin-bottom: 0;
+}
+body main .opening-quote figcaption { text-align: center; font-size: 14px; line-height: 1.5; }
+
+/* Compact controls, captions and tables share the centered text alignment. */
+body :is(button, input, select, summary) { font-size: 14px !important; line-height: 1.45; }
+body .header nav a { font-size: 15px; }
+body #report-toc-links a { font-size: 15px; line-height: 1.4; padding-block: 6px; }
+body #report-toc-links .toc-subsection { font-size: 14px; }
+body main :is(.fineprint, .figure-caption, .insight-note, .viz-caption, figcaption,
+  .chart-readout, .profile-note, .viz-legend, .heat-legend, .episode-caption,
+  .episode-source-links, .method-details a, .model-reference-entry a) {
+  font-size: var(--note-size) !important;
+  line-height: 1.5 !important;
+}
+body main .comparison-footnote p { font-size: var(--note-size) !important; line-height: 1.5 !important; }
+body :is(main, #appendix-dialog) :is(th, td) { font-size: 14px !important; line-height: 1.45; }
+body main .video-label strong { font-size: 16px; line-height: 1.4; }
+body main .video-label > span { font-size: 14px; line-height: 1.4; text-align: center; }
+.episode-outcome { font-size: 17px; line-height: 1.4; text-align: center; }
+.episode-outcome small { font-size: 14px; }
+.episode-speaker span, .episode-playback, .episode-log time { font-size: 14px; }
+.episode-raw pre, .episode-prompt, .icl-json { font-size: 13px; line-height: 1.5; }
+#overall .metric-success { font-size: 60px; }
+#overall .metric-success > span { font-size: 28px; }
+#overall .metric-score b { font-size: 25px; }
+#overall .metric-primary > .metric-label,
+#overall .metric-score > .metric-label { font-size: 14px !important; }
+.icl-card-copy > strong { font-size: 21px; line-height: 1.35; }
+.icl-card-copy > span:not(.eyebrow), .icl-card-copy > b { font-size: 15px; line-height: 1.5; }
+.research-questions strong { font-size: 18px; line-height: 1.4; }
+.outcome-legend strong { font-size: 28px; }
+
+body > footer.report-footer {
+  grid-template-columns: 300px 612px;
+  gap: 48px;
+  justify-content: center;
+  padding-left: var(--article-left);
+  padding-right: 32px;
+  text-align: center;
+}
+.report-footer .footer-identity strong { font-size: 18px; }
+.report-footer .footer-identity p, .footer-resource-links { font-size: 14px; line-height: 1.5; }
+.report-footer .citation-prompt { font-size: 16px; line-height: 1.5; }
+.report-citation pre, .report-citation code { font-size: 13px; line-height: 1.5; }
+
+
+/* Apply the selected alignment consistently across legacy component styles. */
+body :is(h1, h2, h3, h4, p, li, dt, dd, blockquote, figcaption, caption,
+  th, td, button, input, select, summary, label, pre, code),
+body #report-toc-links a,
+body .insight-table .subgroup-label,
+body .gap-row strong,
+body .perturbation-row > strong,
+body .failure-depth-row > span:last-child {
+  text-align: center !important;
+}
+
+.hero-actions,
+.footer-resource-links,
+body main :is(.explorer-links, .method-details, .episode-source-links, .icl-case-links) {
+  justify-content: center;
+}
+#overall .metric-values { justify-content: center; }
+.report-footer .footer-marks { align-items: center; }
+.report-reference-list li { padding-left: 0; }
+.report-reference-list li::before { position: static; margin-right: 8px; }
+
+@media print {
+  body { min-width: 0; }
+  body > main > .section, body > main > #introduction, body > .cosmos,
+  body > footer.report-footer { padding-inline: 0; }
+  body > main > .section > .section-inner, body > .cosmos > .showcase-hero { width: 100%; }
+}
