@@ -150,6 +150,10 @@
   .report-prose p a.source-link {
     font: inherit;
   }
+  #related-work a.source-link {
+    display: inline;
+    margin: 0;
+  }
   button {
     border: 1px solid var(--line);
     border-radius: 0.35rem;

@@ -67,7 +67,7 @@ async function initAnalysisInsights() {
           values: (metric) =>
             data.models.map((m) =>
               metric === 'sr'
-                ? group.rates[m.id] / 100
+                ? (group.reported_rates?.[m.id] ?? group.rates[m.id]) / 100
                 : subset.reduce((sum, task) => sum + Number(task[m.id + '_score']), 0) /
                   subset.length,
             ),
@@ -89,7 +89,7 @@ async function initAnalysisInsights() {
               .map((row, index) => {
                 const values = row.values(groupMetric);
                 const best = Math.max(...values);
-                return `<tr data-subgroup="${row.id}">${index === 0 ? `<th scope="rowgroup" rowspan="2" class="capability-dimension">${esc(group.label)}</th>` : ''}<th scope="row" class="capability-subgroup"><span class="subgroup-label">${esc(row.label)}<small>${row.n} tasks</small></span></th>${data.models.map((m, i) => `<td data-model="${m.id}" data-value="${values[i]}" class="${m.id === astra ? 'insight-astra' : ''}">${Math.abs(values[i] - best) < 1e-8 ? `<strong>${format(values[i])}</strong>` : format(values[i])}</td>`).join('')}</tr>`;
+                return `<tr data-subgroup="${row.id}">${index === 0 ? `<th scope="rowgroup" rowspan="2" class="capability-dimension">${esc(group.label)}</th>` : ''}<th scope="row" class="capability-subgroup"><span class="subgroup-label">${esc(row.label)}</span></th>${data.models.map((m, i) => `<td data-model="${m.id}" data-value="${values[i]}" class="${m.id === astra ? 'insight-astra' : ''}">${Math.abs(values[i] - best) < 1e-8 ? `<strong>${format(values[i])}</strong>` : format(values[i])}</td>`).join('')}</tr>`;
               })
               .join('')}</tbody>`,
         )

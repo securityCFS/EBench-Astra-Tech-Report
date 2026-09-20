@@ -96,6 +96,10 @@
         "frame_against_pen_holder",
         "put_glass_in_glassbox"
       ],
+      "reported_rates": {
+        "OpenWAM-Alpha": 52.87
+      },
+      "reported_rates_note": "Author-supplied aggregate correction; archived per-task records remain unchanged.",
       "rates": {
         "OpenWAM-Alpha": 54.99999999999999,
         "Astra (ICL)": 31.66666666666667,
