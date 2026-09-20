@@ -1,0 +1,108 @@
+---
+import { icon } from '../lib/icons.js';
+---
+
+<button class="demonstration-card" data-icl-package="install_gear" type="button">
+  <span class="preview" aria-hidden="true">
+    <img src="media/icl/install_gear/01_left_frame_000120.png" loading="lazy" alt="" />
+    <img src="media/icl/install_gear/11_top_frame_000645.png" loading="lazy" alt="" />
+  </span>
+  <span class="copy">
+    <span class="label">Demonstration input</span>
+    <strong>What does GPT-6-Astra see in a single shot?</strong>
+    <span class="description">
+      Single-shot ICL data for all 26 tasks: annotated keyframes, task context, and recorded states
+      and actions.
+    </span>
+    <span class="action">
+      Demonstration data <Fragment set:html={icon('external-link')} />
+    </span>
+  </span>
+</button>
+
+<style>
+  @layer components {
+    .demonstration-card {
+      display: grid;
+      grid-template-columns: 11rem minmax(0, 1fr);
+      align-items: center;
+      gap: 1.5rem;
+      width: 100%;
+      margin-block: 2rem 1.5rem;
+      padding: 1.5rem;
+      text-align: left;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      color: var(--ink);
+      transition:
+        border-color var(--motion-duration),
+        background var(--motion-duration);
+    }
+    .demonstration-card:hover {
+      border-color: var(--accent);
+      background: #f3f6ff;
+    }
+    .preview {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem;
+    }
+    .preview img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+    }
+    .copy {
+      display: grid;
+      gap: 0.65rem;
+    }
+    .label {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    strong {
+      font-size: 1.5rem;
+      line-height: 1.3;
+    }
+    .description {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+    .action {
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .action :global(.report-icon) {
+      width: 1.125rem;
+      height: 1.125rem;
+      flex: none;
+    }
+    @media (max-width: 40rem) {
+      .demonstration-card {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 1.25rem;
+        gap: 1rem;
+      }
+      .preview {
+        width: 9rem;
+      }
+      strong {
+        font-size: 1.25rem;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .demonstration-card {
+        transition: none;
+      }
+    }
+  }
+</style>

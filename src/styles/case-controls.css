@@ -1,0 +1,145 @@
+/* Case playback and view controls. Model choices remain in the playback row. */
+@layer components {
+  .case-video-toolbar {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    min-width: 0;
+    max-width: 100%;
+    margin: 1rem 0;
+    border-bottom: 1px solid var(--line, #d4dce8);
+  }
+  .case-video-toolbar + :is(.case-videos, .poc-videos) {
+    margin-top: 1rem;
+  }
+  .case-video-toolbar .case-model-tabs {
+    flex: 0 1 auto;
+    gap: 1.25rem;
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    overscroll-behavior-x: contain;
+  }
+  .case-video-toolbar .case-model-tabs > button {
+    flex: none;
+    min-height: 2.75rem;
+    padding: 0.6rem 0;
+    border: 0;
+    border-radius: 0;
+    color: var(--muted, #4c617d);
+    font: 0.9375rem/1.35 var(--font-body, serif);
+    text-align: left;
+    white-space: nowrap;
+  }
+  .case-video-toolbar .case-model-tabs > button[aria-pressed='true'] {
+    color: var(--accent, #4056e8);
+  }
+  .case-video-toolbar .case-play {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    min-height: 2.5rem;
+    margin: 0 0 0 auto;
+    padding: 0.4rem 0.65rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    color: var(--muted, #4c617d);
+    background: transparent;
+    font: 0.9375rem/1.35 var(--font-body, serif);
+    white-space: nowrap;
+  }
+  .case-video-toolbar .case-play:hover {
+    color: var(--accent, #4056e8);
+    background: #e7edf680;
+  }
+  .case-video-toolbar .case-play:focus-visible {
+    outline: 2px solid var(--accent, #4056e8);
+    outline-offset: -2px;
+  }
+  .case-video-toolbar .case-play svg {
+    flex: 0 0 1rem;
+    width: 1rem;
+    height: 1rem;
+  }
+  .case-study-content .stage-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.65rem 1rem;
+    max-width: 100%;
+    margin: 1.25rem 0 0;
+  }
+  .case-stage-tabs.segmented-control,
+  .camera-controls.segmented-control {
+    gap: 0.125rem;
+    max-width: 100%;
+    border-radius: 999px;
+  }
+  .camera-controls.segmented-control {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0.75rem 0 0;
+    padding: 0.25rem;
+  }
+  .evidence-video > .camera-controls + figcaption {
+    margin: 0.75rem 0 0;
+    padding: 0;
+  }
+  /* The general video rule contains media; stitched single views need a pane crop. */
+  .media-viewport > video[data-camera-ready]:not([data-view='all']) {
+    object-fit: cover;
+  }
+  .media-viewport > video[data-camera-ready][data-view='left'] {
+    object-position: left center;
+  }
+  .media-viewport > video[data-camera-ready][data-view='center'] {
+    object-position: center;
+  }
+  .media-viewport > video[data-camera-ready][data-view='right'] {
+    object-position: right center;
+  }
+  .case-stage-tabs.segmented-control > button,
+  .camera-controls.segmented-control > button {
+    min-width: 0;
+    padding: 0.4rem 0.7rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    font: 0.875rem/1.35 var(--font-body, serif);
+  }
+  .case-stage-tabs.segmented-control > .segmented-control__indicator,
+  .camera-controls.segmented-control > .segmented-control__indicator {
+    border-radius: 999px;
+  }
+  @media (max-width: 40rem) {
+    .case-video-toolbar {
+      gap: 0.5rem;
+    }
+    .case-video-toolbar .case-model-tabs {
+      gap: 1rem;
+    }
+    .case-video-toolbar .case-play {
+      padding-inline: 0.4rem;
+    }
+    .case-stage-tabs.segmented-control > button,
+    .camera-controls.segmented-control > button {
+      padding-inline: 0.5rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .case-model-tabs.segmented-control > .segmented-control__indicator,
+    .case-stage-tabs.segmented-control > .segmented-control__indicator,
+    .camera-controls.segmented-control > .segmented-control__indicator {
+      transition: none;
+    }
+  }
+}

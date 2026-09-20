@@ -1,0 +1,122 @@
+---
+import { icon } from '../../lib/icons.js';
+---
+
+<section id="conclusion" class="section">
+  <div class="section-inner">
+    <h2>
+      6 Conclusion And Insights:
+      <br />
+      where shall we head to?
+    </h2>
+    <div class="report-prose conclusion-prose">
+      <p>
+        The evaluation places GPT-6-Astra’s embodied capability frontier between{' '}
+        <strong>flexible task interpretation and reliable physical execution</strong>. With one
+        annotated demonstration per task, it ranks second among eight models and leads on mobile,
+        short-horizon tasks, while trailing on tabletop and long-horizon tasks. The recordings show
+        how it explores alternative approaches, recovers disrupted goals and uses an unsuccessful
+        attempt to revise its next action.
+      </p>
+      <p>
+        <strong>Precise alignment and manipulation remain clear execution bottlenecks</strong>, with
+        leading specialized policies retaining a substantial advantage on precision-sensitive tasks.
+        The logs also expose a control challenge: the agent selects corrections between action
+        batches, while contact and grasp stability can change within a batch. Large EEF corrections
+        and awkward object poses raise safety concerns for physical deployment. These findings
+        motivate four research directions.
+      </p>
+      <h3>Combine on-device policies with agents</h3>
+      <p>
+        The comparisons show{' '}
+        <strong>
+          complementary capabilities in frontier agents and low-level control policies
+        </strong>
+        . GPT-6-Astra’s task interpretation and recovery offer ways to handle unfamiliar states that
+        challenge demonstration-trained policies. Specialized policies provide responsive, precise
+        execution within the conditions they have learned. A combined system could assign
+        exploration and goal revision to the agent, while a local controller maintains the fast
+        feedback needed for contact-sensitive operations.
+      </p>
+      <p>
+        <strong>Coupling these capabilities requires an explicit handoff.</strong> The agent can
+        specify goals and contact assumptions. The controller can report grasp loss or unexpected
+        contact, interrupt execution and return control to the agent.{' '}
+        <a
+          class="source-link"
+          href="https://rpent.readthedocs.io/en/latest/rst_source/development/architecture.html"
+          target="_blank"
+          rel="noopener"
+        >
+          RPent
+        </a>{' '}
+        <a class="paper-citation" href="#ref-rpent" role="doc-biblioref" aria-label="Reference 9">
+          [9]
+        </a>
+        , which exposes VLA skills as retryable tools to a planner, provides one architecture for
+        coupling a planner to learned skills. Its performance under scene changes and
+        contact-sensitive tasks is a useful direction for evaluation.
+      </p>
+      <h3>Teach smaller policies to plan, explore, and recover</h3>
+      <p>
+        A second direction is to{' '}
+        <strong>transfer the agent’s action strategy to smaller on-device policies</strong>. Its
+        rollouts include attempts to obtain better observations and corrections after failed
+        actions. Training examples could connect the{' '}
+        <strong>goal, failure state, revised strategy and observed outcome</strong>, retaining
+        unsuccessful corrections as well as successful recovery. A policy could learn when to
+        inspect or retry, and when to abandon an ineffective procedure.
+      </p>
+      <p>
+        This broadens behavior cloning toward <strong>intention imitation</strong>: learning which
+        corrective strategy fits a goal and observed state. The challenge is to preserve that
+        relationship across scenes and embodiments without copying the teacher’s coordinates or
+        mistakes. Agent-generated exploration could make data collection more scalable than human
+        demonstrations alone, provided transfer quality, safety and collection cost hold up.
+      </p>
+      <h3>Turn exploratory experience into transferable knowledge and tools</h3>
+      <p>
+        The apple recovery connects a failure diagnosis to a changed next attempt. Turning such
+        experience into reusable contact checks, recovery procedures or tools could improve both the
+        agent and its harness. This offers a route to studying{' '}
+        <strong>recursive self-improvement (RSI)</strong> in embodied systems.
+      </p>
+      <p>
+        The test is whether a lesson improves execution on held-out tasks. An exploration-derived
+        tool could be evaluated for fewer retries or higher completion, including with a different
+        base model. Its applicable conditions and completion checks should be recorded before it is
+        frozen and compared on new tasks against raw-history and no-memory alternatives.
+      </p>
+      <h3>Make safety part of the action policy</h3>
+      <p>
+        <strong>Task success alone is insufficient for physical deployment.</strong> An object can
+        be recovered after a drop, but the drop may already have caused damage. Large corrections,
+        obstructed closures and uncertain contact heights require constraints during execution.
+        These include motion and force limits, grasp and clearance checks, coordinated bimanual
+        control, and the ability to interrupt a hazardous action. The agent also needs to recognize
+        uncertain geometry and seek a better observation or assistance.
+      </p>
+      <p>
+        For embodied research, these results motivate treating{' '}
+        <strong>
+          task understanding, exploration and recovery as capabilities to couple with precise
+          control
+        </strong>
+        . The central question is how to preserve the agent’s flexibility while making its actions
+        accurate, timely and safe—and how to transfer useful experience to later tasks.
+      </p>
+    </div>
+    <div class="closing-actions">
+      <button
+        id="study-limitations"
+        class="study-limitations-link"
+        data-appendix="study-limitations"
+      >
+        7 Study Limitations{' '}
+        <span aria-hidden="true">
+          <Fragment set:html={icon('external-link')} />
+        </span>
+      </button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,310 @@
+/* Episode outcomes own their chart, list, readouts, and responsive behavior. */
+@layer components {
+  .outcome-breakdown {
+    margin-block: 1.5rem 2rem;
+    min-width: 0;
+  }
+
+  .outcome-breakdown .outcome-split-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin: 0 0 1rem;
+    color: var(--muted);
+    font-size: var(--small);
+  }
+
+  .outcome-breakdown .outcome-split-legend > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .outcome-breakdown .outcome-split-legend i {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    flex: none;
+  }
+
+  .outcome-breakdown .outcome-breakdown-heading,
+  .outcome-breakdown .failure-depth-row {
+    display: grid;
+    grid-template-columns: minmax(11rem, 1fr) minmax(0, 2fr) 4.5rem;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  .outcome-breakdown .outcome-breakdown-heading {
+    color: var(--muted);
+    font-size: 0.875rem;
+    padding-block: 0 0.35rem;
+  }
+
+  .outcome-breakdown .outcome-breakdown-heading > :last-child {
+    text-align: right;
+  }
+
+  .outcome-breakdown .failure-depth-row {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    font-size: var(--small);
+    line-height: 1.4;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .outcome-breakdown .failure-depth-row:hover,
+  .outcome-breakdown .failure-depth-row:focus-visible,
+  .outcome-breakdown .failure-expand:hover,
+  #episode-outcomes .outcome-legend button:hover,
+  #episode-outcomes .outcome-legend button:focus-visible {
+    background: rgba(64, 86, 232, 0.045);
+  }
+
+  .outcome-breakdown button:focus-visible,
+  #episode-outcomes button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+  }
+
+  .outcome-breakdown .outcome-task-label {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .outcome-breakdown [data-active] .outcome-task-label {
+    color: var(--accent);
+  }
+
+  .outcome-breakdown .outcome-task-count {
+    color: var(--muted);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .outcome-breakdown .outcome-count-unit {
+    display: none;
+  }
+
+  .outcome-breakdown .outcome-split-track {
+    display: flex;
+    min-width: 0;
+    height: 1.5rem;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .outcome-breakdown .outcome-split-track > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    overflow: hidden;
+    font-size: 0.8rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .outcome-breakdown .outcome-success {
+    background: #3456ef;
+    color: white;
+  }
+
+  .outcome-breakdown .outcome-partial {
+    background: #9eaff9;
+    color: #17273b;
+  }
+
+  .outcome-breakdown .outcome-zero {
+    background: #dce1eb;
+    color: #17273b;
+  }
+
+  .outcome-breakdown .failure-expand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin: 0.6rem 0 0;
+    padding: 0.6rem;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    color: var(--accent);
+    font: inherit;
+    font-size: var(--small);
+    cursor: pointer;
+  }
+
+  .outcome-breakdown .failure-expand-icon {
+    display: inline-flex;
+    font-size: 1rem;
+    line-height: 1;
+    transition: transform 160ms ease;
+  }
+
+  .outcome-breakdown .failure-expand[aria-expanded='true'] .failure-expand-icon {
+    transform: rotate(180deg);
+  }
+
+  .outcome-breakdown .outcome-breakdown-note,
+  .outcome-breakdown .outcome-breakdown-readout,
+  #episode-outcomes .outcome-readout,
+  #episode-outcomes .outcome-definition,
+  #episode-outcomes .fineprint {
+    max-width: none;
+    margin: 0.75rem 0 0;
+    color: var(--muted);
+    font-size: var(--small);
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .outcome-breakdown .outcome-breakdown-readout {
+    margin: 0.2rem 0 0.65rem;
+    padding-inline: 0.5rem;
+  }
+
+  .outcome-breakdown .outcome-breakdown-readout:empty,
+  #episode-outcomes .outcome-readout:empty {
+    display: none;
+  }
+
+  #episode-outcomes {
+    min-width: 0;
+  }
+
+  #episode-outcomes .outcome-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(13rem, 1fr);
+    align-items: center;
+    gap: 2.5rem;
+    max-width: none;
+    margin: 0;
+  }
+
+  #episode-outcomes .outcome-layout svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  #episode-outcomes circle {
+    transition: opacity 160ms ease;
+    cursor: crosshair;
+  }
+
+  #episode-outcomes .outcome-legend {
+    display: grid;
+    gap: 0.65rem;
+    min-width: 0;
+  }
+
+  #episode-outcomes .outcome-legend button {
+    display: grid;
+    grid-template-columns: 0.6rem auto minmax(0, 1fr);
+    gap: 0 0.75rem;
+    align-items: baseline;
+    min-width: 0;
+    padding: 0.35rem 0.5rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  #episode-outcomes .outcome-legend button::before {
+    content: '';
+    position: static;
+    grid-column: 1;
+    grid-row: 1 / 3;
+    align-self: start;
+    width: 0.6rem;
+    height: 0.6rem;
+    margin-top: 0.45rem;
+    border-radius: 50%;
+    background: var(--outcome);
+  }
+
+  #episode-outcomes .outcome-name {
+    grid-column: 2 / -1;
+    margin: 0;
+    font-size: var(--small);
+    font-weight: 600;
+  }
+
+  #episode-outcomes .outcome-legend strong {
+    grid-column: 2;
+    margin: 0;
+    color: inherit;
+    font-size: 2rem;
+    line-height: 1.3;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #episode-outcomes .outcome-legend small {
+    grid-column: 3;
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+
+  #episode-outcomes .outcome-legend [aria-pressed='true'] .outcome-name {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  @media (max-width: 42rem) {
+    .outcome-breakdown .outcome-breakdown-heading {
+      display: none;
+    }
+
+    .outcome-breakdown .failure-depth-row {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.35rem 0.75rem;
+      padding-block: 0.5rem;
+    }
+
+    .outcome-breakdown .outcome-split-track {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+
+    .outcome-breakdown .outcome-task-count {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .outcome-breakdown .outcome-count-unit {
+      display: inline;
+    }
+
+    #episode-outcomes .outcome-layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .outcome-breakdown .failure-expand-icon,
+    #episode-outcomes circle {
+      transition: none;
+    }
+  }
+}

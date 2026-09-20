@@ -1,0 +1,59 @@
+---
+import { icon } from '../../lib/icons.js';
+import OverallResults from '../OverallResults.astro';
+---
+
+<section id="overall" class="section">
+  <div class="section-inner">
+    <div class="section-heading benchmark-opening">
+      <div>
+        <h2>1 Benchmark Results</h2>
+      </div>
+      <p>
+        We report <strong>success rate (SR)</strong> alongside <strong>Score</strong>, which credits
+        partial completion at the end of an episode. Both metrics are averaged equally across tasks.
+      </p>
+      <div id="model-references" class="model-reference-entry">
+        <a href="#model-references">
+          1.1 Model References <Fragment set:html={icon('external-link')} />
+        </a>
+      </div>
+    </div>
+    <div id="overall-content">
+      <OverallResults />
+    </div>
+    <aside class="comparison-footnote" id="comparison-note" role="note">
+      <p>
+        <a href="#comparison-note-ref" aria-label="Back to footnote 1 reference">
+          1.
+        </a>{' '}
+        AMapbot is included in the overall ranking. As no model report, public repository, or other
+        reference information was available, we do not discuss it in detail in the subsequent
+        analysis.
+      </p>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .comparison-footnote {
+    width: 100%;
+    max-width: none;
+    margin: 1.5rem 0 0;
+    border-top: 1px solid var(--line);
+    padding-top: 0.875rem;
+    scroll-margin-top: 6rem;
+  }
+
+  .comparison-footnote p {
+    max-width: none;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+
+  .comparison-footnote a {
+    color: var(--accent);
+  }
+</style>

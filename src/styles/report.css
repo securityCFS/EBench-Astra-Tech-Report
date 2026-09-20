@@ -1,0 +1,24 @@
+@layer reset, widgets, theme, layout, components, adaptive;
+
+@import './reset.css';
+@import './widgets.css' layer(widgets);
+@import './theme.css';
+@import './shell.css';
+@import './article.css';
+@import './results.css';
+@import './findings.css';
+@import './media.css';
+@import './analysis.css';
+@import './panels.css';
+@import './tables.css';
+@import './controls.css';
+@import './profile-tables.css';
+@import './outcomes.css';
+@import './case-controls.css';
+@import './adaptive.css';
+
+@font-face {
+  font-family: Allura;
+  src: url('/vendor/allura/Allura-Regular.ttf') format('truetype');
+  font-display: swap;
+}

@@ -1,0 +1,169 @@
+---
+import { icon } from '../lib/icons.js';
+---
+
+<header class="header">
+  <button
+    class="toc-toggle"
+    aria-label="Toggle Contents"
+    title="Contents"
+    aria-expanded="true"
+    aria-controls="report-toc-links"
+  >
+    <Fragment set:html={icon('menu')} />
+  </button>
+  <div class="brand-lockup" aria-label="Shanghai AI Laboratory and InternRobotics">
+    <a
+      class="institution-brand shanghai-ai-brand"
+      href="https://www.shlab.org.cn/"
+      target="_blank"
+      rel="noopener"
+      aria-label="Shanghai AI Laboratory official website"
+    >
+      <img
+        src="media/brand/shanghai-ai-lab.webp"
+        width="10875"
+        height="1275"
+        alt="Shanghai Artificial Intelligence Laboratory"
+      />
+    </a>
+    <span class="brand-divider" aria-hidden="true"></span>
+    <a
+      class="institution-brand internrobotics-brand"
+      href="https://internrobotics.shlab.org.cn/"
+      target="_blank"
+      rel="noopener"
+      aria-label="InternRobotics official website"
+    >
+      <img src="media/brand/internrobotics.webp" width="3062" height="490" alt="InternRobotics" />
+    </a>
+  </div>
+  <nav aria-label="Primary navigation">
+    <a href="#overall">Results</a>
+    <a href="#findings">Findings</a>
+    <a href="#cases">Case Studies</a>
+    <a href="#conclusion">Conclusion And Insights</a>
+  </nav>
+</header>
+
+<style>
+  @layer components {
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      display: grid;
+      grid-template-columns: var(--rail-width) minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 1.5rem;
+      min-height: var(--header-height);
+      background: var(--deep);
+      color: #e0e7f1;
+      padding: 0.8rem var(--gutter) 0.8rem 0;
+    }
+
+    .toc-toggle {
+      justify-self: start;
+      margin-left: 1.5rem;
+      display: grid;
+      place-items: center;
+      width: 3rem;
+      height: 3rem;
+      padding: 0.4rem;
+      background: transparent;
+      color: inherit;
+      border: 0;
+    }
+
+    .toc-toggle :global(svg) {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 1.3rem;
+      min-width: 0;
+      max-width: 36rem;
+    }
+
+    .institution-brand {
+      display: block;
+      min-width: 0;
+    }
+
+    .shanghai-ai-brand {
+      flex: 1.15;
+    }
+
+    .internrobotics-brand {
+      flex: 1;
+    }
+
+    .brand-lockup img {
+      width: 100%;
+      height: auto;
+      max-height: 2.5rem;
+      object-fit: contain;
+    }
+
+    .brand-divider {
+      height: 1.8rem;
+      width: 1px;
+      background: #526078;
+      flex: none;
+    }
+
+    .header nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: end;
+      font-size: 1.125rem;
+    }
+
+    .header nav a {
+      color: #d6dfef;
+      white-space: nowrap;
+    }
+
+    .header nav a[aria-current] {
+      color: white;
+      text-decoration: underline;
+    }
+    @media (max-width: 85rem) {
+      .header {
+        grid-template-columns: 4rem minmax(0, 1fr);
+        padding-inline: 0.75rem;
+        gap: 1rem;
+      }
+    }
+    @media (max-width: 85rem) {
+      .toc-toggle {
+        margin: 0;
+      }
+    }
+    @media (max-width: 85rem) {
+      .brand-lockup {
+        max-width: 32rem;
+      }
+    }
+    @media (max-width: 85rem) {
+      .header nav {
+        display: none;
+      }
+    }
+    @media (max-width: 40rem) {
+      .brand-lockup {
+        gap: 0.75rem;
+      }
+    }
+    @media print {
+      .header {
+        display: none;
+      }
+    }
+  }
+</style>

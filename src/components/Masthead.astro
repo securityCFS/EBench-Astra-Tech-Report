@@ -1,0 +1,179 @@
+---
+import { icon } from '../lib/icons.js';
+
+const authors = [
+  ['Yifei Yao', '*,1'],
+  ['Yude Zou', '*,1,2'],
+  ['Guanbo Jiao', '*,1,3'],
+  ['Ning Gao', '1,2'],
+  ['Haoyu Guo', '1'],
+  ['Yukai Wang', '1'],
+  ['Jiantong Chen', '1'],
+  ['Zihou Zhu', '1'],
+  ['Xinyu Li', '1'],
+  ['Ningyu Yan', '1'],
+  ['Shuai Wang', '1'],
+  ['Xing Gao', '†,1'],
+];
+---
+
+<div class="cosmos">
+  <section class="showcase-hero" aria-labelledby="report-title">
+    <div class="hero-copy">
+      <h1 id="report-title">
+        How Frontier Large Language Models
+        <br />
+        <em>Reshape Embodied Policies</em>
+      </h1>
+      <p class="report-subtitle">A Comprehensive Evaluation of GPT-6-Astra on EBench</p>
+      <div class="report-authors">
+        <p class="authors">
+          {authors.map(([name, affiliation], index) => (
+            <Fragment>
+              {index > 0 && ', '}
+              <span class="author">
+                {name}
+                <sup>{affiliation}</sup>
+              </span>
+            </Fragment>
+          ))}
+        </p>
+        <p class="affiliations">
+          <span>
+            <sup>1</sup> Shanghai Artificial Intelligence Laboratory
+          </span>
+          <span>
+            <sup>2</sup> Shanghai Jiao Tong University
+          </span>
+          <span>
+            <sup>3</sup> Fudan University
+          </span>
+        </p>
+        <p class="author-note">* Equal contribution &nbsp; † Corresponding author</p>
+      </div>
+      <nav class="hero-actions" aria-label="Report resources">
+        <a
+          class="hero-primary"
+          href="https://internrobotics.shlab.org.cn/eval/landing-page"
+          target="_blank"
+          rel="noopener"
+        >
+          Eval Result <Fragment set:html={icon('external-link')} />
+        </a>
+        <button class="coming-soon" disabled>
+          <Fragment set:html={icon('arxiv')} />
+          Technical Report (arXiv)<small>Coming soon</small>
+        </button>
+      </nav>
+    </div>
+  </section>
+</div>
+
+<style>
+  @layer components {
+    .cosmos {
+      padding: 0;
+    }
+    .showcase-hero {
+      padding-block: 4.5rem 2rem;
+    }
+    .hero-copy {
+      margin: 0;
+      text-align: left;
+    }
+    h1 {
+      font-size: 3.5rem;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      text-align: left;
+    }
+    em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .report-subtitle {
+      font-size: 1.625rem;
+      color: var(--muted);
+      margin: 1.5rem 0;
+    }
+    .report-authors {
+      max-width: 60rem;
+    }
+    .authors {
+      font-size: 1.125rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .author {
+      white-space: nowrap;
+    }
+    .affiliations {
+      display: flex;
+      gap: 0.25rem 1.25rem;
+      flex-wrap: wrap;
+    }
+    .affiliations,
+    .author-note {
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      font-size: 1rem;
+    }
+    .hero-primary,
+    .coming-soon {
+      display: inline-flex;
+      flex: none;
+      white-space: nowrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 0.7rem 1rem;
+      background: var(--surface);
+      font: inherit;
+    }
+    .hero-actions :global(.report-icon) {
+      width: 1.125rem;
+      height: 1.125rem;
+      flex: none;
+    }
+    .hero-primary {
+      background: var(--deep);
+      color: white;
+      border-color: var(--deep);
+    }
+    .coming-soon small {
+      font-size: 0.75rem;
+    }
+    @media (max-width: 60rem) {
+      .showcase-hero {
+        padding-top: 3rem;
+      }
+      h1 {
+        font-size: 2.75rem;
+      }
+      h1 br {
+        display: none;
+      }
+      h1 em {
+        display: block;
+        margin-top: 0.3em;
+      }
+    }
+    @media (max-width: 40rem) {
+      h1 {
+        font-size: 2.25rem;
+      }
+      .report-subtitle {
+        font-size: 1.375rem;
+      }
+    }
+  }
+</style>

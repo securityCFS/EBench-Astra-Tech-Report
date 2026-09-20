@@ -1,0 +1,706 @@
+/* One shell for every appendix. All selectors are owned by Supplement.astro. */
+@layer components {
+  .report-supplement {
+    --supplement-surface: var(--surface, #f8fafc);
+    --supplement-muted: #526175;
+    --supplement-line: #dce3eb;
+    --supplement-soft: #f0f3f8;
+    position: fixed;
+    inset: 0;
+    width: min(72rem, calc(100% - 2rem));
+    max-width: none;
+    max-height: calc(100dvh - 2rem);
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--supplement-line);
+    border-radius: var(--radius-lg, 1rem);
+    background: var(--supplement-surface);
+    color: var(--ink);
+    box-shadow: 0 1.5rem 5rem #13213938;
+    text-align: left;
+  }
+
+  .report-supplement[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .report-supplement::backdrop {
+    background: #1723388c;
+    backdrop-filter: blur(5px);
+  }
+
+  .report-supplement .dialog-heading {
+    position: relative;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid var(--supplement-line);
+    background: var(--supplement-surface);
+    color: var(--supplement-muted);
+    letter-spacing: 0;
+  }
+
+  .report-supplement .supplement-eyebrow {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    gap: 0.65rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .report-supplement .close-dialog {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: 1px solid var(--supplement-line);
+    border-radius: var(--radius-sm, 0.5rem);
+    color: var(--supplement-muted);
+    background: transparent;
+    transition: background var(--motion-duration, 220ms) var(--motion-ease, ease);
+  }
+
+  .report-supplement .close-dialog:hover {
+    background: var(--supplement-soft);
+    color: var(--ink);
+    border-color: #aebccd;
+  }
+
+  .report-supplement :where(.dialog-heading, .supplement-action, .icl-album-arrow) svg {
+    display: block;
+    flex: 0 0 auto;
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .report-supplement #appendix-body {
+    min-width: 0;
+    min-height: 0;
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    font-size: 1.1875rem;
+    line-height: 1.7;
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+
+  .report-supplement :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .report-supplement #appendix-body:focus-visible {
+    outline-offset: -5px;
+  }
+
+  .report-supplement #appendix-title {
+    margin: 0 0 1.25rem;
+    max-width: 38ch;
+    font-size: clamp(1.75rem, 3vw, 2.375rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    text-align: left;
+    color: var(--ink);
+  }
+
+  .report-supplement :where(h3, h4) {
+    margin: 1.75rem 0 0.65rem;
+    font-size: 1.375rem;
+    line-height: 1.35;
+    color: var(--ink);
+    text-align: left;
+  }
+
+  .report-supplement :where(p, li, .report-prose, .report-prose p) {
+    font-size: inherit;
+    line-height: 1.7;
+    letter-spacing: 0;
+    text-align: left;
+    color: #29384a;
+  }
+
+  .report-supplement p {
+    margin: 0 0 1.1rem;
+  }
+
+  .report-supplement :where(#appendix-body > p, .report-prose, .icl-overview-copy) {
+    max-width: 72ch;
+    margin-inline: 0;
+  }
+
+  .report-supplement .report-prose > h3:first-child {
+    margin-top: 0;
+  }
+
+  .report-supplement :where(.fineprint, figcaption) {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--supplement-muted);
+  }
+
+  .report-supplement :where(ul, ol) {
+    padding-inline-start: 1.5rem;
+  }
+
+  .report-supplement blockquote {
+    margin: 1rem 0;
+    padding: 0.75rem 1.125rem;
+    border-left: 2px solid #adbce0;
+    background: var(--supplement-soft);
+    color: #34465e;
+    font-size: inherit;
+    line-height: 1.7;
+  }
+
+  .report-supplement :where(.source-link, .appendix-link, .supplement-action) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 100%;
+    padding: 0.35rem 0;
+    margin: 0;
+    border: 0;
+    background: none;
+    color: var(--accent);
+    font: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: left;
+    white-space: normal;
+    text-underline-offset: 0.2em;
+  }
+
+  .report-supplement :where(.source-link, .appendix-link, .supplement-action):hover {
+    text-decoration: underline;
+  }
+
+  .report-supplement :where(.model-reference-links, .supplement-actions) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1.25rem;
+    align-items: center;
+  }
+
+  .report-supplement .model-references {
+    margin: 0 0 2rem;
+    padding-left: 1.5rem;
+  }
+
+  .report-supplement :where(.model-references > li, .model-reference) {
+    margin: 0;
+    padding: 1.125rem 0;
+    border-bottom: 1px solid var(--supplement-line);
+  }
+
+  .report-supplement .model-references > li::marker {
+    color: var(--supplement-muted);
+    font-size: 0.9em;
+  }
+
+  .report-supplement .model-references p {
+    margin: 0.3rem 0;
+  }
+
+  .report-supplement :where(.table-scroll, .icl-data-scroll) {
+    width: 100%;
+    max-width: 100%;
+    margin: 1.25rem 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    border: 1px solid var(--supplement-line);
+    border-radius: 0.5rem;
+    background: var(--supplement-surface);
+  }
+
+  /* Keep actual table semantics; scroll the wrapper, never a display:block table. */
+  .report-supplement table {
+    display: table;
+    width: 100%;
+    font-size: 1rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .report-supplement :where(table:not(.task-results):not(.benchmark-table)) :is(th, td) {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--supplement-line);
+    color: #34465e;
+    vertical-align: top;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .report-supplement :where(table:not(.task-results):not(.benchmark-table)) thead th {
+    background: var(--supplement-soft);
+    color: var(--ink);
+    font-weight: 600;
+    white-space: normal;
+  }
+
+  .report-supplement
+    :where(table:not(.task-results):not(.benchmark-table))
+    tbody
+    tr:last-child
+    > * {
+    border-bottom: 0;
+  }
+
+  .report-supplement .protocol-scope td {
+    min-width: 22rem;
+    white-space: normal;
+  }
+
+  /* Popover-style task selectors have their own component treatment. */
+  .report-supplement details:not(.task-group-control) {
+    margin: 1rem 0;
+    padding: 0;
+    border: 1px solid var(--supplement-line);
+    border-radius: 0.5rem;
+    background: var(--supplement-soft);
+  }
+
+  .report-supplement details:not(.task-group-control) > summary {
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 600;
+    color: #35465f;
+  }
+
+  .report-supplement details:not(.task-group-control) > summary::marker {
+    color: var(--accent);
+  }
+
+  .report-supplement details:not(.task-group-control)[open] > summary {
+    border-bottom: 1px solid var(--supplement-line);
+  }
+
+  .report-supplement details:not(.task-group-control) > :not(summary) {
+    margin: 1rem;
+    max-width: calc(100% - 2rem);
+  }
+
+  .report-supplement code {
+    padding: 0.12em 0.3em;
+    background: #e9edf4;
+    font-size: 0.85em;
+    overflow-wrap: anywhere;
+  }
+
+  .report-supplement pre {
+    padding: 1rem;
+    border: 1px solid var(--supplement-line);
+    border-radius: 0.4rem;
+    background: var(--supplement-surface);
+    color: #34465e;
+    font:
+      0.875rem/1.7 ui-monospace,
+      Consolas,
+      'Liberation Mono',
+      monospace;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    overflow: auto;
+    text-align: left;
+  }
+
+  .report-supplement pre code {
+    padding: 0;
+    background: none;
+    font: inherit;
+  }
+
+  /* ICL uses the same body/title/shell as prose and results appendices. */
+  .report-supplement .icl-toolbar {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .report-supplement .icl-toolbar label {
+    display: grid;
+    gap: 0.4rem;
+    flex: 0 1 23rem;
+    min-width: 0;
+    max-width: 100%;
+    font-size: 1rem;
+    color: var(--supplement-muted);
+    font-weight: 500;
+  }
+
+  .report-supplement .icl-toolbar select {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid #b9c5d6;
+    border-radius: 0.4rem;
+    background: var(--supplement-surface);
+    color: var(--ink);
+    font: inherit;
+  }
+
+  .report-supplement .icl-toolbar > span {
+    padding-bottom: 0.55rem;
+    font-size: 0.9375rem;
+    color: var(--supplement-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .report-supplement .icl-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0 0 0.75rem;
+    margin: 0 0 1.5rem;
+    border-bottom: 1px solid var(--supplement-line);
+  }
+
+  .report-supplement .icl-tabs button {
+    padding: 0.5rem 0.875rem;
+    border: 1px solid transparent;
+    border-radius: 0.4rem;
+    background: transparent;
+    color: var(--supplement-muted);
+    font: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .report-supplement .icl-tabs button[aria-selected='true'] {
+    background: var(--accent-soft);
+    border-color: #cbd4f4;
+    color: #354cca;
+  }
+
+  .report-supplement .icl-tabs button:hover {
+    background: var(--supplement-soft);
+  }
+
+  .report-supplement :where(#icl-panel, .icl-frame-pair > *, .icl-input-sequence) {
+    min-width: 0;
+  }
+
+  .report-supplement .icl-overview-copy {
+    margin-bottom: 1.25rem;
+  }
+
+  .report-supplement .icl-overview-copy h3 {
+    margin-top: 0;
+  }
+
+  .report-supplement .icl-overview-sheet {
+    margin: 0;
+  }
+
+  .report-supplement .icl-overview-sheet a {
+    display: block;
+    cursor: zoom-in;
+  }
+
+  .report-supplement .icl-overview-sheet img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--supplement-line);
+    border-radius: 0.5rem;
+  }
+
+  .report-supplement .icl-overview-sheet figcaption {
+    margin-top: 0.6rem;
+  }
+
+  .report-supplement .icl-album {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .report-supplement .icl-frame-pair {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .report-supplement .icl-frame-view {
+    display: block;
+    margin: 0;
+  }
+
+  .report-supplement .icl-image-stage {
+    display: grid;
+    place-items: center;
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 0.5rem;
+    border: 1px solid var(--supplement-line);
+    border-radius: 0.5rem;
+    background: #e9edf3;
+  }
+
+  .report-supplement .icl-image-stage img {
+    position: static;
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 30rem;
+    object-fit: contain;
+  }
+
+  .report-supplement .icl-frame-prompt {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 1.25rem;
+    border: 1px solid var(--supplement-line);
+    border-radius: 0.5rem;
+    background: var(--supplement-soft);
+    align-self: stretch;
+  }
+
+  .report-supplement .icl-prompt-label {
+    font:
+      0.8125rem/1.5 ui-monospace,
+      Consolas,
+      monospace;
+    letter-spacing: 0.04em;
+    color: var(--supplement-muted);
+  }
+
+  .report-supplement .icl-frame-prompt h3 {
+    margin: 0.65rem 0;
+  }
+
+  .report-supplement .icl-frame-prompt blockquote {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 1.1875rem;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .report-supplement .icl-frame-prompt .icl-prompt-note {
+    margin: auto 0 0;
+    padding-top: 1.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--supplement-muted);
+  }
+
+  .report-supplement .icl-album-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    flex-wrap: wrap;
+  }
+
+  .report-supplement .icl-album-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: auto;
+    height: auto;
+    min-height: 2.5rem;
+    padding: 0.4rem 0.65rem;
+    border: 1px solid var(--supplement-line);
+    border-radius: 0.4rem;
+    background: var(--supplement-surface);
+    color: var(--ink);
+    font: 1rem/1.5 var(--font-body);
+  }
+
+  .report-supplement .icl-album-arrow:hover:not(:disabled) {
+    background: var(--supplement-soft);
+    border-color: #aebccd;
+  }
+
+  .report-supplement .icl-album-arrow:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+
+  .report-supplement .icl-frame-controls {
+    display: block;
+    margin: 1.25rem 0 0.75rem;
+  }
+
+  .report-supplement .icl-frame-controls label {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.75rem;
+    color: var(--supplement-muted);
+    font-size: 1rem;
+  }
+
+  .report-supplement .icl-frame-controls output {
+    margin-left: auto;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .report-supplement .icl-frame-controls input {
+    flex: 1 0 100%;
+    width: 100%;
+    min-width: 0;
+    height: 1.75rem;
+    margin: 0;
+    accent-color: var(--accent);
+  }
+
+  .report-supplement .icl-filmstrip {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 100%;
+    margin: 0 0 1.25rem;
+    padding: 0.3rem 0.3rem 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
+  .report-supplement .icl-filmstrip button {
+    flex: 0 0 5rem;
+    padding: 0.25rem;
+    border: 1px solid var(--supplement-line);
+    border-radius: 0.4rem;
+    background: var(--supplement-surface);
+    color: var(--supplement-muted);
+    font-size: 0.875rem;
+  }
+
+  .report-supplement .icl-filmstrip button[aria-pressed='true'] {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .report-supplement .icl-filmstrip img {
+    display: block;
+    width: 100%;
+    height: 3.5rem;
+    object-fit: contain;
+  }
+
+  .report-supplement .icl-data-table td {
+    font:
+      0.8125rem/1.65 ui-monospace,
+      Consolas,
+      monospace;
+    white-space: nowrap;
+  }
+
+  .report-supplement .icl-input-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .report-supplement .icl-input-heading p {
+    flex: 1 1 26rem;
+    margin: 0;
+  }
+
+  .report-supplement .icl-input-block {
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--supplement-line);
+  }
+
+  .report-supplement .icl-input-block > img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 32rem;
+    border-radius: 0.4rem;
+  }
+
+  .report-supplement .icl-pair-findings {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .report-supplement .icl-pair-findings > section {
+    min-width: 0;
+    padding: 1.25rem;
+    border: 1px solid var(--supplement-line);
+    border-radius: 0.5rem;
+    background: var(--supplement-soft);
+  }
+
+  .report-supplement .icl-pair-findings h3 {
+    margin-top: 0;
+  }
+
+  .report-supplement .icl-pair-findings p {
+    margin: 0.5rem 0;
+  }
+
+  @media (max-width: 48rem) {
+    .report-supplement .icl-frame-pair,
+    .report-supplement .icl-pair-findings {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .report-supplement {
+      width: calc(100% - 1rem);
+      max-height: calc(100dvh - 1rem);
+      border-radius: 0.65rem;
+    }
+
+    .report-supplement .dialog-heading {
+      padding: 0.625rem 1rem;
+      gap: 0.5rem;
+    }
+
+    .report-supplement .supplement-eyebrow {
+      gap: 0.5rem;
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+    }
+
+    .report-supplement #appendix-body {
+      padding: 1rem;
+    }
+
+    .report-supplement .icl-frame-prompt {
+      padding: 1rem;
+    }
+
+    .report-supplement .icl-tabs button {
+      padding-inline: 0.65rem;
+    }
+  }
+}

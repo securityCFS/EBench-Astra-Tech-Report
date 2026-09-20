@@ -4,8 +4,28 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node scripts/serve.mjs",
-    "check": "node --check dist/ambient-particles.js && node --check dist/report-navigation.js && node --check dist/quote-effect.js && node --check dist/icl-viewer.js && node --check dist/model-math.js && node --check dist/narrative.js && node --check dist/video-multiview.js && node --check dist/app.js && node --check dist/charts.js && node --check dist/showcase.js && node --check dist/research.js && node --check scripts/serve.mjs && node --check dist/episode-viewer.js && node --check dist/analysis-insights.js && node --check dist/viz.js",
-    "validate": "node scripts/validate-data.mjs && node scripts/validate-icl.mjs && node scripts/validate-episodes.mjs && node scripts/validate-insights.mjs && node scripts/validate-refresh.mjs && node scripts/validate-video-presentation.mjs && node scripts/validate-startup.mjs"
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "dev": "node scripts/prepare-frontend.mjs && astro dev",
+    "check": "node scripts/check-sources.mjs",
+    "validate": "node scripts/validate-data.mjs && node scripts/validate-icl.mjs && node scripts/validate-episodes.mjs && node scripts/validate-insights.mjs && node scripts/validate-refresh.mjs && node scripts/validate-video-presentation.mjs && node scripts/validate-startup.mjs",
+    "build": "node scripts/prepare-frontend.mjs && astro build",
+    "preview": "astro preview --host 127.0.0.1 --port 4322",
+    "test:layout": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "astro": "^7.3.3",
+    "esbuild": "^0.28.2",
+    "lucide-static": "^1.47.0",
+    "parse5": "^8.0.1",
+    "postcss": "^8.5.28",
+    "prettier": "^3.9.8",
+    "prettier-plugin-astro": "^1.0.1",
+    "simple-icons": "^16.32.0"
+  },
+  "dependencies": {
+    "@fontsource/stix-two-text": "^5.3.0",
+    "katex": "^0.18.7"
   }
 }

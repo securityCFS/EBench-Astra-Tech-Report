@@ -1,0 +1,35 @@
+---
+import RecordingLibrary from '../RecordingLibrary.astro';
+---
+
+<section id="cases" class="section">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div>
+        <h2>5 Case studies</h2>
+      </div>
+      <p>
+        The selected comparisons illustrate three conclusions. In-context learning (ICL) guides
+        task-specific manipulation. Task-level adaptation does not guarantee precise execution.
+        Atomic task execution does not guarantee compositional completion. The teacup and glasses
+        recordings reveal <strong>complementary capabilities</strong>: GPT-6-Astra revises grasps
+        and recovers disrupted goals, while specialized policies execute fine manipulation more
+        accurately in these examples. This separate compositional-completion experiment also reports
+        10-rollout success rates and scores.
+      </p>
+    </div>
+    <section id="case-icl" class="case-study-section" aria-labelledby="case-icl-title">
+      <h3 id="case-icl-title">5.1 In-context learning</h3>
+      <div class="case-study-content"></div>
+    </section>
+    <section id="case-adapt" class="case-study-section" aria-labelledby="case-adapt-title">
+      <h3 id="case-adapt-title">5.2 Adaptation and precision</h3>
+      <div class="case-study-content"></div>
+    </section>
+    <section id="case-poc" class="case-study-section" aria-labelledby="case-poc-title">
+      <h3 id="case-poc-title">5.3 Compositional completion</h3>
+      <div class="case-study-content"></div>
+    </section>
+    <RecordingLibrary />
+  </div>
+</section>

@@ -1,0 +1,147 @@
+<section id="references" class="section report-references">
+  <div class="section-inner">
+    <h2 id="references-title">9 References</h2>
+    <ol class="report-reference-list" role="doc-bibliography">
+      <li id="ref-robodojo" role="doc-biblioentry">
+        Tianxing Chen, Yue Chen, Zixuan Li, et al.{' '}
+        <cite>
+          RoboDojo: A Unified Sim-and-Real Benchmark for Comprehensive Evaluation of Generalist
+          Robot Manipulation Policies
+        </cite>
+        . arXiv preprint arXiv:2607.04434, 2026. Available:{' '}
+        <a href="https://arxiv.org/abs/2607.04434" target="_blank" rel="noopener">
+          arxiv.org/abs/2607.04434
+        </a>
+        .
+      </li>
+      <li id="ref-robodojo-astra" role="doc-biblioentry">
+        Wenbo Zhang, Kaixuan Wang, Yutao Ouyang, et al.{' '}
+        <cite>
+          An Unexpected Robot Policy: Early Evaluations of GPT-6 Astra on RoboDojo and Beyond
+        </cite>
+        . Technical report, 2026. Available:{' '}
+        <a
+          href="https://robodojo-benchmark.com/report/gpt-6-astra-eval"
+          target="_blank"
+          rel="noopener"
+        >
+          robodojo-benchmark.com/report/gpt-6-astra-eval
+        </a>
+        .
+      </li>
+      <li id="ref-embodied-policy" role="doc-biblioentry">
+        Jiayi Su, Yixin Zheng, Mi Yan, Li Yi, Zhizheng Zhang, and He Wang.{' '}
+        <cite>GPT 6 Astra as an Embodied Policy</cite>. Technical report and code, 2026. Available:{' '}
+        <a
+          href="https://anonymous-report-421.github.io/public-website"
+          target="_blank"
+          rel="noopener"
+        >
+          anonymous-report-421.github.io/public-website
+        </a>
+        .
+      </li>
+      <li id="ref-physevo" role="doc-biblioentry">
+        Anonymous. <cite>PhysEvo: Astra can act, let it</cite>. Research preview, 2026. Available:{' '}
+        <a href="https://anonymous-report-777.github.io" target="_blank" rel="noopener">
+          anonymous-report-777.github.io
+        </a>
+        .
+      </li>
+      <li id="ref-roboicl" role="doc-biblioentry">
+        Fangcheng Liu, Yeqing Shen, Anda Cheng, et al.{' '}
+        <cite>Embodied In-Context Learning for GPT-6 Astra</cite>. Research preview, 2026.
+        Available:{' '}
+        <a
+          href="https://mosi-ai.github.io/RoboICL-GPT6-Astra.github.io"
+          target="_blank"
+          rel="noopener"
+        >
+          mosi-ai.github.io/RoboICL-GPT6-Astra.github.io
+        </a>
+        .
+      </li>
+      <li id="ref-pantograph" role="doc-biblioentry">
+        Pantograph. <cite>Benchmarking Frontier LLMs on Robots</cite>. Online report, 2026.
+        Available:{' '}
+        <a href="https://pantograph.com/journal/vlm-harness" target="_blank" rel="noopener">
+          pantograph.com/journal/vlm-harness
+        </a>
+        .
+      </li>
+      <li id="ref-stationerybench" role="doc-biblioentry">
+        Zihan Jack Zhang, Sravanthi Machcha, Sabrina Zou, Tzu Kit Chan, and Jay Chooi.{' '}
+        <cite>GPT-6 Astra vs MolmoAct2 on bimanual robotic manipulation</cite>. Online report, 2026.
+        Available:{' '}
+        <a href="https://openai.robocurve.org/stationerybench" target="_blank" rel="noopener">
+          openai.robocurve.org/stationerybench
+        </a>
+        .
+      </li>
+      <li id="ref-embodiedswe" role="doc-biblioentry">
+        Zeyu Shen, Haoxiang You, Yilang Liu, et al.{' '}
+        <cite>EmbodiedSWE: Coding Agents for Long-Horizon Dexterous Robotics</cite>. Project page,
+        2026. Available:{' '}
+        <a href="https://embodiedswe.github.io" target="_blank" rel="noopener">
+          embodiedswe.github.io
+        </a>
+        .
+      </li>
+      <li id="ref-rpent" role="doc-biblioentry">
+        RLinf. <cite>RPent Leaderboard</cite>. Online documentation, 2026. Available:{' '}
+        <a
+          href="https://rpent.readthedocs.io/en/latest/rst_source/benchmarks.html"
+          target="_blank"
+          rel="noopener"
+        >
+          rpent.readthedocs.io/en/latest/rst_source/benchmarks.html
+        </a>
+        .
+      </li>
+    </ol>
+  </div>
+</section>
+
+<style>
+  @layer components {
+    .report-reference-list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      counter-reset: reference;
+    }
+    .report-reference-list li {
+      position: relative;
+      counter-increment: reference;
+      padding: 0 0 0 2.5rem;
+      margin: 0 0 1rem;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+    .report-reference-list li::before {
+      content: '[' counter(reference) ']';
+      position: absolute;
+      left: 0;
+      right: auto;
+      top: 0;
+      width: 2rem;
+      white-space: nowrap;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .report-reference-list cite {
+      font-style: italic;
+      color: var(--ink);
+    }
+    .report-reference-list a {
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
+    }
+    .report-reference-list li:target {
+      background: var(--accent-soft);
+      outline: 0.4rem solid var(--accent-soft);
+    }
+  }
+</style>

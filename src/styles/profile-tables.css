@@ -1,0 +1,33 @@
+/* Compact attribute profiles reuse the shared plain-table skin. */
+@layer components {
+  .profile-table-chart .profile-table-scroll {
+    margin-top: 0;
+  }
+  .report-table.profile-results {
+    min-width: 0;
+  }
+  .profile-results :is(th, td) {
+    padding: 0.6rem 0.45rem;
+  }
+  .profile-results :is(th, td):first-child {
+    padding-left: 0.6rem;
+  }
+  .profile-results tbody th[scope='row'] {
+    overflow-wrap: anywhere;
+  }
+  .profile-results thead th:not(:first-child) {
+    min-width: 4.1rem;
+  }
+  /* Row focus is a tint, not a claim that Astra wins every column. */
+  .report-table--plain.profile-results .astra-row td {
+    font-weight: 400;
+  }
+  .profile-results .is-best strong {
+    font-weight: 750;
+  }
+  .profile-table-chart figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+}

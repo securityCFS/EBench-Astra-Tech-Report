@@ -1,0 +1,52 @@
+@layer reset {
+  *,
+  :before,
+  :after {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-padding-top: 7rem;
+    scrollbar-gutter: stable;
+  }
+  body {
+    margin: 0;
+  }
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+  button,
+  summary {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: default;
+  }
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+  img,
+  video {
+    display: block;
+  }
+  img {
+    height: auto;
+  }
+  figure,
+  blockquote {
+    margin: 0;
+  }
+  [hidden] {
+    display: none !important;
+  }
+  :focus-visible {
+    outline: 3px solid #4963e9;
+    outline-offset: 4px;
+  }
+}

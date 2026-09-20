@@ -1,0 +1,85 @@
+@layer adaptive {
+  @media (max-width: 85rem) {
+    .report-page {
+      margin-left: 0;
+    }
+  }
+  @media (max-width: 60rem) {
+    :root {
+      --gutter: 1.5rem;
+    }
+    .finding-grid,
+    .behavior-evidence,
+    .safety-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .finding-map {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .evidence-trio,
+    #library-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 40rem) {
+    :root {
+      --gutter: 1rem;
+      --header-height: 4.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    h3 {
+      font-size: 1.625rem;
+    }
+    .section {
+      padding-block: 2.5rem;
+    }
+    .opening-quote {
+      padding: 1.5rem 1rem;
+    }
+    .opening-quote blockquote p {
+      font-size: 2rem;
+    }
+    .evidence-pair,
+    .evidence-trio,
+    .case-videos,
+    .poc-videos,
+    .outcome-layout,
+    #library-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .failure-depth-row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.4rem;
+    }
+    .stage-strip {
+      justify-content: start;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      scroll-behavior: auto;
+      animation: none;
+      transition: none;
+    }
+  }
+  @media print {
+    #ambient-particles,
+    .video-start {
+      display: none;
+    }
+    .report-page {
+      margin: 0;
+    }
+    .section-inner {
+      width: 100%;
+    }
+    .section {
+      break-inside: avoid;
+      padding-block: 1rem;
+    }
+  }
+}

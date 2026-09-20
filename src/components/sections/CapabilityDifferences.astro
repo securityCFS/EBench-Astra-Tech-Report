@@ -1,0 +1,44 @@
+---
+import { icon } from '../../lib/icons.js';
+---
+
+<section id="mobile" class="section">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div>
+        <h2>4.1 Ahead on short mobile tasks, behind on tabletop and long tasks</h2>
+      </div>
+      <p>
+        GPT-6-Astra leads on mobile, short-horizon tasks. Cross-group results show where that
+        advantage holds and where specialized policies remain stronger.
+      </p>
+    </div>
+    <div id="task-gap-analysis" class="insight-block">
+      <h3>Task-level strengths and weaknesses</h3>
+      <div class="report-prose">
+        <p>
+          GPT-6-Astra ranks first on <strong>9 of 26 tasks</strong> and second on five. The
+          first-place count includes four ties: two at positive success rates, and two tasks—bottle
+          and shop—where <strong>all eight models record zero success</strong>. Five tasks are
+          outright wins. At the other end, it ranks sixth or seventh on six tasks. The task-averaged
+          success rate places it second overall despite this uneven distribution of task-level
+          ranks.
+        </p>
+        <p>
+          <a class="appendix-link" href="#comparison" data-matrix-link="field">
+            Compare task-level differences <Fragment set:html={icon('external-link')} />
+          </a>
+        </p>
+      </div>
+    </div>
+    <div id="mobile-content"></div>
+    <div id="cross-group-analysis" class="insight-block">
+      <h3>Success rate by mobility, horizon and precision</h3>
+      <p>
+        The cross-groups distinguish short from long mobile tasks and separate the tabletop tasks by
+        precision requirement.
+      </p>
+      <div id="cross-group-chart"></div>
+    </div>
+  </div>
+</section>

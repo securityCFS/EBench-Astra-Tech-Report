@@ -1,0 +1,55 @@
+<section id="safety" class="section">
+  <div class="section-inner">
+    <div class="section-heading">
+      <h2>4.4 Safety in the recorded trajectories</h2>
+    </div>
+    <div class="report-prose">
+      <p>
+        <strong>Exploration and recovery also expose safety weaknesses.</strong> Failed dishwasher
+        and apple-to-bowl episodes show objects slipping from the gripper, followed by repeated arm
+        and base repositioning to search for them. During exploration, the agent also attempts
+        motions beyond the robot’s workspace. The coffee-bean case reveals a further problem:
+        awkward EEF poses and insufficient attention to object–scene contact. Together, these
+        failures highlight the need to preserve grasp stability, enforce workspace constraints and
+        account for contact throughout manipulation.
+      </p>
+    </div>
+    <div class="behavior-tabs safety-tabs" role="tablist" aria-label="Safety evidence">
+      <button
+        id="safety-tab-dishwasher"
+        data-safety="dishwasher"
+        role="tab"
+        aria-controls="safety-content"
+        aria-selected="true"
+      >
+        Dishwasher · dropped bowl
+      </button>
+      <button
+        id="safety-tab-apple"
+        data-safety="apple"
+        role="tab"
+        aria-controls="safety-content"
+        aria-selected="false"
+        tabindex="-1"
+      >
+        Apple · workspace limits
+      </button>
+      <button
+        id="safety-tab-coffee"
+        data-safety="coffee"
+        role="tab"
+        aria-controls="safety-content"
+        aria-selected="false"
+        tabindex="-1"
+      >
+        Coffee beans · posture And contact
+      </button>
+    </div>
+    <div
+      id="safety-content"
+      role="tabpanel"
+      aria-labelledby="safety-tab-dishwasher"
+      tabindex="0"
+    ></div>
+  </div>
+</section>

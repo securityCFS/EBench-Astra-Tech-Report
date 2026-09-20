@@ -1,0 +1,17 @@
+[
+  "segmented-control.js",
+  "model-math.js",
+  "charts.js",
+  "viz.js",
+  "ambient-particles.js",
+  "showcase.js",
+  "quote-effect.js",
+  "report-navigation.js",
+  "research.js",
+  "narrative.js",
+  "icl-viewer.js",
+  "analysis-insights.js",
+  "video-multiview.js",
+  "app.js",
+  "episode-viewer.js"
+]

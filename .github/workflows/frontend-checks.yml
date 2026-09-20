@@ -1,0 +1,35 @@
+name: Cross-platform frontend checks
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, codex/frontend-rewrite]
+jobs:
+  browser-tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6
+      - run: git lfs pull --include="dist/media/**" --exclude=""
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run validate
+      - run: npm run build
+      - if: runner.os == 'Linux'
+        run: npx playwright install --with-deps chromium firefox webkit
+      - if: runner.os == 'Windows'
+        run: npx playwright install chromium firefox
+      - run: npm run test:layout
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-results-${{ matrix.os }}
+          path: |
+            playwright-report/
+            test-results/

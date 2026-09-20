@@ -1,0 +1,73 @@
+/* Section frame, headings, opening quotation */
+@layer layout {
+  .section {
+    padding: 3.75rem 0;
+    margin: 0;
+    background: transparent;
+    border: 0;
+  }
+  #introduction {
+    padding-top: 1.5rem;
+  }
+  :is(
+    .section-heading,
+    .benchmark-opening,
+    .report-prose,
+    .case-description,
+    .case-insight,
+    .insight-block > p,
+    .section-inner > p
+  ) {
+    width: auto;
+    max-width: none;
+    margin-inline: 0;
+    text-align: left;
+  }
+  .section-heading {
+    margin-bottom: 2.25rem;
+  }
+  :is(.section-inner, .section-heading, .report-prose) > :is(h2, h3, h4, p) {
+    max-width: none;
+    margin-inline: 0;
+  }
+  .opening-quote {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: #24476c;
+    border-left: 3px solid #64a69f;
+    border-radius: 0.2rem;
+    margin: 0 0 2.25rem;
+    padding: 2rem;
+  }
+  .opening-quote canvas {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .opening-quote blockquote p {
+    font:
+      2.5rem/1.4 Allura,
+      cursive;
+    color: #eef7fa;
+    text-align: center;
+    margin: 0;
+  }
+  .opening-quote blockquote {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+  .opening-quote figcaption {
+    text-align: right;
+    color: #e2edf5;
+    margin-top: 1rem;
+  }
+  .opening-quote a {
+    color: inherit;
+  }
+}

@@ -1,0 +1,158 @@
+---
+import { icon } from '../lib/icons.js';
+---
+
+<footer class="report-footer">
+  <div class="footer-identity">
+    <strong>EBench × GPT-6-Astra</strong>
+    <p>
+      Shanghai Artificial Intelligence Laboratory
+      <br />
+      September 2026
+    </p>
+    <nav class="footer-resource-links" aria-label="Project resources">
+      <a
+        href="https://github.com/securityCFS/Ebench-Astra-Tech-Report"
+        target="_blank"
+        rel="noopener"
+      >
+        Project Repository{' '}
+        <span aria-hidden="true">
+          <Fragment set:html={icon('external-link')} />
+        </span>
+      </a>
+      <a href="https://github.com/InternRobotics/EBench" target="_blank" rel="noopener">
+        EBench{' '}
+        <span aria-hidden="true">
+          <Fragment set:html={icon('external-link')} />
+        </span>
+      </a>
+    </nav>
+    <div class="footer-marks">
+      <a href="https://www.shlab.org.cn/" target="_blank" rel="noopener">
+        <img
+          src="media/brand/shanghai-ai-lab.webp"
+          width="10875"
+          height="1275"
+          alt="Shanghai Artificial Intelligence Laboratory"
+        />
+      </a>
+      <a href="https://internrobotics.shlab.org.cn/" target="_blank" rel="noopener">
+        <img src="media/brand/internrobotics.webp" width="3062" height="490" alt="InternRobotics" />
+      </a>
+    </div>
+  </div>
+  <div class="report-citation" id="citation">
+    <p class="citation-prompt">If you find this work useful, please cite:</p>
+    <pre is:raw><code>@techreport{yao2026frontier,
+  title       = {How Frontier Large Language Models Reshape Embodied Policies},
+  author      = {Yao, Yifei and Zou, Yude and Jiao, Guanbo and
+                 Gao, Ning and Guo, Haoyu and
+                 Wang, Yukai and Chen, Jiantong and Zhu, Zihou and
+                 Li, Xinyu and Yan, Ningyu and Wang, Shuai and
+                 Gao, Xing},
+  institution = {Shanghai Artificial Intelligence Laboratory},
+  year        = {2026},
+  url         = {https://internrobotics.github.io/Ebench-Astra-Tech-Report}
+}</code></pre>
+  </div>
+</footer>
+
+<style>
+  @layer components {
+    .report-footer {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+      gap: 3rem;
+      background: var(--deep);
+      padding: 3rem max(var(--gutter), calc((100% - var(--reading-width)) / 2));
+      color: #d9e4f4;
+      margin-top: 2rem;
+    }
+
+    .report-footer p,
+    .report-footer a {
+      color: #d9e4f4;
+    }
+
+    .footer-identity strong {
+      font-size: 1.5rem;
+    }
+
+    .footer-identity p {
+      font-size: var(--small);
+      margin-top: 1rem;
+    }
+
+    .footer-resource-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: var(--small);
+      margin: 2rem 0;
+    }
+
+    .footer-marks {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .footer-marks a {
+      display: block;
+      max-width: 46%;
+    }
+
+    .footer-marks img {
+      width: 100%;
+      height: auto;
+    }
+
+    .report-citation {
+      min-width: 0;
+    }
+
+    .citation-prompt {
+      font-size: 1.25rem;
+    }
+
+    .report-citation pre :global(code) {
+      font: inherit;
+      color: inherit;
+      background: none;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    .report-citation pre {
+      white-space: pre;
+      overflow-wrap: normal;
+      word-break: normal;
+      overflow-x: auto;
+      text-align: left;
+      font-size: 0.875rem;
+      line-height: 1.7;
+      background: #1e3049;
+      border: 1px solid #465a75;
+      border-radius: 0.4rem;
+      padding: 1.5rem;
+      margin: 0;
+    }
+    @media (max-width: 60rem) {
+      .report-footer {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    @media (max-width: 40rem) {
+      .report-footer {
+        gap: 2rem;
+      }
+    }
+    @media print {
+      .report-footer {
+        background: white;
+        color: black;
+      }
+    }
+  }
+</style>

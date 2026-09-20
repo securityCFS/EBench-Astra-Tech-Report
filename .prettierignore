@@ -1,0 +1,10 @@
+node_modules/
+public/
+dist/
+.generated/
+.astro/
+_site-next/
+_site/
+playwright-report/
+test-results/
+package-lock.json

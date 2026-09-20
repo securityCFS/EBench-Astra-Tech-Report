@@ -1,0 +1,189 @@
+@layer theme {
+  :root {
+    --font-body: 'STIX Two Text', serif;
+    --serif: var(--font-body);
+    --sans: var(--font-body);
+    --ink: #17273b;
+    --muted: #4c617d;
+    --paper: #eef0f3;
+    --soft: #e5eaf2;
+    --accent: #4056e8;
+    --purple: var(--accent);
+    --accent-soft: #e9edff;
+    --line: #d4dce8;
+    --deep: #142034;
+    --good: #276747;
+    --reading-width: 74rem;
+    --rail-width: 21rem;
+    --gutter: 2rem;
+    --header-height: 5rem;
+    --radius: 0.75rem;
+    --radius-sm: 0.5rem;
+    --radius-lg: 1rem;
+    --surface: #f8fafc;
+    --text: 1.25rem;
+    --small: 1rem;
+    --motion-duration: 220ms;
+    --motion-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .report-icon {
+    display: inline-block;
+    flex: none;
+    width: 1.15em;
+    height: 1.15em;
+    vertical-align: -0.15em;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  body {
+    font: var(--text)/1.65 var(--font-body);
+    background: var(--paper);
+    color: var(--ink);
+    isolation: isolate;
+  }
+  p {
+    margin: 0 0 1.25rem;
+    color: #111;
+  }
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    text-underline-offset: 0.2em;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-body);
+    line-height: 1.22;
+    color: var(--ink);
+    text-wrap: pretty;
+    margin: 0 0 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  h1 {
+    font-size: 3.5rem;
+    text-align: center;
+  }
+  h2 {
+    font-size: 2.5rem;
+    text-align: left;
+  }
+  h3 {
+    font-size: 1.875rem;
+    text-align: left;
+  }
+  h4 {
+    font-size: 1.5rem;
+    text-align: left;
+  }
+  main h3 {
+    margin-top: 2rem;
+  }
+  main strong {
+    color: inherit;
+  }
+  main p,
+  main li {
+    font-size: var(--text);
+  }
+  sup {
+    font-size: 0.65em;
+    line-height: 0;
+  }
+  code,
+  pre {
+    font-family: ui-monospace, Consolas, 'Liberation Mono', monospace;
+  }
+  code {
+    font-size: 0.88em;
+  }
+  :is(
+    .fineprint,
+    .figure-caption,
+    .insight-note,
+    .source-link,
+    .eyebrow,
+    .profile-note,
+    .chart-caption,
+    figcaption
+  ) {
+    font-size: var(--small);
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .eyebrow {
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .appendix-link,
+  .text-link {
+    border: 0;
+    background: none;
+    padding: 0;
+    color: var(--accent);
+    font: inherit;
+    text-align: left;
+  }
+  .paper-citation {
+    white-space: nowrap;
+    font: inherit;
+  }
+  .report-prose,
+  .report-prose p {
+    font-size: var(--text);
+    line-height: 1.65;
+    letter-spacing: 0;
+  }
+  .report-prose p a.source-link {
+    font: inherit;
+  }
+  button {
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+    background: #f5f7fa;
+    color: var(--muted);
+    padding: 0.45rem 0.8rem;
+  }
+  button:hover {
+    border-color: #a9b7d8;
+  }
+  button[aria-pressed='true'],
+  button[aria-selected='true'] {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  button:disabled {
+    opacity: 0.55;
+  }
+  .anchor-link {
+    font-size: 0.55em;
+    color: var(--muted);
+    opacity: 0;
+    margin-left: 0.5rem;
+  }
+  :is(h2, h3):hover .anchor-link,
+  .anchor-link:focus-visible {
+    opacity: 1;
+  }
+  .viz-svg,
+  .chart-svg {
+    font-family: var(--font-body);
+  }
+  .viz-tip {
+    font-family: var(--font-body);
+  }
+}

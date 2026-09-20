@@ -1,0 +1,283 @@
+---
+import { icon } from '../lib/icons.js';
+---
+
+<details id="video-library" class="recording-library">
+  <summary class="recording-library__summary">
+    <span class="recording-library__heading">
+      <strong>More recorded cases</strong>
+      <span>Selected GPT-6-Astra rollouts across all 26 tasks</span>
+    </span>
+    <span class="recording-library__chevron" aria-hidden="true" set:html={icon('chevron-down')} />
+  </summary>
+  <div class="recording-library__body">
+    <div class="recording-library__filters" role="group" aria-label="Filter recorded cases">
+      <label>
+        Search tasks
+        <input type="search" id="demo-search" placeholder="Search tasks…" autocomplete="off" />
+      </label>
+      <label>
+        Task attribute
+        <select id="demo-group">
+          <option value="all">All tasks</option>
+        </select>
+      </label>
+      <label>
+        Episode outcome
+        <select id="demo-outcome">
+          <option value="all">All outcomes</option>
+          <option value="success">Success</option>
+          <option value="incomplete">Incomplete</option>
+          <option value="failed">Failed</option>
+        </select>
+      </label>
+    </div>
+    <p
+      id="library-count"
+      class="recording-library__count"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    ></p>
+    <div id="library-grid" class="recording-library__grid"></div>
+    <nav class="recording-library__pagination" aria-label="Recorded cases pages">
+      <button id="demo-prev" type="button" aria-controls="library-grid" disabled>
+        <Fragment set:html={icon('chevron-left')} />
+        Previous
+      </button>
+      <span id="demo-page" aria-label="Current page"></span>
+      <button id="demo-next" type="button" aria-controls="library-grid" disabled>
+        Next
+        <Fragment set:html={icon('chevron-right')} />
+      </button>
+    </nav>
+  </div>
+</details>
+
+<style>
+  .recording-library {
+    min-width: 0;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    border: 0;
+    border-block: 1px solid var(--line);
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .recording-library__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 4.5rem;
+    margin: 0;
+    padding: 0.875rem 0;
+    color: var(--ink);
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .recording-library__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .recording-library__summary::marker {
+    content: '';
+  }
+
+  .recording-library__heading {
+    display: grid;
+    gap: 0.125rem;
+    min-width: 0;
+  }
+
+  .recording-library__heading strong {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .recording-library__heading > span {
+    color: var(--muted);
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    text-wrap: pretty;
+  }
+
+  .recording-library__chevron {
+    display: flex;
+    flex: none;
+    color: var(--muted);
+    transition: transform 180ms ease;
+  }
+
+  .recording-library[open] .recording-library__chevron {
+    transform: rotate(180deg);
+  }
+
+  .recording-library__summary:hover,
+  .recording-library__summary:hover .recording-library__chevron {
+    color: var(--accent);
+  }
+
+  .recording-library__body {
+    min-width: 0;
+    padding: 0.5rem 0 1rem;
+  }
+
+  .recording-library__filters {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr));
+    align-items: end;
+    gap: 0.75rem;
+  }
+
+  .recording-library__filters label {
+    display: grid;
+    gap: 0.25rem;
+    min-width: 0;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .recording-library__filters :is(input, select) {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    min-height: 2.75rem;
+    margin: 0;
+    padding: 0.5rem 0.625rem;
+    border: 1px solid var(--line);
+    border-radius: 0.375rem;
+    background: var(--surface);
+    color: var(--ink);
+    font: 1rem/1.4 var(--font-body);
+  }
+
+  .recording-library :is(summary, input, select, button):focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .recording-library__count {
+    margin: 0.75rem 0;
+    color: var(--muted);
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .recording-library__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem 1rem;
+  }
+
+  .recording-library :global(.recording-library__item) {
+    min-width: 0;
+  }
+
+  .recording-library :global(.video-label) {
+    display: grid;
+    gap: 0.125rem;
+    min-height: 3.125rem;
+    margin: 0;
+    padding: 0 0 0.5rem;
+  }
+
+  .recording-library :global(.video-label strong) {
+    color: var(--ink);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .recording-library :global(.video-label > span) {
+    max-width: none;
+    color: var(--muted);
+    font: 0.875rem/1.4 var(--font-body);
+    text-align: left;
+  }
+
+  .recording-library :global(.evidence-video > figcaption) {
+    margin: 0;
+    padding-top: 0.5rem;
+    color: var(--muted);
+    font-size: 0.875rem;
+    line-height: 1.45;
+  }
+
+  .recording-library :global(.recording-library__empty) {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 1rem 0;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  .recording-library__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    color: var(--muted);
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .recording-library__pagination button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    min-height: 2.75rem;
+    margin: 0;
+    padding: 0.375rem 0.625rem;
+    border: 1px solid var(--line);
+    border-radius: 0.375rem;
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .recording-library__pagination button:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .recording-library__pagination button:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+
+  .recording-library :global(.report-icon) {
+    display: block;
+    flex: none;
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  @media (max-width: 64rem) {
+    .recording-library__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .recording-library__filters,
+    .recording-library__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .recording-library__chevron {
+      transition: none;
+    }
+  }
+</style>

@@ -1,0 +1,56 @@
+---
+import { icon } from '../lib/icons.js';
+import '../styles/supplement.css';
+---
+
+<template id="study-limitations-content">
+  <div class="report-prose">
+    <h3>Limited evaluation budget</h3>
+    <p>
+      <strong>Usage quotas limited the breadth of testing.</strong> The main evaluation covers all
+      26 tasks and 510 episodes, but broader repeated runs, additional configurations and controlled
+      ablations remain limited.
+    </p>
+    <h3>Coupled benchmark dimensions</h3>
+    <p>
+      <strong>Some evaluation dimensions in EBench are coupled</strong>, so numerical results alone
+      cannot fully explain differences in the models’ capabilities. We complement the results with{' '}
+      <strong>case analyses of execution videos</strong> to explain these capability differences and
+      support our conclusions. The differences also motivate further investigation into the
+      capabilities and behaviors behind them.
+    </p>
+    <h3>Cross-episode experience</h3>
+    <p>
+      Each episode starts with a fresh history. The study{' '}
+      <strong>does not compare cross-episode skill accumulation</strong>, persistent memory or
+      experience-derived tools. Within-episode correction and self-summary are observable here;
+      transfer to later tasks remains a separate question.
+    </p>
+    <h3>Embodied harness integration</h3>
+    <p>
+      <strong>
+        Results combining GPT-6-Astra with embodied harness frameworks are not yet reported here.
+      </strong>{' '}
+      This page compares the evaluated control interface with baseline policies. The agent–policy
+      combinations discussed in the conclusion are research directions motivated by these findings.
+    </p>
+  </div>
+</template>
+<dialog id="appendix-dialog" class="report-supplement" aria-labelledby="appendix-title">
+  <header class="dialog-heading">
+    <span class="supplement-eyebrow">
+      <Fragment set:html={icon('book-open')} />
+      Supplementary material
+    </span>
+    <button
+      type="button"
+      class="close-dialog"
+      aria-label="Close supplementary material"
+      title="Close supplementary material (Escape)"
+      autofocus
+    >
+      <Fragment set:html={icon('x')} />
+    </button>
+  </header>
+  <div id="appendix-body" role="region" aria-labelledby="appendix-title" tabindex="0"></div>
+</dialog>

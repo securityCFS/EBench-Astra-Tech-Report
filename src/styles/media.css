@@ -1,0 +1,152 @@
+/* Video stages, comparison tabs, case studies */
+@layer layout {
+  .evidence-pair,
+  .case-videos,
+  .evidence-trio,
+  .poc-videos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+    align-items: start;
+  }
+  .evidence-trio {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .evidence-video {
+    min-width: 0;
+    margin: 0;
+  }
+  .video-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+    margin: 0 0 0.8rem;
+    color: var(--muted);
+  }
+  .video-label strong {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  .video-label > span {
+    font: var(--small)/1.4 var(--font-body);
+  }
+  .media-viewport {
+    position: relative;
+    aspect-ratio: 16/9;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0.4rem;
+    background: var(--deep);
+  }
+  .media-viewport video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-width: none;
+  }
+  .video-start {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 4rem;
+    height: 4rem;
+    display: grid;
+    place-items: center;
+    border: 1px solid #a5b4cc;
+    border-radius: 50%;
+    background: #263b5abb;
+    color: white;
+  }
+  .video-start svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .evidence-video figcaption {
+    margin-top: 1rem;
+  }
+  .demo-toolbar,
+  .poc-controls,
+  .play-evidence,
+  .case-playback,
+  .recording-playback {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 1.25rem 0;
+  }
+  .focus-switch {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .behavior-tabs,
+  .case-recording-tabs {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin: 1.5rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .behavior-tabs button,
+  .case-recording-tabs button {
+    max-width: 100%;
+    white-space: normal;
+    font-size: var(--small);
+    border: 0;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    background: none;
+    padding: 0.5rem 0;
+    text-align: left;
+  }
+  .behavior-tabs button[aria-selected='true'],
+  .case-recording-tabs button[aria-pressed='true'] {
+    border-bottom-color: var(--accent);
+  }
+  .focus-switch > span {
+    display: none;
+  }
+  .focus-switch button,
+  .stage-strip button,
+  .stage-strip span {
+    font-size: var(--small);
+  }
+  .stage-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  .case-study-panel {
+    border-top: 1px solid var(--line);
+    padding-top: 3rem;
+    margin-top: 3rem;
+  }
+  .case-heading {
+    margin: 2rem 0 1rem;
+  }
+  .case-heading h4 {
+    font-size: 1.5rem;
+  }
+  .case-description,
+  .case-insight {
+    max-width: none;
+    margin: 1.5rem 0;
+  }
+  .case-insight p {
+    font-size: var(--text);
+  }
+  .evidence-trio[data-focus]:not([data-focus='all']),
+  .poc-videos[data-focus]:not([data-focus='all']) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

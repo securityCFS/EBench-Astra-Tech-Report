@@ -1,0 +1,139 @@
+<aside class="report-toc" aria-label="Report contents">
+  <nav id="report-toc-links" aria-label="On this page">
+    <p class="toc-title">Contents</p>
+    <a href="#introduction">Opening</a>
+    <a href="#overall">
+      <span class="toc-number">Ⅰ</span> <span class="toc-label">Benchmark Results</span>
+    </a>
+    <a href="#model-references" class="toc-subsection">
+      <span class="toc-number">i</span> <span class="toc-label">Model References</span>
+    </a>
+    <a href="#setup">
+      <span class="toc-number">Ⅱ</span> <span class="toc-label">Experiment Setup</span>
+    </a>
+    <a href="#evaluation-tasks" class="toc-subsection">
+      <span class="toc-number">i</span> <span class="toc-label">Evaluation tasks</span>
+    </a>
+    <a href="#adaptation-protocol" class="toc-subsection">
+      <span class="toc-number">ii</span> <span class="toc-label">Adaptation and protocol</span>
+    </a>
+    <a href="#observations-control" class="toc-subsection">
+      <span class="toc-number">iii</span> <span class="toc-label">Observations and control</span>
+    </a>
+    <a href="#comparison">
+      <span class="toc-number">Ⅲ</span> <span class="toc-label">Score and Ranking</span>
+    </a>
+    <a href="#findings">
+      <span class="toc-number">Ⅳ</span> <span class="toc-label">General Analysis</span>
+    </a>
+    <a href="#mobile" class="toc-subsection">
+      <span class="toc-number">i</span> <span class="toc-label">Capability Differences</span>
+    </a>
+    <a href="#limits" class="toc-subsection">
+      <span class="toc-number">ii</span> <span class="toc-label">Failure Patterns</span>
+    </a>
+    <a href="#behavior" class="toc-subsection">
+      <span class="toc-number">iii</span> <span class="toc-label">Emerging Capabilities</span>
+    </a>
+    <a href="#safety" class="toc-subsection">
+      <span class="toc-number">iv</span> <span class="toc-label">Safety in Execution</span>
+    </a>
+    <a href="#cases">
+      <span class="toc-number">Ⅴ</span> <span class="toc-label">Case Studies</span>
+    </a>
+    <a href="#case-icl" class="toc-subsection">
+      <span class="toc-number">i</span> <span class="toc-label">In-Context Learning</span>
+    </a>
+    <a href="#case-adapt" class="toc-subsection">
+      <span class="toc-number">ii</span> <span class="toc-label">Adaptation And Precision</span>
+    </a>
+    <a href="#case-poc" class="toc-subsection">
+      <span class="toc-number">iii</span> <span class="toc-label">Compositional Completion</span>
+    </a>
+    <a href="#conclusion">
+      <span class="toc-number">Ⅵ</span> <span class="toc-label">Conclusion And Insights</span>
+    </a>
+    <a href="#study-limitations">
+      <span class="toc-number">Ⅶ</span> <span class="toc-label">Limitations</span>
+    </a>
+    <a href="#related-work">
+      <span class="toc-number">Ⅷ</span> <span class="toc-label">Related Work</span>
+    </a>
+    <a href="#references">
+      <span class="toc-number">Ⅸ</span> <span class="toc-label">References</span>
+    </a>
+  </nav>
+</aside>
+
+<style>
+  @layer components {
+    .report-toc {
+      position: fixed;
+      inset: var(--header-height) auto 0 0;
+      width: min(var(--rail-width), 100%);
+      z-index: 50;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      background: #eef1f6f5;
+      border-right: 1px solid var(--line);
+      padding: 1.25rem 0.75rem;
+    }
+
+    .report-toc nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .report-toc a {
+      display: grid;
+      grid-template-columns: 2rem minmax(0, 1fr);
+      column-gap: 0.5rem;
+      color: var(--muted);
+      font-size: 1.125rem;
+      line-height: 1.4;
+      padding: 0.6rem 0.75rem;
+      border-left: 2px solid transparent;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .toc-number {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .report-toc a[href='#introduction'] {
+      display: block;
+    }
+
+    .report-toc a[aria-current] {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      font-weight: 700;
+      color: #3049b7;
+    }
+
+    .report-toc .toc-subsection {
+      padding-left: 1.6rem;
+    }
+
+    .toc-title {
+      display: none;
+    }
+
+    :global(body[data-toc-open='false']) .report-toc {
+      visibility: hidden;
+      pointer-events: none;
+    }
+    @media (max-width: 85rem) {
+      .report-toc {
+        box-shadow: 1rem 0 2rem #15234020;
+      }
+    }
+    @media print {
+      .report-toc {
+        display: none;
+      }
+    }
+  }
+</style>

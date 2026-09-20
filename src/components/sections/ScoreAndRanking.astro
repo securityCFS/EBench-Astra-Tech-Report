@@ -1,0 +1,31 @@
+---
+import { icon } from '../../lib/icons.js';
+---
+
+<section id="comparison" class="section benchmark-details">
+  <div class="section-inner">
+    <h2>3 Score and Ranking</h2>
+    <div id="benchmark-matrix"></div>
+    <p class="results-extra">
+      <button class="appendix-link" data-appendix="generalization">
+        Compare object, scene and instruction perturbations
+        <Fragment set:html={icon('external-link')} />
+      </button>
+    </p>
+    <div class="explorer-links">
+      <a
+        href="https://internrobotics.github.io/EBench-doc/evaluation/task-showcase/"
+        target="_blank"
+        rel="noopener"
+      >
+        Explore EBench tasks <Fragment set:html={icon('external-link')} />
+      </a>
+      <button data-appendix="full-comparison">
+        All models and task groups <Fragment set:html={icon('external-link')} />
+      </button>
+      <button data-appendix="ablation">
+        All paired ICL experiments <Fragment set:html={icon('external-link')} />
+      </button>
+    </div>
+  </div>
+</section>

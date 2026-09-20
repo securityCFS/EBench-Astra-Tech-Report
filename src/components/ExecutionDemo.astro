@@ -1,0 +1,28 @@
+---
+import '../styles/episode-viewer.css';
+---
+
+<section
+  class="execution-demo"
+  id="episode-interactions"
+  aria-labelledby="episode-interactions-title"
+>
+  <h3 id="episode-interactions-title">Execution Demo</h3>
+  <div id="episode-viewer">
+    <!-- Kept in place while episode content loads, so the underline can travel. -->
+    <div class="episode-picker" role="group" aria-label="Choose an episode" hidden>
+      <span class="episode-picker-indicator" aria-hidden="true"></span>
+    </div>
+    <div data-episode-content aria-busy="true">
+      <p class="episode-state" role="status">
+        Loading episode interactions…
+      </p>
+    </div>
+  </div>
+  <noscript>
+    <p>
+      Enable JavaScript to explore the synchronized recordings, or
+      <a href="data/episodes/index.json">browse the public episode index</a>.
+    </p>
+  </noscript>
+</section>

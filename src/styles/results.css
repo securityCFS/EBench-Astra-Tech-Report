@@ -1,0 +1,85 @@
+/* Headline metric, comparison panel, charts, tables */
+@layer layout {
+  .report-chart {
+    min-width: 0;
+    margin: 0;
+  }
+  .chart-heading,
+  .matrix-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .chart-heading h4 {
+    margin: 0;
+    font-size: 1.375rem;
+  }
+  .chart-mode,
+  .chart-metric,
+  .result-view,
+  .metric-switch {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+  .chart-mode button,
+  .chart-metric button,
+  .result-view button,
+  .metric-switch button {
+    font-size: var(--small);
+  }
+  .report-chart svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .report-chart .chart-series {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+  .chart-series button {
+    font-size: 1rem;
+  }
+  .chart-series button i {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--series);
+    margin-right: 0.4rem;
+  }
+  .rank {
+    display: inline-block;
+    width: 1.5rem;
+    color: var(--muted);
+  }
+  .insight-note {
+    font-size: var(--small);
+    max-width: none;
+    color: var(--muted);
+  }
+  .insight-block {
+    margin: 3rem 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+  .insight-block > h3 {
+    font-size: 1.875rem;
+    margin: 0 0 1.25rem;
+  }
+  .matrix-tabs,
+  .case-task-switch,
+  .evidence-tabs,
+  .limit-switch {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--line);
+    margin: 1.5rem 0;
+  }
+}

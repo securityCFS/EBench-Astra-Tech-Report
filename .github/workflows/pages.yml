@@ -1,8 +1,6 @@
 name: Deploy report to GitHub Pages
 
 on:
-  push:
-    branches: ['001']
   workflow_dispatch:
 
 permissions:
@@ -16,7 +14,7 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.ref == 'refs/heads/001'
+    if: github.ref == 'refs/heads/clean'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -30,14 +28,17 @@ jobs:
           node-version: '22'
       - name: Check website
         run: |
+          npm ci
           npm run check
           npm run validate
       - name: Prepare published files
-        run: node scripts/prepare-pages.mjs
+        run: npm run build
+        env:
+          REPORT_BASE: /Ebench-Astra-Tech-Report
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: _site
+          path: _site-next
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
