@@ -78,7 +78,8 @@ body main p,
 body #appendix-dialog #appendix-body p { margin-top: 0; margin-bottom: 14px; }
 body #introduction .report-prose p + p { margin-top: 0; }
 body main .report-prose { font-size: var(--body-size); line-height: var(--body-leading); }
-body main :is(h2, h3, h4) { text-align: center; letter-spacing: normal; }
+body main :is(h2, h3, h4),
+body #appendix-dialog :is(h2, h3, h4) { text-align: left !important; letter-spacing: normal; }
 body main h2,
 body #appendix-dialog h2 { font-size: 32px !important; line-height: 1.25; margin-bottom: 20px; }
 body main h3,
@@ -135,6 +136,14 @@ body main .video-label > span { font-size: 14px; line-height: 1.4; text-align: c
 .episode-outcome small { font-size: 14px; }
 .episode-speaker span, .episode-playback, .episode-log time { font-size: 14px; }
 .episode-raw pre, .episode-prompt, .icl-json { font-size: 13px; line-height: 1.5; }
+/* Center the Astra summary against the table, excluding its heading and footnote. */
+#overall .result-layout { grid-template-rows: auto auto auto; row-gap: 0; }
+#overall .result-summary { grid-column: 1; grid-row: 2; align-self: center; }
+#overall .result-panel { display: contents; }
+#overall .result-panel-header { grid-column: 2; grid-row: 1; }
+#overall .result-panel-body { grid-column: 2; grid-row: 2; min-width: 0; }
+#overall .result-panel > .comparison-footnote { grid-column: 2; grid-row: 3; }
+#overall .overall-metric { margin-bottom: 0; }
 #overall .overall-metric > .metric-label { font-size: 14px !important; margin-bottom: 12px; }
 #overall .metric-current { display: flex; justify-content: center; align-items: baseline; gap: 16px; white-space: nowrap; font-variant-numeric: tabular-nums; }
 #overall .metric-number { display: inline-flex; align-items: baseline; gap: 4px; color: #3456ef; }
@@ -167,8 +176,8 @@ body > footer.report-footer {
 .report-citation pre, .report-citation code { font-size: 13px; line-height: 1.5; }
 
 
-/* Center headings and controls within the shared article column. */
-body :is(h1, h2, h3, h4, th, td, button, input, select, summary, label),
+/* Center the cover title and controls within the shared article column. */
+body :is(h1, th, td, button, input, select, summary, label),
 body .insight-table .subgroup-label,
 body .gap-row strong,
 body .perturbation-row > strong,
