@@ -4,44 +4,45 @@
       <div>
         <h2>Where execution breaks down</h2>
       </div>
-      <p>
-        The outcome distribution shows how much task score gains at termination. The recordings
-        help explain the underlying difficulties: precise contact and completing a sequence despite
-        local failures.
-      </p>
     </div>
     <div class="report-prose">
       <p>
-        Across 510 episodes, 237 reach complete success. Of the 273 incomplete episodes, 188
-        receive positive partial credit and 85 score zero. Most incomplete episodes retain
-        positive task credit. The task-level breakdown distinguishes zero terminal credit from
-        partial completion; the videos then show how grasp loss, contact errors and unfinished
-        procedures lead to these outcomes.
+        Under the EBench protocol, evaluation is not binary; instead, an episode receives partial
+        credit based on the intermediate stages successfully completed, with a full success rate of
+        1.0 assigned only upon total task completion. Across 510 evaluated episodes, 237 achieve
+        complete success, while 188 of the 273 incomplete runs still register positive partial
+        credit (with only 85 scoring zero). For episodes that gain partial credit but fall short of
+        full success, this score breakdown points to two common failure modes: either the execution
+        lacks the precision required to satisfy strict final termination criteria, or the agent
+        stalls at an intermediate step and times out before completing the task.
+      </p>
+      <p>
+        This behavioral difference is evident when comparing tasks with similarly low success
+        rates: zero-score episodes dominate in gear installation (75%), utensils placement (65%),
+        and glasses packing (50%), whereas they are completely absent in nut tightening, peg
+        insertion, and shop (and account for only 30% in bottle). In these latter tasks, the agent
+        consistently advances through early stages despite missing full completion, a distinction
+        that would be lost when looking at final success alone.
       </p>
     </div>
     <div id="episode-outcomes"></div>
     <div class="outcome-task-breakdown" id="failure-depth-analysis">
       <div class="report-prose">
         <p>
-          Zero-score episodes account for 75% of gear installation, 65% of utensils placement and
-          50% of glasses packing. In contrast, nut tightening, peg insertion and shop have no
-          zero-score episodes; bottle has 30%. Their low success rates mask different outcome
-          distributions.
-        </p>
-        <p>
-          <strong>Zero-score episodes receive no credit under the task’s scoring rules.</strong> The
-          videos and interaction logs show where execution stops.
+          The table below shows how success rate and task score diverge across tasks, with each row
+          tagged by the precision and horizon the task demands.
         </p>
       </div>
       <div id="failure-depth-chart"></div>
     </div>
     <div class="report-prose">
       <p>
-        These terminal outcomes motivate examining where precise contact fails and how local
-        retries affect completion of a longer procedure. The following recordings connect those
-        execution difficulties to the task results.
+        These terminal scores motivate examining where precise contact fails and how local retries
+        influence overall task progress. The recordings below connect these execution challenges
+        directly to the reported task results.
       </p>
     </div>
+    <h3>Qualitative analysis from the recordings</h3>
     <div class="limit-switch" aria-label="Execution challenge">
       <button data-limit="precision" aria-pressed="true">
         Precise contact

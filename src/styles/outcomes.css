@@ -81,6 +81,39 @@
     overflow-wrap: anywhere;
   }
 
+  /* Task type sits beside the name as a marker: the outcome split already owns colour. */
+  .outcome-breakdown .task-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 0.2rem;
+  }
+
+  .task-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.05rem 0.34rem;
+    border: 1px solid var(--rule, #c8cfdb);
+    border-radius: 2px;
+    font-size: 0.68rem;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .task-tag--demanding {
+    border-color: currentColor;
+    font-weight: 600;
+    color: var(--ink, #1b1f24);
+  }
+
+  .outcome-type-legend .task-tag {
+    width: 0.85rem;
+    height: 0.85rem;
+    padding: 0;
+  }
+
   .outcome-breakdown [data-active] .outcome-task-label {
     color: var(--accent);
   }

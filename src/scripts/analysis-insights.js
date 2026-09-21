@@ -126,18 +126,29 @@ async function initAnalysisInsights() {
     'bottle',
   ];
   failures.classList.add('outcome-breakdown');
-  failures.innerHTML = `<div class="outcome-split-legend"><span><i class="outcome-success" aria-hidden="true"></i>Complete success</span><span><i class="outcome-partial" aria-hidden="true"></i>Incomplete</span><span><i class="outcome-zero" aria-hidden="true"></i>Failed</span></div><div class="outcome-breakdown-heading" aria-hidden="true"><span>Task</span><span>Episode outcomes</span><span>Episodes</span></div><div id="failure-depth-rows"></div><button class="failure-expand" type="button" aria-expanded="false" aria-controls="failure-depth-extra"><span data-failure-expand-label>Show all 26 tasks</span><span class="failure-expand-icon">${reportIcon('chevron-down')}</span></button><p class="outcome-breakdown-note">Percentages use all evaluated episodes of each task. Select a task for exact counts.</p><p class="outcome-breakdown-readout" id="failure-readout" aria-live="polite" aria-atomic="true"></p>`;
+  failures.innerHTML = `<div class="outcome-split-legend"><span><i class="outcome-success" aria-hidden="true"></i>Complete success</span><span><i class="outcome-partial" aria-hidden="true"></i>Incomplete</span><span><i class="outcome-zero" aria-hidden="true"></i>Failed</span></div><div class="outcome-split-legend outcome-type-legend"><span><i class="task-tag task-tag--demanding" aria-hidden="true"></i>High precision / Long horizon</span><span><i class="task-tag" aria-hidden="true"></i>Low&ndash;medium precision / Short horizon</span></div><div class="outcome-breakdown-heading" aria-hidden="true"><span>Task</span><span>Episode outcomes</span><span>Episodes</span></div><div id="failure-depth-rows"></div><button class="failure-expand" type="button" aria-expanded="false" aria-controls="failure-depth-extra"><span data-failure-expand-label>Show all 26 tasks</span><span class="failure-expand-icon">${reportIcon('chevron-down')}</span></button><p class="outcome-breakdown-note">Percentages use all evaluated episodes of each task. Select a task for exact counts.</p><p class="outcome-breakdown-readout" id="failure-readout" aria-live="polite" aria-atomic="true"></p>`;
   const initialRows = selected.map((name) => data.tasks.find((t) => t.task === name));
   const additionalRows = data.tasks
     .filter((t) => !selected.includes(t.task))
     .sort((a, b) => b.zero / b.n - a.zero / a.n || a.task.localeCompare(b.task));
   const outcomeLabels = { success: 'Complete success', partial: 'Incomplete', zero: 'Failed' };
+  // Colour is already spent on the outcome split, so task type is marked by shape and text.
+  const taskTags = (t) => {
+    const high = t.precision === 'High';
+    const long = String(t.horizon).startsWith('Long');
+    return (
+      `<span class="task-tags">` +
+      `<span class="task-tag${high ? ' task-tag--demanding' : ''}">${high ? 'High precision' : 'Low\u2013med precision'}</span>` +
+      `<span class="task-tag${long ? ' task-tag--demanding' : ''}">${long ? 'Long horizon' : 'Short horizon'}</span>` +
+      `</span>`
+    );
+  };
   const outcomeSummary = (t) =>
-    `${taskName(t.task)}: ${Object.entries(outcomeLabels)
+    `${taskName(t.task)} (${t.precision} precision, ${t.horizon}): ${Object.entries(outcomeLabels)
       .map(([key, label]) => `${label} ${t[key]}/${t.n} (${number((100 * t[key]) / t.n)}%)`)
       .join('; ')}.`;
   const failureRow = (t) =>
-    `<button type="button" class="failure-depth-row" data-failure-task="${t.task}" aria-label="${esc(outcomeSummary(t))}"><span class="outcome-task-label">${esc(taskName(t.task))}</span><span class="outcome-split-track" aria-hidden="true">${Object.entries(
+    `<button type="button" class="failure-depth-row" data-failure-task="${t.task}" aria-label="${esc(outcomeSummary(t))}"><span class="outcome-task-label">${esc(taskName(t.task))}${taskTags(t)}</span><span class="outcome-split-track" aria-hidden="true">${Object.entries(
       outcomeLabels,
     )
       .map(
