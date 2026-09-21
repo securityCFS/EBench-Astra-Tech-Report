@@ -41,7 +41,7 @@ import ExecutionTiming from '../ExecutionTiming.astro';
         <p>
           The Vision-Language-Action (VLA) and World-Action Model (WAM) policies are trained on the
           publicly released EBench dataset, which contains{' '}
-          <strong>6,600 episodes across 26 tasks</strong>. We compare Astra with seven learned
+          <strong>6,600 episodes across 26 tasks</strong>. We compare GPT-6-Astra with seven learned
           policies using their reported EBench leaderboard results.
         </p>
         <p>
@@ -50,15 +50,15 @@ import ExecutionTiming from '../ExecutionTiming.astro';
           <strong>one annotated demonstration per task, without parameter updates</strong>. A
           separate GPT-6-Astra instance reviews one video trajectory from the training set,
           autonomously selects keyframes, and writes the accompanying prompts. Every episode of a
-          task uses the same ICL package. Astra uses that demonstration as context for live
+          task uses the same ICL package. GPT-6-Astra uses that demonstration as context for live
           decisions, rather than replaying its coordinates.
         </p>
         <DemonstrationCard />
         <p>
           Physical execution in the main evaluation follows the{' '}
           <strong>same task-specific physics-step limits as the baseline policies</strong>. We
-          impose no additional aggregate cap on Astra's tokens, tool calls, or inference time. Astra
-          may issue a termination signal before the execution limit; the server determines the final
+          impose no additional aggregate cap on GPT-6-Astra's tokens, tool calls, or inference time.
+          GPT-6-Astra may issue a termination signal before the execution limit; the server determines the final
           task success and Score. If the policy stops early, the runner holds the robot and advances
           the simulator to obtain that terminal result.
         </p>
@@ -101,14 +101,14 @@ import ExecutionTiming from '../ExecutionTiming.astro';
         </p>
         <h4>Outputs: action requests through a fixed interface</h4>
         <p>
-          Astra requests{' '}
+          GPT-6-Astra requests{' '}
           <strong>end-effector (EEF) poses, gripper and base targets, and action durations</strong>.
           A fixed robot execution interface carries out those requests.{' '}
-          <strong>No learned VLA or WAM generates or refines Astra's actions.</strong>
+          <strong>No learned VLA or WAM generates or refines GPT-6-Astra's actions.</strong>
         </p>
         <p>
           The interaction follows an <strong>observation–decision–execution–feedback loop</strong>:
-          Astra interprets the current images and state, chooses the next action request, and waits
+          GPT-6-Astra interprets the current images and state, chooses the next action request, and waits
           while the interface executes it.{' '}
           <strong>Updated observations arrive when the complete tool call returns</strong>, after
           its waypoint sequence has run. Those observations inform the next decision; the model does
