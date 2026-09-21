@@ -85,6 +85,31 @@ test('all available appendices share one shell, title, width and native Escape b
   await expect(page.locator('#appendix-dialog')).toHaveClass('report-supplement');
 });
 
+test('supplement paragraphs use the same content width as their tables', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('#model-references a').click();
+  const body = page.locator('#appendix-body');
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    const geometry = await body.evaluate((element) => {
+      const paragraph = element.querySelector(':scope > p')!;
+      const table = element.querySelector('.table-scroll')!;
+      const textBox = paragraph.getBoundingClientRect();
+      const tableBox = table.getBoundingClientRect();
+      return {
+        leftGap: Math.abs(textBox.left - tableBox.left),
+        rightGap: Math.abs(textBox.right - tableBox.right),
+        hardBreaks: paragraph.querySelectorAll('br').length,
+        overflow: element.scrollWidth - element.clientWidth,
+      };
+    });
+    expect(geometry.leftGap).toBeLessThanOrEqual(1);
+    expect(geometry.rightGap).toBeLessThanOrEqual(1);
+    expect(geometry.hardBreaks).toBe(0);
+    expect(geometry.overflow).toBeLessThanOrEqual(1);
+  }
+});
+
 test('narrow and text-scaled supplements scroll internally without clipping close or album controls', async ({
   page,
 }) => {

@@ -138,8 +138,9 @@
     margin: 0 0 1.1rem;
   }
 
+  /* The dialog already bounds the reading width. Keep prose and tables aligned. */
   .report-supplement :where(#appendix-body > p, .report-prose, .icl-overview-copy) {
-    max-width: 72ch;
+    max-width: none;
     margin-inline: 0;
   }
 
