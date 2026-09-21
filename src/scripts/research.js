@@ -34,7 +34,7 @@ function initBenchmarkMatrix() {
     ['fixed-high', 'Tabletop · high', (t) => t.mobility === 'Fixed' && t.precision === 'High'],
   ];
   host.classList.add('benchmark-explorer');
-  host.innerHTML = `<div class="matrix-heading table-toolbar"><h3>Complete benchmark comparison</h3><a class="table-download matrix-download" href="data/report-main-results.csv" download title="Download benchmark data (CSV)" aria-label="Download benchmark data (CSV)">${reportIcon('download')}<span>CSV</span></a></div><div class="matrix-tabs" role="tablist" aria-label="Benchmark tables"><button type="button" id="matrix-tab-attributes" data-matrix="attributes" role="tab" aria-controls="matrix-content" aria-selected="true">Overall and task groups</button><button type="button" id="matrix-tab-tasks" data-matrix="tasks" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">All 26 tasks</button><button type="button" id="matrix-tab-shifts" data-matrix="shifts" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">Distribution shifts</button><button type="button" id="matrix-tab-field" data-matrix="field" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">GPT-6-Astra vs. field</button></div><p class="matrix-introduction" hidden></p><div class="matrix-controls"><div class="matrix-metric" role="group" aria-label="Table metric"><button type="button" data-matrix-metric="sr" aria-pressed="true">SR (%)</button><button type="button" data-matrix-metric="score" aria-pressed="false">Score</button></div><div class="shift-view-switch" role="group" aria-label="Distribution shifts presentation" hidden><button type="button" data-shift-view="table" aria-pressed="true">Success rates</button><button type="button" data-shift-view="range" aria-pressed="false">Variation across conditions</button></div></div><div id="matrix-content" role="tabpanel" aria-labelledby="matrix-tab-attributes" tabindex="0"></div>`;
+  host.innerHTML = `<div class="matrix-heading table-toolbar"><h3>Complete benchmark comparison</h3><a class="table-download matrix-download" href="data/report-main-results.csv" download title="Download benchmark data (CSV)" aria-label="Download benchmark data (CSV)">${reportIcon('download')}<span>CSV</span></a></div><div class="matrix-tabs" role="tablist" aria-label="Benchmark tables"><button type="button" id="matrix-tab-attributes" data-matrix="attributes" role="tab" aria-controls="matrix-content" aria-selected="true">Overall and task groups</button><button type="button" id="matrix-tab-tasks" data-matrix="tasks" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">All 26 tasks</button><button type="button" id="matrix-tab-shifts" data-matrix="shifts" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">Distribution shifts</button><button type="button" id="matrix-tab-field" data-matrix="field" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">GPT-6-Astra vs. field</button></div><p class="matrix-introduction" hidden></p><div class="matrix-controls"><div class="matrix-metric" role="group" aria-label="Table metric"><button type="button" data-matrix-metric="sr" aria-pressed="true">SR (%)</button><button type="button" data-matrix-metric="score" aria-pressed="false">Score</button></div><div class="shift-view-switch" role="group" aria-label="Distribution shifts presentation" hidden><button type="button" data-shift-view="table" aria-pressed="true">Success rates</button><button type="button" data-shift-view="range" aria-pressed="false">Variation across conditions</button></div></div><div id="matrix-content" role="tabpanel" aria-labelledby="matrix-tab-attributes" tabindex="0"></div><p class="fineprint" id="matrix-scope-note"></p>`;
   initSegmentedControl(host.querySelector('.matrix-tabs'), '[aria-selected="true"]', {
     variant: 'underline',
     keyboard: false,
@@ -44,6 +44,12 @@ function initBenchmarkMatrix() {
   function draw() {
     const target = host.querySelector('#matrix-content');
     target.setAttribute('aria-labelledby', `matrix-tab-${mode}`);
+    const scopeNote = host.querySelector('#matrix-scope-note');
+    scopeNote.hidden = !['attributes', 'shifts'].includes(mode);
+    scopeNote.textContent =
+      mode === 'shifts'
+        ? 'Task-averaged results under object, background, instruction and mixed perturbations. In the mixed condition, GPT-6-Astra completes 60 of 130 episodes and OpenWAM-α completes 58.'
+        : '26 tasks / 510 episodes per model. Precision: 14 low / 8 medium / 4 high tasks; mobility: 19 mobile / 7 tabletop; horizon: 19 short / 7 long. Each task has equal weight within its group. Attribute groups overlap.';
     host.querySelector('.matrix-introduction').hidden = mode !== 'field';
     host.querySelector('.matrix-controls').hidden = mode === 'tasks';
     host.querySelector('.matrix-metric').hidden =
@@ -258,7 +264,7 @@ function initBehavior() {
   function draw(key) {
     const d = entries[key];
     $('#behavior-content').innerHTML =
-      `<div class="behavior-evidence"><div><h3>${d.heading}</h3><dl class="trace-excerpt"><dt>${key === 'coffee' ? 'Supplied execution guidance' : 'Live task instruction'}</dt><dd>${d.input}</dd><dt>Recorded action description</dt><dd>${d.action}</dd></dl><p>${d.body}</p><button class="appendix-link" data-appendix="behavior">Read the report annotations ${reportIcon('external-link')}</button></div>${video(`media/cases/${d.task}_${d.seed}-web.mp4`, title(d.task), '', `${key === 'apple' ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(2)})`)}</div>`;
+      `<div class="behavior-evidence"><div><h3>${d.heading}</h3><dl class="trace-excerpt"><dt>${key === 'coffee' ? 'Supplied execution guidance' : 'Live task instruction'}</dt><dd>${d.input}</dd><dt>Recorded action description</dt><dd>${d.action}</dd></dl><p>${d.body}</p></div>${video(`media/cases/${d.task}_${d.seed}-web.mp4`, title(d.task), '', `${key === 'apple' ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(2)})`)}</div>`;
     updateBehaviorNarrative(key);
     initVideos();
   }

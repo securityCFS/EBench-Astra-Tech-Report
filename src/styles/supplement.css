@@ -260,11 +260,6 @@
     border-bottom: 0;
   }
 
-  .report-supplement .protocol-scope td {
-    min-width: 22rem;
-    white-space: normal;
-  }
-
   /* Popover-style task selectors have their own component treatment. */
   .report-supplement details:not(.task-group-control) {
     margin: 1rem 0;

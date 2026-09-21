@@ -103,7 +103,6 @@ function updateCaseNarrative(activeCase, area) {
 function updateBehaviorNarrative(key) {
   const story = $('#behavior-content .behavior-evidence>div');
   story.querySelector('p').remove();
-  story.querySelector('button').remove();
   const trace = story.querySelector('.trace-excerpt');
   if (key === 'apple') {
     trace.innerHTML =

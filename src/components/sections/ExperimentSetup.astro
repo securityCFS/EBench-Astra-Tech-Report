@@ -124,7 +124,7 @@ import ExecutionDemo from '../ExecutionDemo.astro';
           not receive a new decision point after each internal execution chunk.
         </p>
 
-        <details class="setup-protocol-details">
+        <details class="setup-protocol-details" id="evaluation-protocol">
           <summary>Evaluation protocol</summary>
           <div class="setup-protocol-body">
             <h4>Demonstration construction</h4>
@@ -142,15 +142,43 @@ import ExecutionDemo from '../ExecutionDemo.astro';
             </p>
             <h4>Main-evaluation records and comparison scope</h4>
             <p>
-              The retained main cohort contains 510 unique task/seed results; resumed execution
-              stages and terminal holding are parts of those episodes. The archived leaderboard
-              records do not establish identical camera inputs, control interfaces, scene revisions,
-              or inference budgets across models.
+              Each environment episode begins with a fresh model history. Infrastructure recovery
+              may resume execution from confirmed history and observations. The retained main cohort
+              contains <strong>510 unique task/seed results</strong>; resumed stages and terminal
+              holding are parts of those episodes, not additional evaluation samples.
+            </p>
+            <p>
+              The comparison uses seven attributable leaderboard submissions, retrieved September
+              17, 2026. The archived records do not establish identical camera inputs, control
+              interfaces, scene revisions, or inference budgets across models.
+            </p>
+            <h4>Retained runs and execution recovery</h4>
+            <p>
+              For <strong>apple from shelf</strong>, a corrected-scene run replaced the entire
+              earlier set of 20 episodes. A <strong>utensils-to-holder / 013</strong> run affected
+              by a receipt-routing infrastructure error was invalidated and replaced. The archived
+              comparator records do not establish whether their apple scene revision matches that
+              rerun.
+            </p>
+            <p>
+              When the policy stops before terminal evaluation, the runner holds the robot and
+              advances the simulator to obtain the server result.{' '}
+              <strong>
+                49 episodes include holding, totaling 45,540 steps; six of those episodes finish
+                successfully.
+              </strong>
+            </p>
+            <p>
+              Recorded execution routes are 108 API, 387 account-backed, and 15 API-to-account.
+              Wall-time analysis separates these execution routes.
             </p>
             <div class="method-details">
-              <button class="appendix-link" data-appendix="protocol">
-                Full main-evaluation protocol and provenance{' '}
+              <a href="data/evaluation-provenance.json" target="_blank" rel="noopener">
+                Retained episode manifest, holding records and submission sources{' '}
                 <Fragment set:html={icon('external-link')} />
+              </a>
+              <button class="appendix-link" data-appendix="limitations">
+                Execution timing <Fragment set:html={icon('external-link')} />
               </button>
               <a
                 href="https://internrobotics.github.io/EBench-doc/getting-started/overview/"

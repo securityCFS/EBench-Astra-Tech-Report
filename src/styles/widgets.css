@@ -698,11 +698,6 @@ blockquote {
   stroke: #e4ebf5;
 }
 
-.results-extra {
-  max-width: 1040px;
-  margin: 25px auto 0;
-}
-
 .explorer-links {
   max-width: 1040px;
   margin: 25px auto 0;
@@ -710,11 +705,6 @@ blockquote {
   gap: 24px;
   flex-wrap: wrap;
   margin-top: 17px;
-}
-
-.results-extra > .appendix-link {
-  font-size: 1.125rem;
-  line-height: 1.5;
 }
 
 .explorer-links button {
