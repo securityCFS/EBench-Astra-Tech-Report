@@ -232,39 +232,121 @@ function renderPoc(area) {
   initVideos();
 }
 function initBehavior() {
+  // Every quoted line is verbatim from the episode's run.log. Lines with `src: 'model'`
+  // are the agent's own action descriptions, carried by the numbered tool call; all
+  // other lines were supplied to it. `t` is the call's start in the recording, at the
+  // harness's 30 physics steps per second of video.
   const entries = {
     apple: {
       heading: 'A failed transport changes the next attempt',
-      input: '',
-      action: '',
-      body: '',
       task: 'apple_to_fruit_bowl',
       seed: '006',
       score: 1,
+      trace: [
+        {
+          src: 'model',
+          call: 10,
+          t: 14.7,
+          text: 'The finger gap closed during transport, indicating the apple slipped. Move the empty hand clear to locate the apple before retrying.',
+          note: 'The slip is inferred from the gripper gap rather than from any failure signal the harness returns.',
+        },
+        {
+          src: 'model',
+          call: 11,
+          t: 16.5,
+          text: 'Withdraw to a wider view of the tabletop to locate the slipped apple without disturbing the bowl.',
+        },
+        {
+          src: 'model',
+          call: 17,
+          t: 27.3,
+          text: 'Carry the apple a short distance left and forward using the arm alone, avoiding the earlier base-motion slip.',
+          note: 'Transport is re-planned without the base motion that preceded the first slip.',
+        },
+      ],
     },
     coffee: {
       heading: 'Adjusting contact after a failed sweep',
-      input: '“Measured local EEF z is not height above the tabletop.”',
-      action: '“Angle spoon edge down to tabletop behind beans”',
-      body: 'The supplied prompt warns about contact height. GPT-6-Astra’s recorded action description then accompanies changes in spoon height and tilt. The episode ends incomplete with Score 0.50.',
       task: 'collect_coffee_beans',
       seed: '013',
       score: 0.5,
+      trace: [
+        {
+          src: 'prompt',
+          label: 'Supplied execution guidance',
+          text: 'Measured local EEF z is not height above the tabletop.',
+        },
+        {
+          src: 'model',
+          call: 45,
+          t: 79.5,
+          text: 'Sweep remaining beans with broad finger sides into the jar',
+          note: 'Sweeping edge commanded to z = 0.150 m. The beans are not displaced.',
+        },
+        {
+          src: 'model',
+          call: 46,
+          t: 82.9,
+          text: 'Lower scraping edge to actual tabletop height and repeat sweep',
+          note: 'The agent applies the supplied caveat and re-issues the same sweep 25 mm lower, at z = 0.125 m.',
+        },
+        {
+          src: 'model',
+          call: 47,
+          t: 88.8,
+          text: 'Tilt fingertips down to reach beans while keeping palm above tabletop',
+          note: 'Height alone does not recover the contact, so the wrist angle changes next.',
+        },
+      ],
     },
     fruit: {
       heading: 'Reconciling the instruction with the example',
-      input: '“Make a fruit milkshake directly in the cup.”',
-      action: '“Carry the secured fruit above the small cup, not the large jug.”',
-      body: 'The historical example uses a jug, while the live instruction specifies a cup. The demonstration explicitly defers the destination to the live instruction. GPT-6-Astra’s recorded action reflects this distinction, but the complete milkshake task remains unfinished.',
       task: 'fruit',
       seed: '015',
       score: 0.6,
+      trace: [
+        {
+          src: 'prompt',
+          label: 'Live task instruction',
+          text: 'Make a fruit milkshake directly in the cup.',
+        },
+        {
+          src: 'demo',
+          label: 'Historical demonstration',
+          text: 'The left hand then carries and releases each fruit into the large pale jug.',
+        },
+        {
+          src: 'model',
+          call: 8,
+          t: 8.8,
+          text: 'Carry the secured fruit above the small cup, not the large jug.',
+          note: 'The demonstrated destination is set aside in favour of the one named in the live instruction.',
+        },
+        {
+          src: 'model',
+          call: 12,
+          t: 15.5,
+          text: 'Recover the fruit that landed behind the cup.',
+          note: 'The destination is chosen correctly, but the release misses it; the episode ends incomplete at Score 0.60.',
+        },
+      ],
     },
   };
+  function traceStep(step) {
+    const model = step.src === 'model';
+    const chip = model
+      ? `<span class="trace-source">GPT-6-Astra<span class="trace-call">call ${step.call}</span></span>`
+      : `<span class="trace-source">${step.label}</span>`;
+    const seek =
+      model && step.t != null
+        ? `<button type="button" class="trace-seek" data-seek="${step.t}" aria-label="Play the recording from ${step.t.toFixed(1)} seconds">${step.t.toFixed(1)} s</button>`
+        : '';
+    return `<li class="trace-step trace-step--${step.src}"><div class="trace-step-head">${chip}${seek}</div><p class="trace-quote">${step.text}</p>${step.note ? `<p class="trace-note">${step.note}</p>` : ''}</li>`;
+  }
   function draw(key) {
     const d = entries[key];
     $('#behavior-content').innerHTML =
-      `<div class="behavior-evidence"><div><h3>${d.heading}</h3><dl class="trace-excerpt"><dt>${key === 'coffee' ? 'Supplied execution guidance' : 'Live task instruction'}</dt><dd>${d.input}</dd><dt>Recorded action description</dt><dd>${d.action}</dd></dl><p>${d.body}</p></div>${video(`media/cases/${d.task}_${d.seed}-web.mp4`, title(d.task), '', `${key === 'apple' ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(2)})`)}</div>`;
+      `<div class="behavior-evidence"><div><h3>${d.heading}</h3><p class="trace-legend"><span class="trace-key trace-key--model">GPT-6-Astra</span> marks the agent’s own action descriptions; <span class="trace-key trace-key--given">Supplied</span> marks text given to it. Select a timestamp to play the recording from that call.</p><ol class="trace-log">${d.trace.map(traceStep).join('')}</ol><div class="behavior-narrative"></div></div>${video(`media/cases/${d.task}_${d.seed}-web.mp4`, title(d.task), '', `${key === 'apple' ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(2)})`)}</div>`;
     updateBehaviorNarrative(key);
     initVideos();
   }
@@ -281,6 +363,25 @@ function initBehavior() {
       draw(b.dataset.behavior);
     }),
   );
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('#behavior-content .trace-seek');
+    if (!b) return;
+    const v = $('#behavior-content video');
+    if (!v) return;
+    if (!v.getAttribute('src')) v.src = v.dataset.src;
+    v.controls = true;
+    const start = Number(b.dataset.seek),
+      go = () => {
+        v.currentTime = start;
+        v.play().catch(() => {});
+      };
+    if (v.readyState >= 1) go();
+    else v.addEventListener('loadedmetadata', go, { once: true });
+    v.closest('.media-viewport')?.querySelector('.video-start')?.setAttribute('hidden', '');
+    document
+      .querySelectorAll('#behavior-content .trace-seek')
+      .forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+  });
   tabKeyboard($('.behavior-tabs'), '[data-behavior]');
   draw('apple');
 }

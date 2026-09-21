@@ -98,20 +98,7 @@ function updateCaseNarrative(activeCase, area) {
     insight.insertAdjacentHTML('afterbegin', narrativeHTML('adaptSummary'));
 }
 function updateBehaviorNarrative(key) {
-  const story = $('#behavior-content .behavior-evidence>div');
-  story.querySelector('p').remove();
-  const trace = story.querySelector('.trace-excerpt');
-  if (key === 'apple') {
-    trace.innerHTML =
-      '<dt>Call 10 · detect and inspect</dt><dd>“The finger gap closed during transport, indicating the apple slipped. Move the empty hand clear to locate the apple before retrying.”</dd><dt>Call 11 · seek a better view</dt><dd>“Withdraw to a wider view of the tabletop to locate the slipped apple without disturbing the bowl.”</dd><dt>Call 17 · use the earlier experience</dt><dd>“Carry the apple a short distance left and forward using the arm alone, avoiding the earlier base-motion slip.”</dd>';
-    story.insertAdjacentHTML('beforeend', narrativeHTML(key));
-    return;
-  }
-  trace.insertAdjacentHTML(
-    'beforeend',
-    `<dt>Historical demonstration</dt><dd>${key === 'coffee' ? '“With the right hand, grasp the spoon handle, lift it out of its holder, and sweep the beans toward the jar.”' : '“The left hand then carries and releases each fruit into the large pale jug.”'}</dd>`,
-  );
-  story.insertAdjacentHTML('beforeend', narrativeHTML(key));
+  $('#behavior-content .behavior-narrative').innerHTML = narrativeHTML(key);
 }
 function initNarrative() {
   document

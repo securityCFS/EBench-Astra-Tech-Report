@@ -16,13 +16,6 @@
     font-size: var(--text);
     line-height: 1.65;
   }
-  .behavior-evidence dt {
-    font-weight: 600;
-    margin: 1rem 0 0.5rem;
-  }
-  .behavior-evidence dd {
-    margin: 0 0 1rem;
-  }
   .outcome-layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
