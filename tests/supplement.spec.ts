@@ -53,7 +53,7 @@ test('all available appendices share one shell, title, width and native Escape b
     .evaluateAll((links) => [
       ...new Set(links.map((link) => (link as HTMLElement).dataset.appendix!)),
     ]);
-  expect(keys).toContain('study-limitations');
+  expect(keys).toContain('ablation');
   keys.push('sources');
   let shellWidth: number | undefined;
   for (const key of keys) {
@@ -86,9 +86,8 @@ test('all available appendices share one shell, title, width and native Escape b
 });
 
 test('supplement paragraphs use the same content width as their tables', async ({ page }) => {
-  await page.goto('/');
-  await page.locator('#evaluation-protocol > summary').click();
-  await page.locator('#evaluation-protocol [data-appendix="limitations"]').click();
+  await ready(page);
+  await page.locator('#case-icl [data-appendix="ablation"]').click();
   const body = page.locator('#appendix-body');
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: 900 });

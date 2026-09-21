@@ -1,0 +1,75 @@
+---
+import timing from '../../dist/data/execution-timing.json';
+
+const names: Record<string, string> = {
+  apple_to_fruit_bowl_006: 'Apple → fruit bowl · 006',
+  collect_coffee_beans_013: 'Coffee-bean collection · 013',
+  utensils_to_holder_000: 'Utensils → holder · 000',
+};
+---
+
+<section class="execution-timing" id="execution-timing" aria-labelledby="execution-timing-title">
+  <h4 id="execution-timing-title">Execution timing</h4>
+  <p>
+    These three recorded episodes illustrate the gap between simulated robot motion and elapsed
+    execution time.
+  </p>
+  <div
+    class="table-scroll"
+    tabindex="0"
+    role="region"
+    aria-label="Selected episode execution times"
+  >
+    <table class="report-table report-table--plain" aria-describedby="execution-timing-note">
+      <thead>
+        <tr>
+          <th scope="col">Episode</th>
+          <th scope="col">Physics steps</th>
+          <th scope="col">Simulation time (s)</th>
+          <th scope="col">Policy wall time (s)</th>
+          <th scope="col">Longest action batch (s)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {timing.episodes.map((episode) => (
+          <tr data-episode={episode.episode}>
+            <th scope="row">{names[episode.episode]}</th>
+            <td>{episode.policy_physics_steps.toLocaleString('en-US')}</td>
+            <td>{episode.simulated_execution_s.toFixed(2)}</td>
+            <td>{episode.policy_elapsed_s.toFixed(2)}</td>
+            <td>{episode.max_action_sim_s.toFixed(2)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="timing-note" id="execution-timing-note">
+    Simulation uses {timing.physics_hz} Hz. Wall time includes both model and execution-system time.
+  </p>
+</section>
+
+<style>
+  @layer components {
+    .execution-timing {
+      margin-block: 2rem;
+      min-width: 0;
+    }
+    h4 {
+      margin: 0 0 0.875rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    table {
+      min-width: 38rem;
+    }
+    thead th {
+      white-space: normal;
+    }
+    .timing-note {
+      margin: 0.75rem 0 0;
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+  }
+</style>

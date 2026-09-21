@@ -1188,26 +1188,6 @@ blockquote {
   opacity: 0.35;
 }
 
-.closing-actions {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-  margin-top: 28px;
-}
-
-.closing-actions > a {
-  font-size: 1.125rem;
-  color: #4d6eac;
-}
-
-.closing-actions > button {
-  font-size: 1.125rem;
-  color: #4d6eac;
-  background: none;
-  border: 0;
-  padding: 0;
-}
-
 .benchmark-scroll:focus-visible {
   outline: 2px solid #8faaf2;
   outline-offset: 4px;
@@ -1231,49 +1211,6 @@ blockquote {
 
 .overall-analysis {
   margin: 22px 0 32px;
-}
-
-.research-questions {
-  border-top: 1px solid #dce3f1;
-  margin-top: 32px;
-}
-
-.research-questions > a {
-  display: flex;
-  gap: 26px;
-  align-items: baseline;
-  padding: 23px 0;
-  border-bottom: 1px solid #dce3f1;
-  color: #243956;
-  text-decoration: none;
-}
-
-.research-questions > a > span {
-  font-size: 0.875rem;
-  color: #617dd0;
-}
-
-.research-questions strong {
-  font-size: 1.375rem;
-  font-weight: 600;
-  line-height: 1.5;
-}
-
-.research-questions p {
-  font-size: 1.125rem;
-  line-height: 1.7;
-  margin: 6px 0 0;
-  max-width: 740px;
-}
-
-.research-questions i {
-  margin-left: auto;
-  font-style: normal;
-  color: #647bd0;
-}
-
-.research-questions > a:hover strong {
-  color: #3456ef;
 }
 
 .finding-grid .report-prose {
@@ -2038,10 +1975,6 @@ blockquote {
 
 .icl-pair-chart {
   margin: 20px 0 6px;
-}
-
-.timing-chart {
-  margin: 6px 0 4px;
 }
 
 .model-reference-entry {

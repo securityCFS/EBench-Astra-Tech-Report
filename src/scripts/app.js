@@ -139,11 +139,6 @@ const notes = {
     'What the numbers mean',
     `<p><b>SR</b> measures server-side complete success. <b>Score</b> is normalized terminal partial credit under task-specific rules.</p><p>Headline values average 26 task means equally: SR 46.73%, Score 0.6537. There are 237 successes among 510 retained episodes; episode-weighted SR is 46.47%.</p><p>24 tasks have 20 instances; make_sandwich and microwave have 15 each. Attribute groups overlap and do not represent paired changes to identical tasks.</p>`,
   ],
-
-  limitations: [
-    'Recorded execution timing',
-    `<p>For the three recorded episodes below, simulated execution lasts <strong>34.70–116.67 seconds</strong>, while policy wall time spans <strong>729.84–5050.40 seconds</strong>. The longest action batches run for 2.13–6.40 simulated seconds before returning control to the agent.</p><div class="timing-chart" data-timing></div><p class="fineprint">Logarithmic scale.</p><div class="table-scroll timing-measurements" tabindex="0" role="region" aria-label="Selected episode execution times"><table class="report-table report-table--plain"><thead><tr><th scope="col">Episode</th><th scope="col">Physics steps</th><th scope="col">Simulation time (s)</th><th scope="col">Policy wall time (s)</th><th scope="col">Longest action batch (s)</th></tr></thead><tbody><tr><th scope="row">Apple → fruit bowl · 006</th><td>1,041</td><td>34.70</td><td>729.84</td><td>2.13</td></tr><tr><th scope="row">Coffee-bean collection · 013</th><td>3,500</td><td>116.67</td><td>5050.40</td><td>6.40</td></tr><tr><th scope="row">Utensils → holder · 000</th><td>2,000</td><td>66.67</td><td>2658.43</td><td>4.00</td></tr></tbody></table></div><p>Simulation time is calculated from the executed physics steps at 30 Hz. Policy wall time is the recorded elapsed duration, including both model and execution-system time; it is not an isolated inference-latency measurement. These three episodes have no terminal holding.</p>`,
-  ],
 };
 let taskVideoReturnContext = null;
 
@@ -153,8 +148,6 @@ function openAppendix(key) {
     return;
   }
   let content = notes[key];
-  if (key === 'study-limitations')
-    content = ['08 Study Limitations', $('#study-limitations-content').innerHTML];
   if (key === 'ablation') content = pairedICLContent();
   if (!content) return;
   taskVideoReturnContext = null;
@@ -557,9 +550,8 @@ for (const event of ['play', 'pause', 'ended'])
     true,
   );
 
-// Keep direct links to the limitations entrance opening the same report dialog.
+// Keep the Model References anchor opening its shared dialog.
 const appendixAnchors = {
-  '#study-limitations': 'study-limitations',
   '#model-references': 'sources',
 };
 function openLinkedAppendix() {
@@ -600,7 +592,6 @@ function drawFigures(root = document) {
     viz.resizeRedraw(host, draw);
   });
   viz.bindTips(root === document ? document.body : root);
-  if (typeof initTimingCharts === 'function') initTimingCharts(root);
 }
 
 function initRefresh() {

@@ -45,11 +45,11 @@ function initBenchmarkMatrix() {
     const target = host.querySelector('#matrix-content');
     target.setAttribute('aria-labelledby', `matrix-tab-${mode}`);
     const scopeNote = host.querySelector('#matrix-scope-note');
-    scopeNote.hidden = !['attributes', 'shifts'].includes(mode);
+    scopeNote.hidden = mode !== 'shifts';
     scopeNote.textContent =
       mode === 'shifts'
         ? 'Task-averaged results under object, background, instruction and mixed perturbations. In the mixed condition, GPT-6-Astra completes 60 of 130 episodes and OpenWAM-α completes 58.'
-        : '26 tasks / 510 episodes per model. Precision: 14 low / 8 medium / 4 high tasks; mobility: 19 mobile / 7 tabletop; horizon: 19 short / 7 long. Each task has equal weight within its group. Attribute groups overlap.';
+        : '';
     host.querySelector('.matrix-introduction').hidden = mode !== 'field';
     host.querySelector('.matrix-controls').hidden = mode === 'tasks';
     host.querySelector('.matrix-metric').hidden =
@@ -467,29 +467,4 @@ function initResearch() {
   initEpisodeOutcomes().catch(() => {
     $('#episode-outcomes').innerHTML = '<p>Episode data could not load. Please reload.</p>';
   });
-}
-
-let timingPromise;
-function initTimingCharts(root = document) {
-  const hosts = [...root.querySelectorAll('[data-timing]:not([data-timing-ready])')];
-  if (!hosts.length) return;
-  timingPromise =
-    timingPromise ||
-    fetch('data/execution-timing.json').then((r) => {
-      if (!r.ok) throw Error('timing');
-      return r.json();
-    });
-  timingPromise
-    .then((data) => {
-      hosts.forEach((host) => {
-        host.dataset.timingReady = 'true';
-        const draw = () => viz.timingBars(host, { episodes: data.episodes });
-        draw();
-        viz.bindTips(host);
-        viz.resizeRedraw(host, draw);
-      });
-    })
-    .catch(() =>
-      hosts.forEach((h) => (h.innerHTML = '<p class="fineprint">Timing data could not load.</p>')),
-    );
 }

@@ -8,6 +8,8 @@ const retired = [
   'attributes',
   'horizon',
   'behavior',
+  'limitations',
+  'study-limitations',
 ];
 
 async function ready(page) {
@@ -20,8 +22,11 @@ test('retired supplements disappear while canonical results retain their context
 }) => {
   await ready(page);
   for (const key of retired) await expect(page.locator(`[data-appendix="${key}"]`)).toHaveCount(0);
-  await expect(page.locator('#matrix-scope-note')).toContainText('14 low / 8 medium / 4 high');
-  await expect(page.locator('#matrix-scope-note')).toContainText('Attribute groups overlap');
+  await expect(page.locator('#matrix-scope-note')).toBeHidden();
+  await expect(page.locator('#matrix-scope-note')).toBeEmpty();
+  await expect(
+    page.locator('a[href="#study-limitations"], #study-limitations-content, .research-questions'),
+  ).toHaveCount(0);
   await page.locator('[data-matrix="shifts"]').click();
   await expect(page.locator('#matrix-scope-note')).toContainText('60 of 130');
   await expect(page.locator('#matrix-scope-note')).toContainText('OpenWAM-α completes 58');
@@ -34,29 +39,34 @@ test('retired supplements disappear while canonical results retain their context
   await expect(page.locator('#behavior-content')).toContainText('Score 0.50');
 });
 
-test('protocol provenance and execution timing remain accessible in Setup', async ({ page }) => {
+test('execution timing appears inline before the demo with unchanged source values', async ({
+  page,
+}) => {
   await ready(page);
-  const protocol = page.locator('#evaluation-protocol');
-  await protocol.locator('summary').click();
-  for (const fact of [
-    'fresh model history',
-    '510 unique task/seed results',
-    'earlier set of 20 episodes',
-    'utensils-to-holder / 013',
-    '49 episodes',
-    '45,540 steps',
-    'six of those episodes',
-    '108 API, 387 account-backed, and 15 API-to-account',
-    'scene revision matches',
-  ]) {
-    await expect(protocol).toContainText(fact);
+  await expect(page.locator('#evaluation-protocol')).toHaveCount(0);
+  const timing = page.locator('#execution-timing');
+  await expect(
+    timing.getByRole('heading', { name: 'Execution timing', exact: true }),
+  ).toBeVisible();
+  const source = await (await page.request.get('/data/execution-timing.json')).json();
+  await expect(timing.locator('tbody tr')).toHaveCount(source.episodes.length);
+  for (const episode of source.episodes) {
+    await expect(timing.locator(`tr[data-episode="${episode.episode}"] td`)).toHaveText([
+      episode.policy_physics_steps.toLocaleString('en-US'),
+      episode.simulated_execution_s.toFixed(2),
+      episode.policy_elapsed_s.toFixed(2),
+      episode.max_action_sim_s.toFixed(2),
+    ]);
   }
-  await expect(protocol.locator('a[href="data/evaluation-provenance.json"]')).toBeVisible();
+  expect(
+    await timing.evaluate((el) =>
+      Boolean(
+        el.compareDocumentPosition(document.querySelector('#episode-interactions')!) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+      ),
+    ),
+  ).toBe(true);
   await expect(page.locator('#appendix-dialog')).not.toBeVisible();
-  await protocol.getByRole('button', { name: 'Execution timing' }).click();
-  await expect(page.locator('#appendix-title')).toHaveText('Recorded execution timing');
-  await page.keyboard.press('Escape');
-  await expect(protocol).toHaveAttribute('open');
 });
 
 test('all video close paths restore the original filtered table without rebuilding it', async ({

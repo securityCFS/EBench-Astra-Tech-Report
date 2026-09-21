@@ -76,7 +76,7 @@ async function initAnalysisInsights() {
     })),
   ];
   let groupMetric = 'sr';
-  groupRoot.innerHTML = `<div class="capability-table-controls"><div class="chart-metrics" role="group" aria-label="Capability comparison metric"><button type="button" data-metric="sr" aria-pressed="true">SR (%)</button><button type="button" data-metric="score" aria-pressed="false">Score</button></div></div><div class="insight-table-scroll" tabindex="0" role="region" aria-label="Performance by operating mode, horizon and precision"></div><p class="insight-note" id="capability-table-note">Each task has equal weight within its subgroup. Horizon compares the 19 mobile tasks; Precision compares the 7 tabletop tasks. <strong>Bold</strong>: best in row; shaded column: GPT-6-Astra. <a href="#study-limitations">Benchmark limitations ${reportIcon('external-link')}</a></p>`;
+  groupRoot.innerHTML = `<div class="capability-table-controls"><div class="chart-metrics" role="group" aria-label="Capability comparison metric"><button type="button" data-metric="sr" aria-pressed="true">SR (%)</button><button type="button" data-metric="score" aria-pressed="false">Score</button></div></div><div class="insight-table-scroll" tabindex="0" role="region" aria-label="Performance by operating mode, horizon and precision"></div><p class="insight-note" id="capability-table-note">Each task has equal weight within its subgroup. Horizon compares the 19 mobile tasks; Precision compares the 7 tabletop tasks. <strong>Bold</strong>: best in row; shaded column: GPT-6-Astra.</p>`;
   initSegmentedControl(groupRoot.querySelector('.chart-metrics'));
   function drawCapabilityTable() {
     const metricLabel = groupMetric === 'sr' ? 'Success rate (%)' : 'Score (0–1)';
@@ -214,7 +214,6 @@ function renderPerturbationRanges(container) {
     <p class="perturbation-range-note" id="perturbation-range-note">
       <strong>How much does success rate change across conditions?</strong>
       Range is the highest minus the lowest success rate, in percentage points (pp).
-      Rows are sorted from smallest to largest range. A smaller range means more consistent performance—not necessarily a higher success rate.
     </p>
     <div class="table-scroll" tabindex="0" role="region" aria-label="Success rates and variation across perturbation conditions">
       <table class="report-table report-table--plain perturbation-range-table" aria-describedby="perturbation-range-note">
