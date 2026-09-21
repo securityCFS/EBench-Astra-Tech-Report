@@ -16,12 +16,7 @@ import ExecutionTiming from '../ExecutionTiming.astro';
         <h3 id="evaluation-tasks-title">Evaluation tasks</h3>
         <h4>EBench: generalization under controlled variations</h4>
         <p>
-          The main evaluation covers the complete EBench test set, including{' '}
-          <strong>26 tasks and 510 episodes</strong>, spanning nine scene categories across household, retail, and industrial
-          settings. The tasks include <strong>19 mobile and 7 tabletop tasks</strong>, with
-          annotations for mobility, manipulation precision, and task horizon. Controlled variations
-          in objects, backgrounds, instructions, and their combinations probe generalization under
-          changing conditions.
+          Our main evaluation covers all 26 tasks in the EBench test split, spanning nine scene categories across household, retail, and industrial settings. These include 19 mobile and 7 tabletop tasks, with task-level annotations of mobility, manipulation precision, and task horizon. We evaluate generalization under controlled variations in objects, backgrounds, instructions, and their combinations. Across the 510 evaluated episodes, we measure task success rate (SR) and Score, which captures normalized partial completion at the end of an episode. Both metrics are first averaged within each task and then averaged equally across the 26 tasks.
         </p>
         <h4>Beyond EBench: generalization to task compositions</h4>
         <p>
@@ -39,19 +34,20 @@ import ExecutionTiming from '../ExecutionTiming.astro';
       >
         <h3 id="adaptation-protocol-title">Model adaptation and evaluation protocol</h3>
         <p>
-          The Vision-Language-Action (VLA) and World-Action Model (WAM) policies are trained on the
-          publicly released EBench dataset, which contains{' '}
-          <strong>6,600 episodes across 26 tasks</strong>. We compare GPT-6-Astra with seven learned
-          policies using their reported EBench leaderboard results.
+          We compare GPT-6-Astra with seven learned Vision-Language-Action (VLA) and World-Action
+          Model (WAM) policies using their reported EBench leaderboard results. These policies are
+          trained on the public EBench dataset, which contains 6,600 episodes across 26 tasks.
+          GPT-6-Astra receives one annotated training demonstration per task as in-context input,
+          without parameter updates.
         </p>
         <p>
-          GPT-6-Astra runs with <code class="reasoning-effort-highlight">high</code> reasoning
-          effort and receives{' '}
-          <strong>one annotated demonstration per task, without parameter updates</strong>. A
-          separate GPT-6-Astra instance reviews one video trajectory from the training set,
-          autonomously selects keyframes, and writes the accompanying prompts. Every episode of a
-          task uses the same ICL package. GPT-6-Astra uses that demonstration as context for live
-          decisions, rather than replaying its coordinates.
+          To construct this context, a separate GPT-6-Astra instance, configured with high
+          reasoning effort, reviews one video trajectory from the training set and autonomously
+          selects and annotates 10–18 keyframes. The annotations are paired with the corresponding
+          robot states and recorded actions to form the demonstration context. All evaluation
+          episodes of the same task reuse this context across seeds. During execution, GPT-6-Astra
+          uses the demonstration to inform decisions based on current observations, rather than
+          replaying the recorded coordinates.
         </p>
         <DemonstrationCard />
         <p>
@@ -62,12 +58,7 @@ import ExecutionTiming from '../ExecutionTiming.astro';
           task success and Score. If the policy stops early, the runner holds the robot and advances
           the simulator to obtain that terminal result.
         </p>
-        <p>
-          Within each task, <strong>success rate (SR)</strong> is the fraction of successful
-          episodes, and <strong>Score</strong> is the mean normalized terminal partial credit under
-          that task's scoring rules. The main evaluation aggregates these task means with{' '}
-          <strong>equal weight across all 26 tasks</strong>.
-        </p>
+
         <p>
           This is a comparison with reported leaderboard results, rather than an experiment in which
           all model conditions are held constant. The available records do not establish identical
@@ -84,11 +75,7 @@ import ExecutionTiming from '../ExecutionTiming.astro';
         <h3 id="observations-control-title">Observations and direct robot control</h3>
         <h4>Inputs: camera views and robot state</h4>
         <p>
-          GPT-6-Astra receives{' '}
-          <strong>RGB images from the overview, left wrist, and right wrist cameras</strong>,
-          together with end-effector poses, gripper state, base pose, and the current simulator
-          timestep. All three views are supplied initially; subsequent tool calls return the camera
-          views requested by the model.
+          GPT-6-Astra serves directly as the control agent with <code class="reasoning-effort-highlight">high</code> reasoning effort. At each decision step, it receives RGB observations and the current robot state, including end-effector (EEF) poses, gripper state, base pose, and the simulator timestep. The initial observation includes images from the overview, left wrist, and right wrist cameras; subsequent tool calls return the camera views requested by the model.
         </p>
         <p>
           The model receives{' '}
@@ -101,18 +88,16 @@ import ExecutionTiming from '../ExecutionTiming.astro';
         </p>
         <h4>Outputs: action requests through a fixed interface</h4>
         <p>
-          GPT-6-Astra requests{' '}
-          <strong>end-effector (EEF) poses, gripper and base targets, and action durations</strong>.
-          A fixed robot execution interface carries out those requests.{' '}
-          <strong>No learned VLA or WAM generates or refines GPT-6-Astra's actions.</strong>
+          GPT-6-Astra outputs one or more EEF waypoints, together with the requested gripper and
+          base targets and execution durations. A fixed robot execution interface carries out
+          these requests. No learned VLA or WAM generates or refines GPT-6-Astra's actions.
         </p>
         <p>
-          The interaction follows an <strong>observation–decision–execution–feedback loop</strong>:
-          GPT-6-Astra interprets the current images and state, chooses the next action request, and waits
-          while the interface executes it.{' '}
-          <strong>Updated observations arrive when the complete tool call returns</strong>, after
-          its waypoint sequence has run. Those observations inform the next decision; the model does
-          not receive a new decision point after each internal execution chunk.
+          The interaction follows an observation–decision–execution–feedback loop. After the
+          complete waypoint sequence in a tool call finishes, the interface returns updated robot
+          states and the requested camera views for the next decision. The model does not receive
+          intermediate observations or make new decisions between internal execution chunks within
+          that call.
         </p>
 
         <ExecutionTiming />
