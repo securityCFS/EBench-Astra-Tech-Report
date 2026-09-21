@@ -126,29 +126,51 @@ async function initAnalysisInsights() {
     'bottle',
   ];
   failures.classList.add('outcome-breakdown');
-  failures.innerHTML = `<div class="outcome-split-legend"><span><i class="outcome-success" aria-hidden="true"></i>Complete success</span><span><i class="outcome-partial" aria-hidden="true"></i>Incomplete</span><span><i class="outcome-zero" aria-hidden="true"></i>Failed</span></div><div class="outcome-breakdown-heading" aria-hidden="true"><span>Task</span><span>Episode outcomes</span><span>Episodes</span></div><div id="failure-depth-rows"></div><button class="failure-expand" type="button" aria-expanded="false" aria-controls="failure-depth-extra"><span data-failure-expand-label>Show all 26 tasks</span><span class="failure-expand-icon">${reportIcon('chevron-down')}</span></button><p class="outcome-breakdown-note">Percentages use all evaluated episodes of each task. Precision and horizon appear under each task name, with the more demanding end of each axis &mdash; high precision, long horizon &mdash; highlighted. Select a task for exact counts.</p><p class="outcome-breakdown-readout" id="failure-readout" aria-live="polite" aria-atomic="true"></p>`;
+  // Each task carries two traits. Precision has three raw values and horizon two; only
+  // five of the six combinations exist (no high-precision task is long-horizon), which the
+  // filter row has to say rather than let a reader discover as an empty list.
+  const traitAxes = {
+    precision: { label: 'Precision', values: ['Low', 'Medium', 'High'], demanding: 'High' },
+    horizon: { label: 'Horizon', values: ['Short', 'Long'], demanding: 'Long' },
+  };
+  const traitOf = (t) => ({
+    precision: t.precision,
+    horizon: String(t.horizon).startsWith('Long') ? 'Long' : 'Short',
+  });
+  const traitName = (axis, value) => `${value} ${axis}`;
+  const traitMark = (axis, value) => reportIcon(`${axis}-${value.toLowerCase()}`);
+  const traitButton = (axis, value) =>
+    `<button type="button" data-trait-filter="${axis}" data-value="${value}" aria-pressed="false">${traitMark(axis, value)}<span class="outcome-trait-name">${value}</span><span class="outcome-trait-count" data-trait-count></span></button>`;
+  const traitFilters = Object.entries(traitAxes)
+    .map(
+      ([axis, { label, values }]) =>
+        `<div class="outcome-trait-group" role="group" aria-label="${label}"><span class="outcome-trait-axis">${label}</span>${values.map((value) => traitButton(axis, value)).join('')}</div>`,
+    )
+    .join('');
+  failures.innerHTML = `<div class="outcome-split-legend"><span><i class="outcome-success" aria-hidden="true"></i>Complete success</span><span><i class="outcome-partial" aria-hidden="true"></i>Incomplete</span><span><i class="outcome-zero" aria-hidden="true"></i>Failed</span></div><div class="outcome-trait-filters" role="group" aria-label="Filter tasks by precision and horizon">${traitFilters}<button type="button" class="outcome-trait-clear" hidden>Clear filters</button></div><div class="outcome-breakdown-heading" aria-hidden="true"><span>Task</span><span>Episode outcomes</span><span>Episodes</span></div><div id="failure-depth-rows"></div><button class="failure-expand" type="button" aria-expanded="false" aria-controls="failure-depth-extra"><span data-failure-expand-label>Show all 26 tasks</span><span class="failure-expand-icon">${reportIcon('chevron-down')}</span></button><p class="outcome-filter-status" aria-live="polite" aria-atomic="true" hidden></p><p class="outcome-breakdown-note">Percentages use all evaluated episodes of each task. The marks under each task name give its precision and horizon, as in the filters above; the more demanding end of each axis &mdash; high precision, long horizon &mdash; is set in black. Select a task for exact counts.</p><p class="outcome-breakdown-readout" id="failure-readout" aria-live="polite" aria-atomic="true"></p>`;
   const initialRows = selected.map((name) => data.tasks.find((t) => t.task === name));
   const additionalRows = data.tasks
     .filter((t) => !selected.includes(t.task))
     .sort((a, b) => b.zero / b.n - a.zero / a.n || a.task.localeCompare(b.task));
   const outcomeLabels = { success: 'Complete success', partial: 'Incomplete', zero: 'Failed' };
-  // Colour is already spent on the outcome split, so task type is marked by shape and text.
+  // Colour is already spent on the outcome split, so task type is marked by fixed-width
+  // glyphs: the demanding end of each axis in ink, the rest recessive. The row's aria-label
+  // spells the traits out, so the marks are decorative; a title keeps a text equivalent on hover.
   const taskTags = (t) => {
-    const high = t.precision === 'High';
-    const long = String(t.horizon).startsWith('Long');
-    return (
-      `<span class="task-tags">` +
-      `<span class="task-tag${high ? ' task-tag--demanding' : ''}">${high ? 'High precision' : 'Low\u2013med precision'}</span>` +
-      `<span class="task-tag${long ? ' task-tag--demanding' : ''}">${long ? 'Long horizon' : 'Short horizon'}</span>` +
-      `</span>`
-    );
+    const traits = traitOf(t);
+    return `<span class="task-tags" aria-hidden="true">${Object.entries(traitAxes)
+      .map(
+        ([axis, { demanding }]) =>
+          `<span class="task-tag${traits[axis] === demanding ? ' task-tag--demanding' : ''}" title="${traitName(axis, traits[axis])}">${traitMark(axis, traits[axis])}</span>`,
+      )
+      .join('')}</span>`;
   };
   const outcomeSummary = (t) =>
     `${taskName(t.task)} (${t.precision} precision, ${t.horizon}): ${Object.entries(outcomeLabels)
       .map(([key, label]) => `${label} ${t[key]}/${t.n} (${number((100 * t[key]) / t.n)}%)`)
       .join('; ')}.`;
   const failureRow = (t) =>
-    `<button type="button" class="failure-depth-row" data-failure-task="${t.task}" aria-label="${esc(outcomeSummary(t))}"><span class="outcome-task-label">${esc(taskName(t.task))}${taskTags(t)}</span><span class="outcome-split-track" aria-hidden="true">${Object.entries(
+    `<button type="button" class="failure-depth-row" data-failure-task="${t.task}" data-precision="${traitOf(t).precision}" data-horizon="${traitOf(t).horizon}" aria-label="${esc(outcomeSummary(t))}"><span class="outcome-task-label">${esc(taskName(t.task))}${taskTags(t)}</span><span class="outcome-split-track" aria-hidden="true">${Object.entries(
       outcomeLabels,
     )
       .map(
@@ -162,6 +184,12 @@ async function initAnalysisInsights() {
     initialRows.map(failureRow).join('') +
     `<div id="failure-depth-extra" hidden>${additionalRows.map(failureRow).join('')}</div>`;
   const expandButton = failures.querySelector('.failure-expand');
+  const clearSelection = () => {
+    failures.querySelector('#failure-readout').textContent = '';
+    failures
+      .querySelectorAll('[data-failure-task]')
+      .forEach((row) => row.removeAttribute('data-active'));
+  };
   expandButton.addEventListener('click', () => {
     const expanded = expandButton.getAttribute('aria-expanded') !== 'true';
     expandButton.setAttribute('aria-expanded', String(expanded));
@@ -170,14 +198,79 @@ async function initAnalysisInsights() {
       ? 'Show fewer · 7 tasks'
       : 'Show all 26 tasks';
     if (!expanded) {
-      failures.querySelector('#failure-readout').textContent = '';
-      failures
-        .querySelectorAll('[data-failure-task]')
-        .forEach((row) => row.removeAttribute('data-active'));
+      clearSelection();
       if (expandButton.getBoundingClientRect().top < 90)
         expandButton.scrollIntoView({ block: 'center' });
     }
   });
+
+  // Trait filters are a query over all 26 tasks, independent of the seven-task default:
+  // while one is active every matching row is shown and the expand control steps aside;
+  // clearing it returns to whichever of the two scopes was showing before.
+  const filter = { precision: null, horizon: null };
+  const other = (axis) => (axis === 'precision' ? 'horizon' : 'precision');
+  const matching = (axis, value) =>
+    data.tasks.filter((t) => {
+      const traits = traitOf(t);
+      return traits[axis] === value && (!filter[other(axis)] || traits[other(axis)] === filter[other(axis)]);
+    }).length;
+  const statusLine = failures.querySelector('.outcome-filter-status');
+  const clearButton = failures.querySelector('.outcome-trait-clear');
+  function applyTraitFilters() {
+    const active = Boolean(filter.precision || filter.horizon);
+    const expanded = expandButton.getAttribute('aria-expanded') === 'true';
+    let shown = 0;
+    failures.querySelectorAll('[data-failure-task]').forEach((row) => {
+      const hide =
+        active &&
+        !(
+          (!filter.precision || row.dataset.precision === filter.precision) &&
+          (!filter.horizon || row.dataset.horizon === filter.horizon)
+        );
+      row.hidden = hide;
+      if (!hide) shown++;
+    });
+    failures.querySelector('#failure-depth-extra').hidden = active ? false : !expanded;
+    expandButton.hidden = active;
+    const absent = [];
+    failures.querySelectorAll('[data-trait-filter]').forEach((button) => {
+      const axis = button.dataset.traitFilter,
+        value = button.dataset.value,
+        count = matching(axis, value),
+        pressed = filter[axis] === value;
+      button.setAttribute('aria-pressed', String(pressed));
+      button.setAttribute('aria-disabled', String(!pressed && count === 0));
+      button.querySelector('[data-trait-count]').textContent = count;
+      button.setAttribute(
+        'aria-label',
+        `${traitName(axis, value)}, ${count} task${count === 1 ? '' : 's'}`,
+      );
+      // Name a value the current selection rules out, but only on the axis still open.
+      if (!filter[axis] && count === 0) absent.push(traitName(axis, value).toLowerCase());
+    });
+    clearButton.hidden = !active;
+    statusLine.hidden = !active;
+    statusLine.textContent = active
+      ? `Showing ${shown} of ${data.tasks.length} tasks: ${['precision', 'horizon']
+          .filter((axis) => filter[axis])
+          .map((axis) => traitName(axis, filter[axis]).toLowerCase())
+          .join(', ')}.${absent.map((name) => ` None of them is ${name}.`).join('')}`
+      : '';
+    clearSelection();
+  }
+  failures.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-trait-filter]');
+    if (button) {
+      if (button.getAttribute('aria-disabled') === 'true') return;
+      const axis = button.dataset.traitFilter;
+      filter[axis] = filter[axis] === button.dataset.value ? null : button.dataset.value;
+    } else if (event.target.closest('.outcome-trait-clear')) {
+      filter.precision = filter.horizon = null;
+      failures.querySelector('[data-trait-filter]').focus();
+    } else return;
+    applyTraitFilters();
+  });
+  applyTraitFilters();
   function inspectFailure(e) {
     const b = e.target.closest('[data-failure-task]');
     if (!b) return;

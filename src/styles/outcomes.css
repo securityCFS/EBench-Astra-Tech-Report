@@ -81,31 +81,152 @@
     overflow-wrap: anywhere;
   }
 
-  /* Task type sits under the name as a quiet caption. A bordered chip inside a row that
-     is itself a button read as a toggle; weight and colour carry the axis instead. */
+  /* Task traits sit under the name as two fixed-width marks (precision, then horizon).
+     Marks rather than words: a bordered chip inside a row that is itself a button read as
+     a toggle, and uppercase text in fixed columns was aligned but verbose. The filter row
+     above the table doubles as the legend. */
   .outcome-breakdown .task-tags {
-    /* Fixed slots, not intrinsic ones: each row is its own grid, so sizing the
-       precision label to its content left the horizon label ragged down the column. */
-    display: grid;
-    grid-template-columns: 8.75rem auto;
-    gap: 0 0.5rem;
+    display: flex;
+    gap: 0.4rem;
     margin-top: 0.2rem;
-    font-size: 0.7rem;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .outcome-breakdown .task-tags .report-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    vertical-align: 0;
   }
 
   .task-tag {
+    display: inline-flex;
     color: #9aa6bd;
-    white-space: nowrap;
   }
 
   .task-tag--demanding {
     color: var(--ink);
   }
 
+  /* Trait filters: quiet text controls, one group per axis, each showing its mark, its
+     value and how many tasks it would leave. The row is set like the outcome legend
+     above it; a pressed value gains ink and an accent underline. */
+  .outcome-breakdown .outcome-trait-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 2rem;
+    margin: 0 0 1rem;
+    padding-inline: 0.5rem;
+    color: var(--muted);
+    font-size: var(--small);
+    line-height: 1.4;
+  }
+
+  .outcome-breakdown .outcome-trait-group {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 1rem;
+  }
+
+  .outcome-breakdown .outcome-trait-axis {
+    margin-right: 0.25rem;
+  }
+
+  .outcome-breakdown [data-trait-filter] {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0.1rem 0 0;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: var(--muted);
+    font: inherit;
+    line-height: 1.4;
+    cursor: pointer;
+    transition:
+      color var(--motion-duration) var(--motion-ease),
+      border-color var(--motion-duration) var(--motion-ease);
+  }
+
+  .outcome-breakdown [data-trait-filter] .report-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    color: #9aa6bd;
+    transition: color var(--motion-duration) var(--motion-ease);
+  }
+
+  .outcome-breakdown [data-trait-filter] .outcome-trait-count {
+    color: #9aa6bd;
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .outcome-breakdown [data-trait-filter]:hover {
+    background: transparent;
+    border-color: transparent;
+    color: var(--ink);
+  }
+
+  .outcome-breakdown [data-trait-filter][aria-pressed='true'] {
+    background: transparent;
+    border-color: transparent;
+    border-bottom-color: var(--accent);
+    color: var(--ink);
+  }
+
+  .outcome-breakdown [data-trait-filter]:is(:hover, [aria-pressed='true']) .report-icon {
+    color: var(--ink);
+  }
+
+  /* A value with no task under the other axis's selection stays in place, greyed and
+     explained by the status line, so the absent combination is never presented as real. */
+  .outcome-breakdown [data-trait-filter][aria-disabled='true'] {
+    color: #b1bacb;
+    cursor: not-allowed;
+  }
+
+  .outcome-breakdown [data-trait-filter][aria-disabled='true'] .report-icon,
+  .outcome-breakdown [data-trait-filter][aria-disabled='true'] .outcome-trait-count {
+    color: #c3cad8;
+  }
+
+  .outcome-breakdown [data-trait-filter]:focus-visible,
+  .outcome-breakdown .outcome-trait-clear:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .outcome-breakdown .outcome-trait-clear {
+    margin: 0 0 0 auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: var(--accent);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .outcome-breakdown .outcome-trait-clear:hover {
+    background: transparent;
+    border-color: transparent;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .outcome-breakdown .outcome-filter-status {
+    margin: 0.6rem 0 0;
+    padding: 0.6rem 0.5rem;
+    color: var(--muted);
+    font-size: var(--small);
+    line-height: 1.5;
+  }
 
   .outcome-breakdown [data-active] .outcome-task-label {
     color: var(--accent);

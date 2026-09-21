@@ -332,21 +332,24 @@ function initBehavior() {
       ],
     },
   };
+  // One transcript entry. The margin carries the line's provenance: for the agent's own
+  // lines a timecode (which seeks the recording) over the call number; for supplied text
+  // the name of its source. The body is the verbatim line, then our note.
   function traceStep(step) {
     const model = step.src === 'model';
-    const chip = model
-      ? `<span class="trace-source">GPT-6-Astra<span class="trace-call">call ${step.call}</span></span>`
-      : `<span class="trace-source">${step.label}</span>`;
     const seek =
       model && step.t != null
         ? `<button type="button" class="trace-seek" data-seek="${step.t}" aria-label="Play the recording from ${step.t.toFixed(1)} seconds">${step.t.toFixed(1)} s</button>`
         : '';
-    return `<li class="trace-step trace-step--${step.src}"><div class="trace-step-head">${chip}${seek}</div><p class="trace-quote">${step.text}</p>${step.note ? `<p class="trace-note">${step.note}</p>` : ''}</li>`;
+    const margin = model
+      ? `${seek}<span class="trace-call"><span class="sr-only">GPT-6-Astra, </span>call ${step.call}</span>`
+      : `<span class="trace-origin">${step.label}</span>`;
+    return `<li class="trace-entry" data-src="${step.src}"><div class="trace-margin">${margin}</div><div class="trace-body"><blockquote class="trace-quote">${step.text}</blockquote>${step.note ? `<p class="trace-note">${step.note}</p>` : ''}</div></li>`;
   }
   function draw(key) {
     const d = entries[key];
     $('#behavior-content').innerHTML =
-      `<div class="behavior-evidence"><div><h3>${d.heading}</h3><p class="trace-legend"><span class="trace-key trace-key--model">GPT-6-Astra</span> marks the agent’s own action descriptions; <span class="trace-key trace-key--given">Supplied</span> marks text given to it. Select a timestamp to play the recording from that call.</p><ol class="trace-log">${d.trace.map(traceStep).join('')}</ol><div class="behavior-narrative"></div></div>${video(`media/cases/${d.task}_${d.seed}-web.mp4`, title(d.task), '', `${key === 'apple' ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(2)})`)}</div>`;
+      `<div class="behavior-panel"><h3>${d.heading}</h3><div class="behavior-evidence"><div class="trace"><p class="trace-legend">Timecoded lines are GPT-6-Astra’s own action descriptions, quoted verbatim from the episode log; select a timecode to play the recording from that call. Lines labelled in the margin were supplied to the agent.</p><ol class="trace-log">${d.trace.map(traceStep).join('')}</ol></div>${video(`media/cases/${d.task}_${d.seed}-web.mp4`, title(d.task), '', `${key === 'apple' ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(2)})`)}</div><div class="behavior-narrative report-prose"></div></div>`;
     updateBehaviorNarrative(key);
     initVideos();
   }

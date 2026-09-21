@@ -1,0 +1,141 @@
+/* Behaviour trace: a transcript of the agent's action notes, set against the recording.
+   Each entry has a margin (a timecode and call number, or the origin of supplied text)
+   and a body (the verbatim line, then our note). Hairlines separate entries; nothing
+   is boxed, railed or badged. */
+@layer components {
+  .behavior-panel {
+    min-width: 0;
+  }
+  .behavior-panel h3 {
+    font-size: 1.75rem;
+    margin: 0.5rem 0 1.5rem;
+  }
+  .trace {
+    min-width: 0;
+  }
+  .trace-legend {
+    margin: 0 0 1.25rem;
+    color: var(--muted);
+    font-size: var(--small);
+    line-height: 1.55;
+  }
+  .trace-log {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .trace-entry {
+    display: grid;
+    grid-template-columns: 6rem minmax(0, 1fr);
+    gap: 0 1rem;
+    padding: 1rem 0 1.1rem;
+    border-bottom: 1px solid var(--line);
+  }
+  /* The margin column: every timecode occupies the same slot, so alignment is free. */
+  .trace-margin {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.05rem;
+    /* Sit the timecode's baseline on the quote's first baseline: (1.25rem × 1.6 − 1rem × 1.5) / 2 */
+    padding-top: 0.25rem;
+    color: var(--muted);
+    font-size: var(--small);
+    line-height: 1.5;
+  }
+  .trace-seek {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 2px;
+    background: none;
+    color: var(--accent);
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    cursor: pointer;
+    transition:
+      color var(--motion-duration) var(--motion-ease),
+      text-decoration-color var(--motion-duration) var(--motion-ease);
+  }
+  .trace-seek:hover {
+    border-color: transparent;
+    text-decoration-color: currentColor;
+  }
+  /* The call now playing: set in ink, underlined in the accent. */
+  .trace-seek[aria-pressed='true'] {
+    border: 0;
+    background: none;
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration-color: var(--accent);
+  }
+  .trace-seek:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .trace-call,
+  .trace-origin {
+    color: #7a8aa3;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+  .trace-origin {
+    padding-top: 0.05rem;
+  }
+  .trace-body {
+    min-width: 0;
+  }
+  /* A hanging opening quote: the text aligns with the column edge and the mark sits in the gutter. */
+  .trace-quote {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--ink);
+    font-size: var(--text);
+    line-height: 1.6;
+    text-indent: -0.435em;
+  }
+  .trace-quote::before {
+    content: '\201C';
+  }
+  .trace-quote::after {
+    content: '\201D';
+  }
+  /* Text supplied to the agent is not a moment in the recording: italic, muted, no timecode. */
+  .trace-entry:not([data-src='model']) .trace-quote {
+    color: var(--muted);
+    font-style: italic;
+    text-indent: -0.415em;
+  }
+  .trace-note {
+    margin: 0.45rem 0 0;
+    color: var(--muted);
+    font-size: var(--small);
+    line-height: 1.55;
+  }
+  .behavior-evidence > .evidence-video {
+    position: sticky;
+    top: 95px;
+  }
+  /* The episode summary reads across the full measure once the trace and recording are done. */
+  .behavior-panel > .behavior-narrative {
+    margin-top: 2.25rem;
+  }
+  @media (max-width: 40rem) {
+    .trace-entry {
+      grid-template-columns: 4.75rem minmax(0, 1fr);
+      gap: 0 0.75rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .trace-seek {
+      transition: none;
+    }
+  }
+}
