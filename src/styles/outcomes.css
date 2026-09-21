@@ -84,7 +84,11 @@
   /* Task type sits under the name as a quiet caption. A bordered chip inside a row that
      is itself a button read as a toggle; weight and colour carry the axis instead. */
   .outcome-breakdown .task-tags {
-    display: block;
+    /* Fixed slots, not intrinsic ones: each row is its own grid, so sizing the
+       precision label to its content left the horizon label ragged down the column. */
+    display: grid;
+    grid-template-columns: 8.75rem auto;
+    gap: 0 0.5rem;
     margin-top: 0.2rem;
     font-size: 0.7rem;
     font-weight: 600;
@@ -102,12 +106,6 @@
     color: var(--ink);
   }
 
-  .task-tag + .task-tag::before {
-    content: '\00B7';
-    margin: 0 0.4rem;
-    font-weight: 400;
-    color: #c7d0e0;
-  }
 
   .outcome-breakdown [data-active] .outcome-task-label {
     color: var(--accent);
