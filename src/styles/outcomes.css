@@ -81,37 +81,32 @@
     overflow-wrap: anywhere;
   }
 
-  /* Task type sits beside the name as a marker: the outcome split already owns colour. */
+  /* Task type sits under the name as a quiet caption. A bordered chip inside a row that
+     is itself a button read as a toggle; weight and colour carry the axis instead. */
   .outcome-breakdown .task-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem;
+    display: block;
     margin-top: 0.2rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
   .task-tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.05rem 0.34rem;
-    border: 1px solid var(--rule, #c8cfdb);
-    border-radius: 2px;
-    font-size: 0.68rem;
-    line-height: 1.5;
-    letter-spacing: 0.02em;
-    color: var(--muted);
+    color: #9aa6bd;
     white-space: nowrap;
   }
 
   .task-tag--demanding {
-    border-color: currentColor;
-    font-weight: 600;
-    color: var(--ink, #1b1f24);
+    color: var(--ink);
   }
 
-  .outcome-type-legend .task-tag {
-    width: 0.85rem;
-    height: 0.85rem;
-    padding: 0;
+  .task-tag + .task-tag::before {
+    content: '\00B7';
+    margin: 0 0.4rem;
+    font-weight: 400;
+    color: #c7d0e0;
   }
 
   .outcome-breakdown [data-active] .outcome-task-label {
