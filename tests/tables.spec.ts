@@ -441,9 +441,19 @@ test('tab keyboard and distribution chart controls still function', async ({ pag
   );
   await page.locator('[data-shift-view="range"]').click();
   const range = page.locator('.matrix-perturbation-ranges');
-  await expect(range.locator('.perturbation-row')).toHaveCount(8);
-  await range.locator('[data-condition-model]').first().focus();
-  await expect(range.locator('[data-range-readout]')).toContainText('episodes.');
+  await expect(range.locator('tbody tr')).toHaveCount(8);
+  await expect(range.locator('.perturbation-range-note')).toContainText('percentage points');
+  const figures = await (await page.request.get('/data/report-figures.json')).json();
+  const conditions = ['object', 'background', 'instruction', 'mix'];
+  for (const model of figures.models) {
+    const row = range.locator(`tr[data-model="${model.id}"]`);
+    const rates = conditions.map((key) => model.generalization[key].sr * 100);
+    await expect(row.locator('td')).toHaveText([
+      ...rates.map((rate) => `${rate.toFixed(2)}%`),
+      (Math.max(...rates) - Math.min(...rates)).toFixed(2),
+    ]);
+  }
+  await expect(range.locator('tbody tr').first()).toHaveAttribute('data-model', 'Astra (ICL)');
   await expectPillAligned(page, '.shift-view-switch');
   await page.locator('[data-shift-view="table"]').click();
   await expect(page.locator('.benchmark-table')).toBeVisible();

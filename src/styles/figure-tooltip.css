@@ -1,0 +1,91 @@
+/* Figure tooltips: style our rows, never KaTeX's internal spans. */
+@layer components {
+  .viz-tip {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 90;
+    width: max-content;
+    max-width: min(23rem, calc(100vw - 1rem));
+    padding: 0.875rem 1rem;
+    border: 1px solid #34445d;
+    border-radius: var(--radius-sm);
+    background: #172438;
+    color: #e4ebf5;
+    font: 0.875rem/1.45 var(--font-body);
+    box-shadow: 0 0.75rem 2rem #08102030;
+    pointer-events: none;
+    transform: translate(-9999px, -9999px);
+  }
+  .viz-tip > b {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  .viz-tip > :is(span, em, small) {
+    display: block;
+    font: inherit;
+    color: #c4d1e4;
+  }
+  .viz-tip > em {
+    color: #bfcaff;
+    font-weight: 600;
+  }
+  .viz-tip > small {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #34445d;
+  }
+  .viz-tip .viz-tip-metric {
+    color: #a7b8cf;
+    font-size: 0.8125rem;
+  }
+  .viz-tip .viz-tip-values {
+    margin: 0.5rem 0;
+  }
+  .viz-tip .viz-tip-row,
+  .viz-tip .viz-tip-delta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .viz-tip .viz-tip-row {
+    padding-block: 0.2rem;
+  }
+  .viz-tip .viz-tip-row :is(dt, dd) {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+  }
+  .viz-tip .viz-tip-row dt {
+    overflow-wrap: anywhere;
+  }
+  .viz-tip .viz-tip-row dd,
+  .viz-tip .viz-tip-delta strong {
+    text-align: right;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .viz-tip .viz-tip-row.is-highlighted {
+    color: #bdcbff;
+    font-weight: 600;
+  }
+  .viz-tip .viz-tip-delta {
+    padding-top: 0.65rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid #34445d;
+    font-size: 0.8125rem;
+    color: #c4d1e4;
+  }
+  .viz-tip .viz-tip-delta strong {
+    font-weight: 600;
+  }
+  .viz-tip .model-math {
+    display: inline-block;
+    white-space: nowrap;
+    color: inherit;
+  }
+}
