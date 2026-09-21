@@ -20,8 +20,8 @@ import ExecutionTiming from '../ExecutionTiming.astro';
         </p>
         <h4>EBench: generalization under controlled variations</h4>
         <p>
-          The main evaluation covers <strong>26 tasks and 510 episodes</strong> in the EBench
-          test-mini suite, spanning nine scene categories across household, retail, and industrial
+          The main evaluation covers the complete EBench test set, including{' '}
+          <strong>26 tasks and 510 episodes</strong>, spanning nine scene categories across household, retail, and industrial
           settings. The tasks include <strong>19 mobile and 7 tabletop tasks</strong>, with
           annotations for mobility, manipulation precision, and task horizon. Controlled variations
           in objects, backgrounds, instructions, and their combinations probe generalization under
@@ -73,6 +73,12 @@ import ExecutionTiming from '../ExecutionTiming.astro';
           episodes, and <strong>Score</strong> is the mean normalized terminal partial credit under
           that task's scoring rules. The main evaluation aggregates these task means with{' '}
           <strong>equal weight across all 26 tasks</strong>.
+        </p>
+        <p>
+          This is a comparison with reported leaderboard results, rather than an experiment in which
+          all model conditions are held constant. The available records do not establish identical
+          camera inputs, control interfaces, scene revisions, or inference budgets across models;
+          observed performance differences therefore cannot be attributed to model capability alone.
         </p>
         <h4>Compositional POC: zero-shot execution</h4>
         <p>
