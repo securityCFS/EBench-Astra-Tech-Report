@@ -17,6 +17,8 @@
     --rail-width: 21rem;
     --gutter: 2rem;
     --header-height: 5rem;
+    --toc-toolbar-height: 3.5rem;
+    --toc-duration: 280ms;
     --radius: 0.75rem;
     --radius-sm: 0.5rem;
     --radius-lg: 1rem;
