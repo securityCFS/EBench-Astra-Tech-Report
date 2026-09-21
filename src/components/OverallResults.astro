@@ -18,7 +18,7 @@ const astraRank = ranking.indexOf(astra) + 1;
         <strong class="overall-value">{successRate}</strong>
         <span class="overall-unit">%</span>
         <span class="overall-position" aria-label={`Rank ${astraRank} of ${ranking.length}`}>
-          {astraRank}/{ranking.length}
+          Rank {astraRank}/{ranking.length}
         </span>
       </div>
     </div>
@@ -129,7 +129,7 @@ const astraRank = ranking.indexOf(astra) + 1;
         ? 'Task-averaged success rate'
         : 'Task-averaged Score';
       const position = root.querySelector('.overall-position')!;
-      position.textContent = `${rank}/${rows.length}`;
+      position.textContent = `Rank ${rank}/${rows.length}`;
       position.setAttribute('aria-label', `Rank ${rank} of ${rows.length}`);
     }
 
