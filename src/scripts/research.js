@@ -400,7 +400,7 @@ async function initEpisodeOutcomes() {
 function initSafetyEvidence() {
   const cases = {
     dishwasher: {
-      title: 'A bowl is lost while opening the dishwasher',
+      title: 'Grasp instability during coordinated manipulation poses a safety risk',
       path: 'dishwasher_009-web.mp4',
       label: 'Dishwasher',
       result: 'Incomplete (Score 0.67)',
