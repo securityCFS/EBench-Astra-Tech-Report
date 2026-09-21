@@ -78,13 +78,10 @@ import ExecutionTiming from '../ExecutionTiming.astro';
           GPT-6-Astra serves directly as the control agent with <code class="reasoning-effort-highlight">high</code> reasoning effort. At each decision step, it receives RGB observations and the current robot state, including end-effector (EEF) poses, gripper state, base pose, and the simulator timestep. The initial observation includes images from the overview, left wrist, and right wrist cameras; subsequent tool calls return the camera views requested by the model.
         </p>
         <p>
-          The model receives{' '}
-          <strong>
-            no depth data, ground-truth object poses, camera calibration, segmentation, intermediate
-            task scores, or subgoal-completion signals
-          </strong>
-          . The timestep reports elapsed simulation steps; the task's maximum physics-step budget is
-          not supplied to the model.
+          The model receives no depth data, ground-truth object poses, camera calibration,
+          segmentation, intermediate task scores, or subgoal-completion signals. The timestep
+          reports elapsed simulation steps; the task's maximum physics-step budget is not supplied
+          to the model.
         </p>
         <h4>Outputs: action requests through a fixed interface</h4>
         <p>
