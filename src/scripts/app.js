@@ -121,7 +121,7 @@ function renderCaseSection(activeCase) {
       .map(([file, name, desc]) => video(`media/cases/${file}-${suffix}.mp4`, name, desc, ''))
       .join(
         '',
-      )}</div><div class="stage-controls">${(glasses ? ['Initial state', 'Transfer', 'Adjustment', 'Outcome'] : ['Initial state', 'Approach', 'Task progress', 'Outcome']).map((s, i) => `<button data-stage="${i}">${s}</button>`).join('')}</div><div class="case-insight"><p>Together, the two tasks reveal complementary capability: GPT-6-Astra exhibits affordance-directed grasp selection, iterative adjustment, and recovery behavior, whereas the specialized policies execute the precision task more accurately. Broad task understanding and observation-conditioned revision do not by themselves guarantee precise physical execution; conversely, successful execution of a familiar action trajectory does not necessarily entail recovery when a task requirement remains unmet.</p></div>`;
+      )}</div><div class="case-insight"><p>Together, the two tasks reveal complementary capability: GPT-6-Astra exhibits affordance-directed grasp selection, iterative adjustment, and recovery behavior, whereas the specialized policies execute the precision task more accurately. Broad task understanding and observation-conditioned revision do not by themselves guarantee precise physical execution; conversely, successful execution of a familiar action trajectory does not necessarily entail recovery when a task requirement remains unmet.</p></div>`;
   }
   area.innerHTML = html;
   updateCaseNarrative(activeCase, area);
@@ -227,19 +227,6 @@ function layoutCaseSelector(area) {
   heading.replaceWith(h4);
   choices.className = 'case-recording-tabs';
   area.prepend(choices);
-  const stages = area.querySelector('.stage-controls');
-  if (stages) {
-    const segments = document.createElement('div');
-    segments.className = 'case-stage-tabs';
-    segments.setAttribute('aria-label', 'Recording stage');
-    stages.querySelectorAll('[data-stage]').forEach((button, i) => {
-      button.type = 'button';
-      button.setAttribute('aria-pressed', String(i === 0));
-      segments.append(button);
-    });
-    stages.append(segments);
-    initSegmentedControl(segments);
-  }
   choices.addEventListener('keydown', (e) => {
     if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
     e.preventDefault();
@@ -270,8 +257,6 @@ document.addEventListener('click', (e) => {
     changeCase('adapt');
     document.querySelector('[data-adapt="' + adaptTask + '"]').focus({ preventScroll: true });
   }
-  el = e.target.closest('[data-stage]');
-  if (el) playCaseStage(el);
   el = e.target.closest('[data-task-video]');
   if (el) {
     let d = demos.find((x) => x.task === el.dataset.taskVideo);
@@ -285,77 +270,6 @@ document.addEventListener('click', (e) => {
     initVideos();
   }
 });
-
-let caseStageRequest = 0;
-async function playCaseStage(button) {
-  const request = ++caseStageRequest;
-  const area = button.closest('.case-study-content');
-  if (!area?.isConnected) return;
-  const times =
-    adaptTask === 'glasses'
-      ? [
-          [0, 14, 46, 100],
-          [0, 26, 51, 100],
-          [0, 26, 49, 70.4],
-        ]
-      : [
-          [0, 8.9, 38.5, 47],
-          [0, 6, 29, 66.7],
-          [0, 7, 35, 66.7],
-        ];
-  // Keep the requested evidence in view before the lazy-load observer can pause it.
-  const videos = area.querySelector('.case-videos');
-  videos.scrollIntoView({ block: 'center', behavior: 'instant' });
-  area.querySelectorAll('[data-stage]').forEach((b) => {
-    b.classList.toggle('active', b === button);
-    b.setAttribute('aria-pressed', String(b === button));
-  });
-  await Promise.all(
-    [...videos.querySelectorAll('video')].map(async (v, i) => {
-      const figure = v.closest('.evidence-video');
-      if (figure.hidden) return;
-      const overlay = v.closest('.media-viewport')?.querySelector('.video-start');
-      try {
-        v.pause();
-        v.muted = true;
-        v.controls = true;
-        v.preload = 'auto';
-        // Strip the lazy thumbnail fragment before seeking, including a warm thumbnail.
-        const sourceChanged = v.getAttribute('src') !== v.dataset.src;
-        if (sourceChanged || v.readyState < 1) {
-          await new Promise((resolve, reject) => {
-            const timeout = setTimeout(() => failed(), 15000);
-            const cleanup = () => {
-              clearTimeout(timeout);
-              v.removeEventListener('loadedmetadata', loaded);
-              v.removeEventListener('error', failed);
-            };
-            const loaded = () => {
-                cleanup();
-                resolve();
-              },
-              failed = () => {
-                cleanup();
-                reject(v.error || new Error('Recording metadata did not load'));
-              };
-            v.addEventListener('loadedmetadata', loaded, { once: true });
-            v.addEventListener('error', failed, { once: true });
-            if (sourceChanged) v.src = v.dataset.src;
-            v.load();
-          });
-        }
-        // A changed example, focus, or stage must not restart stale recordings.
-        if (request !== caseStageRequest || !button.isConnected || figure.hidden) return;
-        const duration = Number.isFinite(v.duration) ? v.duration : Infinity;
-        v.currentTime = Math.min(times[i][Number(button.dataset.stage)], Math.max(0, duration - 3));
-        if (overlay) overlay.hidden = true;
-        await v.play();
-      } catch {
-        if (overlay && request === caseStageRequest && v.paused) overlay.hidden = false;
-      }
-    }),
-  );
-}
 
 $('.close-dialog').addEventListener('click', () => $('#appendix-dialog').close());
 $('#appendix-dialog').addEventListener('click', (e) => {
@@ -419,9 +333,7 @@ function cameraPosition(video, view) {
       'apple_to_fruit_bowl_006-web.mp4',
       'collect_coffee_beans_013-web.mp4',
     ].includes(file);
-  return overviewFirst
-    ? { left: 'center', center: 'left', right: 'right', all: 'all' }[view] || view
-    : view;
+  return overviewFirst ? { left: 'center', center: 'left', right: 'right' }[view] || view : view;
 }
 function enhanceCameraView(v) {
   if (v.videoWidth / v.videoHeight < 4 || v.dataset.cameraReady) return;
@@ -434,7 +346,6 @@ function enhanceCameraView(v) {
     ['center', 'Overview'],
     ['left', 'Left wrist'],
     ['right', 'Right wrist'],
-    ['all', 'All views'],
   ]
     .map(
       ([key, name]) =>
@@ -443,12 +354,6 @@ function enhanceCameraView(v) {
     .join('');
   (v.closest('.media-viewport') || v).insertAdjacentElement('afterend', bar);
   initSegmentedControl(bar);
-  initRecordingMultiview(
-    v,
-    ['center', 'left', 'right'].map(
-      (key) => ({ left: 0, center: 1, right: 2 })[cameraPosition(v, key)],
-    ),
-  );
 }
 document.addEventListener(
   'loadedmetadata',
@@ -467,7 +372,6 @@ document.addEventListener('click', (e) => {
     previous = bar.previousElementSibling,
     v = previous.tagName === 'VIDEO' ? previous : previous.querySelector('video');
   v.dataset.view = cameraPosition(v, b.dataset.camera);
-  recordingMultiview.get(v)?.(b.dataset.camera === 'all');
   bar.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
 });
 

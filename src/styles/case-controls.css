@@ -69,16 +69,6 @@
     width: 1rem;
     height: 1rem;
   }
-  .case-study-content .stage-controls {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0.65rem 1rem;
-    max-width: 100%;
-    margin: 1.25rem 0 0;
-  }
-  .case-stage-tabs.segmented-control,
   .camera-controls.segmented-control {
     gap: 0.125rem;
     max-width: 100%;
@@ -95,7 +85,7 @@
     padding: 0;
   }
   /* The general video rule contains media; stitched single views need a pane crop. */
-  .media-viewport > video[data-camera-ready]:not([data-view='all']) {
+  .media-viewport > video[data-camera-ready] {
     object-fit: cover;
   }
   .media-viewport > video[data-camera-ready][data-view='left'] {
@@ -107,7 +97,6 @@
   .media-viewport > video[data-camera-ready][data-view='right'] {
     object-position: right center;
   }
-  .case-stage-tabs.segmented-control > button,
   .camera-controls.segmented-control > button {
     min-width: 0;
     padding: 0.4rem 0.7rem;
@@ -116,7 +105,6 @@
     background: transparent;
     font: 0.875rem/1.35 var(--font-body, serif);
   }
-  .case-stage-tabs.segmented-control > .segmented-control__indicator,
   .camera-controls.segmented-control > .segmented-control__indicator {
     border-radius: 999px;
   }
@@ -130,14 +118,12 @@
     .case-video-toolbar .case-play {
       padding-inline: 0.4rem;
     }
-    .case-stage-tabs.segmented-control > button,
     .camera-controls.segmented-control > button {
       padding-inline: 0.5rem;
     }
   }
   @media (prefers-reduced-motion: reduce) {
     .case-model-tabs.segmented-control > .segmented-control__indicator,
-    .case-stage-tabs.segmented-control > .segmented-control__indicator,
     .camera-controls.segmented-control > .segmented-control__indicator {
       transition: none;
     }
