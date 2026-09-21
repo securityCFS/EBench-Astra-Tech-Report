@@ -1,6 +1,8 @@
 name: Deploy report to GitHub Pages
 
 on:
+  push:
+    branches: [clean, '001']
   workflow_dispatch:
 
 permissions:

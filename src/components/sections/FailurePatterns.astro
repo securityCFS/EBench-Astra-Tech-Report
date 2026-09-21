@@ -2,7 +2,7 @@
   <div class="section-inner">
     <div class="section-heading">
       <div>
-        <h2>Where execution breaks down</h2>
+        <h2>Failure Patterns: Where execution breaks down</h2>
       </div>
     </div>
     <div class="report-prose">
@@ -62,11 +62,20 @@
           Removing the high-precision tasks therefore does not remove the tabletop deficit.
         </p>
         <p>
-          <strong>Precision labels alone do not explain the capability gap.</strong> Depth and
-          contact estimation, object orientation and coordination between the arms are plausible
-          contributors, consistent with the qualitative trajectory analysis. The glasses comparison
-          shows an unresolved folding and closure sequence; the frame ICL case illustrates how a
-          demonstration can supply a better division of labour between the arms.
+          <strong>Precision labels alone do not explain the capability gap.</strong> The recordings
+          point to two failures that a precision label does not capture. In glasses packing the
+          agent does not recognise that the temples, left unfolded, will foul the lid: it places
+          the glasses in the case and then attempts a closure the geometry has already ruled out.
+          That is an affordance the model fails to read, not a contact it executes imprecisely.
+        </p>
+        <p>
+          The second is bimanual coordination. Frame placement is the clearest case &mdash; the
+          agent rarely composes a two-arm plan and instead attempts single-arm variants that leave
+          the frame unsupported &mdash; and the same pattern recurs in detergent sorting and cup
+          flipping. Across the five tasks EBench labels as involving a handover, GPT-6-Astra
+          averages 34.0% against OpenWAM-&alpha;&rsquo;s 48.0%, placing fifth among the eight
+          systems evaluated. The frame ICL case is the constructive counterpart, showing that a
+          demonstration can restore the division of labour the agent does not generate on its own.
         </p>
       </div>
       <div id="fixed-task-evidence"></div>
