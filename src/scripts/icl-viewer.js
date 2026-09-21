@@ -113,7 +113,6 @@ function renderICLPanel() {
     panel.innerHTML = `<div class="icl-overview-copy"><h3>${iclEscape(iclTaskName(pkg.task))}</h3><p>${iclEscape(overview.description)}</p></div>
       <figure class="icl-overview-sheet">
         <a href="${iclEscape(overview.overview)}" target="_blank" rel="noopener" aria-label="Open ${iclEscape(iclTaskName(pkg.task))} keyframe overview at full size"><img src="${iclEscape(overview.overview)}" alt="${iclEscape(iclTaskName(pkg.task))}: annotated keyframe overview"/></a>
-        <figcaption>Open the overview image to inspect it at full size.</figcaption>
       </figure>`;
     return;
   }
