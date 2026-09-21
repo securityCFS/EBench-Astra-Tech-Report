@@ -22,6 +22,13 @@
     outline: 2px solid var(--accent, #4056e8);
     outline-offset: 3px;
   }
+  /* A table title belongs to the table, not to the document outline. */
+  .report-table-caption {
+    caption-side: top;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    text-wrap: balance;
+  }
   .report-table {
     --table-surface: var(--paper, #eef0f3);
     width: 100%;
