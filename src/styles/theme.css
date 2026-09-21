@@ -150,7 +150,8 @@
   .report-prose p a.source-link {
     font: inherit;
   }
-  #related-work a.source-link {
+  #related-work a.source-link,
+  #conclusion .report-prose a.source-link {
     display: inline;
     margin: 0;
   }

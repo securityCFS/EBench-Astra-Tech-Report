@@ -76,7 +76,7 @@ async function initAnalysisInsights() {
     })),
   ];
   let groupMetric = 'sr';
-  groupRoot.innerHTML = `<div class="capability-table-controls"><div class="chart-metrics" role="group" aria-label="Capability comparison metric"><button type="button" data-metric="sr" aria-pressed="true">SR (%)</button><button type="button" data-metric="score" aria-pressed="false">Score</button></div></div><div class="insight-table-scroll" tabindex="0" role="region" aria-label="Performance by operating mode, horizon and precision"></div><p class="insight-note" id="capability-table-note">Each task has equal weight within its subgroup. Horizon compares the 19 mobile tasks; Precision compares the 7 tabletop tasks. <strong>Bold</strong>: best in row; shaded column: GPT-6-Astra. <a href="#study-limitations">Benchmark limitations ${reportIcon('external-link')}</a></p>`;
+  groupRoot.innerHTML = `<div class="capability-table-controls"><div class="chart-metrics" role="group" aria-label="Capability comparison metric"><button type="button" data-metric="sr" aria-pressed="true">SR (%)</button><button type="button" data-metric="score" aria-pressed="false">Score</button></div></div><div class="insight-table-scroll" tabindex="0" role="region" aria-label="Performance by operating mode, horizon and precision"></div><p class="insight-note" id="capability-table-note">Each task has equal weight within its subgroup. Horizon compares the 19 mobile tasks; Precision compares the 7 tabletop tasks. <strong>Bold</strong>: best in row; shaded column: GPT-6-Astra.</p>`;
   initSegmentedControl(groupRoot.querySelector('.chart-metrics'));
   function drawCapabilityTable() {
     const metricLabel = groupMetric === 'sr' ? 'Success rate (%)' : 'Score (0–1)';
@@ -184,57 +184,41 @@ async function initAnalysisInsights() {
   failures.addEventListener('focusin', inspectFailure);
 }
 
-// One range view inside the main Distribution shifts tab.
-function renderPerturbationRanges(ranges) {
-  const esc = (s) =>
-    String(s).replace(
+// Compare sensitivity to perturbations without hiding values behind plot markers.
+function renderPerturbationRanges(container) {
+  const escape = (value) =>
+    String(value).replace(
       /[&<>"']/g,
-      (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c],
+      (character) =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character],
     );
-  const number = (n) => n.toFixed(2),
-    astra = 'Astra (ICL)';
   const conditions = [
-    ['object', 'Object', 24, 120],
-    ['background', 'Background', 26, 130],
-    ['instruction', 'Instruction', 26, 130],
-    ['mix', 'Mixed', 26, 130],
+    ['object', 'Object', 120],
+    ['background', 'Background', 130],
+    ['instruction', 'Instruction', 130],
+    ['mix', 'Mixed', 130],
   ];
-  const data = {
-    perturbations: reportFigures.models.map((m) => {
-      const values = conditions.map(([key, label, tasks, episodes]) => ({
-        label,
-        tasks,
-        episodes,
-        sr: m.generalization[key].sr * 100,
-      }));
+  const rows = reportFigures.models
+    .map((model) => {
+      const rates = conditions.map(([key]) => model.generalization[key].sr * 100);
       return {
-        id: m.id,
-        label: modelLabel(m.id),
-        conditions: values,
-        range: Math.max(...values.map((c) => c.sr)) - Math.min(...values.map((c) => c.sr)),
+        id: model.id,
+        label: modelLabel(model.id),
+        rates,
+        range: Math.max(...rates) - Math.min(...rates),
       };
-    }),
-  };
-  ranges.innerHTML = `<div class="perturbation-legend">${['Object', 'Background', 'Instruction', 'Mixed'].map((c, i) => `<span><i class="condition-${i}"></i>${c}</span>`).join('')}</div><div class="range-axis"><span></span><div><span>0%</span><span>50%</span><span>100%</span></div><span>Range</span></div>${[
-    ...data.perturbations,
-  ]
-    .sort((a, b) => a.range - b.range)
-    .map((m) => {
-      const min = Math.min(...m.conditions.map((c) => c.sr)),
-        max = Math.max(...m.conditions.map((c) => c.sr));
-      return `<div class="perturbation-row ${m.id === astra ? 'insight-astra' : ''}"><span>${esc(m.label)}</span><div class="perturbation-track"><span class="perturbation-span" style="left:${min}%;width:${max - min}%"></span>${m.conditions.map((c, i) => `<button class="condition-dot condition-${i}" style="left:${c.sr}%;top:${6 + i * 10}px" data-condition-model="${esc(m.id)}" data-condition="${i}" aria-label="${esc(m.label)}, ${c.label}: ${number(c.sr)}%, ${c.episodes} episodes" title="${c.label}: ${number(c.sr)}%"></button>`).join('')}</div><strong>${number(m.range)} pp</strong></div>`;
     })
-    .join(
-      '',
-    )}<p class="insight-readout" data-range-readout aria-live="polite">Range = maximum − minimum success rate across the four perturbation conditions.</p>`;
-  function inspectCondition(e) {
-    const b = e.target.closest('[data-condition-model]');
-    if (!b) return;
-    const m = data.perturbations.find((m) => m.id === b.dataset.conditionModel),
-      c = m.conditions[Number(b.dataset.condition)];
-    ranges.querySelector('[data-range-readout]').textContent =
-      `${m.label} · ${c.label}: ${number(c.sr)}% success across ${c.tasks} tasks / ${c.episodes} episodes.`;
-  }
-  ranges.addEventListener('click', inspectCondition);
-  ranges.addEventListener('focusin', inspectCondition);
+    .sort((a, b) => a.range - b.range || a.label.localeCompare(b.label));
+
+  container.innerHTML = `
+    <p class="perturbation-range-note" id="perturbation-range-note">
+      <strong>How much does success rate change across conditions?</strong>
+      Range is the highest minus the lowest success rate, in percentage points (pp).
+    </p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Success rates and variation across perturbation conditions">
+      <table class="report-table report-table--plain perturbation-range-table" aria-describedby="perturbation-range-note">
+        <thead><tr><th scope="col">Model</th>${conditions.map(([, label, episodes]) => `<th scope="col">${label}<small>${episodes} episodes</small></th>`).join('')}<th scope="col" aria-sort="ascending">Range (pp)</th></tr></thead>
+        <tbody>${rows.map((row) => `<tr data-model="${escape(row.id)}" class="${row.id === 'Astra (ICL)' ? 'highlight' : ''}"><th scope="row">${escape(row.label)}</th>${row.rates.map((rate, i) => `<td data-condition="${conditions[i][0]}" data-value="${rate}">${rate.toFixed(2)}%</td>`).join('')}<td class="perturbation-range-value" data-range="${row.range}">${row.range.toFixed(2)}</td></tr>`).join('')}</tbody>
+      </table>
+    </div>`;
 }

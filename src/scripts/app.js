@@ -31,7 +31,7 @@ const section = (id, n, heading, sub, body) =>
 const watch = (text) => '';
 function renderAnalysis() {
   $('#mobile-content').innerHTML =
-    `<div class="finding-grid"><div class="finding-story"><div class="finding-metric"><strong>56.58<span>%</span></strong><p>SR on 19 mobile tasks</p></div><p>Only 3.60 percentage points behind OpenWAM-α, compared with a wider gap on tabletop tasks. Mobile manipulation is a relative strength compared with tabletop tasks.</p><div class="task-highlights"><button data-appendix="results"><strong>100<small>%</small></strong><span>Remote to holder · 20/20</span></button><button data-appendix="results"><strong>90<small>%</small></strong><span>Bookmark placement · 18/20</span></button></div><p class="fineprint">Bookmark SR is 35 pp above the next-best model. These are end-to-end task results, not isolated recognition measurements.</p></div></div><div class="evidence-pair">${mainVideo('remote_to_holder', '000', 'Remote to holder', 'GPT-6-Astra 100% task SR; OpenWAM-α 65%.')}${mainVideo('bookmark_on_book', '000', 'Bookmark placement', 'GPT-6-Astra 90% task SR; next-best π₀.₅ 55%.')}</div>`;
+    `<div class="finding-grid"><div class="finding-story"></div></div><div class="evidence-pair">${mainVideo('remote_to_holder', '000', 'Remote to holder', 'GPT-6-Astra 100% task SR; OpenWAM-α 65%.')}${mainVideo('bookmark_on_book', '000', 'Bookmark placement', 'GPT-6-Astra 90% task SR; next-best π₀.₅ 55%.')}</div>`;
   renderLimits('precision');
   initVideos();
   initCharts();
@@ -39,7 +39,7 @@ function renderAnalysis() {
 function renderLimits(kind) {
   const precision = kind === 'precision';
   $('#limits-content').innerHTML =
-    `<div class="finding-grid"><div class="finding-story"><div class="finding-metric"><strong>${precision ? '11.25' : '28.10'}<span>%</span></strong><p>${precision ? 'SR on high-precision tasks' : 'SR on long-horizon tasks'}</p></div><p>${precision ? 'GPT-6-Astra’s SR falls from 60.60% on low-precision tasks to 11.25% on high-precision tasks. On peg insertion, 0.6000 mean Score accompanies only 20% success.' : 'GPT-6-Astra reaches 53.60% SR on short tasks but 28.10% on long tasks. OpenWAM-α retains 51.43% on the long-horizon group.'}</p><p>${precision ? 'Transport and approach can succeed while final alignment remains unresolved. The two peg episodes show the difference between substantial progress and a completed insertion.' : 'Local retries can repair one step while later stages remain unfinished. The selected dishwasher rollout is GPT-6-Astra’s only success among 20 episodes.'}</p><button class="appendix-link" data-appendix="${precision ? 'attributes' : 'horizon'}">Explore the group results ${reportIcon('external-link')}</button></div>${reportChart(precision ? 'precision' : 'horizon')}</div><div class="evidence-pair">${precision ? mainVideo('peg_in_hole', '000', 'Peg insertion', 'The peg remains exposed.') + mainVideo('peg_in_hole', '002', 'Peg insertion', 'One of four successes in 20 task instances.') : mainVideo('bottle', '003', 'Bottle placement', 'Some bottles remain outside the tray.') + mainVideo('dishwasher', '011', 'Dishwasher', 'Only one success in 20 GPT-6-Astra episodes.')}</div>`;
+    `<div class="finding-grid"><div class="finding-story"></div>${reportChart(precision ? 'precision' : 'horizon')}</div><div class="evidence-pair">${precision ? mainVideo('peg_in_hole', '000', 'Peg insertion', 'The peg remains exposed.') + mainVideo('peg_in_hole', '002', 'Peg insertion', 'One of four successes in 20 task instances.') : mainVideo('bottle', '003', 'Bottle placement', 'Some bottles remain outside the tray.') + mainVideo('dishwasher', '011', 'Dishwasher', 'Only one success in 20 GPT-6-Astra episodes.')}</div>`;
   updateLimitNarrative(kind);
   initVideos();
   initCharts();
@@ -132,55 +132,30 @@ function renderCaseSection(activeCase) {
 const notes = {
   sources: [
     'Model References',
-    `<ol class="model-references"><li><strong>GPT-6-Astra</strong><p>OpenAI (2026). <cite>GPT-6 Astra: A new generation of intelligence</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://openai.com/index/gpt-6-astra/" target="_blank" rel="noopener">Official release ${reportIcon('external-link')}</a></div></li><li><strong>OpenWAM-α</strong><p>Wang et al. (2026). <cite>OpenWAM: An Open, Modular Exploration Towards Systematic World-Action Model Pretraining</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2609.07398" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/OpenWAM-Official/OpenWAM" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>Qwen-RobotManip</strong><p>Qwen Team (2026). <cite>Qwen-RobotManip Technical Report: Alignment Unlocks Scale for Robotic Manipulation Foundation Models</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2606.17846" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/QwenLM/Qwen-RobotManip" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>π₀.₅</strong><p>Physical Intelligence et al. (2025). <cite>π₀.₅: a Vision-Language-Action Model with Open-World Generalization</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2504.16054" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/Physical-Intelligence/openpi" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>InternVLA-A1.5</strong><p>InternVLA-A1.5 team (2026). <cite>InternVLA-A1.5: Unifying Understanding, Latent Foresight, and Action for Compositional Generalization</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://internrobotics.github.io/internvla-a15.github.io/reference-assets/paper/InternVLA_A1_5.pdf" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/InternRobotics/InternVLA-A-series" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>π₀</strong><p>Black et al. (2024). <cite>π₀: A Vision-Language-Action Flow Model for General Robot Control</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2410.24164" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/Physical-Intelligence/openpi" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>GigaBrain-0.7</strong><p>GigaBrain Team et al. (2026). <cite>GigaBrain-0.7: Scaling Embodied Foundation Models to Emergent Capabilities with a Three-System Architecture</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2608.15875" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/open-gigaai/giga-brain-0" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>Fast-WAM</strong><p>Yuan et al. (2026). <cite>Fast-WAM: Do World Action Models Need Test-time Future Imagination?</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2603.16666" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/yuantianyuan01/FastWAM" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li></ol><h3>Leaderboard snapshot · September 17, 2026</h3><p>The comparison uses seven attributable model submissions. GPT-6-Astra results are computed from the 510 retained episode outcomes. Headline SR and Score give equal weight to each of the 26 tasks.</p><h3>Reported totals and episode-derived values</h3><p><strong>Overall comparator values retain the leaderboard’s reported totals</strong> from its taskOverview responses. Per-task and task-group values are recomputed from episodeList records. In five models, the overall Score differs from the recomputed mean in the last displayed decimal; the difference does not change the ranking.</p><div class="table-scroll timing-measurements" tabindex="0" role="region" aria-label="Score source comparison"><table class="report-table report-table--plain"><thead><tr><th scope="col">Model</th><th scope="col">Reported overall Score</th><th scope="col">Mean of task Scores</th></tr></thead><tbody><tr><th scope="row">OpenWAM-α</th><td>0.7005</td><td>0.7006</td></tr><tr><th scope="row">Qwen-RobotManip</th><td>0.6081</td><td>0.6082</td></tr><tr><th scope="row">π₀.₅</th><td>0.5441</td><td>0.5442</td></tr><tr><th scope="row">π₀</th><td>0.4748</td><td>0.4747</td></tr><tr><th scope="row">Fast-WAM</th><td>0.3712</td><td>0.3711</td></tr></tbody></table></div><p>The archived responses do not explain the final-digit discrepancy; both values are shown.</p>`,
+    `<ol class="model-references"><li><strong>GPT-6-Astra</strong><p>OpenAI (2026). <cite>GPT-6 Astra: A new generation of intelligence</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://openai.com/index/gpt-6-astra/" target="_blank" rel="noopener">Official release ${reportIcon('external-link')}</a></div></li><li><strong>OpenWAM-α</strong><p>Wang et al. (2026). <cite>OpenWAM: An Open, Modular Exploration Towards Systematic World-Action Model Pretraining</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2609.07398" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/OpenWAM-Official/OpenWAM" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>Qwen-RobotManip</strong><p>Qwen Team (2026). <cite>Qwen-RobotManip Technical Report: Alignment Unlocks Scale for Robotic Manipulation Foundation Models</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2606.17846" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/QwenLM/Qwen-RobotManip" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>π₀.₅</strong><p>Physical Intelligence et al. (2025). <cite>π₀.₅: a Vision-Language-Action Model with Open-World Generalization</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2504.16054" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/Physical-Intelligence/openpi" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>InternVLA-A1.5</strong><p>InternVLA-A1.5 team (2026). <cite>InternVLA-A1.5: Unifying Understanding, Latent Foresight, and Action for Compositional Generalization</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://internrobotics.github.io/internvla-a15.github.io/reference-assets/paper/InternVLA_A1_5.pdf" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/InternRobotics/InternVLA-A-series" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>π₀</strong><p>Black et al. (2024). <cite>π₀: A Vision-Language-Action Flow Model for General Robot Control</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2410.24164" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/Physical-Intelligence/openpi" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>GigaBrain-0.7</strong><p>GigaBrain Team et al. (2026). <cite>GigaBrain-0.7: Scaling Embodied Foundation Models to Emergent Capabilities with a Three-System Architecture</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2608.15875" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/open-gigaai/giga-brain-0" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li><li><strong>Fast-WAM</strong><p>Yuan et al. (2026). <cite>Fast-WAM: Do World Action Models Need Test-time Future Imagination?</cite>.</p><div class="model-reference-links"><a class="source-link" href="https://arxiv.org/abs/2603.16666" target="_blank" rel="noopener">Paper ${reportIcon('external-link')}</a><a class="source-link" href="https://github.com/yuantianyuan01/FastWAM" target="_blank" rel="noopener">GitHub ${reportIcon('external-link')}</a></div></li></ol>`,
   ],
-  protocol: [
-    'Evaluation protocol',
-    `<h3>Inputs and the action–observation loop</h3><p>GPT-6-Astra uses <code>high</code> reasoning effort, a single annotated demonstration per task, RGB views, end-effector and gripper state, base pose, and simulator timestep. Initial live views are overview, left wrist, and right wrist; later calls request a subset. Live depth, ground-truth object poses, calibration, segmentation, intermediate scores, and subgoal signals are not supplied. No learned VLA or WAM refines its requested actions.</p><p><strong>Model feedback follows a tool call, not each transport chunk.</strong> An <code>execute_eef</code> call can request up to six waypoints, each with up to 64 physics steps. The interface records and confirms execution in chunks of up to eight steps. The agent chooses its next action after the complete call returns with updated observations.</p><h3>Comparison scope</h3><div class="table-scroll timing-measurements protocol-scope" tabindex="0" role="region" aria-label="Evaluation protocol scope"><table class="report-table report-table--plain"><thead><tr><th scope="col">Item</th><th scope="col">Recorded comparison</th></tr></thead><tbody><tr><th scope="row">Task suite and metrics</th><td>26 test-mini tasks; 510 retained episodes per model; equal-weight task means.</td></tr><tr><th scope="row">GPT-6-Astra control</th><td>Direct EEF, gripper and base targets; server physics horizon; no extra aggregate token, call or wall-clock cap.</td></tr><tr><th scope="row">Learned policies</th><td>Seven attributable leaderboard submissions, retrieved September 17, 2026.</td></tr><tr><th scope="row">Model configurations</th><td>The archived leaderboard results do not establish identical camera inputs, control interfaces, scene revisions or inference budgets.</td></tr></tbody></table></div><h3>Retained cohort and execution recovery</h3><p>Each environment episode begins with a fresh model history. Infrastructure recovery may resume execution from confirmed history and observations. The final cohort contains <strong>510 unique task/seed results</strong>; resumed stages and terminal holding are parts of those episodes, not additional evaluation samples.</p><p>For <strong>apple from shelf</strong>, a corrected-scene run replaced the entire earlier set of 20 episodes. A <strong>utensils-to-holder / 013</strong> run affected by a receipt-routing infrastructure error was invalidated and replaced. The archived comparator records do not establish whether their apple scene revision matches that rerun.</p><p>When the policy stops before terminal evaluation, the runner holds the robot and advances the simulator to obtain the server result. <strong>49 episodes include holding, totaling 45,540 steps; six of those episodes finish successfully.</strong></p><p>Recorded execution routes are 108 API, 387 account-backed, and 15 API-to-account. Wall-time analysis separates these execution routes.</p><p><a class="source-link" href="data/evaluation-provenance.json" target="_blank" rel="noopener">Retained episode manifest, holding records And submission sources ${reportIcon('external-link')}</a></p><button class="appendix-link" data-appendix="limitations">Execution timing ${reportIcon('external-link')}</button>`,
-  ],
+
   metrics: [
     'What the numbers mean',
     `<p><b>SR</b> measures server-side complete success. <b>Score</b> is normalized terminal partial credit under task-specific rules.</p><p>Headline values average 26 task means equally: SR 46.73%, Score 0.6537. There are 237 successes among 510 retained episodes; episode-weighted SR is 46.47%.</p><p>24 tasks have 20 instances; make_sandwich and microwave have 15 each. Attribute groups overlap and do not represent paired changes to identical tasks.</p>`,
   ],
-  attributes: [
-    'Task-attribute profiles',
-    `${reportChart('precision')}${reportChart('mobility')}${reportChart('horizon')}<p>Precision: 14 low / 8 medium / 4 high tasks. Mobility: 19 mobile / 7 tabletop. Horizon: 19 short / 7 long. Groups overlap.</p><button class="appendix-link" data-appendix="results">View per-task results ${reportIcon('external-link')}</button>`,
-  ],
-  horizon: [
-    'Long-horizon results and execution',
-    `<p>GPT-6-Astra long-horizon SR is 28.10%, Score 0.5994; OpenWAM-α reaches 51.43% and 0.7872.</p><p>Detergent: GPT-6-Astra 55% SR / 0.8000 Score; OpenWAM 95% SR. Dishwasher: GPT-6-Astra 5% / 0.5333; OpenWAM 90% SR.</p><p>The agent sees elapsed timestep without a numeric remaining-step budget. Retries consume the fixed physics-step budget. A waypoint batch delays the next visual observation until it returns, linking recovery decisions to both the remaining execution budget and feedback timing.</p><p>Bottle and shop have zero complete successes across all eight models.</p>`,
-  ],
-  behavior: [
-    'Behavioral evidence',
-    `<h3>Contact correction · coffee beans / 013</h3><blockquote>“Angle spoon edge down to tabletop behind beans”</blockquote><p>This public action description accompanies height and tilt adjustments. Terminal Score 0.5, SR 0. The supplied prompt distinguishes local EEF height from tabletop height.</p><h3>Task–reference alignment · fruit / 015</h3><blockquote>“Carry the secured fruit above the small cup, not the large jug.”</blockquote><p>The live instruction requests a milkshake in the cup; the historical example uses a jug and explicitly defers to the live instruction. Score 0.6, SR 0. The recorded action follows the live instruction’s destination.</p><h3>Exploration and recovery</h3><p>The agent revises its approach and grasp using observations and action history within the episode.</p>`,
-  ],
-  limitations: [
-    'Recorded execution timing',
-    `<p>For the three recorded episodes below, simulated execution lasts <strong>34.70–116.67 seconds</strong>, while policy wall time spans <strong>729.84–5050.40 seconds</strong>. The longest action batches run for 2.13–6.40 simulated seconds before returning control to the agent.</p><div class="timing-chart" data-timing></div><p class="fineprint">Logarithmic scale.</p><div class="table-scroll timing-measurements" tabindex="0" role="region" aria-label="Selected episode execution times"><table class="report-table report-table--plain"><thead><tr><th scope="col">Episode</th><th scope="col">Physics steps</th><th scope="col">Simulation time (s)</th><th scope="col">Policy wall time (s)</th><th scope="col">Longest action batch (s)</th></tr></thead><tbody><tr><th scope="row">Apple → fruit bowl · 006</th><td>1,041</td><td>34.70</td><td>729.84</td><td>2.13</td></tr><tr><th scope="row">Coffee-bean collection · 013</th><td>3,500</td><td>116.67</td><td>5050.40</td><td>6.40</td></tr><tr><th scope="row">Utensils → holder · 000</th><td>2,000</td><td>66.67</td><td>2658.43</td><td>4.00</td></tr></tbody></table></div><p>Simulation time is calculated from the executed physics steps at 30 Hz. Policy wall time is the recorded elapsed duration, including both model and execution-system time; it is not an isolated inference-latency measurement. These three episodes have no terminal holding.</p>`,
-  ],
 };
+let taskVideoReturnContext = null;
+
 function openAppendix(key) {
   if (key === 'icl') {
     openICLPackage();
     return;
   }
-  $('#appendix-dialog').dataset.content = key;
-  $('#appendix-dialog').classList.remove('icl-dialog');
   let content = notes[key];
-  if (key === 'study-limitations')
-    content = ['08 Study Limitations', $('#study-limitations-content').innerHTML];
-  if (key === 'generalization')
-    content = ['Across benchmark perturbations', kitComparisonTable('generalization')];
-  if (key === 'full-comparison')
-    content = ['All models and task groups', kitComparisonTable('main')];
-  if (key === 'results') content = ['Task-level results And video evidence', taskResultsMarkup()];
   if (key === 'ablation') content = pairedICLContent();
   if (!content) return;
+  taskVideoReturnContext = null;
+  $('#appendix-dialog').dataset.content = key;
+  $('#appendix-dialog').classList.remove('icl-dialog');
   $('#appendix-body').innerHTML = `<h2 id="appendix-title">${content[0]}</h2>${content[1]}`;
   if (!$('#appendix-dialog').open) $('#appendix-dialog').showModal();
   $('#appendix-body').scrollTop = 0;
-  initCharts();
-  initTaskTable();
   decorateAppendix(key);
   drawFigures($('#appendix-body'));
 }
@@ -258,32 +233,62 @@ document.addEventListener('click', (e) => {
     document.querySelector('[data-adapt="' + adaptTask + '"]').focus({ preventScroll: true });
   }
   el = e.target.closest('[data-task-video]');
-  if (el) {
-    let d = demos.find((x) => x.task === el.dataset.taskVideo);
-    const dialog = $('#appendix-dialog');
-    dialog.dataset.content = 'task-video';
-    dialog.classList.remove('icl-dialog');
-    $('#appendix-body').scrollTop = 0;
-    $('#appendix-body').innerHTML =
-      `<button class="appendix-link" data-appendix="results">← All task results</button><h2 id="appendix-title">${title(d.task)}</h2>${mainVideo(d.task, d.seed, 'GPT-6-Astra + ICL', '')}`;
-    if (!$('#appendix-dialog').open) $('#appendix-dialog').showModal();
-    initVideos();
-  }
+  if (el) openTaskVideo(el);
 });
+
+function openTaskVideo(trigger) {
+  const demo = demos.find((item) => item.task === trigger.dataset.taskVideo);
+  if (!demo) return;
+  const dialog = $('#appendix-dialog');
+  const table = trigger.closest('.table-scroll, .insight-table-scroll');
+  taskVideoReturnContext = {
+    trigger,
+    x: window.scrollX,
+    y: window.scrollY,
+    table,
+    tableLeft: table?.scrollLeft,
+    tableTop: table?.scrollTop,
+  };
+  trigger.focus({ preventScroll: true });
+  dialog.querySelectorAll('video').forEach((video) => video.pause());
+  dialog.dataset.content = 'task-video';
+  dialog.classList.remove('icl-dialog');
+  $('#appendix-body').innerHTML =
+    `<button type="button" class="appendix-link" data-close-task-video>${reportIcon('chevron-left')} Back to results</button><h2 id="appendix-title">${title(demo.task)}</h2>${mainVideo(demo.task, demo.seed, 'GPT-6-Astra + ICL', '')}`;
+  if (!dialog.open) dialog.showModal();
+  $('#appendix-body').scrollTop = 0;
+  initVideos();
+}
 
 $('.close-dialog').addEventListener('click', () => $('#appendix-dialog').close());
 $('#appendix-dialog').addEventListener('click', (e) => {
+  if (e.target.closest('[data-close-task-video]')) {
+    e.currentTarget.close();
+    return;
+  }
   if (e.target === $('#appendix-dialog')) {
     const r = e.target.getBoundingClientRect();
     if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom)
       e.target.close();
   }
 });
-$('#appendix-dialog').addEventListener('close', () =>
+$('#appendix-dialog').addEventListener('close', () => {
   $('#appendix-dialog')
     .querySelectorAll('video')
-    .forEach((v) => v.pause()),
-);
+    .forEach((video) => {
+      video.pause();
+      observer.unobserve(video);
+    });
+  const context = taskVideoReturnContext;
+  taskVideoReturnContext = null;
+  if (!context) return;
+  if (context.trigger.isConnected) context.trigger.focus({ preventScroll: true });
+  if (context.table?.isConnected) {
+    context.table.scrollLeft = context.tableLeft;
+    context.table.scrollTop = context.tableTop;
+  }
+  window.scrollTo({ left: context.x, top: context.y, behavior: 'instant' });
+});
 Promise.all(
   ['tasks', 'demo-videos', 'ablations', 'report-figures'].map((n) =>
     fetch('data/' + n + '.json').then((r) => {
@@ -449,9 +454,8 @@ for (const event of ['play', 'pause', 'ended'])
     true,
   );
 
-// Keep direct links to the limitations entrance opening the same report dialog.
+// Keep the Model References anchor opening its shared dialog.
 const appendixAnchors = {
-  '#study-limitations': 'study-limitations',
   '#model-references': 'sources',
 };
 function openLinkedAppendix() {
@@ -468,13 +472,6 @@ document.addEventListener('click', (e) => {
 
 function decorateAppendix(key) {
   const body = $('#appendix-body');
-  if (key === 'generalization')
-    body
-      .querySelector('h2')
-      .insertAdjacentHTML(
-        'afterend',
-        '<div class="viz-figure" data-slopes data-viz-linked></div><div class="viz-legend"><span>Success rates across four perturbation conditions. GPT-6-Astra has the smallest observed range across conditions (6.60 percentage points), while OpenWAM-α leads under object, background and instruction perturbations. The comparison distinguishes consistency across conditions from absolute task success.</span></div>',
-      );
   if (key === 'ablation') {
     const findings = body.querySelector('.icl-pair-findings');
     if (findings)
@@ -485,12 +482,6 @@ function decorateAppendix(key) {
   }
 }
 function drawFigures(root = document) {
-  root.querySelectorAll('[data-slopes]:not([data-ready])').forEach((host) => {
-    host.dataset.ready = 'true';
-    const draw = () => viz.perturbationSlopes(host, { models: reportFigures.models });
-    draw();
-    viz.resizeRedraw(host, draw);
-  });
   root.querySelectorAll('[data-dumbbells]:not([data-ready])').forEach((host) => {
     host.dataset.ready = 'true';
     const which = host.dataset.dumbbells,
@@ -505,7 +496,6 @@ function drawFigures(root = document) {
     viz.resizeRedraw(host, draw);
   });
   viz.bindTips(root === document ? document.body : root);
-  if (typeof initTimingCharts === 'function') initTimingCharts(root);
 }
 
 function initRefresh() {

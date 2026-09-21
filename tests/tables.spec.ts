@@ -275,9 +275,15 @@ async function expectProfileValues(
     ),
   ]);
   await expect(table.locator('tbody tr')).toHaveCount(8);
-  await expect(table.locator('tbody th[scope="row"]')).toHaveText(
-    profileModels.map(([, label]) => label),
-  );
+  for (const [index, [, label]] of profileModels.entries()) {
+    const heading = table.locator('tbody th[scope="row"]').nth(index);
+    if (label.startsWith('π')) {
+      await expect(heading.locator('.model-math')).toHaveCount(1);
+      await expect(heading.locator('annotation[encoding="application/x-tex"]')).toHaveText(
+        label === 'π₀.₅' ? String.raw`\pi_{0.5}` : String.raw`\pi_{0}`,
+      );
+    } else await expect(heading).toHaveText(label);
+  }
   await expect(table.locator('.astra-row')).toHaveCount(1);
   await expect(table.locator('.astra-row')).toHaveAttribute('data-model', 'Astra (ICL)');
 
@@ -349,9 +355,7 @@ test('merged capability table retains all six subgroups and the persistent keybo
   await expect(chart.locator('tbody tr')).toHaveCount(6);
 });
 
-test('every profile and appendix copy preserves all exact group aggregates in both metrics', async ({
-  page,
-}) => {
+test('main profiles preserve all exact group aggregates in both metrics', async ({ page }) => {
   await ready(page);
   const figures: ProfileFigures = await (
     await page.request.get('/data/report-figures.json')
@@ -365,24 +369,6 @@ test('every profile and appendix copy preserves all exact group aggregates in bo
       await expectProfileValues(profile, kind, metric, figures, tasks);
     }
   }
-  await page.locator('[data-limit="precision"]').click();
-  await page.locator('#limits-content [data-appendix="attributes"]').click();
-  const dialog = page.locator('#appendix-dialog');
-  await expect(dialog).toBeVisible();
-  await expect(dialog.locator('.profile-results')).toHaveCount(3);
-  for (const kind of Object.keys(profileGroups) as ProfileKind[]) {
-    const profile = dialog.locator(`[data-chart="${kind}"]`);
-    for (const metric of ['sr', 'score'] as const) {
-      await profile.locator(`button[data-metric="${metric}"]`).click();
-      await expectProfileValues(profile, kind, metric, figures, tasks);
-    }
-  }
-  // The appendix metric is local; the main precision table remains at its initial SR view.
-  await page.keyboard.press('Escape');
-  await expect(page.locator('#limits-content .profile-results')).toHaveAttribute(
-    'data-metric',
-    'sr',
-  );
 });
 
 test('profile tables fit narrow and half-column panels with full-row Astra focus', async ({
@@ -419,10 +405,6 @@ test('profile tables fit narrow and half-column panels with full-row Astra focus
       await page.locator(`[data-limit="${kind}"]`).click();
       await checkTables('#mobile-content [data-chart], #limits-content [data-chart]');
     }
-    await page.locator('[data-limit="precision"]').click();
-    await page.locator('#limits-content [data-appendix="attributes"]').click();
-    await checkTables('#appendix-dialog [data-chart]');
-    await page.keyboard.press('Escape');
     await expectContained(page);
   }
 });
@@ -441,9 +423,19 @@ test('tab keyboard and distribution chart controls still function', async ({ pag
   );
   await page.locator('[data-shift-view="range"]').click();
   const range = page.locator('.matrix-perturbation-ranges');
-  await expect(range.locator('.perturbation-row')).toHaveCount(8);
-  await range.locator('[data-condition-model]').first().focus();
-  await expect(range.locator('[data-range-readout]')).toContainText('episodes.');
+  await expect(range.locator('tbody tr')).toHaveCount(8);
+  await expect(range.locator('.perturbation-range-note')).toContainText('percentage points');
+  const figures = await (await page.request.get('/data/report-figures.json')).json();
+  const conditions = ['object', 'background', 'instruction', 'mix'];
+  for (const model of figures.models) {
+    const row = range.locator(`tr[data-model="${model.id}"]`);
+    const rates = conditions.map((key) => model.generalization[key].sr * 100);
+    await expect(row.locator('td')).toHaveText([
+      ...rates.map((rate) => `${rate.toFixed(2)}%`),
+      (Math.max(...rates) - Math.min(...rates)).toFixed(2),
+    ]);
+  }
+  await expect(range.locator('tbody tr').first()).toHaveAttribute('data-model', 'Astra (ICL)');
   await expectPillAligned(page, '.shift-view-switch');
   await page.locator('[data-shift-view="table"]').click();
   await expect(page.locator('.benchmark-table')).toBeVisible();

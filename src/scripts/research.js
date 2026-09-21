@@ -34,7 +34,7 @@ function initBenchmarkMatrix() {
     ['fixed-high', 'Tabletop · high', (t) => t.mobility === 'Fixed' && t.precision === 'High'],
   ];
   host.classList.add('benchmark-explorer');
-  host.innerHTML = `<div class="matrix-heading table-toolbar"><h3>Complete benchmark comparison</h3><a class="table-download matrix-download" href="data/report-main-results.csv" download title="Download benchmark data (CSV)" aria-label="Download benchmark data (CSV)">${reportIcon('download')}<span>CSV</span></a></div><div class="matrix-tabs" role="tablist" aria-label="Benchmark tables"><button type="button" id="matrix-tab-attributes" data-matrix="attributes" role="tab" aria-controls="matrix-content" aria-selected="true">Overall and task groups</button><button type="button" id="matrix-tab-tasks" data-matrix="tasks" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">All 26 tasks</button><button type="button" id="matrix-tab-shifts" data-matrix="shifts" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">Distribution shifts</button><button type="button" id="matrix-tab-field" data-matrix="field" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">GPT-6-Astra vs. field</button></div><p class="matrix-introduction" hidden></p><div class="matrix-controls"><div class="matrix-metric" role="group" aria-label="Table metric"><button type="button" data-matrix-metric="sr" aria-pressed="true">SR (%)</button><button type="button" data-matrix-metric="score" aria-pressed="false">Score</button></div><div class="shift-view-switch" role="group" aria-label="Distribution shifts presentation" hidden><button type="button" data-shift-view="table" aria-pressed="true">Numerical comparison</button><button type="button" data-shift-view="range" aria-pressed="false">Success-rate ranges</button></div></div><div id="matrix-content" role="tabpanel" aria-labelledby="matrix-tab-attributes" tabindex="0"></div>`;
+  host.innerHTML = `<div class="matrix-heading table-toolbar"><h3>Complete benchmark comparison</h3><a class="table-download matrix-download" href="data/report-main-results.csv" download title="Download benchmark data (CSV)" aria-label="Download benchmark data (CSV)">${reportIcon('download')}<span>CSV</span></a></div><div class="matrix-tabs" role="tablist" aria-label="Benchmark tables"><button type="button" id="matrix-tab-attributes" data-matrix="attributes" role="tab" aria-controls="matrix-content" aria-selected="true">Overall and task groups</button><button type="button" id="matrix-tab-tasks" data-matrix="tasks" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">All 26 tasks</button><button type="button" id="matrix-tab-shifts" data-matrix="shifts" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">Distribution shifts</button><button type="button" id="matrix-tab-field" data-matrix="field" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">GPT-6-Astra vs. field</button></div><p class="matrix-introduction" hidden></p><div class="matrix-controls"><div class="matrix-metric" role="group" aria-label="Table metric"><button type="button" data-matrix-metric="sr" aria-pressed="true">SR (%)</button><button type="button" data-matrix-metric="score" aria-pressed="false">Score</button></div><div class="shift-view-switch" role="group" aria-label="Distribution shifts presentation" hidden><button type="button" data-shift-view="table" aria-pressed="true">Success rates</button><button type="button" data-shift-view="range" aria-pressed="false">Variation across conditions</button></div></div><div id="matrix-content" role="tabpanel" aria-labelledby="matrix-tab-attributes" tabindex="0"></div><p class="fineprint" id="matrix-scope-note"></p>`;
   initSegmentedControl(host.querySelector('.matrix-tabs'), '[aria-selected="true"]', {
     variant: 'underline',
     keyboard: false,
@@ -44,6 +44,12 @@ function initBenchmarkMatrix() {
   function draw() {
     const target = host.querySelector('#matrix-content');
     target.setAttribute('aria-labelledby', `matrix-tab-${mode}`);
+    const scopeNote = host.querySelector('#matrix-scope-note');
+    scopeNote.hidden = mode !== 'shifts';
+    scopeNote.textContent =
+      mode === 'shifts'
+        ? 'Task-averaged results under object, background, instruction and mixed perturbations. In the mixed condition, GPT-6-Astra completes 60 of 130 episodes and OpenWAM-α completes 58.'
+        : '';
     host.querySelector('.matrix-introduction').hidden = mode !== 'field';
     host.querySelector('.matrix-controls').hidden = mode === 'tasks';
     host.querySelector('.matrix-metric').hidden =
@@ -67,8 +73,7 @@ function initBenchmarkMatrix() {
       return;
     }
     if (mode === 'shifts' && shiftView === 'range') {
-      target.innerHTML =
-        '<div class="matrix-perturbation-ranges"></div><p class="fineprint">Range is the highest minus the lowest condition success rate.</p>';
+      target.innerHTML = '<div class="matrix-perturbation-ranges"></div>';
       renderPerturbationRanges(target.querySelector('.matrix-perturbation-ranges'));
       return;
     }
@@ -259,7 +264,7 @@ function initBehavior() {
   function draw(key) {
     const d = entries[key];
     $('#behavior-content').innerHTML =
-      `<div class="behavior-evidence"><div><h3>${d.heading}</h3><dl class="trace-excerpt"><dt>${key === 'coffee' ? 'Supplied execution guidance' : 'Live task instruction'}</dt><dd>${d.input}</dd><dt>Recorded action description</dt><dd>${d.action}</dd></dl><p>${d.body}</p><button class="appendix-link" data-appendix="behavior">Read the report annotations ${reportIcon('external-link')}</button></div>${video(`media/cases/${d.task}_${d.seed}-web.mp4`, title(d.task), '', `${key === 'apple' ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(2)})`)}</div>`;
+      `<div class="behavior-evidence"><div><h3>${d.heading}</h3><dl class="trace-excerpt"><dt>${key === 'coffee' ? 'Supplied execution guidance' : 'Live task instruction'}</dt><dd>${d.input}</dd><dt>Recorded action description</dt><dd>${d.action}</dd></dl><p>${d.body}</p></div>${video(`media/cases/${d.task}_${d.seed}-web.mp4`, title(d.task), '', `${key === 'apple' ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(2)})`)}</div>`;
     updateBehaviorNarrative(key);
     initVideos();
   }
@@ -462,29 +467,4 @@ function initResearch() {
   initEpisodeOutcomes().catch(() => {
     $('#episode-outcomes').innerHTML = '<p>Episode data could not load. Please reload.</p>';
   });
-}
-
-let timingPromise;
-function initTimingCharts(root = document) {
-  const hosts = [...root.querySelectorAll('[data-timing]:not([data-timing-ready])')];
-  if (!hosts.length) return;
-  timingPromise =
-    timingPromise ||
-    fetch('data/execution-timing.json').then((r) => {
-      if (!r.ok) throw Error('timing');
-      return r.json();
-    });
-  timingPromise
-    .then((data) => {
-      hosts.forEach((host) => {
-        host.dataset.timingReady = 'true';
-        const draw = () => viz.timingBars(host, { episodes: data.episodes });
-        draw();
-        viz.bindTips(host);
-        viz.resizeRedraw(host, draw);
-      });
-    })
-    .catch(() =>
-      hosts.forEach((h) => (h.innerHTML = '<p class="fineprint">Timing data could not load.</p>')),
-    );
 }

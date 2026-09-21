@@ -1,7 +1,7 @@
 ---
-import { icon } from '../../lib/icons.js';
 import DemonstrationCard from '../DemonstrationCard.astro';
 import ExecutionDemo from '../ExecutionDemo.astro';
+import ExecutionTiming from '../ExecutionTiming.astro';
 ---
 
 <section id="setup" class="section setup-showcase">
@@ -124,51 +124,7 @@ import ExecutionDemo from '../ExecutionDemo.astro';
           not receive a new decision point after each internal execution chunk.
         </p>
 
-        <details class="setup-protocol-details">
-          <summary>Evaluation protocol</summary>
-          <div class="setup-protocol-body">
-            <h4>Demonstration construction</h4>
-            <p>
-              The demonstration-annotation instance also uses <code>high</code> reasoning effort.
-              Each ICL package contains 10–18 annotated keyframes, operation phases, arm roles, and
-              selected state/action examples.
-            </p>
-            <h4>Tool calls and internal execution</h4>
-            <p>
-              An <code>execute_eef</code> call can request up to six waypoints, each with up to 64
-              physics steps. The interface records and confirms execution in chunks of up to eight
-              steps; model feedback follows the complete call. Joint states are used by the
-              execution interface and recorded in the logs.
-            </p>
-            <h4>Main-evaluation records and comparison scope</h4>
-            <p>
-              The retained main cohort contains 510 unique task/seed results; resumed execution
-              stages and terminal holding are parts of those episodes. The archived leaderboard
-              records do not establish identical camera inputs, control interfaces, scene revisions,
-              or inference budgets across models.
-            </p>
-            <div class="method-details">
-              <button class="appendix-link" data-appendix="protocol">
-                Full main-evaluation protocol and provenance{' '}
-                <Fragment set:html={icon('external-link')} />
-              </button>
-              <a
-                href="https://internrobotics.github.io/EBench-doc/getting-started/overview/"
-                target="_blank"
-                rel="noopener"
-              >
-                Benchmark overview <Fragment set:html={icon('external-link')} />
-              </a>
-              <a
-                href="https://internrobotics.github.io/EBench-doc/getting-started/overview/"
-                target="_blank"
-                rel="noopener"
-              >
-                Evaluation metrics <Fragment set:html={icon('external-link')} />
-              </a>
-            </div>
-          </div>
-        </details>
+        <ExecutionTiming />
         <ExecutionDemo />
       </section>
     </div>
@@ -195,34 +151,5 @@ import ExecutionDemo from '../ExecutionDemo.astro';
     color: #fff;
     padding: 0.1em 0.3em;
     border-radius: 0.2em;
-  }
-  .setup-protocol-details {
-    margin-block: 1.75rem 2.5rem;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    background: var(--surface);
-  }
-  .setup-protocol-details > summary {
-    padding: 1rem 1.25rem;
-    color: var(--ink);
-    font-size: 1.25rem;
-    font-weight: 600;
-  }
-  .setup-protocol-body {
-    padding: 0.25rem 1.25rem 1.25rem;
-  }
-  .setup-protocol-body h4 {
-    margin: 1rem 0 0.75rem;
-    font-size: 1.125rem;
-  }
-  .setup-protocol-body p {
-    font-size: 1rem;
-  }
-  .setup-protocol-body .method-details {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem 1.5rem;
-    margin-top: 1.25rem;
-    font-size: 1rem;
   }
 </style>

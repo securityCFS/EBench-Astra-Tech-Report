@@ -25,6 +25,7 @@
 
   /* ---------- one floating tooltip for every figure ---------- */
   let tip;
+  let tipContent;
   function tooltip() {
     if (tip) return tip;
     tip = document.createElement('div');
@@ -38,7 +39,12 @@
     const el = tooltip();
     const parent = document.querySelector('dialog[open]') || document.body;
     if (el.parentElement !== parent) parent.append(el);
-    el.innerHTML = html;
+    if (html !== tipContent) {
+      el.innerHTML = html;
+      // Measure after KaTeX replaces model names, not one frame before.
+      if (typeof typesetModelNames === 'function') typesetModelNames(el);
+      tipContent = html;
+    }
     el.hidden = false;
     const pad = 14,
       w = el.offsetWidth,
@@ -324,7 +330,14 @@
         positive = r.delta > 0,
         zero = Math.abs(r.delta) < 1e-9;
       const fmt = (v) => (metric === 'sr' ? fmtSR(v) : fmtScore(v));
-      const list = r.others.map((o) => `${esc(o.label)} ${fmt(o.value)}`).join('<br>');
+      const values = [{ label: 'GPT-6-Astra', value: r.astra, id: ASTRA }, ...r.others];
+      const list = values
+        .map(
+          (model) =>
+            `<div class="viz-tip-row${model.id === ASTRA ? ' is-highlighted' : ''}"><dt>${esc(model.label)}</dt><dd>${fmt(model.value)}</dd></div>`,
+        )
+        .join('');
+      const delta = `${r.delta > 0 ? '+' : ''}${metric === 'sr' ? (r.delta * 100).toFixed(2) + ' pp' : r.delta.toFixed(4)}`;
       const g = el('g', {
         class: `viz-diverge ${positive ? 'is-pos' : zero ? 'is-zero' : 'is-neg'}`,
         tabindex: 0,
@@ -332,7 +345,7 @@
         'data-task-video': r.task.task,
         role: 'button',
         'aria-label': `${taskTitle(r.task.task)}: open the selected episode`,
-        'data-tip': `<b>${esc(taskTitle(r.task.task))}</b><em>GPT-6-Astra ${fmt(r.astra)} · ${esc(r.ref.label)} ${fmt(r.ref.value)}</em><span>Δ ${metric === 'sr' ? (r.delta * 100).toFixed(1) + ' pp' : r.delta.toFixed(4)}</span><small>${list}</small>`,
+        'data-tip': `<b>${esc(taskTitle(r.task.task))}</b><span class="viz-tip-metric">${metric === 'sr' ? 'Success rate' : 'Score'}</span><dl class="viz-tip-values">${list}</dl><div class="viz-tip-delta"><span>Δ vs. ${esc(r.ref.label)}</span><strong>${delta}</strong></div>`,
       });
       g.append(
         el('rect', {

@@ -1,0 +1,25 @@
+@layer components {
+  .matrix-perturbation-ranges .perturbation-range-note {
+    max-width: 72ch;
+    margin: 0.5rem 0 1.25rem;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .matrix-perturbation-ranges .perturbation-range-note strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .perturbation-range-table {
+    min-width: 46rem;
+  }
+  .perturbation-range-table thead th {
+    white-space: nowrap;
+  }
+  .perturbation-range-table .perturbation-range-value {
+    font-weight: 600;
+    border-left: 1px solid var(--line);
+  }
+}

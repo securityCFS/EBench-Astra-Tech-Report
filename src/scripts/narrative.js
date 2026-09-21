@@ -23,7 +23,7 @@ const reportNarrative = {
   precision: [
     'The sharpest failure pattern appears at the <strong>transition from coarse transport to precise contact</strong>. GPT-6-Astra’s success rate falls from 60.60% on low-precision tasks to 40.21% on medium-precision tasks and <strong>11.25% on high-precision tasks</strong>; its <strong>ranking drops from second to seventh</strong>. Every model finds the high-precision group harder, but GPT-6-Astra’s relative position deteriorates particularly strongly.',
     'Peg insertion makes the gap between progress and completion concrete: GPT-6-Astra obtains a mean <strong>Score of 0.6000 but only 20% success</strong>. Nut tightening shows the same pattern, with 0.5500 Score and 10% success. Reaching the target neighborhood is often insufficient; the remaining alignment and sustained contact determine whether the task is actually finished.',
-    '<strong>Surface height, clearance, and contact geometry are plausible sources of uncertainty</strong> because RGB images and robot-frame end-effector poses do not directly provide them. This motivates studying how an agent can <strong>estimate and verify contact</strong>, and how reasoning might cooperate with a precise execution policy. The benchmark identifies the execution gap; it does not isolate its cause or demonstrate that a hybrid controller resolves it.',
+    '<strong>Surface height, clearance, and contact geometry are plausible sources of uncertainty</strong> because RGB images and robot-frame end-effector poses do not directly provide them. This motivates studying how an agent can <strong>estimate and verify contact</strong>, and how reasoning might cooperate with a precise execution policy.',
   ],
   horizon: [
     'GPT-6-Astra’s success rate falls from 53.60% on short tasks to <strong>28.10% on long tasks</strong>; <strong>OpenWAM-α reaches 51.43%</strong> on the long-horizon group. Detergent placement reaches 55% success with a partial Score of 0.8000; dishwasher execution reaches <strong>only 5% success with a Score of 0.5333</strong>. Intermediate progress repeatedly fails to become a completed procedure.',
@@ -103,7 +103,6 @@ function updateCaseNarrative(activeCase, area) {
 function updateBehaviorNarrative(key) {
   const story = $('#behavior-content .behavior-evidence>div');
   story.querySelector('p').remove();
-  story.querySelector('button').remove();
   const trace = story.querySelector('.trace-excerpt');
   if (key === 'apple') {
     trace.innerHTML =

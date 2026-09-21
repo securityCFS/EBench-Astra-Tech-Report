@@ -1,47 +1,6 @@
----
-import { icon } from '../../lib/icons.js';
----
-
 <section id="findings" class="section findings-opening">
   <div class="section-inner">
     <h2>04 Investigating the performance gap</h2>
     <div class="report-prose overall-analysis" data-narrative="overall"></div>
-    <nav class="research-questions" aria-label="Analysis questions">
-      <a href="#mobile">
-        <span>01</span>
-        <div>
-          <strong>Where does GPT-6-Astra differ from learned policies?</strong>
-          <p>
-            Which tasks favor the agent or the learned policies, and how their execution differs.
-          </p>
-        </div>
-        <i>
-          <Fragment set:html={icon('external-link')} />
-        </i>
-      </a>
-      <a href="#limits">
-        <span>02</span>
-        <div>
-          <strong>Where does execution break down?</strong>
-          <p>Contact uncertainty, unfinished stages, and the cost of local retries.</p>
-        </div>
-        <i>
-          <Fragment set:html={icon('external-link')} />
-        </i>
-      </a>
-      <a href="#behavior">
-        <span>03</span>
-        <div>
-          <strong>What new capabilities appear during interaction?</strong>
-          <p>
-            Exploration, recovery, and using the experience of a failed attempt to change the next
-            one.
-          </p>
-        </div>
-        <i>
-          <Fragment set:html={icon('external-link')} />
-        </i>
-      </a>
-    </nav>
   </div>
 </section>
