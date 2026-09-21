@@ -102,6 +102,12 @@
   #cross-group-chart .report-table th[scope='colgroup'] {
     text-align: center;
   }
+  .paired-detail-table th[colspan] {
+    text-align: center;
+  }
+  .paired-detail-table th[rowspan] {
+    vertical-align: middle;
+  }
   #mobile-content > .finding-grid {
     grid-template-columns: minmax(0, 1fr);
   }

@@ -123,7 +123,7 @@ function initNarrative() {
     'beforeend',
     `<div class="report-prose shift-analysis"><h3>Strong and balanced performance across perturbations</h3>${narrativeHTML('shifts')}</div>`,
   );
-  $('#mobile-content .shift-analysis').before($('#cross-group-analysis'));
+  $('#task-gap-analysis').before($('#cross-group-analysis'));
   initAnalysisInsights();
   const library = $('#video-library');
   library.addEventListener('toggle', () => {

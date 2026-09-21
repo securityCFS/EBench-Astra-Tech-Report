@@ -2297,6 +2297,10 @@ blockquote {
   border-top: 1px solid #dbe3f3;
 }
 
+#task-gap-analysis {
+  margin-bottom: 0;
+}
+
 .insight-block > h3 {
   font-size: 2rem;
   line-height: 1.3;

@@ -513,7 +513,7 @@
     ===================================================================================== */
   function pairedDumbbells(host, { pairs, compact = false }) {
     const width = Math.max(300, Math.min(720, host.clientWidth || 600));
-    const left = compact || width < 520 ? 110 : 206,
+    const left = compact || width < 520 ? 110 : 320,
       right = width < 520 ? 72 : 92,
       rowH = compact ? 28 : 32,
       top = 30;
