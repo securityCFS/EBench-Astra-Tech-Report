@@ -1,3 +1,8 @@
+---
+import shanghaiLogo from '../../dist/media/brand/shanghai-ai-lab.webp';
+import internRoboticsLogo from '../../dist/media/brand/internrobotics.webp';
+---
+
 <header class="header">
   <div class="brand-lockup" aria-label="Shanghai AI Laboratory and InternRobotics">
     <a
@@ -8,7 +13,7 @@
       aria-label="Shanghai AI Laboratory official website"
     >
       <img
-        src="media/brand/shanghai-ai-lab.webp"
+        src={shanghaiLogo.src}
         width="10875"
         height="1275"
         alt="Shanghai Artificial Intelligence Laboratory"
@@ -22,7 +27,7 @@
       rel="noopener"
       aria-label="InternRobotics official website"
     >
-      <img src="media/brand/internrobotics.webp" width="3062" height="490" alt="InternRobotics" />
+      <img src={internRoboticsLogo.src} width="3062" height="490" alt="InternRobotics" />
     </a>
   </div>
   <nav aria-label="Primary navigation">
@@ -39,8 +44,8 @@
       position: sticky;
       top: 0;
       z-index: 60;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
       gap: 1rem;
       min-height: var(--header-height);
@@ -54,8 +59,9 @@
       align-items: center;
       gap: 1.3rem;
       min-width: 0;
-      width: min(100%, 32rem);
-      justify-self: start;
+      flex: 0 1 32rem;
+      width: 32rem;
+      max-width: 100%;
     }
 
     .institution-brand {
@@ -64,11 +70,13 @@
     }
 
     .shanghai-ai-brand {
-      flex: 1.15;
+      flex: 0 1 15.75rem;
+      width: 15.75rem;
     }
 
     .internrobotics-brand {
-      flex: 1;
+      flex: 0 1 13.5rem;
+      width: 13.5rem;
     }
 
     .brand-lockup img {
@@ -87,6 +95,8 @@
 
     .header nav {
       display: flex;
+      flex: none;
+      margin-left: auto;
       gap: 1.5rem;
       align-items: center;
       flex-wrap: wrap;
@@ -105,7 +115,6 @@
     }
     @media (max-width: 85rem) {
       .header {
-        grid-template-columns: minmax(0, 1fr);
         padding-inline: 0.75rem;
         gap: 0.75rem;
       }
