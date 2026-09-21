@@ -1,5 +1,5 @@
 const chartModels = [
-  ['Astra (ICL)', 'GPT-6-Astra + ICL', '#3456ef'],
+  ['Astra (ICL)', 'GPT-6-Astra-ICL', '#3456ef'],
   ['OpenWAM-Alpha', 'OpenWAM-α', '#26394c'],
   ['Qwen-RobotManip', 'Qwen-RobotManip', '#8098f2'],
   ['Pi05', 'π₀.₅', '#7374b8'],

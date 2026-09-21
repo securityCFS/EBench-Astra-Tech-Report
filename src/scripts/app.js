@@ -254,7 +254,7 @@ function openTaskVideo(trigger) {
   dialog.dataset.content = 'task-video';
   dialog.classList.remove('icl-dialog');
   $('#appendix-body').innerHTML =
-    `<button type="button" class="appendix-link" data-close-task-video>${reportIcon('chevron-left')} Back to results</button><h2 id="appendix-title">${title(demo.task)}</h2>${mainVideo(demo.task, demo.seed, 'GPT-6-Astra + ICL', '')}`;
+    `<button type="button" class="appendix-link" data-close-task-video>${reportIcon('chevron-left')} Back to results</button><h2 id="appendix-title">${title(demo.task)}</h2>${mainVideo(demo.task, demo.seed, 'GPT-6-Astra-ICL', '')}`;
   if (!dialog.open) dialog.showModal();
   $('#appendix-body').scrollTop = 0;
   initVideos();
