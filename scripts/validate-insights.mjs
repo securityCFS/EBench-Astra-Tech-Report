@@ -29,6 +29,10 @@ for (const g of d.groups) {
 const correctedGroup = d.groups.find((group) => group.id === 'fixed-low-medium');
 assert.deepEqual(correctedGroup.reported_rates, { 'OpenWAM-Alpha': 52.87 });
 assert(correctedGroup.reported_rates_note.includes('per-task records remain unchanged'));
+const correctedTabletop = read('report-figures.json').models.find((m) => m.id === 'OpenWAM-Alpha').groups.Fixed;
+const highGroup = d.groups.find((group) => group.id === 'fixed-high');
+close(correctedTabletop.sr * 100,
+  (correctedGroup.reported_rates['OpenWAM-Alpha'] * correctedGroup.n + highGroup.rates['OpenWAM-Alpha'] * highGroup.n) / (correctedGroup.n + highGroup.n));
 close(d.groups[0].rates[a], 73.19444444444444);
 close(d.groups[2].rates[a], 31.666666666666668);
 assert.equal(Math.max(...Object.values(d.groups[0].rates)), d.groups[0].rates[a]);
