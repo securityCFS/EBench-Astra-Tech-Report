@@ -1,3 +1,19 @@
+---
+import { icon } from '../lib/icons.js';
+---
+
+<div class="contents-toolbar">
+  <button
+    class="toc-toggle"
+    type="button"
+    aria-label="Toggle Contents"
+    aria-expanded="true"
+    aria-controls="report-toc-links"
+  >
+    <Fragment set:html={icon('menu')} />
+    <span>Contents</span>
+  </button>
+</div>
 <aside class="report-toc" aria-label="Report contents">
   <nav id="report-toc-links" aria-label="On this page">
     <p class="toc-title">Contents</p>
@@ -82,9 +98,42 @@
 
 <style>
   @layer components {
+    .contents-toolbar {
+      position: sticky;
+      top: var(--header-offset, var(--header-height));
+      z-index: 55;
+      display: flex;
+      align-items: center;
+      height: var(--toc-toolbar-height);
+      padding-inline: var(--gutter);
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+    .toc-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 2.75rem;
+      padding: 0.4rem 0.5rem;
+      border: 0;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.9375rem;
+    }
+    .toc-toggle:hover {
+      background: var(--soft);
+      color: var(--ink);
+    }
+    .toc-toggle :global(svg) {
+      width: 1.375rem;
+      height: 1.375rem;
+      stroke-width: 1.5;
+    }
     .report-toc {
       position: fixed;
-      inset: var(--header-height) auto 0 0;
+      inset: calc(var(--header-offset, var(--header-height)) + var(--toc-toolbar-height)) auto 0 0;
       width: min(var(--rail-width), 100%);
       z-index: 50;
       overflow-y: auto;
@@ -92,6 +141,11 @@
       background: #eef1f6f5;
       border-right: 1px solid var(--line);
       padding: 1.25rem 0.75rem;
+      transform: translateX(0);
+      visibility: visible;
+      transition:
+        transform var(--toc-duration) var(--motion-ease),
+        visibility 0s;
     }
 
     .report-toc nav {
@@ -137,15 +191,25 @@
     }
 
     :global(body[data-toc-open='false']) .report-toc {
+      transform: translateX(-100%);
       visibility: hidden;
       pointer-events: none;
+      transition-delay: 0s, var(--toc-duration);
     }
     @media (max-width: 85rem) {
+      .contents-toolbar {
+        padding-inline: 0.75rem;
+      }
+      :global(body:not([data-toc-ready])) .report-toc {
+        transform: translateX(-100%);
+        visibility: hidden;
+      }
       .report-toc {
         box-shadow: 1rem 0 2rem #15234020;
       }
     }
     @media print {
+      .contents-toolbar,
       .report-toc {
         display: none;
       }

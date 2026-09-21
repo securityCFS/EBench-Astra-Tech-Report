@@ -24,8 +24,12 @@
   }
 
   .report-page {
-    margin-left: var(--rail-width);
+    margin-left: 0;
     min-width: 0;
+    transition: margin-left var(--toc-duration) var(--motion-ease);
+  }
+  body[data-toc-open='true'] .report-page {
+    margin-left: var(--rail-width);
   }
 
   :is(.showcase-hero, .section-inner) {

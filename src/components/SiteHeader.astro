@@ -1,17 +1,4 @@
----
-import { icon } from '../lib/icons.js';
----
-
 <header class="header">
-  <button
-    class="toc-toggle"
-    aria-label="Toggle Contents"
-    title="Contents"
-    aria-expanded="true"
-    aria-controls="report-toc-links"
-  >
-    <Fragment set:html={icon('menu')} />
-  </button>
   <div class="brand-lockup" aria-label="Shanghai AI Laboratory and InternRobotics">
     <a
       class="institution-brand shanghai-ai-brand"
@@ -53,31 +40,13 @@ import { icon } from '../lib/icons.js';
       top: 0;
       z-index: 60;
       display: grid;
-      grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+      grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
       gap: 1rem;
       min-height: var(--header-height);
       background: var(--deep);
       color: #e0e7f1;
       padding: 0.75rem var(--gutter);
-    }
-
-    .toc-toggle {
-      justify-self: start;
-      display: grid;
-      place-items: center;
-      width: 2.75rem;
-      height: 2.75rem;
-      padding: 0.4rem;
-      background: transparent;
-      color: inherit;
-      border: 0;
-    }
-
-    .toc-toggle :global(svg) {
-      width: 1.375rem;
-      height: 1.375rem;
-      stroke-width: 1.5;
     }
 
     .brand-lockup {
@@ -136,7 +105,7 @@ import { icon } from '../lib/icons.js';
     }
     @media (max-width: 85rem) {
       .header {
-        grid-template-columns: 2.75rem minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr);
         padding-inline: 0.75rem;
         gap: 0.75rem;
       }

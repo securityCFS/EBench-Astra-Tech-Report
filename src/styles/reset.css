@@ -5,7 +5,10 @@
     box-sizing: border-box;
   }
   html {
-    scroll-padding-top: 7rem;
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(
+      var(--header-offset, var(--header-height)) + var(--toc-toolbar-height) + 1rem
+    );
     scrollbar-gutter: stable;
   }
   body {

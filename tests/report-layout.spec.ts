@@ -61,16 +61,17 @@ test('text scaling to 125% and 200% restores without stale geometry', async ({ p
   }
   expect((await geometry(page)).reference).toEqual(initial.reference);
 });
-test('contents toggle never shifts the report and dialog always exposes Close', async ({
-  page,
-}) => {
+test('contents toggle centers the report and dialog always exposes Close', async ({ page }) => {
   await page.setViewportSize({ width: 1800, height: 1100 });
   await ready(page);
   const initial = await geometry(page);
   await page.getByRole('button', { name: 'Toggle Contents' }).click();
-  expect((await geometry(page)).reference).toEqual(initial.reference);
+  const viewportCenter = await page.evaluate(() => document.documentElement.clientWidth / 2);
+  await expect
+    .poll(async () => Math.abs((await geometry(page)).reference.center - viewportCenter))
+    .toBeLessThan(1);
   await page.getByRole('button', { name: 'Toggle Contents' }).click();
-  expect((await geometry(page)).reference).toEqual(initial.reference);
+  await expect.poll(async () => (await geometry(page)).reference).toEqual(initial.reference);
   await page.locator('#model-references a').click();
   const close = page.getByRole('button', { name: 'Close supplementary material' });
   await expect(close).toBeVisible();
