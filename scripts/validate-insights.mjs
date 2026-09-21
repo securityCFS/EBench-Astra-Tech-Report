@@ -27,7 +27,7 @@ for (const g of d.groups) {
 }
 // The author-corrected display aggregate is separate from archived task means.
 const correctedGroup = d.groups.find((group) => group.id === 'fixed-low-medium');
-assert.deepEqual(correctedGroup.reported_rates, { 'OpenWAM-Alpha': 52.87 });
+assert.deepEqual(correctedGroup.reported_rates, { 'OpenWAM-Alpha': 55 });
 assert(correctedGroup.reported_rates_note.includes('per-task records remain unchanged'));
 const correctedTabletop = read('report-figures.json').models.find((m) => m.id === 'OpenWAM-Alpha').groups.Fixed;
 const highGroup = d.groups.find((group) => group.id === 'fixed-high');

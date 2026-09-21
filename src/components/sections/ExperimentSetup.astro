@@ -20,8 +20,10 @@ import ExecutionTiming from '../ExecutionTiming.astro';
         </p>
         <h4>Beyond EBench: generalization to task compositions</h4>
         <p>
-          The compositional task asks to place a bookmark and then a pen on the same open book,
-          combining the familiar "Bookmark on Book" task with a new pairing, "Pen on Book". The{' '}
+          We evaluate generalization to an unseen task and the ability to compose it with an
+          already-mastered task in sequence. The compositional task asks to place a bookmark and
+          then a pen on the same open book, combining the familiar "Bookmark on Book" task with a
+          new pairing, "Pen on Book". The{' '}
           <a href="#case-poc-setting">compositional evaluation setting</a> details the training-task
           coverage, prescribed sequence, and scoring protocol.
         </p>
@@ -34,9 +36,9 @@ import ExecutionTiming from '../ExecutionTiming.astro';
       >
         <h3 id="adaptation-protocol-title">Model adaptation and evaluation protocol</h3>
         <p>
-          We compare GPT-6-Astra with seven learned Vision-Language-Action (VLA) and World-Action
+          We compare GPT-6-Astra with seven post-trained Vision-Language-Action (VLA) and World-Action
           Model (WAM) policies using their reported EBench leaderboard results. These policies are
-          trained on the public EBench dataset, which contains 6,600 episodes across 26 tasks.
+          trained on the public EBench training dataset, which contains 6,600 episodes across 26 tasks.
           GPT-6-Astra receives one annotated training demonstration per task as in-context input,
           without parameter updates.
         </p>
@@ -80,7 +82,7 @@ import ExecutionTiming from '../ExecutionTiming.astro';
         <p>
           GPT-6-Astra outputs one or more EEF waypoints, together with the requested gripper and
           base targets and execution durations. A fixed robot execution interface carries out
-          these requests. No learned VLA or WAM generates or refines GPT-6-Astra's actions.
+          these requests. No post-trained VLA or WAM generates or refines GPT-6-Astra's actions.
         </p>
         <p>
           The interaction follows an observation–decision–execution–feedback loop. After the

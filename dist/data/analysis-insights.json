@@ -97,7 +97,7 @@
         "put_glass_in_glassbox"
       ],
       "reported_rates": {
-        "OpenWAM-Alpha": 52.87
+        "OpenWAM-Alpha": 55
       },
       "reported_rates_note": "Author-supplied aggregate correction; archived per-task records remain unchanged.",
       "rates": {

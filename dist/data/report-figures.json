@@ -35,11 +35,11 @@
           "episodes": 370
         },
         "Fixed": {
-          "sr": 0.4123,
+          "sr": 0.4214285714285715,
           "score": 0.5943,
           "tasks": 7,
           "episodes": 140,
-          "sr_correction_note": "Author-confirmed aggregate: (52.87 * 3 + 32.50 * 4) / 7 = 41.23 percent. Archived per-task records and overall SR remain unchanged pending reconciliation."
+          "sr_correction_note": "Author-confirmed aggregate: (55.00 * 3 + 32.50 * 4) / 7 = 42.14 percent. Archived per-task records and overall SR remain unchanged pending reconciliation."
         },
         "Short Horizon": {
           "sr": 0.5675,
