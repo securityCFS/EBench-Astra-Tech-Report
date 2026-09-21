@@ -113,9 +113,7 @@ async function initAnalysisInsights() {
       const t = data.tasks.find((t) => t.task === name);
       return `<tr><th scope="row">${esc(taskName(name))}</th><td class="insight-astra">${number(t.rates[astra])}</td><td>${number(t.rates['Qwen-RobotManip'])}</td><td><button class="appendix-link" data-task-video="${name}">Video link ${reportIcon('external-link')}</button></td></tr>`;
     })
-    .join(
-      '',
-    )}</tbody></table></div><p class="insight-note"><button class="appendix-link" data-open-case="fine">Glasses comparison ${reportIcon('external-link')}</button> · <button class="appendix-link" data-icl-package="frame_against_pen_holder">Frame demonstration ${reportIcon('external-link')}</button></p>`;
+    .join('')}</tbody></table></div>`;
 
   const failures = document.getElementById('failure-depth-chart');
   const selected = [

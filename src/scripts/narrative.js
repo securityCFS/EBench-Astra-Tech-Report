@@ -107,13 +107,7 @@ function updateBehaviorNarrative(key) {
   if (key === 'apple') {
     trace.innerHTML =
       '<dt>Call 10 · detect and inspect</dt><dd>“The finger gap closed during transport, indicating the apple slipped. Move the empty hand clear to locate the apple before retrying.”</dd><dt>Call 11 · seek a better view</dt><dd>“Withdraw to a wider view of the tabletop to locate the slipped apple without disturbing the bowl.”</dd><dt>Call 17 · use the earlier experience</dt><dd>“Carry the apple a short distance left and forward using the arm alone, avoiding the earlier base-motion slip.”</dd>';
-    story.insertAdjacentHTML(
-      'beforeend',
-      narrativeHTML(key) +
-        ('<a class="source-link" href="data/apple-recovery-evidence.json" target="_blank">Public action notes & terminal result ' +
-          reportIcon('external-link') +
-          '</a>'),
-    );
+    story.insertAdjacentHTML('beforeend', narrativeHTML(key));
     return;
   }
   trace.insertAdjacentHTML(
@@ -130,7 +124,7 @@ function initNarrative() {
   $('#mobile-content .finding-story').classList.add('report-prose');
   $('#mobile-content').insertAdjacentHTML(
     'beforeend',
-    `<div class="report-prose shift-analysis"><h3>Strong and balanced performance across perturbations</h3>${narrativeHTML('shifts')}<a class="appendix-link" href="#comparison" data-matrix-link="shifts" data-matrix-view="range">Performance across perturbations ${reportIcon('external-link')}</a></div>`,
+    `<div class="report-prose shift-analysis"><h3>Strong and balanced performance across perturbations</h3>${narrativeHTML('shifts')}</div>`,
   );
   $('#mobile-content .shift-analysis').before($('#cross-group-analysis'));
   initAnalysisInsights();
