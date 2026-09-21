@@ -14,10 +14,6 @@ import ExecutionTiming from '../ExecutionTiming.astro';
         aria-labelledby="evaluation-tasks-title"
       >
         <h3 id="evaluation-tasks-title">Evaluation tasks</h3>
-        <p>
-          The study comprises a main EBench evaluation and a separate, small-scale proof of concept
-          (POC) on task composition.
-        </p>
         <h4>EBench: generalization under controlled variations</h4>
         <p>
           The main evaluation covers <strong>26 tasks and 510 episodes</strong> in the EBench
@@ -27,12 +23,10 @@ import ExecutionTiming from '../ExecutionTiming.astro';
           in objects, backgrounds, instructions, and their combinations probe generalization under
           changing conditions.
         </p>
-        <h4>Beyond EBench: unseen task compositions</h4>
+        <h4>Beyond EBench: generalization to task compositions</h4>
         <p>
-          The compositional POC sits <strong>outside the 26-task main evaluation</strong>. It asks a
-          robot to place a bookmark and then a pen on the same open book, combining the familiar
-          <strong>Bookmark on Book</strong> task with <strong>Pen on Book</strong>, which is absent
-          from robot-policy training. The{' '}
+          The compositional task asks to place a bookmark and then a pen on the same open book,
+          combining the familiar "Bookmark on Book" task with a new pairing, "Pen on Book". The{' '}
           <a href="#case-poc-setting">compositional evaluation setting</a> details the training-task
           coverage, prescribed sequence, and scoring protocol.
         </p>
@@ -44,9 +38,9 @@ import ExecutionTiming from '../ExecutionTiming.astro';
         aria-labelledby="adaptation-protocol-title"
       >
         <h3 id="adaptation-protocol-title">Model adaptation and evaluation protocol</h3>
-        <h4>Main evaluation: learned policies and one-shot ICL</h4>
         <p>
-          The VLA/WAM policies are trained on the publicly released EBench dataset, which contains{' '}
+          The Vision-Language-Action (VLA) and World-Action Model (WAM) policies are trained on the
+          publicly released EBench dataset, which contains{' '}
           <strong>6,600 episodes across 26 tasks</strong>. We compare Astra with seven learned
           policies using their reported EBench leaderboard results.
         </p>
@@ -73,15 +67,6 @@ import ExecutionTiming from '../ExecutionTiming.astro';
           episodes, and <strong>Score</strong> is the mean normalized terminal partial credit under
           that task's scoring rules. The main evaluation aggregates these task means with{' '}
           <strong>equal weight across all 26 tasks</strong>.
-        </p>
-        <h4>Compositional POC: zero-shot execution</h4>
-        <p>
-          Comparison policies are retrained on the atomic-task data described above. No ground-truth
-          trajectories are available for the composed task, and all models use{' '}
-          <strong>zero-shot execution of the unseen combination</strong>; Astra receives no
-          in-context demonstration for it. The POC reports success and partial-completion scores
-          over <strong>10 rollouts per method</strong>, separately from the EBench results. These
-          rollouts are not included in the main evaluation's 510 episodes or headline task averages.
         </p>
       </section>
 
