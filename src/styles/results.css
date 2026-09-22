@@ -64,8 +64,8 @@
     color: var(--muted);
   }
   .insight-block {
-    margin: 3rem 0;
-    padding-top: 2rem;
+    margin: calc(var(--subsection-gap) / 2) 0;
+    padding-top: calc(var(--subsection-gap) / 2);
     border-top: 1px solid var(--line);
   }
   #task-gap-analysis {
@@ -73,7 +73,7 @@
   }
   .insight-block > h3 {
     font-size: 1.875rem;
-    margin: 0 0 1.25rem;
+    margin: 0 0 var(--heading-gap);
   }
   .matrix-tabs,
   .case-task-switch,

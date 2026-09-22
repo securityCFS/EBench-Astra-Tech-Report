@@ -25,15 +25,16 @@
     :root {
       --gutter: 1rem;
       --header-height: 4.5rem;
+      --section-gap: 3rem;
+      --subsection-gap: 1.75rem;
+      --section-subsection-gap: 1.5rem;
+      --heading-gap: 1rem;
     }
     h2 {
       font-size: 2rem;
     }
     h3 {
       font-size: 1.625rem;
-    }
-    .section {
-      padding-block: 2.5rem;
     }
     .opening-quote {
       padding: 1.5rem 1rem;

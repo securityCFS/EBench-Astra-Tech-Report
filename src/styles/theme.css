@@ -25,6 +25,10 @@
     --surface: #f8fafc;
     --text: 1.25rem;
     --small: 1rem;
+    --section-gap: 4rem;
+    --subsection-gap: 2rem;
+    --section-subsection-gap: 1.75rem;
+    --heading-gap: 1.25rem;
     --motion-duration: 220ms;
     --motion-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   }
@@ -95,7 +99,8 @@
     text-align: left;
   }
   main h3 {
-    margin-top: 2rem;
+    margin-top: var(--subsection-gap);
+    margin-bottom: var(--heading-gap);
   }
   main strong {
     color: inherit;

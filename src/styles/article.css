@@ -1,7 +1,7 @@
 /* Section frame, headings, opening quotation */
 @layer layout {
   .section {
-    padding: 3.75rem 0;
+    padding: calc(var(--section-gap) / 2) 0;
     margin: 0;
     background: transparent;
     border: 0;
@@ -24,7 +24,44 @@
     text-align: left;
   }
   .section-heading {
-    margin-bottom: 2.25rem;
+    margin-bottom: var(--heading-gap);
+  }
+  .section-inner h2 {
+    margin-bottom: var(--heading-gap);
+  }
+  .section-heading > div:last-child > h2 {
+    margin-bottom: 0;
+  }
+  .section-inner > h2 + .report-prose {
+    margin-top: 0;
+  }
+  .shift-analysis {
+    margin-top: var(--subsection-gap);
+  }
+  .setup-subsection,
+  .case-study-section {
+    margin: var(--subsection-gap) 0 0;
+    padding: 0;
+  }
+  :is(.setup-subsection, .case-study-section) > h3 {
+    margin: 0 0 var(--heading-gap);
+  }
+  .case-study-section {
+    margin-top: calc(var(--subsection-gap) / 2);
+    padding-top: calc(var(--subsection-gap) / 2);
+    border-top: 1px solid var(--line);
+  }
+  /* A section's first subsection already has a heading or introduction above it. */
+  .section-inner > h2 + .case-study-section,
+  .section-inner > h2 + .report-prose > .setup-subsection:first-child {
+    margin-top: var(--section-subsection-gap);
+    padding-top: 0;
+    border-top: 0;
+  }
+  .section-heading + :is(.case-study-section, .insight-block) {
+    margin-top: var(--subsection-gap);
+    padding-top: 0;
+    border-top: 0;
   }
   :is(.section-inner, .section-heading, .report-prose) > :is(h2, h3, h4, p) {
     max-width: none;
@@ -69,5 +106,22 @@
   }
   .opening-quote a {
     color: inherit;
+  }
+}
+
+/* Trim trailing component margins so only the section frame supplies the outer gap. */
+@layer components {
+  :is(
+      .section-inner,
+      .section-heading,
+      .report-prose,
+      .case-study-content,
+      .case-insight,
+      .insight-block,
+      .evidence-stage
+    )
+    > :last-child,
+  :is(.section-inner, .insight-block) > :last-child > :last-child {
+    margin-bottom: 0;
   }
 }
