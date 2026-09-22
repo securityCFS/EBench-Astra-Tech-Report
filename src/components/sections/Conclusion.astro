@@ -66,7 +66,19 @@
         makes sense to retry versus when an approach should be abandoned.
       </p>
       <p>
-        This approach could essentially broaden behavior cloning toward{' '}
+        This approach could essentially broaden the behavior cloning{' '}
+        <a class="paper-citation" href="#ref-act" role="doc-biblioref" aria-label="Reference 11">
+          [11]
+        </a>{' '}
+        <a
+          class="paper-citation"
+          href="#ref-diffusion-policy"
+          role="doc-biblioref"
+          aria-label="Reference 12"
+        >
+          [12]
+        </a>{' '}
+        that every compared policy is trained under, toward{' '}
         <strong>intention imitation</strong>, focusing on matching corrective strategies to observed
         states. The main practical hurdle is preserving this reasoning across different scenes and
         embodiments without simply overfitting to specific demonstration trajectories or compounding
@@ -74,7 +86,7 @@
         managed, agent-generated exploration could offer a helpful complement to purely human
         demonstrations.
       </p>
-      <h3>Grounding exploratory experience into reusable tools</h3>
+      <h3>Ground exploratory experience into reusable tools</h3>
       <p>
         The apple recovery episode illustrates how interaction feedback can inform subsequent
         actions, but scaling this into systematic{' '}
@@ -120,7 +132,7 @@
         transfer across unseen tasks—consistently reducing retries and improving execution
         efficiency rather than overfitting to specific historical failures.
       </p>
-      <h3>Treating safety as an active constraint in execution</h3>
+      <h3>Treat safety as an active constraint in execution</h3>
       <p>
         <strong>Task success alone cannot fully satisfy physical deployment.</strong> Successfully
         retrieving an object after a drop is encouraging, but in real-world environments, the drop
