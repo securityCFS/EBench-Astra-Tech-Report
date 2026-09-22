@@ -5,7 +5,7 @@
     --sans: var(--font-body);
     --ink: #17273b;
     --muted: #4c617d;
-    --paper: #eef0f3;
+    --paper: #e6e8eb;
     --soft: #e5eaf2;
     --accent: #4056e8;
     --purple: var(--accent);
@@ -52,8 +52,11 @@
     isolation: isolate;
   }
   p {
-    margin: 0 0 1.25rem;
+    margin: 0 0 14px;
     color: #111;
+  }
+  .case-description p:last-child {
+    margin-bottom: 0;
   }
   a {
     color: var(--accent);

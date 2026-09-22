@@ -68,6 +68,9 @@
     padding-top: 2rem;
     border-top: 1px solid var(--line);
   }
+  #task-gap-analysis {
+    margin-bottom: 0;
+  }
   .insight-block > h3 {
     font-size: 1.875rem;
     margin: 0 0 1.25rem;

@@ -103,6 +103,11 @@ code {
   padding: 8px 0;
 }
 
+/* No chart column to align against, so the padding only adds stray space. */
+#mobile-content .finding-grid > div:first-child {
+  padding: 0;
+}
+
 .finding-grid > div > p b {
   color: #263f53;
 }
@@ -522,11 +527,8 @@ video[data-view='all'] {
 }
 
 .case-insight {
-  padding-top: 22px;
-  margin-top: 22px;
-  border-top: 1px solid #e6ecf5;
   max-width: 800px;
-  margin: 24px auto 0;
+  margin: 14px auto 0;
 }
 
 .case-insight p {
@@ -2150,9 +2152,7 @@ blockquote {
 
 .case-study-content .case-insight {
   max-width: none;
-  margin: 28px 0 0 auto;
-  margin-left: 0;
-  margin-right: 0;
+  margin: 14px 0 0;
 }
 
 .case-study-content .case-videos {

@@ -53,7 +53,7 @@ vm.runInContext(fs.readFileSync('src/scripts/narrative.js', 'utf8'), context, {
   filename: 'narrative.js',
 });
 const intro = node('[data-narrative="introduction"]').innerHTML;
-assert.equal((intro.match(/<p>/g) || []).length, 2);
+assert.equal((intro.match(/<p>/g) || []).length, 3);
 assert.ok(intro.startsWith('<p>Recent advances in frontier large language models'));
 assert.ok(intro.includes('26 tasks and 510 episodes'));
 assert.ok(!intro.includes('Recent reports have begun to explore this frontier.'));

@@ -137,10 +137,13 @@
   .case-heading h4 {
     font-size: 1.5rem;
   }
-  .case-description,
+  .case-description {
+    max-width: none;
+    margin: 1.5rem 0 14px;
+  }
   .case-insight {
     max-width: none;
-    margin: 1.5rem 0;
+    margin: 14px 0 1.5rem;
   }
   .case-insight p {
     font-size: var(--text);

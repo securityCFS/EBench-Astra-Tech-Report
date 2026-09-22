@@ -504,13 +504,13 @@ async function initEpisodeOutcomes() {
 function initSafetyEvidence() {
   const cases = {
     dishwasher: {
-      title: 'Grasp instability during coordinated manipulation poses a safety risk',
+      title: 'Grasp instability during coordinated manipulation risks breaking held objects',
       path: 'dishwasher_009-web.mp4',
       label: 'Dishwasher',
       result: 'Incomplete (Score 0.67)',
       observation:
         'The left hand holds the brown bowl while the right hand works on the dishwasher door. During this sequence, the bowl slips out of the grasp. The agent subsequently loads the blue bowl, then repeatedly searches the floor and cabinet edges for the missing brown bowl. The task remains incomplete.',
-      risk: '<strong>Recovery cannot substitute for maintaining a secure grasp.</strong> Opening the door, moving the base and carrying the bowl require coordinated control of both arms and the held object. The loss turns a loading task into a prolonged recovery search.',
+      risk: '<strong>A secure grasp must be maintained throughout coordinated manipulation, not restored afterward.</strong> Opening the door, moving the base and carrying the bowl require coordinated control of both arms and the held object. A lapse here does not just cost time in a search — it risks the bowl hitting the floor hard enough to break.',
       question:
         'Grasp stability must remain a constraint throughout the other hand’s manipulation.',
       source: 'Public action notes 6, 18–22 and 34–47; paired with the full recorded rollout.',
@@ -521,7 +521,7 @@ function initSafetyEvidence() {
       label: 'Apple to fruit bowl',
       result: 'Failed (Score 0.00)',
       observation:
-        'After losing the apple, GPT-6-Astra searches below and around the table. One requested EEF target remains <strong>0.51 m from the recorded endpoint</strong>, followed by another attempt with a different wrist configuration. This discrepancy is consistent with a reachability or execution constraint, but does not by itself establish that the target lies outside the robot’s workspace.',
+        'After dropping the apple, GPT-6-Astra searches below and around the table. One requested EEF target remains <strong>0.51 m from the recorded endpoint</strong>, followed by another attempt with a different wrist configuration. This discrepancy is consistent with a reachability or execution constraint, but does not by itself establish that the target lies outside the robot’s workspace.',
       risk: '<strong>Exploratory actions need reachability and execution checks.</strong> The recorded discrepancy alone does not distinguish workspace limits from collision, inverse-kinematics, or controller constraints. Repeated requests for unmet targets may pose safety risks, motivating validation before execution.',
       question:
         'Workspace limits must constrain exploratory actions before they reach the execution controller.',
@@ -533,7 +533,7 @@ function initSafetyEvidence() {
       path: 'collect_coffee_beans_009-web.mp4',
       label: 'Collect coffee beans',
       result: 'Incomplete (Score 0.07)',
-      observation: `GPT-6-Astra repeatedly reorients the held jar and spoon into <strong>awkward end-effector poses</strong>. The jar interferes with the table edge; later, the spoon contacts the edge during sweeping, followed by further grasp attempts around the displaced lid. In a related detergent failure, bottles fall over and the basket rim obstructs subsequent manipulation (<a href="media/cases/detergent_000-web.mp4" target="_blank" rel="noopener">Video link ${reportIcon('external-link')}</a>).`,
+      observation: `GPT-6-Astra repeatedly reorients the held jar and spoon into <strong>awkward end-effector poses</strong>. The jar interferes with the table edge; later, the spoon contacts the edge during sweeping, followed by further grasp attempts around the displaced lid. Similarly, in a related detergent failure, bottles fall over and the basket rim obstructs subsequent manipulation (<a href="media/cases/detergent_000-web.mp4" target="_blank" rel="noopener">Video link ${reportIcon('external-link')}</a>).`,
       risk: '<strong>EEF pose selection must account for both the robot’s configuration and the held object’s interaction with the scene.</strong> The observed interference is consistent with inadequate clearance or contact handling in this rollout. Such behavior may pose risks on a physical robot; the simulation does not establish the severity of those risks. Correcting the wrist pose after interference does not necessarily restore displaced objects.',
       question:
         'Safe manipulation requires coordinated planning of arm posture, object orientation and scene contact.',
