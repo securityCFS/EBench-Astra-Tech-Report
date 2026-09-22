@@ -63,9 +63,15 @@ assert.ok(relatedWork.startsWith('<p>Recent reports have begun to explore this f
 assert.ok(relatedWork.includes('https://robodojo-benchmark.com/report/gpt-6-astra-eval'));
 for (let reference = 1; reference <= 8; reference++)
   assert.ok(relatedWork.includes(`[${reference}]`));
-for (const [anchor] of relatedWork.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/gi))
-  assert.ok(!/\[\d+\]/.test(anchor), 'Citation numbers must not be links.');
-assert.ok(!/href=["']#ref-|role=["']doc-biblioref/.test(relatedWork));
+const referenceIds = [
+  ...fs
+    .readFileSync(`${sectionsDir}/References.astro`, 'utf8')
+    .matchAll(/<li id="([^"]+)" role="doc-biblioentry">/g),
+].map(([, id]) => id);
+const citations = [...relatedWork.matchAll(/<a\b[^>]*href="#([^"]+)"[^>]*>\[(\d+)\]<\/a>/g)];
+assert.equal(citations.length, 8);
+for (const [, target, number] of citations)
+  assert.equal(target, referenceIds[Number(number) - 1], `Reference ${number} target mismatch.`);
 const page = fs.readFileSync('src/pages/index.astro', 'utf8');
 assert.ok(
   page.indexOf('<RelatedWork />') < page.indexOf('<References />'),
