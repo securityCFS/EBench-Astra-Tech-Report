@@ -13,7 +13,7 @@ import ExecutionTiming from '../ExecutionTiming.astro';
         class="setup-subsection"
         aria-labelledby="evaluation-tasks-title"
       >
-        <h3 id="evaluation-tasks-title">Evaluation tasks</h3>
+        <h3 id="evaluation-tasks-title">Evaluation Tasks</h3>
         <h4>EBench: generalization under controlled variations</h4>
         <p>
           Our main evaluation covers all 26 tasks in the EBench test split, spanning nine scene categories across household, retail, and industrial settings. These include 19 mobile and 7 tabletop tasks, with task-level annotations of mobility, manipulation precision, and task horizon. We evaluate generalization under controlled variations in objects, backgrounds, instructions, and their combinations. Across the 510 evaluated episodes, we measure task success rate (SR) and Score, which captures normalized partial completion at the end of an episode. Both metrics are first averaged within each task and then averaged equally across the 26 tasks.
@@ -34,7 +34,7 @@ import ExecutionTiming from '../ExecutionTiming.astro';
         class="setup-subsection"
         aria-labelledby="adaptation-protocol-title"
       >
-        <h3 id="adaptation-protocol-title">Model adaptation and evaluation protocol</h3>
+        <h3 id="adaptation-protocol-title">Model Adaptation and Evaluation Protocol</h3>
         <p>
           We compare GPT-6-Astra with seven post-trained Vision-Language-Action (VLA) and World-Action
           Model (WAM) policies using their reported EBench leaderboard results. These policies are
@@ -67,7 +67,7 @@ import ExecutionTiming from '../ExecutionTiming.astro';
         class="setup-subsection"
         aria-labelledby="observations-control-title"
       >
-        <h3 id="observations-control-title">Observations and direct robot control</h3>
+        <h3 id="observations-control-title">Observations and Direct Robot Control</h3>
         <h4>Inputs: camera views and robot state</h4>
         <p>
           GPT-6-Astra serves directly as the control agent with <code class="reasoning-effort-highlight">high</code> reasoning effort. At each decision step, it receives RGB observations and the current robot state, including end-effector (EEF) poses, gripper state, base pose, and the simulator timestep. The initial observation includes images from the overview, left wrist, and right wrist cameras; subsequent tool calls return the camera views requested by the model.
