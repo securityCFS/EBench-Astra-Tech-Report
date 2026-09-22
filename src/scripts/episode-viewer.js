@@ -146,7 +146,17 @@
     content.innerHTML = `<div class="episode-heading"><div class="episode-task"><h4>${escape(episode.instruction)}</h4><details class="episode-prompt-disclosure"><summary>${icon('chevron-down')}Initial task prompt</summary><div class="episode-prompt" tabindex="0">${escape(episode.initial_prompt)}</div></details></div><span class="episode-outcome" data-success="${Boolean(episode.result.sr)}">${episode.result.sr ? `${icon('check')}Successful` : 'Incomplete'}<small>Final score ${episode.result.score.toFixed(1)}</small></span></div>
       <div class="episode-stage">
         <div class="episode-screen">
-          <div class="episode-cameras" role="group" aria-label="Video camera"><span class="episode-camera-indicator" aria-hidden="true"></span>${['Overview', 'Left wrist', 'Right wrist', 'All views'].map((label, i) => `<button type="button" data-episode-camera="${i === 3 ? 'all' : i}" aria-pressed="${camera === (i === 3 ? 'all' : String(i))}">${label}</button>`).join('')}</div>
+          <div class="episode-cameras" role="group" aria-label="Video camera"><span class="episode-camera-indicator" aria-hidden="true"></span>${[
+            ['all', 'All views'],
+            ['0', 'Overview'],
+            ['1', 'Left wrist'],
+            ['2', 'Right wrist'],
+          ]
+            .map(
+              ([value, label]) =>
+                `<button type="button" data-episode-camera="${value}" aria-pressed="${camera === value}">${label}</button>`,
+            )
+            .join('')}</div>
           <div class="episode-viewport"><video data-camera-ready="true" data-custom-controls="true" preload="metadata" muted loop playsinline src="${escape(episode.video)}" aria-label="Recorded execution: ${escape(episode.instruction)}"></video><div class="episode-multiview">${['Overview', 'Left wrist', 'Right wrist'].map((label, i) => `<figure><canvas data-camera-tile="${i}" role="img" aria-label="${label} camera"></canvas><figcaption>${label}</figcaption></figure>`).join('')}</div></div>
           <p class="episode-caption" role="status"></p>
         </div>
