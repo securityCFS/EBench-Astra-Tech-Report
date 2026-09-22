@@ -80,16 +80,18 @@ import ExecutionTiming from '../ExecutionTiming.astro';
         </p>
         <h4>Outputs: action requests through a fixed interface</h4>
         <p>
-          GPT-6-Astra outputs one or more EEF waypoints, together with the requested gripper and
-          base targets and execution durations. A fixed robot execution interface carries out
-          these requests. No post-trained VLA or WAM generates or refines GPT-6-Astra's actions.
+          Given the current EEF pose, gripper state, and base position, GPT-6-Astra adaptively
+          outputs one or more EEF waypoints, together with the requested gripper and base targets
+          and execution durations. These waypoints are passed to a low-level inverse kinematics
+          (IK) solver for execution. No post-trained VLA or WAM generates or refines
+          GPT-6-Astra's actions.
         </p>
         <p>
           The interaction follows an observation–decision–execution–feedback loop. After the
-          complete waypoint sequence in a tool call finishes, the interface returns updated robot
-          states and the requested camera views for the next decision. The model does not receive
-          intermediate observations or make new decisions between internal execution chunks within
-          that call.
+          trajectory finishes executing, the control interface returns the updated proprioceptive
+          observations and the requested camera views for the next decision. The model does not
+          receive intermediate observations or make new decisions between internal execution
+          chunks within that call.
         </p>
 
         {/* <ExecutionTiming /> */}
