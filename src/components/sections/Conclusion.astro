@@ -1,38 +1,44 @@
 <section id="conclusion" class="section">
   <div class="section-inner">
-    <h2>07 Conclusion and Insights: where shall we head to?</h2>
+    <h2>07 Conclusions and Future Works</h2>
     <div class="report-prose conclusion-prose">
       <p>
-        The evaluation places GPT-6-Astra’s embodied capability frontier between{' '}
-        <strong>flexible task interpretation and reliable physical execution</strong>. With one
-        annotated demonstration per task, it ranks second among eight models and leads on short-horizon tasks, while trailing on tabletop and long-horizon tasks. The recordings show
-        how it explores alternative approaches, recovers disrupted goals and uses an unsuccessful
-        attempt to revise its next action.
+        The evaluation places GPT-6-Astra’s capabilities between{' '}
+        <strong>flexible task interpretation and reliable physical execution</strong>. With a single
+        annotated demonstration per task, it ranks third in the leaderboard, and second among the
+        eight evaluated models. The agent is leading on short-horizon tasks, while trailing on
+        tabletop and long-horizon tasks. Qualitatively, the execution recordings illustrate the
+        model attempting alternative approaches, recovering after a disrupted subgoal, and using a
+        failed attempt to inform its subsequent action.
       </p>
       <p>
-        <strong>Precise alignment and manipulation remain clear execution bottlenecks</strong>, with
-        leading specialized policies retaining a substantial advantage on precision-sensitive tasks.
-        The logs also expose a control challenge: the agent selects corrections between action
-        chunks, while contact and grasp stability can change within a chunk. Large EEF corrections
-        and awkward object poses raise safety concerns for physical deployment. These findings
-        motivate four research directions.
+        Meanwhile,{' '}
+        <strong>precise alignment and physical contact remain clear execution bottlenecks</strong>,
+        where leading specialized policies still hold a considerable edge. The logs also point to a
+        fundamental control trade-off: while the agent selects corrections at the boundaries of
+        action chunks, physical contact and grasp stability often evolve within the chunk itself. In
+        practice, large end-effector adjustments and awkward object poses raise legitimate safety
+        concerns for real-world deployment. These observations point toward several practical
+        directions.
       </p>
-      <h3>Combine specialized policies with agents</h3>
+      <h3>Combine post-trained policies with agents</h3>
       <p>
-        The comparisons show{' '}
+        The comparisons suggest{' '}
         <strong>
-          complementary capabilities in frontier agents and low-level control policies
+          complementary strengths between frontier reasoning agents and low-level controllers
         </strong>
-        . GPT-6-Astra’s task interpretation and recovery offer ways to handle unfamiliar states that
-        challenge demonstration-trained policies. Specialized policies provide responsive, precise
-        execution within the conditions they have learned. A combined system could assign
-        exploration and goal revision to the agent, while a local controller maintains the fast
-        feedback needed for contact-sensitive operations.
+        . GPT-6-Astra’s semantic planning and recovery provide ways to navigate unfamiliar states
+        that often challenge demonstration-trained policies. Conversely, specialized controllers
+        deliver the responsive, precise execution required for contact-sensitive operations. A
+        natural next step is exploring hybrid setups where the agent handles exploration and goal
+        revision, while a dedicated local controller maintains high-frequency feedback for delicate
+        contacts.
       </p>
       <p>
-        <strong>Coupling these capabilities requires an explicit handoff.</strong> The agent can
-        specify goals and contact assumptions. The controller can report grasp loss or unexpected
-        contact, interrupt execution and return control to the agent.{' '}
+        Making this coordination work in practice depends on{' '}
+        <strong>clear handoff protocols</strong>. The agent might propose candidate goals and
+        contact assumptions, while the local controller monitors for slip or unexpected resistance,
+        interrupting execution to return control when needed. Frameworks like{' '}
         <a
           class="source-link"
           href="https://rpent.readthedocs.io/en/latest/rst_source/development/architecture.html"
@@ -44,57 +50,94 @@
         <a class="paper-citation" href="#ref-rpent" role="doc-biblioref" aria-label="Reference 9">
           [9]
         </a>
-        , which exposes VLA skills as retryable tools to a planner, provides one architecture for
-        coupling a planner to learned skills. Its performance under scene changes and
-        contact-sensitive tasks is a useful direction for evaluation.
+        , which treat learned VLA skills as callable tools for a planner, illustrate one promising
+        architecture; assessing how well such designs hold up under unexpected scene changes and
+        contact constraints remains an open question. Yet, how to effectively combine a strong agent
+        with specialized models hasn’t been fully explored.
       </p>
       <h3>Teach smaller policies to plan, explore, and recover</h3>
       <p>
-        A second direction is to{' '}
-        <strong>transfer the agent’s action strategy to smaller on-device policies</strong>. Its
-        rollouts include attempts to obtain better observations and corrections after failed
-        actions. Training examples could connect the{' '}
-        <strong>goal, failure state, revised strategy and observed outcome</strong>, retaining
-        unsuccessful corrections as well as successful recovery. A policy could learn when to
-        inspect or retry, and when to abandon an ineffective procedure.
+        A second direction involves{' '}
+        <strong>transferring the agent’s corrective strategies to smaller on-device models</strong>.
+        The observed rollouts capture meaningful exploratory behaviors, such as re-orienting for a
+        better view or adjusting an approach angle after a misstep. Training setups could explicitly
+        pair initial goals and failure states with revised strategies and outcomes—incorporating
+        both failed corrections and successful recoveries. This could help a policy learn when it
+        makes sense to retry versus when an approach should be abandoned.
       </p>
       <p>
-        This broadens behavior cloning toward <strong>intention imitation</strong>: learning which
-        corrective strategy fits a goal and observed state. The challenge is to preserve that
-        relationship across scenes and embodiments without copying the teacher’s coordinates or
-        mistakes. Agent-generated exploration could make data collection more scalable than human
-        demonstrations alone, provided transfer quality, safety and collection cost hold up.
+        This approach could essentially broaden behavior cloning toward{' '}
+        <strong>intention imitation</strong>, focusing on matching corrective strategies to observed
+        states. The main practical hurdle is preserving this reasoning across different scenes and
+        embodiments without simply overfitting to specific demonstration trajectories or compounding
+        execution errors. If issues around transfer fidelity, safety, and collection overhead can be
+        managed, agent-generated exploration could offer a helpful complement to purely human
+        demonstrations.
       </p>
-      <h3>Turn exploratory experience into transferable knowledge and tools</h3>
+      <h3>Grounding exploratory experience into reusable tools</h3>
       <p>
-        The apple recovery example suggests the potential value of converting exploratory
-        experience into transferable knowledge. Reusable contact checks, recovery procedures or
-        tools distilled this way could improve both the agent and its harness. This offers a route to studying{' '}
-        <strong>recursive self-improvement (RSI)</strong> in embodied systems.
+        The apple recovery episode illustrates how interaction feedback can inform subsequent
+        actions, but scaling this into systematic{' '}
+        <strong>recursive self-improvement (RSI)</strong> requires deliberate design. Rather than
+        relying on ephemeral context histories or rigid hardcoded assertions, the core challenge
+        lies in distilling trial-and-error rollouts into efficient, structured knowledge. Frameworks
+        like{' '}
+        <a
+          class="source-link"
+          href="https://arxiv.org/abs/2609.10522"
+          target="_blank"
+          rel="noopener"
+        >
+          Show-Harness
+        </a>{' '}
+        <a
+          class="paper-citation"
+          href="#ref-show-harness"
+          role="doc-biblioref"
+          aria-label="Reference 10"
+        >
+          [10]
+        </a>{' '}
+        and{' '}
+        <a
+          class="source-link"
+          href="https://rpent.readthedocs.io/en/latest/rst_source/development/architecture.html"
+          target="_blank"
+          rel="noopener"
+        >
+          RPent
+        </a>{' '}
+        <a class="paper-citation" href="#ref-rpent" role="doc-biblioref" aria-label="Reference 9">
+          [9]
+        </a>{' '}
+        demonstrate the viability of exposing learned behaviors as modular interfaces; building on
+        this, an RSI loop must actively curate what to keep. It needs to distinguish robust,
+        generalizable recovery strategies from accidental successes or brittle environment hacks
+        that happen to clear a single trial. By leveraging the agent’s emergent reasoning to
+        synthesize, verify, and catalog these validated strategies into reusable tools, the system
+        can continuously expand its behavioral library without human-in-the-loop engineering. The
+        critical test for such an architecture is whether these accumulated capabilities genuinely
+        transfer across unseen tasks—consistently reducing retries and improving execution
+        efficiency rather than overfitting to specific historical failures.
+      </p>
+      <h3>Treating safety as an active constraint in execution</h3>
+      <p>
+        <strong>Task success alone cannot fully satisfy physical deployment.</strong> Successfully
+        retrieving an object after a drop is encouraging, but in real-world environments, the drop
+        itself may have already damaged the hardware or workspace. Large trajectory corrections,
+        blind gripper closures, and uncertain contact heights all demand active runtime constraints.
+        Rather than relying solely on post-hoc error recovery, the system needs low-level
+        guardrails—such as dynamic force and velocity limits, clearance verification, and reflexive
+        interrupts—integrated directly into the action pipeline. At the same time, the agent must be
+        sensitive to perceptual ambiguity, actively pausing to adjust camera viewpoints or request
+        human intervention when geometry is uncertain.
       </p>
       <p>
-        The test is whether a lesson improves execution on held-out tasks. An exploration-derived
-        tool could be evaluated for fewer retries or higher completion, including with a different
-        base model. Its applicable conditions and completion checks should be recorded before it is
-        frozen and compared on new tasks against raw-history and no-memory alternatives.
-      </p>
-      <h3>Make safety part of the action policy</h3>
-      <p>
-        <strong>Task success alone is insufficient for physical deployment.</strong> An object can
-        be recovered after a drop, but the drop may already have caused damage. Large corrections,
-        obstructed closures and uncertain contact heights require constraints during execution.
-        These include motion and force limits, grasp and clearance checks, coordinated bimanual
-        control, and the ability to interrupt a hazardous action. The agent also needs to recognize
-        uncertain geometry and seek a better observation or assistance.
-      </p>
-      <p>
-        For embodied research, these results motivate treating{' '}
-        <strong>
-          task understanding, exploration and recovery as capabilities to couple with precise
-          control
-        </strong>
-        . The central question is how to preserve the agent’s flexibility while making its actions
-        accurate, timely and safe—and how to transfer useful experience to later tasks.
+        Ultimately, these findings show that high-level task planning, exploration, and error
+        recovery cannot be developed in isolation from physical control. Moving forward, the key
+        challenge is balancing the agent’s behavioral flexibility with the precision,
+        responsiveness, and safety demanded by physical reality—while finding practical ways to
+        transfer the experience gained in one task to the next.
       </p>
     </div>
   </div>
