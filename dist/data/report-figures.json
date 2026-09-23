@@ -42,16 +42,16 @@
           "sr_correction_note": "Author-confirmed aggregate: (55.00 * 3 + 32.50 * 4) / 7 = 42.14 percent. Archived per-task records and overall SR remain unchanged pending reconciliation."
         },
         "Short Horizon": {
-          "sr": 0.5675,
-          "score": 0.6687,
-          "tasks": 19,
-          "episodes": 375
+          "sr": 0.6591,
+          "score": 0.7,
+          "tasks": 11,
+          "episodes": 220
         },
         "Long Horizon": {
-          "sr": 0.5143,
-          "score": 0.7872,
-          "tasks": 7,
-          "episodes": 135
+          "sr": 0.4756,
+          "score": 0.701,
+          "tasks": 15,
+          "episodes": 290
         }
       },
       "generalization": {
@@ -122,16 +122,16 @@
           "episodes": 140
         },
         "Short Horizon": {
-          "sr": 0.536,
-          "score": 0.6737,
-          "tasks": 19,
-          "episodes": 375
+          "sr": 0.7318,
+          "score": 0.7659,
+          "tasks": 11,
+          "episodes": 220
         },
         "Long Horizon": {
-          "sr": 0.281,
-          "score": 0.5994,
-          "tasks": 7,
-          "episodes": 135
+          "sr": 0.2733,
+          "score": 0.5714,
+          "tasks": 15,
+          "episodes": 290
         }
       },
       "generalization": {
@@ -202,16 +202,16 @@
           "episodes": 140
         },
         "Short Horizon": {
-          "sr": 0.5018,
-          "score": 0.6053,
-          "tasks": 19,
-          "episodes": 375
+          "sr": 0.5591,
+          "score": 0.5977,
+          "tasks": 11,
+          "episodes": 220
         },
         "Long Horizon": {
-          "sr": 0.331,
-          "score": 0.6162,
-          "tasks": 7,
-          "episodes": 135
+          "sr": 0.38,
+          "score": 0.6159,
+          "tasks": 15,
+          "episodes": 290
         }
       },
       "generalization": {
@@ -282,16 +282,16 @@
           "episodes": 140
         },
         "Short Horizon": {
-          "sr": 0.4263,
-          "score": 0.5152,
-          "tasks": 19,
-          "episodes": 375
+          "sr": 0.5227,
+          "score": 0.5636,
+          "tasks": 11,
+          "episodes": 220
         },
         "Long Horizon": {
-          "sr": 0.381,
-          "score": 0.6228,
-          "tasks": 7,
-          "episodes": 135
+          "sr": 0.3344,
+          "score": 0.5299,
+          "tasks": 15,
+          "episodes": 290
         }
       },
       "generalization": {
@@ -362,16 +362,16 @@
           "episodes": 140
         },
         "Short Horizon": {
-          "sr": 0.3395,
-          "score": 0.4175,
-          "tasks": 19,
-          "episodes": 375
+          "sr": 0.4682,
+          "score": 0.5023,
+          "tasks": 11,
+          "episodes": 220
         },
         "Long Horizon": {
-          "sr": 0.3476,
-          "score": 0.6064,
-          "tasks": 7,
-          "episodes": 135
+          "sr": 0.2489,
+          "score": 0.4435,
+          "tasks": 15,
+          "episodes": 290
         }
       },
       "generalization": {
@@ -442,16 +442,16 @@
           "episodes": 140
         },
         "Short Horizon": {
-          "sr": 0.364,
-          "score": 0.4629,
-          "tasks": 19,
-          "episodes": 375
+          "sr": 0.4045,
+          "score": 0.4386,
+          "tasks": 11,
+          "episodes": 220
         },
         "Long Horizon": {
-          "sr": 0.2643,
-          "score": 0.5066,
-          "tasks": 7,
-          "episodes": 135
+          "sr": 0.2878,
+          "score": 0.5011,
+          "tasks": 15,
+          "episodes": 290
         }
       },
       "generalization": {
@@ -522,16 +522,16 @@
           "episodes": 140
         },
         "Short Horizon": {
-          "sr": 0.3605,
-          "score": 0.4539,
-          "tasks": 19,
-          "episodes": 375
+          "sr": 0.4,
+          "score": 0.4318,
+          "tasks": 11,
+          "episodes": 220
         },
         "Long Horizon": {
-          "sr": 0.2571,
-          "score": 0.4778,
-          "tasks": 7,
-          "episodes": 135
+          "sr": 0.2833,
+          "score": 0.4812,
+          "tasks": 15,
+          "episodes": 290
         }
       },
       "generalization": {
@@ -602,16 +602,16 @@
           "episodes": 140
         },
         "Short Horizon": {
-          "sr": 0.2711,
-          "score": 0.3523,
-          "tasks": 19,
-          "episodes": 375
+          "sr": 0.4636,
+          "score": 0.4955,
+          "tasks": 11,
+          "episodes": 220
         },
         "Long Horizon": {
-          "sr": 0.2167,
-          "score": 0.4221,
-          "tasks": 7,
-          "episodes": 135
+          "sr": 0.1044,
+          "score": 0.2799,
+          "tasks": 15,
+          "episodes": 290
         }
       },
       "generalization": {
@@ -694,12 +694,12 @@
         {
           "key": "Short Horizon",
           "label": "Short",
-          "tasks": 19
+          "tasks": 11
         },
         {
           "key": "Long Horizon",
           "label": "Long",
-          "tasks": 7
+          "tasks": 15
         }
       ]
     }
@@ -920,7 +920,7 @@
       "label": "Collect coffee beans",
       "precision": "High",
       "mobility": "Fixed",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "episodes": 20,
       "models": {
         "OpenWAM-Alpha": {
@@ -1088,7 +1088,7 @@
       "label": "Flip cup & collect cookies",
       "precision": "Medium",
       "mobility": "Fixed",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "episodes": 20,
       "models": {
         "OpenWAM-Alpha": {
@@ -1130,7 +1130,7 @@
       "label": "Frame placement",
       "precision": "Low",
       "mobility": "Fixed",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "episodes": 20,
       "models": {
         "OpenWAM-Alpha": {
@@ -1298,7 +1298,7 @@
       "label": "Microwave",
       "precision": "Low",
       "mobility": "Mobile",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "episodes": 15,
       "models": {
         "OpenWAM-Alpha": {
@@ -1340,7 +1340,7 @@
       "label": "Peg in hole",
       "precision": "High",
       "mobility": "Fixed",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "episodes": 20,
       "models": {
         "OpenWAM-Alpha": {
@@ -1382,7 +1382,7 @@
       "label": "Pen",
       "precision": "Medium",
       "mobility": "Mobile",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "episodes": 20,
       "models": {
         "OpenWAM-Alpha": {
@@ -1466,7 +1466,7 @@
       "label": "Glass into glassbox",
       "precision": "Medium",
       "mobility": "Fixed",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "episodes": 20,
       "models": {
         "OpenWAM-Alpha": {
@@ -1718,7 +1718,7 @@
       "label": "Tighten nut",
       "precision": "High",
       "mobility": "Fixed",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "episodes": 20,
       "models": {
         "OpenWAM-Alpha": {

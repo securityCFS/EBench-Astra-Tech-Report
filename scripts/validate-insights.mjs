@@ -13,7 +13,7 @@ assert.equal(
 );
 assert.deepEqual(
   d.groups.map((g) => g.n),
-  [12, 7, 3, 4],
+  [10, 9, 3, 4],
 );
 for (const g of d.groups) {
   for (const m of d.models)
@@ -33,7 +33,7 @@ const correctedTabletop = read('report-figures.json').models.find((m) => m.id ==
 const highGroup = d.groups.find((group) => group.id === 'fixed-high');
 close(correctedTabletop.sr * 100,
   (correctedGroup.reported_rates['OpenWAM-Alpha'] * correctedGroup.n + highGroup.rates['OpenWAM-Alpha'] * highGroup.n) / (correctedGroup.n + highGroup.n));
-close(d.groups[0].rates[a], 73.19444444444444);
+close(d.groups[0].rates[a], 79);
 close(d.groups[2].rates[a], 31.666666666666668);
 assert.equal(Math.max(...Object.values(d.groups[0].rates)), d.groups[0].rates[a]);
 for (const t of d.tasks) {

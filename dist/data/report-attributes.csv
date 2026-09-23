@@ -4,54 +4,54 @@ OpenWAM-Alpha,Medium,8,45.62,0.6660
 OpenWAM-Alpha,High,4,32.50,0.5304
 OpenWAM-Alpha,Mobile,19,60.18,0.7397
 OpenWAM-Alpha,Fixed,7,42.14,0.5943
-OpenWAM-Alpha,Short Horizon,19,56.75,0.6687
-OpenWAM-Alpha,Long Horizon,7,51.43,0.7872
+OpenWAM-Alpha,Short Horizon,11,65.91,0.7000
+OpenWAM-Alpha,Long Horizon,15,47.56,0.7010
 Astra (ICL),Low,14,60.60,0.7549
 Astra (ICL),Medium,8,40.21,0.6052
 Astra (ICL),High,4,11.25,0.3964
 Astra (ICL),Mobile,19,56.58,0.7300
 Astra (ICL),Fixed,7,20.00,0.4465
-Astra (ICL),Short Horizon,19,53.60,0.6737
-Astra (ICL),Long Horizon,7,28.10,0.5994
+Astra (ICL),Short Horizon,11,73.18,0.7659
+Astra (ICL),Long Horizon,15,27.33,0.5714
 Qwen-RobotManip,Low,14,50.60,0.6055
 Qwen-RobotManip,Medium,8,50.21,0.6688
 Qwen-RobotManip,High,4,18.75,0.4964
 Qwen-RobotManip,Mobile,19,43.95,0.5759
 Qwen-RobotManip,Fixed,7,50.00,0.6960
-Qwen-RobotManip,Short Horizon,19,50.18,0.6053
-Qwen-RobotManip,Long Horizon,7,33.10,0.6162
+Qwen-RobotManip,Short Horizon,11,55.91,0.5977
+Qwen-RobotManip,Long Horizon,15,38.00,0.6159
 π₀.₅,Low,14,49.64,0.5966
 π₀.₅,Medium,8,38.96,0.5396
 π₀.₅,High,4,17.50,0.3698
 π₀.₅,Mobile,19,45.88,0.5781
 π₀.₅,Fixed,7,29.29,0.4519
-π₀.₅,Short Horizon,19,42.63,0.5152
-π₀.₅,Long Horizon,7,38.10,0.6228
+π₀.₅,Short Horizon,11,52.27,0.5636
+π₀.₅,Long Horizon,15,33.44,0.5299
 InternVLA-A1.5,Low,14,44.64,0.5361
 InternVLA-A1.5,Medium,8,26.04,0.4519
 InternVLA-A1.5,High,4,13.75,0.2642
 InternVLA-A1.5,Mobile,19,42.28,0.5619
 InternVLA-A1.5,Fixed,7,12.14,0.2146
-InternVLA-A1.5,Short Horizon,19,33.95,0.4175
-InternVLA-A1.5,Long Horizon,7,34.76,0.6064
+InternVLA-A1.5,Short Horizon,11,46.82,0.5023
+InternVLA-A1.5,Long Horizon,15,24.89,0.4435
 π₀,Low,14,39.05,0.4915
 π₀,Medium,8,30.00,0.4607
 π₀,High,4,22.50,0.4437
 π₀,Mobile,19,34.04,0.4688
 π₀,Fixed,7,32.86,0.4907
-π₀,Short Horizon,19,36.40,0.4629
-π₀,Long Horizon,7,26.43,0.5066
+π₀,Short Horizon,11,40.45,0.4386
+π₀,Long Horizon,15,28.78,0.5011
 GigaBrain-0.7,Low,14,35.36,0.4478
 GigaBrain-0.7,Medium,8,33.75,0.4484
 GigaBrain-0.7,High,4,25.00,0.5277
 GigaBrain-0.7,Mobile,19,31.58,0.4133
 GigaBrain-0.7,Fixed,7,37.86,0.5879
-GigaBrain-0.7,Short Horizon,19,36.05,0.4539
-GigaBrain-0.7,Long Horizon,7,25.71,0.4778
+GigaBrain-0.7,Short Horizon,11,40.00,0.4318
+GigaBrain-0.7,Long Horizon,15,28.33,0.4812
 FastWAM,Low,14,35.71,0.4573
 FastWAM,Medium,8,18.96,0.3276
 FastWAM,High,4,3.75,0.1562
 FastWAM,Mobile,19,34.04,0.4605
 FastWAM,Fixed,7,2.86,0.1285
-FastWAM,Short Horizon,19,27.11,0.3523
-FastWAM,Long Horizon,7,21.67,0.4221
+FastWAM,Short Horizon,11,46.36,0.4955
+FastWAM,Long Horizon,15,10.44,0.2799

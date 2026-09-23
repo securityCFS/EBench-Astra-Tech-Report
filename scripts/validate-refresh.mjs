@@ -83,7 +83,7 @@ for (const width of [340, 760]) {
   assert.equal(rows.filter((r) => Math.abs(r.delta) < 1e-9).length, 4);
   assert.equal(rows.find((r) => r.task.task === 'dishwasher').delta, -0.85);
   const mobileShort = tasks.filter((t) => t.mobility === 'Mobile' && t.horizon === 'Short Horizon');
-  assert.equal(mobileShort.length, 12);
+  assert.equal(mobileShort.length, 10);
   for (const reference of data.models.filter((m) => m.id !== 'Astra (ICL)').map((m) => m.id)) {
     const filtered = context.viz.astraVersusField(host, {
       tasks: mobileShort,
@@ -92,7 +92,7 @@ for (const width of [340, 760]) {
       order: 'task',
     });
     check(host);
-    assert.equal(filtered.length, 12);
+    assert.equal(filtered.length, 10);
     assert.deepEqual(
       Array.from(filtered, (r) => r.task.task),
       mobileShort.map((t) => t.task).sort((a, b) => a.localeCompare(b)),

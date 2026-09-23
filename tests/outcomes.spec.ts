@@ -224,7 +224,7 @@ test('task rows are a continuous unboxed chart with in-flow readouts and no narr
   }
 });
 
-test('trait filters narrow the task list without stranding the reader or moving the default', async ({
+test('trait filters narrow the task list without moving the default', async ({
   page,
 }) => {
   await ready(page);
@@ -242,30 +242,34 @@ test('trait filters narrow the task list without stranding the reader or moving 
   await expect(host.locator('[data-failure-task] .task-tags svg')).toHaveCount(52);
   for (const mark of await host.locator('[data-failure-task] .task-tags svg').all())
     await expect(mark).toHaveAttribute('aria-hidden', 'true');
-  expect(await counts()).toEqual(['Low:14', 'Medium:8', 'High:4', 'Short:19', 'Long:7']);
+  expect(await counts()).toEqual(['Low:14', 'Medium:8', 'High:4', 'Short:11', 'Long:15']);
   await expect(host.locator('[data-failure-task]:visible')).toHaveCount(7);
   await host.locator('[data-trait-filter="horizon"][data-value="Long"]').click();
-  await expect(host.locator('[data-failure-task]:visible')).toHaveCount(7);
+  // A filter queries all 26 tasks, so it can show more rows than the seven-task default.
+  await expect(host.locator('[data-failure-task]:visible')).toHaveCount(15);
   expect(
     await rows.evaluateAll((all) =>
       all.filter((r) => !(r as HTMLElement).hidden).every((r) => (r as HTMLElement).dataset.horizon === 'Long'),
     ),
   ).toBe(true);
   await expect(host.locator('.failure-expand')).toBeHidden();
-  // The one absent combination is greyed and explained, never an empty list.
+  // Counts on each axis are conditioned on the selection made on the other.
+  expect(await counts()).toEqual(['Low:6', 'Medium:6', 'High:3', 'Short:11', 'Long:15']);
+  await expect(host.locator('.outcome-filter-status')).toHaveText('Showing 15 of 26 tasks: long horizon.');
   const high = host.locator('[data-trait-filter="precision"][data-value="High"]');
-  await expect(high).toHaveAttribute('aria-disabled', 'true');
-  expect(await counts()).toEqual(['Low:4', 'Medium:3', 'High:0', 'Short:19', 'Long:7']);
-  await expect(host.locator('.outcome-filter-status')).toHaveText(
-    'Showing 7 of 26 tasks: long horizon. None of them is high precision.',
-  );
   await high.click();
-  await expect(host.locator('[data-failure-task]:visible')).toHaveCount(7);
-  await expect(high).toHaveAttribute('aria-pressed', 'false');
-  await host.locator('[data-trait-filter="precision"][data-value="Low"]').click();
-  await expect(host.locator('[data-failure-task]:visible')).toHaveCount(4);
+  await expect(host.locator('[data-failure-task]:visible')).toHaveCount(3);
+  await expect(high).toHaveAttribute('aria-pressed', 'true');
+  expect(await counts()).toEqual(['Low:6', 'Medium:6', 'High:3', 'Short:1', 'Long:3']);
   await expect(host.locator('.outcome-filter-status')).toHaveText(
-    'Showing 4 of 26 tasks: low precision, long horizon.',
+    'Showing 3 of 26 tasks: high precision, long horizon.',
+  );
+  // Choosing another value on the same axis replaces the first.
+  await host.locator('[data-trait-filter="precision"][data-value="Low"]').click();
+  await expect(host.locator('[data-failure-task]:visible')).toHaveCount(6);
+  await expect(high).toHaveAttribute('aria-pressed', 'false');
+  await expect(host.locator('.outcome-filter-status')).toHaveText(
+    'Showing 6 of 26 tasks: low precision, long horizon.',
   );
   // Clearing returns to the seven-task default with its expand control intact.
   await host.locator('.outcome-trait-clear').click();

@@ -76,7 +76,7 @@ async function initAnalysisInsights() {
     })),
   ];
   let groupMetric = 'sr';
-  groupRoot.innerHTML = `<div class="capability-table-controls"><div class="chart-metrics" role="group" aria-label="Capability comparison metric"><button type="button" data-metric="sr" aria-pressed="true">SR (%)</button><button type="button" data-metric="score" aria-pressed="false">Score</button></div></div><div class="insight-table-scroll" tabindex="0" role="region" aria-label="Performance by operating mode, horizon and precision"></div><p class="insight-note" id="capability-table-note">Each task has equal weight within its subgroup. The Operating Mode rows partition all 26 tasks. The Horizon rows split only the 19 mobile tasks and the Precision rows only the 7 tabletop tasks, so those four rows are cross-domain subsets and do not reproduce the benchmark's own Horizon or Precision groupings &mdash; for example the 12 mobile short-horizon tasks are a subset of the 19 short-horizon tasks. <strong>Bold</strong>: best in row; shaded column: GPT-6-Astra.</p>`;
+  groupRoot.innerHTML = `<div class="capability-table-controls"><div class="chart-metrics" role="group" aria-label="Capability comparison metric"><button type="button" data-metric="sr" aria-pressed="true">SR (%)</button><button type="button" data-metric="score" aria-pressed="false">Score</button></div></div><div class="insight-table-scroll" tabindex="0" role="region" aria-label="Performance by operating mode, horizon and precision"></div><p class="insight-note" id="capability-table-note">Each task has equal weight within its subgroup. The Operating Mode rows partition all 26 tasks. The Horizon rows split only the 19 mobile tasks and the Precision rows only the 7 tabletop tasks, so those four rows are cross-domain subsets and do not reproduce the benchmark's own Horizon or Precision groupings &mdash; for example the 10 mobile short-horizon tasks are a subset of the 11 short-horizon tasks. <strong>Bold</strong>: best in row; shaded column: GPT-6-Astra.</p>`;
   initSegmentedControl(groupRoot.querySelector('.chart-metrics'));
   function drawCapabilityTable() {
     const metricLabel = groupMetric === 'sr' ? 'Success rate (%)' : 'Score (0–1)';
@@ -126,9 +126,9 @@ async function initAnalysisInsights() {
     'bottle',
   ];
   failures.classList.add('outcome-breakdown');
-  // Each task carries two traits. Precision has three raw values and horizon two; only
-  // five of the six combinations exist (no high-precision task is long-horizon), which the
-  // filter row has to say rather than let a reader discover as an empty list.
+  // Each task carries two traits. Precision has three raw values and horizon two. All six
+  // combinations occur today, but should a filter combination ever match no task, the filter
+  // row says so rather than let a reader discover an empty list.
   const traitAxes = {
     precision: { label: 'Precision', values: ['Low', 'Medium', 'High'], demanding: 'High' },
     horizon: { label: 'Horizon', values: ['Short', 'Long'], demanding: 'Long' },

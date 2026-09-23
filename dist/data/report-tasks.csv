@@ -39,14 +39,14 @@ bowl_to_plate,InternVLA-A1.5,20,Low,Mobile,Short Horizon,60.00,0.6000
 bowl_to_plate,π₀,20,Low,Mobile,Short Horizon,60.00,0.6000
 bowl_to_plate,GigaBrain-0.7,20,Low,Mobile,Short Horizon,65.00,0.6500
 bowl_to_plate,FastWAM,20,Low,Mobile,Short Horizon,75.00,0.7500
-collect_coffee_beans,OpenWAM-Alpha,20,High,Fixed,Short Horizon,20.00,0.3965
-collect_coffee_beans,Astra (ICL),20,High,Fixed,Short Horizon,0.00,0.2357
-collect_coffee_beans,Qwen-RobotManip,20,High,Fixed,Short Horizon,5.00,0.5105
-collect_coffee_beans,π₀.₅,20,High,Fixed,Short Horizon,30.00,0.5540
-collect_coffee_beans,InternVLA-A1.5,20,High,Fixed,Short Horizon,0.00,0.1570
-collect_coffee_beans,π₀,20,High,Fixed,Short Horizon,20.00,0.3500
-collect_coffee_beans,GigaBrain-0.7,20,High,Fixed,Short Horizon,50.00,0.7110
-collect_coffee_beans,FastWAM,20,High,Fixed,Short Horizon,0.00,0.0000
+collect_coffee_beans,OpenWAM-Alpha,20,High,Fixed,Long Horizon,20.00,0.3965
+collect_coffee_beans,Astra (ICL),20,High,Fixed,Long Horizon,0.00,0.2357
+collect_coffee_beans,Qwen-RobotManip,20,High,Fixed,Long Horizon,5.00,0.5105
+collect_coffee_beans,π₀.₅,20,High,Fixed,Long Horizon,30.00,0.5540
+collect_coffee_beans,InternVLA-A1.5,20,High,Fixed,Long Horizon,0.00,0.1570
+collect_coffee_beans,π₀,20,High,Fixed,Long Horizon,20.00,0.3500
+collect_coffee_beans,GigaBrain-0.7,20,High,Fixed,Long Horizon,50.00,0.7110
+collect_coffee_beans,FastWAM,20,High,Fixed,Long Horizon,0.00,0.0000
 detergent,OpenWAM-Alpha,20,Low,Mobile,Long Horizon,95.00,0.9835
 detergent,Astra (ICL),20,Low,Mobile,Long Horizon,55.00,0.8000
 detergent,Qwen-RobotManip,20,Low,Mobile,Long Horizon,85.00,0.9335
@@ -71,22 +71,22 @@ dishwasher,InternVLA-A1.5,20,Low,Mobile,Long Horizon,90.00,0.9000
 dishwasher,π₀,20,Low,Mobile,Long Horizon,90.00,0.9500
 dishwasher,GigaBrain-0.7,20,Low,Mobile,Long Horizon,0.00,0.5000
 dishwasher,FastWAM,20,Low,Mobile,Long Horizon,70.00,0.8745
-flip_cup_collect_cookies,OpenWAM-Alpha,20,Medium,Fixed,Short Horizon,40.00,0.5900
-flip_cup_collect_cookies,Astra (ICL),20,Medium,Fixed,Short Horizon,10.00,0.4400
-flip_cup_collect_cookies,Qwen-RobotManip,20,Medium,Fixed,Short Horizon,90.00,0.9700
-flip_cup_collect_cookies,π₀.₅,20,Medium,Fixed,Short Horizon,25.00,0.4350
-flip_cup_collect_cookies,InternVLA-A1.5,20,Medium,Fixed,Short Horizon,30.00,0.4450
-flip_cup_collect_cookies,π₀,20,Medium,Fixed,Short Horizon,30.00,0.3450
-flip_cup_collect_cookies,GigaBrain-0.7,20,Medium,Fixed,Short Horizon,40.00,0.6050
-flip_cup_collect_cookies,FastWAM,20,Medium,Fixed,Short Horizon,0.00,0.0750
-frame_against_pen_holder,OpenWAM-Alpha,20,Low,Fixed,Short Horizon,50.00,0.5990
-frame_against_pen_holder,Astra (ICL),20,Low,Fixed,Short Horizon,65.00,0.8000
-frame_against_pen_holder,Qwen-RobotManip,20,Low,Fixed,Short Horizon,95.00,0.9665
-frame_against_pen_holder,π₀.₅,20,Low,Fixed,Short Horizon,45.00,0.4830
-frame_against_pen_holder,InternVLA-A1.5,20,Low,Fixed,Short Horizon,0.00,0.0000
-frame_against_pen_holder,π₀,20,Low,Fixed,Short Horizon,25.00,0.3985
-frame_against_pen_holder,GigaBrain-0.7,20,Low,Fixed,Short Horizon,70.00,0.7165
-frame_against_pen_holder,FastWAM,20,Low,Fixed,Short Horizon,0.00,0.1000
+flip_cup_collect_cookies,OpenWAM-Alpha,20,Medium,Fixed,Long Horizon,40.00,0.5900
+flip_cup_collect_cookies,Astra (ICL),20,Medium,Fixed,Long Horizon,10.00,0.4400
+flip_cup_collect_cookies,Qwen-RobotManip,20,Medium,Fixed,Long Horizon,90.00,0.9700
+flip_cup_collect_cookies,π₀.₅,20,Medium,Fixed,Long Horizon,25.00,0.4350
+flip_cup_collect_cookies,InternVLA-A1.5,20,Medium,Fixed,Long Horizon,30.00,0.4450
+flip_cup_collect_cookies,π₀,20,Medium,Fixed,Long Horizon,30.00,0.3450
+flip_cup_collect_cookies,GigaBrain-0.7,20,Medium,Fixed,Long Horizon,40.00,0.6050
+flip_cup_collect_cookies,FastWAM,20,Medium,Fixed,Long Horizon,0.00,0.0750
+frame_against_pen_holder,OpenWAM-Alpha,20,Low,Fixed,Long Horizon,50.00,0.5990
+frame_against_pen_holder,Astra (ICL),20,Low,Fixed,Long Horizon,65.00,0.8000
+frame_against_pen_holder,Qwen-RobotManip,20,Low,Fixed,Long Horizon,95.00,0.9665
+frame_against_pen_holder,π₀.₅,20,Low,Fixed,Long Horizon,45.00,0.4830
+frame_against_pen_holder,InternVLA-A1.5,20,Low,Fixed,Long Horizon,0.00,0.0000
+frame_against_pen_holder,π₀,20,Low,Fixed,Long Horizon,25.00,0.3985
+frame_against_pen_holder,GigaBrain-0.7,20,Low,Fixed,Long Horizon,70.00,0.7165
+frame_against_pen_holder,FastWAM,20,Low,Fixed,Long Horizon,0.00,0.1000
 fruit,OpenWAM-Alpha,20,Low,Mobile,Long Horizon,55.00,0.7600
 fruit,Astra (ICL),20,Low,Mobile,Long Horizon,40.00,0.5900
 fruit,Qwen-RobotManip,20,Low,Mobile,Long Horizon,45.00,0.6800
@@ -111,30 +111,30 @@ make_sandwich,InternVLA-A1.5,15,Medium,Mobile,Long Horizon,33.33,0.7833
 make_sandwich,π₀,15,Medium,Mobile,Long Horizon,20.00,0.7500
 make_sandwich,GigaBrain-0.7,15,Medium,Mobile,Long Horizon,80.00,0.9500
 make_sandwich,FastWAM,15,Medium,Mobile,Long Horizon,46.67,0.8000
-microwave,OpenWAM-Alpha,15,Low,Mobile,Short Horizon,93.33,0.9780
-microwave,Astra (ICL),15,Low,Mobile,Short Horizon,73.33,0.9000
-microwave,Qwen-RobotManip,15,Low,Mobile,Short Horizon,33.33,0.3780
-microwave,π₀.₅,15,Low,Mobile,Short Horizon,40.00,0.5000
-microwave,InternVLA-A1.5,15,Low,Mobile,Short Horizon,60.00,0.8233
-microwave,π₀,15,Low,Mobile,Short Horizon,46.67,0.8113
-microwave,GigaBrain-0.7,15,Low,Mobile,Short Horizon,0.00,0.0000
-microwave,FastWAM,15,Low,Mobile,Short Horizon,0.00,0.4453
-peg_in_hole,OpenWAM-Alpha,20,High,Fixed,Short Horizon,40.00,0.6000
-peg_in_hole,Astra (ICL),20,High,Fixed,Short Horizon,20.00,0.6000
-peg_in_hole,Qwen-RobotManip,20,High,Fixed,Short Horizon,10.00,0.3500
-peg_in_hole,π₀.₅,20,High,Fixed,Short Horizon,10.00,0.2250
-peg_in_hole,InternVLA-A1.5,20,High,Fixed,Short Horizon,0.00,0.0000
-peg_in_hole,π₀,20,High,Fixed,Short Horizon,15.00,0.4250
-peg_in_hole,GigaBrain-0.7,20,High,Fixed,Short Horizon,15.00,0.5500
-peg_in_hole,FastWAM,20,High,Fixed,Short Horizon,0.00,0.0000
-pen,OpenWAM-Alpha,20,Medium,Mobile,Short Horizon,5.00,0.3665
-pen,Astra (ICL),20,Medium,Mobile,Short Horizon,15.00,0.5500
-pen,Qwen-RobotManip,20,Medium,Mobile,Short Horizon,5.00,0.2500
-pen,π₀.₅,20,Medium,Mobile,Short Horizon,0.00,0.0500
-pen,InternVLA-A1.5,20,Medium,Mobile,Short Horizon,0.00,0.2830
-pen,π₀,20,Medium,Mobile,Short Horizon,0.00,0.0995
-pen,GigaBrain-0.7,20,Medium,Mobile,Short Horizon,0.00,0.0330
-pen,FastWAM,20,Medium,Mobile,Short Horizon,0.00,0.0495
+microwave,OpenWAM-Alpha,15,Low,Mobile,Long Horizon,93.33,0.9780
+microwave,Astra (ICL),15,Low,Mobile,Long Horizon,73.33,0.9000
+microwave,Qwen-RobotManip,15,Low,Mobile,Long Horizon,33.33,0.3780
+microwave,π₀.₅,15,Low,Mobile,Long Horizon,40.00,0.5000
+microwave,InternVLA-A1.5,15,Low,Mobile,Long Horizon,60.00,0.8233
+microwave,π₀,15,Low,Mobile,Long Horizon,46.67,0.8113
+microwave,GigaBrain-0.7,15,Low,Mobile,Long Horizon,0.00,0.0000
+microwave,FastWAM,15,Low,Mobile,Long Horizon,0.00,0.4453
+peg_in_hole,OpenWAM-Alpha,20,High,Fixed,Long Horizon,40.00,0.6000
+peg_in_hole,Astra (ICL),20,High,Fixed,Long Horizon,20.00,0.6000
+peg_in_hole,Qwen-RobotManip,20,High,Fixed,Long Horizon,10.00,0.3500
+peg_in_hole,π₀.₅,20,High,Fixed,Long Horizon,10.00,0.2250
+peg_in_hole,InternVLA-A1.5,20,High,Fixed,Long Horizon,0.00,0.0000
+peg_in_hole,π₀,20,High,Fixed,Long Horizon,15.00,0.4250
+peg_in_hole,GigaBrain-0.7,20,High,Fixed,Long Horizon,15.00,0.5500
+peg_in_hole,FastWAM,20,High,Fixed,Long Horizon,0.00,0.0000
+pen,OpenWAM-Alpha,20,Medium,Mobile,Long Horizon,5.00,0.3665
+pen,Astra (ICL),20,Medium,Mobile,Long Horizon,15.00,0.5500
+pen,Qwen-RobotManip,20,Medium,Mobile,Long Horizon,5.00,0.2500
+pen,π₀.₅,20,Medium,Mobile,Long Horizon,0.00,0.0500
+pen,InternVLA-A1.5,20,Medium,Mobile,Long Horizon,0.00,0.2830
+pen,π₀,20,Medium,Mobile,Long Horizon,0.00,0.0995
+pen,GigaBrain-0.7,20,Medium,Mobile,Long Horizon,0.00,0.0330
+pen,FastWAM,20,Medium,Mobile,Long Horizon,0.00,0.0495
 perfume_to_cosmetics_rack,OpenWAM-Alpha,20,Low,Mobile,Short Horizon,75.00,0.7750
 perfume_to_cosmetics_rack,Astra (ICL),20,Low,Mobile,Short Horizon,75.00,0.8750
 perfume_to_cosmetics_rack,Qwen-RobotManip,20,Low,Mobile,Short Horizon,55.00,0.6000
@@ -143,14 +143,14 @@ perfume_to_cosmetics_rack,InternVLA-A1.5,20,Low,Mobile,Short Horizon,45.00,0.600
 perfume_to_cosmetics_rack,π₀,20,Low,Mobile,Short Horizon,25.00,0.3000
 perfume_to_cosmetics_rack,GigaBrain-0.7,20,Low,Mobile,Short Horizon,25.00,0.3250
 perfume_to_cosmetics_rack,FastWAM,20,Low,Mobile,Short Horizon,50.00,0.5000
-put_glass_in_glassbox,OpenWAM-Alpha,20,Medium,Fixed,Short Horizon,75.00,0.8495
-put_glass_in_glassbox,Astra (ICL),20,Medium,Fixed,Short Horizon,20.00,0.3000
-put_glass_in_glassbox,Qwen-RobotManip,20,Medium,Fixed,Short Horizon,90.00,0.9500
-put_glass_in_glassbox,π₀.₅,20,Medium,Fixed,Short Horizon,65.00,0.7665
-put_glass_in_glassbox,InternVLA-A1.5,20,Medium,Fixed,Short Horizon,0.00,0.0000
-put_glass_in_glassbox,π₀,20,Medium,Fixed,Short Horizon,85.00,0.9165
-put_glass_in_glassbox,GigaBrain-0.7,20,Medium,Fixed,Short Horizon,55.00,0.6830
-put_glass_in_glassbox,FastWAM,20,Medium,Fixed,Short Horizon,5.00,0.0995
+put_glass_in_glassbox,OpenWAM-Alpha,20,Medium,Fixed,Long Horizon,75.00,0.8495
+put_glass_in_glassbox,Astra (ICL),20,Medium,Fixed,Long Horizon,20.00,0.3000
+put_glass_in_glassbox,Qwen-RobotManip,20,Medium,Fixed,Long Horizon,90.00,0.9500
+put_glass_in_glassbox,π₀.₅,20,Medium,Fixed,Long Horizon,65.00,0.7665
+put_glass_in_glassbox,InternVLA-A1.5,20,Medium,Fixed,Long Horizon,0.00,0.0000
+put_glass_in_glassbox,π₀,20,Medium,Fixed,Long Horizon,85.00,0.9165
+put_glass_in_glassbox,GigaBrain-0.7,20,Medium,Fixed,Long Horizon,55.00,0.6830
+put_glass_in_glassbox,FastWAM,20,Medium,Fixed,Long Horizon,5.00,0.0995
 remote_to_holder,OpenWAM-Alpha,20,Low,Mobile,Short Horizon,65.00,0.6500
 remote_to_holder,Astra (ICL),20,Low,Mobile,Short Horizon,100.00,1.0000
 remote_to_holder,Qwen-RobotManip,20,Low,Mobile,Short Horizon,65.00,0.6500
@@ -191,14 +191,14 @@ teacup_to_saucer_teapot_to_tray,InternVLA-A1.5,20,Medium,Mobile,Short Horizon,30
 teacup_to_saucer_teapot_to_tray,π₀,20,Medium,Mobile,Short Horizon,10.00,0.1500
 teacup_to_saucer_teapot_to_tray,GigaBrain-0.7,20,Medium,Mobile,Short Horizon,20.00,0.2750
 teacup_to_saucer_teapot_to_tray,FastWAM,20,Medium,Mobile,Short Horizon,10.00,0.2250
-tighten_nut,OpenWAM-Alpha,20,High,Fixed,Short Horizon,30.00,0.6250
-tighten_nut,Astra (ICL),20,High,Fixed,Short Horizon,10.00,0.5500
-tighten_nut,Qwen-RobotManip,20,High,Fixed,Short Horizon,10.00,0.5500
-tighten_nut,π₀.₅,20,High,Fixed,Short Horizon,20.00,0.5750
-tighten_nut,InternVLA-A1.5,20,High,Fixed,Short Horizon,40.00,0.7000
-tighten_nut,π₀,20,High,Fixed,Short Horizon,25.00,0.6250
-tighten_nut,GigaBrain-0.7,20,High,Fixed,Short Horizon,15.00,0.5750
-tighten_nut,FastWAM,20,High,Fixed,Short Horizon,0.00,0.4750
+tighten_nut,OpenWAM-Alpha,20,High,Fixed,Long Horizon,30.00,0.6250
+tighten_nut,Astra (ICL),20,High,Fixed,Long Horizon,10.00,0.5500
+tighten_nut,Qwen-RobotManip,20,High,Fixed,Long Horizon,10.00,0.5500
+tighten_nut,π₀.₅,20,High,Fixed,Long Horizon,20.00,0.5750
+tighten_nut,InternVLA-A1.5,20,High,Fixed,Long Horizon,40.00,0.7000
+tighten_nut,π₀,20,High,Fixed,Long Horizon,25.00,0.6250
+tighten_nut,GigaBrain-0.7,20,High,Fixed,Long Horizon,15.00,0.5750
+tighten_nut,FastWAM,20,High,Fixed,Long Horizon,0.00,0.4750
 utensils_to_holder,OpenWAM-Alpha,20,Low,Mobile,Short Horizon,35.00,0.5500
 utensils_to_holder,Astra (ICL),20,Low,Mobile,Short Horizon,10.00,0.2250
 utensils_to_holder,Qwen-RobotManip,20,Low,Mobile,Short Horizon,15.00,0.4000

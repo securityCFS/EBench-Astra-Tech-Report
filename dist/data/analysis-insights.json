@@ -37,14 +37,12 @@
     {
       "id": "mobile-short",
       "label": "Mobile · Short",
-      "n": 12,
+      "n": 10,
       "tasks": [
         "apple_from_shelf",
         "apple_to_fruit_bowl",
         "bookmark_on_book",
         "bowl_to_plate",
-        "microwave",
-        "pen",
         "perfume_to_cosmetics_rack",
         "remote_to_holder",
         "salt_to_spice_rack",
@@ -53,20 +51,20 @@
         "utensils_to_holder"
       ],
       "rates": {
-        "OpenWAM-Alpha": 65.27777777777779,
-        "Astra (ICL)": 73.19444444444444,
-        "Qwen-RobotManip": 50.27777777777778,
-        "Pi05": 50.416666666666664,
-        "InternVLA-A1.5": 46.666666666666664,
-        "Pi0": 38.47222222222222,
-        "GigaBrain-0.7": 35.0,
-        "FastWAM": 41.25
+        "OpenWAM-Alpha": 68.5,
+        "Astra (ICL)": 78.99999999999999,
+        "Qwen-RobotManip": 56.49999999999999,
+        "Pi05": 56.49999999999999,
+        "InternVLA-A1.5": 50.0,
+        "Pi0": 41.49999999999999,
+        "GigaBrain-0.7": 42.00000000000001,
+        "FastWAM": 49.5
       }
     },
     {
       "id": "mobile-long",
       "label": "Mobile · Long",
-      "n": 7,
+      "n": 9,
       "tasks": [
         "bottle",
         "detergent",
@@ -74,17 +72,19 @@
         "dishwasher",
         "fruit",
         "make_sandwich",
+        "microwave",
+        "pen",
         "shop"
       ],
       "rates": {
-        "OpenWAM-Alpha": 51.42857142857144,
-        "Astra (ICL)": 28.095238095238095,
-        "Qwen-RobotManip": 33.095238095238095,
-        "Pi05": 38.095238095238095,
-        "InternVLA-A1.5": 34.76190476190476,
-        "Pi0": 26.42857142857143,
-        "GigaBrain-0.7": 25.71428571428572,
-        "FastWAM": 21.666666666666664
+        "OpenWAM-Alpha": 50.92592592592592,
+        "Astra (ICL)": 31.666666666666664,
+        "Qwen-RobotManip": 30.0,
+        "Pi05": 34.074074074074076,
+        "InternVLA-A1.5": 33.7037037037037,
+        "Pi0": 25.740740740740737,
+        "GigaBrain-0.7": 20.0,
+        "FastWAM": 16.85185185185185
       }
     },
     {
@@ -252,7 +252,7 @@
     {
       "task": "collect_coffee_beans",
       "mobility": "Fixed",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "precision": "High",
       "rates": {
         "OpenWAM-Alpha": 20.0,
@@ -344,7 +344,7 @@
     {
       "task": "flip_cup_collect_cookies",
       "mobility": "Fixed",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "precision": "Medium",
       "rates": {
         "OpenWAM-Alpha": 40.0,
@@ -367,7 +367,7 @@
     {
       "task": "frame_against_pen_holder",
       "mobility": "Fixed",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "precision": "Low",
       "rates": {
         "OpenWAM-Alpha": 50.0,
@@ -459,7 +459,7 @@
     {
       "task": "microwave",
       "mobility": "Mobile",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "precision": "Low",
       "rates": {
         "OpenWAM-Alpha": 93.33333333333333,
@@ -482,7 +482,7 @@
     {
       "task": "peg_in_hole",
       "mobility": "Fixed",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "precision": "High",
       "rates": {
         "OpenWAM-Alpha": 40.0,
@@ -505,7 +505,7 @@
     {
       "task": "pen",
       "mobility": "Mobile",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "precision": "Medium",
       "rates": {
         "OpenWAM-Alpha": 5.0,
@@ -551,7 +551,7 @@
     {
       "task": "put_glass_in_glassbox",
       "mobility": "Fixed",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "precision": "Medium",
       "rates": {
         "OpenWAM-Alpha": 75.0,
@@ -689,7 +689,7 @@
     {
       "task": "tighten_nut",
       "mobility": "Fixed",
-      "horizon": "Short Horizon",
+      "horizon": "Long Horizon",
       "precision": "High",
       "rates": {
         "OpenWAM-Alpha": 30.0,
@@ -984,7 +984,7 @@
     }
   ],
   "source_sha256": {
-    "tasks.json": "d2ddc5f3cc85419b57c60efa1cb7e66709437d46751cfc99162a486a3d20d8b0",
+    "tasks.json": "fb2ac8f5dc854972589bf9b557c69828e7ce5ed8e3754bacac242f804ac6d137",
     "astra-main-episodes.json": "b79120587153368de985136adac993b651f1f1f65299122cbbd6fb4652ee5c1c",
     "report-generalization.csv": "ef3f62a32e723d49bca0fde852b8a50b60e3db4b5630ad0ab82047c55d869b20"
   }
