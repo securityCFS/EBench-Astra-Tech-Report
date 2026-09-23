@@ -8,7 +8,7 @@
   /* The outcome legend and the trait filters share one row: legend left, filters flush
      right, their text on one baseline. "Clear filters" sits left of the filters, so when it
      appears the row grows into the gap and the options stay put. On a narrow page the
-     filters wrap below the legend. */
+     filters wrap below the legend, still flush right. */
   .outcome-breakdown .outcome-breakdown-toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -128,7 +128,9 @@
     flex-wrap: wrap;
     align-items: last baseline;
     gap: 0.4rem 2rem;
-    margin: 0;
+    /* Stay flush right even when wrapped under the legend, so "Clear filters" still grows
+       leftward and never pushes the options. */
+    margin: 0 0 0 auto;
     color: var(--muted);
     font-size: var(--small);
     line-height: 1.4;
