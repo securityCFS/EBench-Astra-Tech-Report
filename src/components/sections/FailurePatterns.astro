@@ -11,10 +11,9 @@
         credit based on the intermediate stages successfully completed, with a full success rate of
         1.0 assigned only upon total task completion. Across 510 evaluated episodes, 237 achieve
         complete success, while 188 of the 273 unsuccessful runs still register positive partial
-        credit (with only 85 scoring zero). For episodes that gain partial credit but fall short of
-        full success, this score breakdown points to two common failure modes: either the execution
-        lacks the precision required to satisfy strict final termination criteria, or the agent
-        stalls at an intermediate step and times out before completing the task.
+        credit (with only 85 scoring zero). <strong>
+          For episodes that gain partial credit but fall short of full success, this score breakdown points to two common failure modes: either the execution lacks the precision required to satisfy strict final termination criteria, or the agent stalls at an intermediate step and times out before completing the task.
+        </strong>
       </p>
       <p>
         This behavioral difference is evident when comparing tasks with similarly low success
@@ -53,13 +52,15 @@
     </div>
     <div id="limits-content"></div>
     <div class="insight-block" id="fixed-base-analysis">
-      <h3>The tabletop gap extends beyond high precision</h3>
+      <h3>The gap in tabletop dexterous-and-precise tasks</h3>
       <div class="report-prose">
         <p>
-          On the three tabletop tasks labelled low or medium precision—frame placement, cup flipping
-          and glasses packing—GPT-6-Astra averages 31.67% success, compared with Qwen-RobotManip’s
-          91.67%. Cup flipping reaches 10% versus 90%; glasses packing reaches 20% versus 90%.
-          Removing the high-precision tasks therefore does not remove the tabletop deficit.
+          All seven tabletop tasks in EBench demand dexterous or precise manipulation, which we refer
+          to as tabletop dexterous-and-precise (D&amp;P) tasks: frame placement, cup flipping and
+          glasses packing through two-arm coordination, flipping and folding; the remaining four
+          through tight contact. Even on the three D&amp;P tasks labelled low or medium precision,
+          GPT-6-Astra averages 31.67% success, compared with Qwen-RobotManip’s 91.67%. Cup flipping
+          reaches 10% versus 90%; glasses packing reaches 20% versus 90%.
         </p>
         <p>
           <strong>Precision labels alone do not explain the capability gap.</strong> The recordings

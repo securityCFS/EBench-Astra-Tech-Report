@@ -148,10 +148,12 @@ async function initAnalysisInsights() {
     )
     .join('');
   failures.innerHTML = `<div class="outcome-split-legend"><span><i class="outcome-success" aria-hidden="true"></i>Complete success</span><span><i class="outcome-partial" aria-hidden="true"></i>Incomplete</span><span><i class="outcome-zero" aria-hidden="true"></i>Failed</span></div><div class="outcome-trait-filters" role="group" aria-label="Filter tasks by precision and horizon">${traitFilters}<button type="button" class="outcome-trait-clear" hidden>Clear filters</button></div><div class="outcome-breakdown-heading" aria-hidden="true"><span>Task</span><span>Episode outcomes</span><span>Episodes</span></div><div id="failure-depth-rows"></div><button class="failure-expand" type="button" aria-expanded="false" aria-controls="failure-depth-extra"><span data-failure-expand-label>Show all 26 tasks</span><span class="failure-expand-icon">${reportIcon('chevron-down')}</span></button><p class="outcome-filter-status" aria-live="polite" aria-atomic="true" hidden></p><p class="outcome-breakdown-note">Percentages use all evaluated episodes of each task. The marks under each task name give its precision and horizon, as in the filters above; the more demanding end of each axis &mdash; high precision, long horizon &mdash; is set in black. Select a task for exact counts.</p><p class="outcome-breakdown-readout" id="failure-readout" aria-live="polite" aria-atomic="true"></p>`;
-  const initialRows = selected.map((name) => data.tasks.find((t) => t.task === name));
-  const additionalRows = data.tasks
-    .filter((t) => !selected.includes(t.task))
-    .sort((a, b) => b.zero / b.n - a.zero / a.n || a.task.localeCompare(b.task));
+  // One ordering for every block: most outright failures first, and among equal failure
+  // shares the lower success rate first, so each list runs from failing outright to stalling.
+  const byFailureDepth = (a, b) =>
+    b.zero / b.n - a.zero / a.n || a.success / a.n - b.success / b.n || a.task.localeCompare(b.task);
+  const initialRows = selected.map((name) => data.tasks.find((t) => t.task === name)).sort(byFailureDepth);
+  const additionalRows = data.tasks.filter((t) => !selected.includes(t.task)).sort(byFailureDepth);
   const outcomeLabels = { success: 'Complete success', partial: 'Incomplete', zero: 'Failed' };
   // Colour is already spent on the outcome split, so task type is marked by fixed-width
   // glyphs: the demanding end of each axis in ink, the rest recessive. The row's aria-label
