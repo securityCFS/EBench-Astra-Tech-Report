@@ -78,13 +78,12 @@ import ExecutionTiming from '../ExecutionTiming.astro';
           signals. Current elapsed simulation steps are reported, but the maximum physics-step
           budget remains hidden.
         </p>
-        <h4>Outputs: action requests through a fixed interface</h4>
+        <h4>Outputs: Actions through a fixed interface</h4>
         <p>
           Given the current EEF pose, gripper state, and base position, GPT-6-Astra adaptively
-          outputs one or more EEF waypoints, together with the requested gripper and base targets
-          and execution durations. The waypoints are interpolated into an action chunk, which a
-          local inverse kinematics (IK) solver and joint controller execute open-loop before the
-          next observation is returned. No post-trained VLA or WAM generates or refines
+          outputs one or more EEF waypoints, together with gripper and base targets and execution
+          durations. The waypoints are interpolated into an action chunk and executed open-loop
+          before the next observation is returned. No post-trained VLA or WAM generates or refines
           GPT-6-Astra's actions.
         </p>
         <p>
