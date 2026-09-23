@@ -471,7 +471,7 @@ async function initEpisodeOutcomes() {
   );
   const summary = `${episodes.length} episodes: ${groups.map((g) => `${g.name} ${g.count}`).join(', ')}.`;
   $('#episode-outcomes').innerHTML =
-    `<div class="outcome-layout"><svg viewBox="0 0 480 286" role="img" aria-label="${summary}">${ordered.map((d, i) => `<circle data-outcome="${d.group}" data-index="${i}" cx="${8 + (i % 30) * 16}" cy="${9 + Math.floor(i / 30) * 16}" r="5.2" fill="${d.color}"><title>${title(d.task)} / ${d.seed}: ${d.outcomeName} · SR ${d.sr}, Score ${d.score}</title></circle>`).join('')}</svg><div class="outcome-legend">${groups
+    `<div class="outcome-layout"><svg viewBox="0 0 480 286" role="img" aria-label="${summary}">${ordered.map((d, i) => `<circle data-outcome="${d.group}" data-index="${i}" cx="${8 + (i % 30) * 16}" cy="${9 + Math.floor(i / 30) * 16}" r="5.2" fill="${d.color}"><title>${title(d.task)} / ${d.seed}: ${d.outcomeName} · SR ${d.sr}, Score ${Number(d.score).toFixed(2)}</title></circle>`).join('')}</svg><div class="outcome-legend">${groups
       .map((g) => {
         return `<button type="button" data-outcome-filter="${g.id}" aria-pressed="false" style="--outcome:${g.color}"><span class="outcome-name">${g.name}</span><strong>${g.count}</strong><small>${((g.count / episodes.length) * 100).toFixed(1)}% of episodes</small></button>`;
       })
