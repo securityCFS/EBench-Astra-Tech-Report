@@ -112,7 +112,6 @@ function initNarrative() {
     `<div class="report-prose shift-analysis"><h3>Flatter performance across perturbations</h3>${narrativeHTML('shifts')}</div>`,
   );
   $('#task-gap-analysis').before($('#cross-group-analysis'));
-  $('#task-gap-analysis h3').after($('#mobile-content .evidence-pair'));
   initAnalysisInsights();
   const library = $('#video-library');
   library.addEventListener('toggle', () => {
