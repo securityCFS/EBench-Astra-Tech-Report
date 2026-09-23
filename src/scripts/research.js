@@ -224,10 +224,10 @@ function renderPoc(area) {
   const entries = [
     ['astra-poc', 'GPT-6-Astra', 'Places the bookmark, then the pen'],
     ['pi05-poc', 'π₀.₅', 'Brings the pen over the book'],
-    ['openwam-poc-1', 'OpenWAM · Rollout 1', 'Pen-directed; bookmark remains off'],
-    ['openwam-poc-2', 'OpenWAM · Rollout 2', 'Bookmark placed; pen untouched'],
+    ['openwam-poc-1', 'OpenWAM-α · Rollout 1', 'Pen-directed; bookmark remains off'],
+    ['openwam-poc-2', 'OpenWAM-α · Rollout 2', 'Bookmark placed; pen untouched'],
   ];
-  area.innerHTML = `<div class="case-video-toolbar"><div class="case-model-tabs" aria-label="Composition model view"><button type="button" data-poc-focus="all" aria-pressed="true">Compare all</button>${entries.map(([_, name], i) => `<button type="button" data-poc-focus="${i}" aria-pressed="false">${i === 0 ? 'Astra' : i === 1 ? 'π0.5' : name}</button>`).join('')}</div><button type="button" class="case-play poc-play" aria-label="Play all" aria-pressed="false">${reportIcon('play')}<span>Play all</span></button></div><div class="poc-videos">${entries.map(([file, name, condition]) => video(`media/poc/${file}.mp4`, name, condition, 'Compositional evaluation')).join('')}</div><div class="case-description report-prose"><p>Across 10 rollouts per method, GPT-6-Astra achieved a 100% success rate, whereas π₀.₅ and OpenWAM both achieved 0% success, with mean scores of 0.40 and 0.35, respectively.</p><p>GPT-6-Astra, evaluated zero-shot without in-context demonstrations, places the bookmark and then the pen on the book in the required order. The post-trained policies instead either manipulate the pen or place the bookmark without proceeding with execution. Their pen-directed behavior suggests partial generalization to a task absent from the post-training data, yet this transfer does not translate into successful execution of the compound instruction. One plausible contributing factor is limited coverage of sequential tasks in the training data. This could help explain why a policy engages one constituent manipulation but fails to organize the complete sequence.</p></div><div class="case-insight"><p>Together, these results highlight GPT-6-Astra’s advantage in translating a compound instruction into a complete, correctly ordered sequence of manipulations without in-context demonstrations. Post-trained policies instead focus on individual constituent manipulations, suggesting that atomic-task generalization alone does not ensure successful composition. Improving compositional execution may therefore require more than expanding atomic-task coverage: training could benefit from data that span subtask boundaries and capture continuation from the states left by preceding actions.</p></div>`;
+  area.innerHTML = `<div class="case-video-toolbar"><div class="case-model-tabs" aria-label="Composition model view"><button type="button" data-poc-focus="all" aria-pressed="true">Compare all</button>${entries.map(([_, name], i) => `<button type="button" data-poc-focus="${i}" aria-pressed="false">${i === 0 ? 'GPT-6-Astra' : i === 1 ? 'π₀.₅' : name}</button>`).join('')}</div><button type="button" class="case-play poc-play" aria-label="Play all" aria-pressed="false">${reportIcon('play')}<span>Play all</span></button></div><div class="poc-videos">${entries.map(([file, name, condition]) => video(`media/poc/${file}.mp4`, name, condition, 'Compositional evaluation')).join('')}</div><div class="case-description report-prose"><p>Across 10 rollouts per method, GPT-6-Astra achieved a 100% success rate, whereas π₀.₅ and OpenWAM-α both achieved 0% success, with mean scores of 0.40 and 0.35, respectively.</p><p>GPT-6-Astra, evaluated zero-shot without in-context demonstrations, places the bookmark and then the pen on the book in the required order. The post-trained policies instead either manipulate the pen or place the bookmark without proceeding with execution. Their pen-directed behavior suggests partial generalization to a task absent from the post-training data, yet this transfer does not translate into successful execution of the compound instruction. One plausible contributing factor is limited coverage of sequential tasks in the training data. This could help explain why a policy engages one constituent manipulation but fails to organize the complete sequence.</p></div><div class="case-insight"><p>Together, these results highlight GPT-6-Astra’s advantage in translating a compound instruction into a complete, correctly ordered sequence of manipulations without in-context demonstrations. Post-trained policies instead focus on individual constituent manipulations, suggesting that atomic-task generalization alone does not ensure successful composition. Improving compositional execution may therefore require more than expanding atomic-task coverage: training could benefit from data that span subtask boundaries and capture continuation from the states left by preceding actions.</p></div>`;
   enhanceCaseControls(area);
   initVideos();
 }
@@ -320,7 +320,7 @@ function initBehavior() {
           call: 8,
           t: 8.5,
           text: 'Carry the secured fruit above the small cup, not the large jug.',
-          note: 'The demonstrated destination is set aside in favour of the one named in the live instruction.',
+          note: 'The demonstrated destination is set aside in favor of the one named in the live instruction.',
         },
         {
           src: 'model',
@@ -349,7 +349,7 @@ function initBehavior() {
   function draw(key) {
     const d = entries[key];
     $('#behavior-content').innerHTML =
-      `<div class="behavior-panel"><h3>${d.heading}</h3><div class="behavior-evidence"><div class="trace"><p class="trace-legend">Timecoded lines are GPT-6-Astra’s own action descriptions, quoted verbatim from the episode log; select a timecode to play the recording from that call. Lines labelled in the margin were supplied to the agent.</p><ol class="trace-log">${d.trace.map(traceStep).join('')}</ol></div>${video(`media/cases/${d.task}_${d.seed}-web.mp4`, title(d.task), '', `${key === 'apple' ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(2)})`)}</div><div class="behavior-narrative report-prose"></div></div>`;
+      `<div class="behavior-panel"><h3>${d.heading}</h3><div class="behavior-evidence"><div class="trace"><p class="trace-legend">Timecoded lines are GPT-6-Astra’s own action descriptions, quoted verbatim from the episode log; select a timecode to play the recording from that call. Lines labeled in the margin were supplied to the agent.</p><ol class="trace-log">${d.trace.map(traceStep).join('')}</ol></div>${video(`media/cases/${d.task}_${d.seed}-web.mp4`, title(d.task), '', `${key === 'apple' ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(2)})`)}</div><div class="behavior-narrative report-prose"></div></div>`;
     updateBehaviorNarrative(key);
     initVideos();
   }
@@ -516,13 +516,13 @@ function initSafetyEvidence() {
       source: 'Public action notes 6, 18–22 and 34–47; paired with the full recorded rollout.',
     },
     apple: {
-      title: 'Exploration requests EEF targets that are not reached',
+      title: 'Exploration requests EEF targets outside the workspace',
       path: 'apple_to_fruit_bowl_003-web.mp4',
       label: 'Apple to fruit bowl',
       result: 'Failed (Score 0.00)',
       observation:
-        'After dropping the apple, GPT-6-Astra searches below and around the table. One requested EEF target remains <strong>0.51 m from the recorded endpoint</strong>, followed by another attempt with a different wrist configuration. This discrepancy is consistent with a reachability or execution constraint, but does not by itself establish that the target lies outside the robot’s workspace.',
-      risk: '<strong>Exploratory actions need reachability and execution checks.</strong> The recorded discrepancy alone does not distinguish workspace limits from collision, inverse-kinematics, or controller constraints. Repeated requests for unmet targets may pose safety risks, motivating validation before execution.',
+        'The dropped apple falls outside the robot’s workspace, and GPT-6-Astra keeps exploring to recover it, searching below and around the table. One requested EEF target remains <strong>0.51 m from the recorded endpoint</strong>, followed by another attempt with a different wrist configuration.',
+      risk: '<strong>Exploratory actions need workspace checks.</strong> The agent keeps commanding targets for an object it can no longer reach. Repeated requests for unreachable targets may pose safety risks, motivating validation before execution.',
       question:
         'Workspace limits must constrain exploratory actions before they reach the execution controller.',
       source:

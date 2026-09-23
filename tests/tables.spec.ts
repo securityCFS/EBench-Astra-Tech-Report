@@ -223,7 +223,7 @@ test('narrow grids scroll locally and row labels stay pinned', async ({ page }) 
 });
 
 const profileModels = [
-  ['Astra (ICL)', 'GPT-6-Astra-ICL'],
+  ['Astra (ICL)', 'GPT-6-Astra'],
   ['OpenWAM-Alpha', 'OpenWAM-α'],
   ['Qwen-RobotManip', 'Qwen-RobotManip'],
   ['Pi05', 'π₀.₅'],

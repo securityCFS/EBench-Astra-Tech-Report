@@ -9,14 +9,14 @@
       <h3 id="case-poc-setting-title">Evaluation Setting</h3>
       <div class="report-prose">
         <p>
-          Beyond Ebench, we further evaluate a compositional unseen task that requires placing a bookmark and a pen on the
+          Beyond EBench, we further evaluate a compositional unseen task that requires placing a bookmark and a pen on the
           same open book sequentially. Bookmark on book and pen-placement tasks with other
           targets (in a pen holder or on a ruler) appear in the robot-policy training set, whereas
           pen on book does not. This setting therefore tests more than the
-          sequencing of two familiar tasks: the combined objective includes an sub-task absent
+          sequencing of two familiar tasks: the combined objective includes a sub-task absent
           from the robot-policy training data. Each method is evaluated over 10 rollouts and GPT-6-Astra receives
-          no in-context demonstrations. The prescribed sequence places the bookmark first and then the pen and
-          the partial credit of 0.5 points is awarded for correctly completing the first object placement in the prescribed sequence.
+          no in-context demonstrations. The prescribed sequence places the bookmark first and then the pen, and a partial credit of 0.5 is
+          awarded for completing the first placement in that order.
         </p>
       </div>
     </section>

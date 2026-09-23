@@ -56,10 +56,12 @@ const intro = node('[data-narrative="introduction"]').innerHTML;
 assert.equal((intro.match(/<p>/g) || []).length, 3);
 assert.ok(intro.startsWith('<p>Recent advances in frontier large language models'));
 assert.ok(intro.includes('26 tasks and 510 episodes'));
-assert.ok(!intro.includes('Recent reports have begun to explore this frontier.'));
+assert.ok(!intro.includes('Recent reports have begun to explore frontier agents as robot policies.'));
 const relatedWork = node('[data-narrative="relatedWork"]').innerHTML;
 assert.equal((relatedWork.match(/<p>/g) || []).length, 1);
-assert.ok(relatedWork.startsWith('<p>Recent reports have begun to explore this frontier.'));
+assert.ok(
+  relatedWork.startsWith('<p>Recent reports have begun to explore frontier agents as robot policies.'),
+);
 assert.ok(relatedWork.includes('https://robodojo-benchmark.com/report/gpt-6-astra-eval'));
 const referenceIds = [
   ...fs

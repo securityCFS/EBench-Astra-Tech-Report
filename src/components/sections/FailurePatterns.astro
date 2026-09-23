@@ -7,9 +7,9 @@
     </div>
     <div class="report-prose">
       <p>
-        Under the EBench protocol, evaluation is not binary; instead, an episode receives partial
-        credit based on the intermediate stages successfully completed, with a full success rate of
-        1.0 assigned only upon total task completion. Across 510 evaluated episodes, 237 achieve
+        Under the EBench protocol, scoring is not binary; instead, an episode receives partial
+        credit based on the intermediate stages successfully completed, with a full Score of 1.0
+        assigned only upon total task completion. Across 510 evaluated episodes, 237 achieve
         complete success, while 188 of the 273 unsuccessful runs still register positive partial
         credit (with only 85 scoring zero). <strong>
           For episodes that gain partial credit but fall short of full success, this score breakdown points to two common failure modes: either the execution lacks the precision required to satisfy strict final termination criteria, or the agent stalls at an intermediate step and times out before completing the task.
@@ -17,10 +17,10 @@
       </p>
       <p>
         This behavioral difference is evident when comparing tasks with similarly low success
-        rates: zero-score episodes dominate in gear installation (75%), utensils placement (65%),
-        and glasses packing (50%), whereas they are completely absent in nut tightening, peg
+        rates: failed (zero-score) episodes make up 75% of gear installation, 65% of utensils placement
+        and 50% of glasses packing, whereas they are completely absent in nut tightening, peg
         insertion, and shop (and account for only 30% in bottle). In these latter tasks, the agent
-        consistently advances through early stages despite missing full completion, a distinction
+        advances through early stages despite missing full completion, a distinction
         that would be lost when looking at final success alone.
       </p>
     </div>
@@ -28,8 +28,8 @@
     <div class="outcome-task-breakdown" id="failure-depth-analysis">
       <div class="report-prose">
         <p>
-          The table below shows how success rate and task score diverge across tasks, with each row
-          tagged by the precision and horizon the task demands.
+          The breakdown below splits each task's episodes into complete successes, incomplete runs
+          and failures, with each row tagged by the precision and horizon the task demands.
         </p>
       </div>
       <div id="failure-depth-chart"></div>
@@ -58,25 +58,26 @@
           All seven tabletop tasks in EBench demand dexterous or precise manipulation, which we refer
           to as tabletop dexterous-and-precise (D&amp;P) tasks: frame placement, cup flipping and
           glasses packing through two-arm coordination, flipping and folding; the remaining four
-          through tight contact. Even on the three D&amp;P tasks labelled low or medium precision,
+          through tight contact. Even on the three D&amp;P tasks labeled low or medium precision,
           GPT-6-Astra averages 31.67% success, compared with Qwen-RobotManip’s 91.67%. Cup flipping
           reaches 10% versus 90%; glasses packing reaches 20% versus 90%.
         </p>
         <p>
           <strong>Precision labels alone do not explain the capability gap.</strong> The recordings
-          point to two failures that a precision label does not capture. In glasses packing the
-          agent does not recognise that the temples, left unfolded, will foul the lid: it places
-          the glasses in the case and then attempts a closure the geometry has already ruled out.
-          That is an affordance the model fails to read, not a contact it executes imprecisely.
+          point to two failures that the labels do not capture. Glasses packing is labeled medium
+          precision, yet closing the case depends on folding the temples precisely: GPT-6-Astra
+          completes the transfer into the case, but its corrective contacts leave the temples
+          protruding, so the lid cannot close.
         </p>
         <p>
-          The second is bimanual coordination. Frame placement is the clearest case &mdash; the
-          agent rarely composes a two-arm plan and instead attempts single-arm variants that leave
-          the frame unsupported &mdash; and the same pattern recurs in detergent sorting and cup
-          flipping. Across the five tasks EBench labels as involving a handover, GPT-6-Astra
-          averages 34.0% against OpenWAM-&alpha;&rsquo;s 48.0%, placing fifth among the eight
-          systems evaluated. The frame ICL case is the constructive counterpart, showing that a
-          demonstration can restore the division of labour the agent does not generate on its own.
+          The second is bimanual coordination. Without a demonstration, the agent does not compose a
+          two-arm plan for frame placement and attempts single-arm variants that leave the frame
+          unsupported; with one, it divides the work between the arms (see the frame ICL case) and
+          reaches 65% in the main evaluation, above OpenWAM-&alpha;&rsquo;s 50%. Cup flipping is a
+          purely bimanual problem that the demonstration does not resolve: GPT-6-Astra reaches 10%
+          against Qwen-RobotManip&rsquo;s 90%. Across the five tasks we identify as involving a
+          handover (our annotation, not an EBench label), GPT-6-Astra averages 34.00% against
+          OpenWAM-&alpha;&rsquo;s 48.00%, placing fifth among the eight systems evaluated.
         </p>
         <p>
           Neither failure shows up in the success rate on its own, and neither is named by a single

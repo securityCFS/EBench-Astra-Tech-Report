@@ -44,7 +44,7 @@ function enhanceCaseControls(area) {
     tools.className = 'case-video-toolbar';
     tools.innerHTML =
       (trio
-        ? '<div class="case-model-tabs" aria-label="Focus a model"><button type="button" data-focus="all" aria-pressed="true">Compare all</button><button type="button" data-focus="0" aria-pressed="false">Astra</button><button type="button" data-focus="1" aria-pressed="false">π0.5</button><button type="button" data-focus="2" aria-pressed="false">OpenWAM</button></div>'
+        ? '<div class="case-model-tabs" aria-label="Focus a model"><button type="button" data-focus="all" aria-pressed="true">Compare all</button><button type="button" data-focus="0" aria-pressed="false">GPT-6-Astra</button><button type="button" data-focus="1" aria-pressed="false">π₀.₅</button><button type="button" data-focus="2" aria-pressed="false">OpenWAM-α</button></div>'
         : '') +
       `<button type="button" class="case-play" aria-pressed="false" aria-label="Play all">${reportIcon('play')}<span>Play all</span></button>`;
     videos.before(tools);

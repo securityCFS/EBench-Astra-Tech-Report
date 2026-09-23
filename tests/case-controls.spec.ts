@@ -22,12 +22,12 @@ test('model tabs stay left of Play all in one row, including five POC choices', 
   page,
 }) => {
   await page.goto('/');
-  await expect(page.locator('#case-adapt .case-model-tabs button')).toHaveText([
-    'Compare all',
-    'Astra',
-    'π0.5',
-    'OpenWAM',
-  ]);
+  const adaptTabs = page.locator('#case-adapt .case-model-tabs button');
+  await expect(adaptTabs).toHaveText(['Compare all', 'GPT-6-Astra', /π/, 'OpenWAM-α']);
+  // π₀.₅ is typeset by KaTeX like every other model name.
+  await expect(adaptTabs.nth(2).locator('annotation[encoding="application/x-tex"]')).toHaveText(
+    String.raw`\pi_{0.5}`,
+  );
   await expect(page.locator('#case-poc .case-model-tabs button')).toHaveCount(5);
   for (const width of [1440, 768, 390]) {
     await page.setViewportSize({ width, height: 1100 });

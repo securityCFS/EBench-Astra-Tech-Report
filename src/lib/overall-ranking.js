@@ -8,7 +8,7 @@ const overallOnlyModel = {
 };
 
 const labels = {
-  'Astra (ICL)': 'GPT-6-Astra-ICL',
+  'Astra (ICL)': 'GPT-6-Astra',
   'OpenWAM-Alpha': 'OpenWAM-α',
   FastWAM: 'Fast-WAM',
 };

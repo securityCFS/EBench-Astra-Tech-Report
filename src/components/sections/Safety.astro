@@ -1,14 +1,14 @@
 <section id="safety" class="section">
   <div class="section-inner">
     <div class="section-heading">
-      <h2>Safety in Execution: Risk behaviours in the recorded trajectories</h2>
+      <h2>Safety in Execution: Risk behaviors in the recorded trajectories</h2>
     </div>
     <div class="report-prose">
       <p>
-        <strong>Exploration and recovery also expose safety weaknesses.</strong> Failed dishwasher
-        and apple-to-bowl episodes show objects slipping from the gripper, followed by repeated arm
-        and base repositioning to search for them. During exploration, some requested EEF targets
-        are not reached, which is consistent with reachability or other execution constraints. The
+        <strong>Exploration and recovery also expose safety weaknesses.</strong> Unsuccessful dishwasher
+        and apple-to-fruit-bowl episodes show objects slipping from the gripper, followed by repeated arm
+        and base repositioning to search for them. During exploration, the agent keeps
+        requesting EEF targets after an object has fallen outside its workspace. The
         coffee-bean case shows awkward EEF poses and interference between held objects and the scene. Together, these
         failures highlight the need to preserve grasp stability, enforce workspace constraints and
         account for contact throughout manipulation.
