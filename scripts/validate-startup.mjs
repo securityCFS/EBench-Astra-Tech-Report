@@ -61,8 +61,6 @@ const relatedWork = node('[data-narrative="relatedWork"]').innerHTML;
 assert.equal((relatedWork.match(/<p>/g) || []).length, 1);
 assert.ok(relatedWork.startsWith('<p>Recent reports have begun to explore this frontier.'));
 assert.ok(relatedWork.includes('https://robodojo-benchmark.com/report/gpt-6-astra-eval'));
-for (let reference = 1; reference <= 8; reference++)
-  assert.ok(relatedWork.includes(`[${reference}]`));
 const referenceIds = [
   ...fs
     .readFileSync(`${sectionsDir}/References.astro`, 'utf8')
@@ -73,6 +71,35 @@ assert.equal(citations.length, 8);
 for (const [, target, number] of citations)
   assert.equal(target, referenceIds[Number(number) - 1], `Reference ${number} target mismatch.`);
 const page = fs.readFileSync('src/pages/index.astro', 'utf8');
+// References are numbered by first citation in reading order. Walk the sections in the
+// order the page places them, reading each narrative slot where it sits, and check that
+// every visible number points at the list entry it names.
+const citedInOrder = [];
+for (const [, name] of page.matchAll(/<([A-Z]\w+) \/>/g)) {
+  const file = `${sectionsDir}/${name}.astro`;
+  if (name === 'References' || !fs.existsSync(file)) continue;
+  const source = fs.readFileSync(file, 'utf8');
+  for (const [, key, id] of source.matchAll(/data-narrative="([^"]+)"|href="#(ref-[^"]+)"/g)) {
+    const html = key ? node(`[data-narrative="${key}"]`).innerHTML : `href="#${id}"`;
+    for (const [, cited] of html.matchAll(/href="#(ref-[^"]+)"/g))
+      if (!citedInOrder.includes(cited)) citedInOrder.push(cited);
+  }
+  const rendered = source.replace(
+    /data-narrative="([^"]+)"/g,
+    (_, key) => node(`[data-narrative="${key}"]`).innerHTML,
+  );
+  for (const [, id, label, number] of rendered.matchAll(
+    /<a\b[^>]*href="#(ref-[^"]+)"[^>]*aria-label="Reference (\d+)"[^>]*>\s*\[(\d+)\]/g,
+  )) {
+    assert.equal(label, number, `Citation ${number} is announced as Reference ${label}.`);
+    assert.equal(
+      id,
+      referenceIds[Number(number) - 1],
+      `Citation [${number}] does not point at entry ${number}.`,
+    );
+  }
+}
+assert.deepEqual(citedInOrder, referenceIds, 'References must be numbered by first citation in reading order.');
 assert.ok(
   page.indexOf('<RelatedWork />') < page.indexOf('<References />'),
   'Related work must appear directly before References.',
