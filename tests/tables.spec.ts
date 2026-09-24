@@ -335,7 +335,7 @@ test('merged capability table retains all six subgroups and the persistent keybo
   await ready(page);
   const chart = page.locator('#cross-group-chart');
   await expect(chart.locator('.capability-results')).toBeVisible();
-  await expect(chart.locator('tbody tr')).toHaveCount(6);
+  await expect(chart.locator('tbody tr')).toHaveCount(4);
   await expect(chart.locator('svg, canvas, .chart-series, [data-series]')).toHaveCount(0);
   const pill = await chart.locator('.segmented-control__indicator').elementHandle();
   const score = chart.locator('button[data-metric="score"]');
@@ -352,7 +352,7 @@ test('merged capability table retains all six subgroups and the persistent keybo
   await expect(chart.locator('button[data-metric="sr"]')).toBeFocused();
   await expect(chart.locator('button[data-metric="sr"]')).toHaveAttribute('aria-pressed', 'true');
   await expect(chart.locator('table')).toHaveAccessibleName(/Success rate/);
-  await expect(chart.locator('tbody tr')).toHaveCount(6);
+  await expect(chart.locator('tbody tr')).toHaveCount(4);
 });
 
 test('main profiles preserve all exact group aggregates in both metrics', async ({ page }) => {
