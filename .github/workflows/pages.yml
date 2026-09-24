@@ -33,11 +33,15 @@ jobs:
           npm ci
           npm run check
           npm run validate
+      # The site's base path comes from Pages itself, so renaming or transferring the
+      # repository (or adding a custom domain) needs no change here.
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
       - name: Prepare published files
         run: npm run build
         env:
-          REPORT_BASE: /Ebench-Astra-Tech-Report
-      - uses: actions/configure-pages@v5
+          REPORT_BASE: ${{ steps.pages.outputs.base_path }}
       - uses: actions/upload-pages-artifact@v4
         with:
           path: _site-next
