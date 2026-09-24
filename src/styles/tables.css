@@ -110,9 +110,9 @@
   .paired-detail-table th[rowspan] {
     vertical-align: middle;
   }
-  /* The last paragraph above this block keeps no bottom margin, so restore the prose gap. */
+  /* This block's first paragraph sits under the task-level heading; match the heading gap. */
   #mobile-content {
-    margin-top: 0.875rem;
+    margin-top: 1.25rem;
   }
   #mobile-content > .finding-grid {
     grid-template-columns: minmax(0, 1fr);
