@@ -61,16 +61,22 @@
     const bounds = root.querySelector('.episode-timeline').getBoundingClientRect();
     const railBounds = rail.getBoundingClientRect();
     rail.style.setProperty('--chapter-label-max', `${bounds.width}px`);
-    const laneEnds = [];
-    // Nearby chapters retain their true time position, but use separate rows so
-    // their 44px touch/keyboard targets never overlap, even on narrow screens.
-    rail.querySelectorAll('[data-chapter]').forEach((button) => {
-      const x = 8 + Number(button.dataset.position) * Math.max(0, width - 16);
-      let lane = laneEnds.findIndex((end) => x - end >= 46);
-      if (lane < 0) lane = laneEnds.length;
-      laneEnds[lane] = x;
+    // Chapters keep their true time position on one row. Where two would be closer than
+    // their 44px touch targets allow (narrow screens only), an inner chapter is hidden; the
+    // first and last always stay, and every moment remains in the full timeline below.
+    const buttons = [...rail.querySelectorAll('[data-chapter]')];
+    const xs = buttons.map((b) => 8 + Number(b.dataset.position) * Math.max(0, width - 16));
+    const shown = [];
+    xs.forEach((x, i) => {
+      if (!shown.length || x - xs[shown.at(-1)] >= 46) shown.push(i);
+      else if (i === xs.length - 1) shown[shown.length - 1] = i;
+    });
+    buttons.forEach((button, i) => {
+      button.hidden = !shown.includes(i);
+      if (button.hidden) return;
+      const x = xs[i];
       button.style.left = `${x}px`;
-      button.style.top = `${lane * 44}px`;
+      button.style.top = '0px';
       const tooltip = button.querySelector('.episode-chapter-label');
       const tooltipWidth = tooltip.offsetWidth;
       const center = railBounds.left + x;
@@ -80,7 +86,7 @@
       );
       tooltip.style.left = `${left - center + 22}px`;
     });
-    rail.style.height = `${Math.max(1, laneEnds.length) * 44}px`;
+    rail.style.height = '44px';
   }
   function scheduleLayout() {
     if (layoutFrame !== null) return;
@@ -510,6 +516,17 @@
           : (position + (event.key === 'ArrowRight' ? 1 : -1) + buttons.length) % buttons.length;
     buttons[next].focus();
     buttons[next].click();
+  });
+  // A tap leaves iOS in a sticky hover state, so a tapped chapter's label would stay open over
+  // its neighbours. After a touch seek the label is dismissed; mouse hover and keyboard focus
+  // still show it.
+  let lastPointerType = 'mouse';
+  root.addEventListener('pointerdown', (event) => {
+    lastPointerType = event.pointerType;
+  });
+  root.addEventListener('click', (event) => {
+    if (lastPointerType === 'touch')
+      event.target.closest('[data-chapter]')?.setAttribute('data-tooltip-dismissed', 'true');
   });
   for (const event of ['pointerover', 'focusin'])
     root.addEventListener(event, (event) =>

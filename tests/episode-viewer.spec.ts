@@ -162,10 +162,13 @@ test('full-width chapters sit below both columns, expose focus/hover labels, and
         root.evaluate((element) => {
           const stage = element.querySelector('.episode-stage')!.getBoundingClientRect();
           const timeline = element.querySelector('.episode-timeline')!.getBoundingClientRect();
-          const marks = [...element.querySelectorAll('[data-chapter]')].map((mark) =>
+          // Chapters that do not fit a 44px target on narrow screens are hidden.
+          const chapters = [...element.querySelectorAll<HTMLElement>('[data-chapter]')];
+          const marks = chapters.filter((mark) => !mark.hidden).map((mark) =>
             mark.getBoundingClientRect(),
           );
           return {
+            endsShown: !chapters[0].hidden && !chapters.at(-1)!.hidden,
             below: timeline.top >= stage.bottom,
             fullWidth: Math.abs(timeline.width - stage.width) < 2,
             overflow: element.scrollWidth > element.clientWidth + 1,
@@ -187,9 +190,18 @@ test('full-width chapters sit below both columns, expose focus/hover labels, and
           };
         }),
       )
-      .toEqual({ below: true, fullWidth: true, overflow: false, targets: true, overlaps: false });
-    for (const index of [0, 4]) {
-      const mark = root.locator('[data-chapter]').nth(index);
+      .toEqual({
+        endsShown: true,
+        below: true,
+        fullWidth: true,
+        overflow: false,
+        targets: true,
+        overlaps: false,
+      });
+    for (const mark of [
+      root.locator('[data-chapter]:visible').first(),
+      root.locator('[data-chapter]:visible').last(),
+    ]) {
       await mark.focus();
       await expect(mark.locator('.episode-chapter-label')).toBeVisible();
       const bounds = await mark.locator('.episode-chapter-label').boundingBox();
@@ -198,6 +210,8 @@ test('full-width chapters sit below both columns, expose focus/hover labels, and
       expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(timeline.x + timeline.width + 1);
     }
   }
+  // At desktop width every chapter fits, including Slip detected.
+  await page.setViewportSize({ width: 1440, height: 1000 });
   const slip = root.getByRole('button', { name: /^Seek to Slip detected/ });
   await slip.focus();
   await page.keyboard.press('Enter');
@@ -321,7 +335,7 @@ test('200% text remains contained on narrow layouts', async ({ page }) => {
         indicatorDistance(page, '.execution-demo .episode-picker', '.episode-picker-indicator'),
       )
       .toBeLessThan(2);
-    const last = page.locator('.execution-demo [data-chapter]').last();
+    const last = page.locator('.execution-demo [data-chapter]:visible').last();
     await last.focus();
     const label = (await last.locator('.episode-chapter-label').boundingBox())!;
     const timeline = (await page.locator('.execution-demo .episode-timeline').boundingBox())!;
