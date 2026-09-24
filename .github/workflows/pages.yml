@@ -2,7 +2,7 @@ name: Deploy report to GitHub Pages
 
 on:
   push:
-    branches: [clean, '001']
+    branches: [clean]
   workflow_dispatch:
 
 permissions:
@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.ref == 'refs/heads/clean' || github.ref == 'refs/heads/001'
+    if: github.ref == 'refs/heads/clean'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
