@@ -156,7 +156,6 @@ function openAppendix(key) {
   $('#appendix-body').innerHTML = `<h2 id="appendix-title">${content[0]}</h2>${content[1]}`;
   if (!$('#appendix-dialog').open) $('#appendix-dialog').showModal();
   $('#appendix-body').scrollTop = 0;
-  decorateAppendix(key);
   drawFigures($('#appendix-body'));
 }
 const observer = new IntersectionObserver(
@@ -470,17 +469,6 @@ document.addEventListener('click', (e) => {
   if (key) openAppendix(key);
 });
 
-function decorateAppendix(key) {
-  const body = $('#appendix-body');
-  if (key === 'ablation') {
-    const findings = body.querySelector('.icl-pair-findings');
-    if (findings)
-      findings.insertAdjacentHTML(
-        'beforebegin',
-        '<div class="icl-pair-chart" data-dumbbells="fresh"></div><div class="viz-legend"><span><i class="hollow"></i>Zero-shot Score</span><span><i class="filled"></i>Single-shot ICL Score</span><span>✓ marks a terminal success</span></div>',
-      );
-  }
-}
 function drawFigures(root = document) {
   root.querySelectorAll('[data-dumbbells]:not([data-ready])').forEach((host) => {
     host.dataset.ready = 'true';

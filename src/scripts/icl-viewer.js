@@ -262,20 +262,10 @@ document.addEventListener('keydown', (e) => {
 });
 
 function pairedICLContent() {
-  const groups = ablations.groups.filter((g) => g.experiment === 'frame_gear_fresh'),
-    pairs = ablations.pairs.filter((p) => p.experiment === 'frame_gear_fresh');
-  const rows = (ps) =>
-    ps
-      .map(
-        (p) =>
-          `<tr><th>${title(p.task)} / ${p.seed}</th><td>${p.zero_shot_sr}</td><td>${p.zero_shot_score.toFixed(4)}</td><td>${p.icl_sr}</td><td>${p.icl_score.toFixed(4)}</td><td>${p.delta_score > 0 ? '+' : ''}${p.delta_score.toFixed(4)}</td></tr>`,
-      )
-      .join('');
-  const table = (ps) =>
-    `<div class="table-scroll" tabindex="0" role="region" aria-label="All 40 paired ICL results"><table class="report-table report-table--plain paired-detail-table"><thead><tr><th rowspan="2">Task / seed</th><th colspan="2">Zero-shot</th><th colspan="2">Single-shot ICL</th><th rowspan="2">Δ Score</th></tr><tr><th>SR</th><th>Score</th><th>SR</th><th>Score</th></tr></thead><tbody>${rows(ps)}</tbody></table></div>`;
+  const groups = ablations.groups.filter((g) => g.experiment === 'frame_gear_fresh');
   return [
     'Zero-shot vs. ICL: gains and regressions',
-    `<p><strong>We compare all 20 seeds of the photo-frame and gear installation tasks, with and without the demonstration.</strong> The single-shot ICL runs are the main-evaluation episodes; each zero-shot run is new, on the same seed and with the same execution guidance, and only the annotated demonstration is removed.</p><div class="icl-pair-findings">${groups.map((g) => `<section><h3>${title(g.task)}</h3><p><strong>${g.zero_shot_successes}/${g.pairs} → ${g.icl_successes}/${g.pairs}</strong> complete successes</p><p>Mean Score ${g.zero_shot_score.toFixed(4)} → ${g.icl_score.toFixed(4)}</p><p>${g.score_better} pairs improve · ${g.score_worse} worsen · ${g.score_tied} tie</p><button type="button" class="supplement-action" data-icl-package="${g.task}"><span>Inspect this task’s demonstration</span>${reportIcon('book-open')}</button></section>`).join('')}</div><h3>All 40 pairs</h3>${table(pairs)}`,
+    `<div class="icl-pair-findings">${groups.map((g) => `<section><h3>${title(g.task)}</h3><p><strong>${g.zero_shot_successes}/${g.pairs} → ${g.icl_successes}/${g.pairs}</strong> complete successes</p><p>Mean Score ${g.zero_shot_score.toFixed(4)} → ${g.icl_score.toFixed(4)}</p><p>${g.score_better} pairs improve · ${g.score_worse} worsen · ${g.score_tied} tie</p><button type="button" class="supplement-action" data-icl-package="${g.task}"><span>Inspect this task’s demonstration</span>${reportIcon('book-open')}</button></section>`).join('')}</div>`,
   ];
 }
 
