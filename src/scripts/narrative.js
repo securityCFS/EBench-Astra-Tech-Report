@@ -63,7 +63,7 @@ const reportNarrative = {
     'In the gear installation task, zero-shot execution likewise demonstrates basic object-handling ability: GPT-6-Astra grasps and lifts the gear, but its placement attempts leave the gear outside the intended assembly position, and installation remains incomplete. With ICL, it positions the gear in the gap between the two existing gears, lowers it into place, releases it, and withdraws the gripper, leaving the gear installed.',
   ],
   iclSummary: [
-    'The frame and gear examples show how a demonstration can guide grasp geometry and the operation sequence <strong>without parameter updates</strong>. Eight matched episode pairs compare completion with and without the demonstration.',
+    'The frame and gear examples show how a demonstration can guide grasp geometry and the operation sequence <strong>without parameter updates</strong>. Across all 20 seeds of each task, matched with and without the demonstration, it raises frame placement from 1 to 13 complete successes (mean Score 0.28 to 0.80), while gear installation stays at 3 of 20 in both conditions (mean Score 0.20): the gear example shows what a demonstration can do on one seed, not a consistent gain.',
     'Together, these cases suggest that in-context learning can supply task-specific geometric and procedural cues that help translate high-level task intent into executable interaction strategies. Their value lies not merely in clarifying what to manipulate, but in guiding how to grasp, coordinate both arms, and place objects precisely to satisfy the task objective.',
   ],
 };
