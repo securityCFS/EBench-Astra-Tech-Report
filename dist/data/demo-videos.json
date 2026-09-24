@@ -82,12 +82,12 @@
   },
   {
     "task": "flip_cup_collect_cookies",
-    "seed": "001",
+    "seed": "009",
     "sr": 0.0,
-    "score": 0.5,
+    "score": 0.0,
     "selection_role": "task_overview_example",
-    "duration_s": 109.5,
-    "path": "media/demos/flip_cup_collect_cookies_001.mp4"
+    "duration_s": 116.7,
+    "path": "media/demos/flip_cup_collect_cookies_009.mp4"
   },
   {
     "task": "frame_against_pen_holder",
