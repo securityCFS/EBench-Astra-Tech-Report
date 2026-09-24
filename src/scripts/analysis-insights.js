@@ -7,7 +7,7 @@ async function initAnalysisInsights() {
       (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c],
     );
   const taskName = (s) => s.replaceAll('_', ' ').replace(/^./, (c) => c.toUpperCase());
-  const number = (n) => n.toFixed(2);
+  const number = (n) => n.toFixed(1);
   const astra = 'Astra (ICL)';
   let data;
   try {
@@ -80,7 +80,7 @@ async function initAnalysisInsights() {
   initSegmentedControl(groupRoot.querySelector('.chart-metrics'));
   function drawCapabilityTable() {
     const metricLabel = groupMetric === 'sr' ? 'Success rate (%)' : 'Score (0–1)';
-    const format = (value) => (groupMetric === 'sr' ? (value * 100).toFixed(2) : value.toFixed(4));
+    const format = (value) => (groupMetric === 'sr' ? (value * 100).toFixed(1) : value.toFixed(3));
     groupRoot.querySelector('.insight-table-scroll').innerHTML =
       `<table class="report-table report-table--plain insight-table capability-results" data-metric="${groupMetric}" aria-label="Capability comparison: ${metricLabel}" aria-describedby="capability-table-note"><caption class="chart-caption report-table-caption">Performance by operating mode, with horizon split within mobile tasks and precision within tabletop tasks</caption><thead><tr><th scope="col" rowspan="2" class="capability-dimension">Dimension</th><th scope="col" rowspan="2" class="capability-subgroup">Subgroup</th><th scope="colgroup" colspan="${data.models.length}">${metricLabel}</th></tr><tr>${data.models.map((m) => `<th scope="col" ${m.id === astra ? 'class="insight-astra"' : ''}>${model(m.id)}</th>`).join('')}</tr></thead>${tableGroups
         .map(
@@ -148,10 +148,10 @@ async function initAnalysisInsights() {
     )
     .join('');
   failures.innerHTML = `<div class="outcome-breakdown-toolbar"><div class="outcome-split-legend"><span><i class="outcome-success" aria-hidden="true"></i>Complete success</span><span><i class="outcome-partial" aria-hidden="true"></i>Incomplete</span><span><i class="outcome-zero" aria-hidden="true"></i>Failed</span></div><div class="outcome-trait-filters" role="group" aria-label="Filter tasks by precision and horizon"><button type="button" class="outcome-trait-clear" hidden>Clear filters</button>${traitFilters}</div></div><div class="outcome-breakdown-heading" aria-hidden="true"><span>Task</span><span>Episode outcomes</span><span>Episodes</span></div><div id="failure-depth-rows"></div><button class="failure-expand" type="button" aria-expanded="false" aria-controls="failure-depth-extra"><span data-failure-expand-label>Show all 26 tasks</span><span class="failure-expand-icon">${reportIcon('chevron-down')}</span></button><p class="outcome-filter-status" aria-live="polite" aria-atomic="true" hidden></p><p class="outcome-breakdown-note">Percentages use all evaluated episodes of each task. The marks under each task name give its precision and horizon, as in the filters above; the more demanding end of each axis &mdash; high precision, long horizon &mdash; is set in black. Select a task for exact counts.</p><p class="outcome-breakdown-readout" id="failure-readout" aria-live="polite" aria-atomic="true"></p>`;
-  // One ordering for every block: most outright failures first, and among equal failure
-  // shares the lower success rate first, so each list runs from failing outright to stalling.
+  // One ordering for every block: success rate from low to high, and among equal success
+  // rates the larger share of failed (zero-score) episodes first.
   const byFailureDepth = (a, b) =>
-    b.zero / b.n - a.zero / a.n || a.success / a.n - b.success / b.n || a.task.localeCompare(b.task);
+    a.success / a.n - b.success / b.n || b.zero / b.n - a.zero / a.n || a.task.localeCompare(b.task);
   const initialRows = selected.map((name) => data.tasks.find((t) => t.task === name)).sort(byFailureDepth);
   const additionalRows = data.tasks.filter((t) => !selected.includes(t.task)).sort(byFailureDepth);
   const outcomeLabels = { success: 'Complete success', partial: 'Incomplete', zero: 'Failed' };
@@ -322,7 +322,7 @@ function renderPerturbationRanges(container) {
     <div class="table-scroll" tabindex="0" role="region" aria-label="Success rates and variation across perturbation conditions">
       <table class="report-table report-table--plain perturbation-range-table" aria-describedby="perturbation-range-note">
         <thead><tr><th scope="col">Model</th>${conditions.map(([, label, episodes]) => `<th scope="col">${label}<small>${episodes} episodes</small></th>`).join('')}<th scope="col" aria-sort="ascending">Range (pp)</th></tr></thead>
-        <tbody>${rows.map((row) => `<tr data-model="${escape(row.id)}" class="${row.id === 'Astra (ICL)' ? 'highlight' : ''}"><th scope="row">${escape(row.label)}</th>${row.rates.map((rate, i) => `<td data-condition="${conditions[i][0]}" data-value="${rate}">${rate.toFixed(2)}%</td>`).join('')}<td class="perturbation-range-value" data-range="${row.range}">${row.range.toFixed(2)}</td></tr>`).join('')}</tbody>
+        <tbody>${rows.map((row) => `<tr data-model="${escape(row.id)}" class="${row.id === 'Astra (ICL)' ? 'highlight' : ''}"><th scope="row">${escape(row.label)}</th>${row.rates.map((rate, i) => `<td data-condition="${conditions[i][0]}" data-value="${rate}">${rate.toFixed(1)}%</td>`).join('')}<td class="perturbation-range-value" data-range="${row.range}">${row.range.toFixed(1)}</td></tr>`).join('')}</tbody>
       </table>
     </div>`;
 }

@@ -3,7 +3,7 @@ function modelLabel(id) {
   return chartModels.find((m) => m[0] === id)?.[1] || id;
 }
 function matrixCell(value, metric, best = false) {
-  const label = metric === 'sr' ? (value * 100).toFixed(2) : value.toFixed(4);
+  const label = metric === 'sr' ? (value * 100).toFixed(1) : value.toFixed(3);
   return `<td class="heat-value${best ? ' is-best' : ''}" data-value="${value}" data-metric="${metric}" style="--heat:${heatColor(value)};--heat-ink:${heatInk(value)}" title="${metric === 'sr' ? 'Success rate: ' + label + '%' : 'Score: ' + label}${best ? ' · Best in column' : ''}">${label}</td>`;
 }
 function initBenchmarkMatrix() {
@@ -227,7 +227,7 @@ function renderPoc(area) {
     ['openwam-poc-1', 'OpenWAM-α · Rollout 1', 'Pen-directed; bookmark remains off'],
     ['openwam-poc-2', 'OpenWAM-α · Rollout 2', 'Bookmark placed; pen untouched'],
   ];
-  area.innerHTML = `<div class="case-video-toolbar"><div class="case-model-tabs" aria-label="Composition model view"><button type="button" data-poc-focus="all" aria-pressed="true">Compare all</button>${entries.map(([_, name], i) => `<button type="button" data-poc-focus="${i}" aria-pressed="false">${i === 0 ? 'GPT-6-Astra' : i === 1 ? 'π₀.₅' : name}</button>`).join('')}</div><button type="button" class="case-play poc-play" aria-label="Play all" aria-pressed="false">${reportIcon('play')}<span>Play all</span></button></div><div class="poc-videos">${entries.map(([file, name, condition]) => video(`media/poc/${file}.mp4`, name, condition, 'Compositional evaluation')).join('')}</div><div class="case-description report-prose"><p>Across 10 rollouts per method, GPT-6-Astra achieved a 100% success rate, whereas π₀.₅ and OpenWAM-α both achieved 0% success, with mean scores of 0.40 and 0.35, respectively.</p><p>GPT-6-Astra, evaluated zero-shot without in-context demonstrations, places the bookmark and then the pen on the book in the required order. The post-trained policies instead either manipulate the pen or place the bookmark without proceeding with execution. Their pen-directed behavior suggests partial generalization to a task absent from the post-training data, yet this transfer does not translate into successful execution of the compound instruction. One plausible contributing factor is limited coverage of sequential tasks in the training data. This could help explain why a policy engages one constituent manipulation but fails to organize the complete sequence.</p></div><div class="case-insight"><p>Together, these results highlight GPT-6-Astra’s advantage in translating a compound instruction into a complete, correctly ordered sequence of manipulations without in-context demonstrations. Post-trained policies instead focus on individual constituent manipulations, suggesting that atomic-task generalization alone does not ensure successful composition. Improving compositional execution may therefore require more than expanding atomic-task coverage: training could benefit from data that span subtask boundaries and capture continuation from the states left by preceding actions.</p></div>`;
+  area.innerHTML = `<div class="case-video-toolbar"><div class="case-model-tabs" aria-label="Composition model view"><button type="button" data-poc-focus="all" aria-pressed="true">Compare all</button>${entries.map(([_, name], i) => `<button type="button" data-poc-focus="${i}" aria-pressed="false">${i === 0 ? 'GPT-6-Astra' : i === 1 ? 'π₀.₅' : name}</button>`).join('')}</div><button type="button" class="case-play poc-play" aria-label="Play all" aria-pressed="false">${reportIcon('play')}<span>Play all</span></button></div><div class="poc-videos">${entries.map(([file, name, condition]) => video(`media/poc/${file}.mp4`, name, condition, 'Compositional evaluation')).join('')}</div><div class="case-description report-prose"><p>Across 10 rollouts per method, GPT-6-Astra achieved a 100% success rate, whereas π₀.₅ and OpenWAM-α both achieved 0% success, with mean scores of 0.400 and 0.350, respectively.</p><p>GPT-6-Astra, evaluated zero-shot without in-context demonstrations, places the bookmark and then the pen on the book in the required order. The post-trained policies instead either manipulate the pen or place the bookmark without proceeding with execution. Their pen-directed behavior suggests partial generalization to a task absent from the post-training data, yet this transfer does not translate into successful execution of the compound instruction. One plausible contributing factor is limited coverage of sequential tasks in the training data. This could help explain why a policy engages one constituent manipulation but fails to organize the complete sequence.</p></div><div class="case-insight"><p>Together, these results highlight GPT-6-Astra’s advantage in translating a compound instruction into a complete, correctly ordered sequence of manipulations without in-context demonstrations. Post-trained policies instead focus on individual constituent manipulations, suggesting that atomic-task generalization alone does not ensure successful composition. Improving compositional execution may therefore require more than expanding atomic-task coverage: training could benefit from data that span subtask boundaries and capture continuation from the states left by preceding actions.</p></div>`;
   enhanceCaseControls(area);
   initVideos();
 }
@@ -327,7 +327,7 @@ function initBehavior() {
           call: 12,
           t: 14.75,
           text: 'Recover the fruit that landed behind the cup.',
-          note: 'The destination is chosen correctly, but the release misses it; the episode ends incomplete at Score 0.60.',
+          note: 'The destination is chosen correctly, but the release misses it; the episode ends incomplete at Score 0.600.',
         },
       ],
     },
@@ -349,7 +349,7 @@ function initBehavior() {
   function draw(key) {
     const d = entries[key];
     $('#behavior-content').innerHTML =
-      `<div class="behavior-panel"><h3>${d.heading}</h3><div class="behavior-evidence"><div class="trace"><p class="trace-legend">Timecoded lines are GPT-6-Astra’s own action descriptions, quoted verbatim from the episode log; select a timecode to play the recording from that call. Lines labeled in the margin were supplied to the agent.</p><ol class="trace-log">${d.trace.map(traceStep).join('')}</ol></div>${video(`media/cases/${d.task}_${d.seed}-web.mp4`, title(d.task), '', `${key === 'apple' ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(2)})`)}</div><div class="behavior-narrative report-prose"></div></div>`;
+      `<div class="behavior-panel"><h3>${d.heading}</h3><div class="behavior-evidence"><div class="trace"><p class="trace-legend">Timecoded lines are GPT-6-Astra’s own action descriptions, quoted verbatim from the episode log; select a timecode to play the recording from that call. Lines labeled in the margin were supplied to the agent.</p><ol class="trace-log">${d.trace.map(traceStep).join('')}</ol></div>${video(`media/cases/${d.task}_${d.seed}-web.mp4`, title(d.task), '', `${key === 'apple' ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(3)})`)}</div><div class="behavior-narrative report-prose"></div></div>`;
     updateBehaviorNarrative(key);
     initVideos();
   }
@@ -420,7 +420,7 @@ function initDemoLibrary() {
         .slice(page * size, page * size + size)
         .map(
           ({ task: t, demo: d }) =>
-            `<article class="recording-library__item">${video(d.path, title(t.task), `Task SR <b>${pct(t['Astra (ICL)_sr'])}%</b> across ${t.episodes} episodes`, `${d.sr ? 'Success' : d.score > 0 ? 'Incomplete' : 'Failed'} (Score ${d.score.toFixed(2)})`)}</article>`,
+            `<article class="recording-library__item">${video(d.path, title(t.task), `Task SR <b>${pct(t['Astra (ICL)_sr'])}%</b> across ${t.episodes} episodes`, `${d.sr ? 'Success' : d.score > 0 ? 'Incomplete' : 'Failed'} (Score ${d.score.toFixed(3)})`)}</article>`,
         )
         .join('') || '<p class="recording-library__empty">No tasks match these filters.</p>';
     $('#library-count').textContent =
@@ -471,13 +471,13 @@ async function initEpisodeOutcomes() {
   );
   const summary = `${episodes.length} episodes: ${groups.map((g) => `${g.name} ${g.count}`).join(', ')}.`;
   $('#episode-outcomes').innerHTML =
-    `<div class="outcome-layout"><svg viewBox="0 0 480 286" role="img" aria-label="${summary}">${ordered.map((d, i) => `<circle data-outcome="${d.group}" data-index="${i}" cx="${8 + (i % 30) * 16}" cy="${9 + Math.floor(i / 30) * 16}" r="5.2" fill="${d.color}"><title>${title(d.task)} / ${d.seed}: ${d.outcomeName} · SR ${d.sr}, Score ${Number(d.score).toFixed(2)}</title></circle>`).join('')}</svg><div class="outcome-legend">${groups
+    `<div class="outcome-layout"><svg viewBox="0 0 480 286" role="img" aria-label="${summary}">${ordered.map((d, i) => `<circle data-outcome="${d.group}" data-index="${i}" cx="${8 + (i % 30) * 16}" cy="${9 + Math.floor(i / 30) * 16}" r="5.2" fill="${d.color}"><title>${title(d.task)} / ${d.seed}: ${d.outcomeName} · SR ${d.sr}, Score ${Number(d.score).toFixed(3)}</title></circle>`).join('')}</svg><div class="outcome-legend">${groups
       .map((g) => {
         return `<button type="button" data-outcome-filter="${g.id}" aria-pressed="false" style="--outcome:${g.color}"><span class="outcome-name">${g.name}</span><strong>${g.count}</strong><small>${((g.count / episodes.length) * 100).toFixed(1)}% of episodes</small></button>`;
       })
       .join(
         '',
-      )}</div></div><p class="outcome-readout" aria-live="polite" aria-atomic="true"></p><p class="outcome-definition">Complete success: SR = 1; Incomplete: SR = 0 and Score > 0; Failed: SR = 0 and Score = 0.</p><p class="fineprint">Episode-weighted success is 46.47%; the headline 46.73% is the equal-weight mean across tasks. Partial Score follows each task’s scoring rules.</p>`;
+      )}</div></div><p class="outcome-readout" aria-live="polite" aria-atomic="true"></p><p class="outcome-definition">Complete success: SR = 1; Incomplete: SR = 0 and Score > 0; Failed: SR = 0 and Score = 0.</p><p class="fineprint">Episode-weighted success is 46.5%; the headline 46.7% is the equal-weight mean across tasks. Partial Score follows each task’s scoring rules.</p>`;
   const host = $('#episode-outcomes');
   host.addEventListener('click', (e) => {
     const button = e.target.closest('[data-outcome-filter]');
@@ -492,7 +492,7 @@ async function initEpisodeOutcomes() {
       .forEach((c) => (c.style.opacity = active && c.dataset.outcome !== key ? '.13' : '1'));
     const group = groups.find((g) => g.id === key);
     host.querySelector('.outcome-readout').textContent = active
-      ? `${group.name} · ${group.count}/${episodes.length} episodes (${((100 * group.count) / episodes.length).toFixed(2)}%) highlighted.`
+      ? `${group.name} · ${group.count}/${episodes.length} episodes (${((100 * group.count) / episodes.length).toFixed(1)}%) highlighted.`
       : `All ${episodes.length} episodes shown.`;
   });
   host.addEventListener('pointerover', (e) => {
@@ -507,7 +507,7 @@ function initSafetyEvidence() {
       title: 'Grasp instability during coordinated manipulation risks breaking held objects',
       path: 'dishwasher_009-web.mp4',
       label: 'Dishwasher',
-      result: 'Incomplete (Score 0.67)',
+      result: 'Incomplete (Score 0.667)',
       observation:
         'The left hand holds the brown bowl while the right hand works on the dishwasher door. During this sequence, the bowl slips out of the grasp. The agent subsequently loads the blue bowl, then repeatedly searches the floor and cabinet edges for the missing brown bowl. The task remains incomplete.',
       risk: '<strong>A secure grasp must be maintained throughout coordinated manipulation, not restored afterward.</strong> Opening the door, moving the base and carrying the bowl require coordinated control of both arms and the held object. A lapse here does not just cost time in a search — it risks the bowl hitting the floor hard enough to break.',
@@ -519,7 +519,7 @@ function initSafetyEvidence() {
       title: 'Exploration requests EEF targets outside the workspace',
       path: 'apple_to_fruit_bowl_003-web.mp4',
       label: 'Apple to fruit bowl',
-      result: 'Failed (Score 0.00)',
+      result: 'Failed (Score 0.000)',
       observation:
         'The dropped apple falls outside the robot’s workspace, and GPT-6-Astra keeps exploring to recover it, searching below and around the table. One requested EEF target remains <strong>0.51 m from the recorded endpoint</strong>, followed by another attempt with a different wrist configuration.',
       risk: '<strong>Exploratory actions need workspace checks.</strong> The agent keeps commanding targets for an object it can no longer reach. Repeated requests for unreachable targets may pose safety risks, motivating validation before execution.',
@@ -532,7 +532,7 @@ function initSafetyEvidence() {
       title: 'Awkward EEF poses and overlooked scene contact disrupt manipulation',
       path: 'collect_coffee_beans_009-web.mp4',
       label: 'Collect coffee beans',
-      result: 'Incomplete (Score 0.07)',
+      result: 'Incomplete (Score 0.071)',
       observation: `GPT-6-Astra repeatedly reorients the held jar and spoon into <strong>awkward end-effector poses</strong>. The jar interferes with the table edge; later, the spoon contacts the edge during sweeping, followed by further grasp attempts around the displaced lid. Similarly, in a related detergent failure, bottles fall over and the basket rim obstructs subsequent manipulation (<a href="media/cases/detergent_000-web.mp4" target="_blank" rel="noopener">Video link ${reportIcon('external-link')}</a>).`,
       risk: '<strong>EEF pose selection must account for both the robot’s configuration and the held object’s interaction with the scene.</strong> The observed interference is consistent with inadequate clearance or contact handling in this rollout. Such behavior may pose risks on a physical robot; the simulation does not establish the severity of those risks. Correcting the wrist pose after interference does not necessarily restore displaced objects.',
       question:

@@ -26,7 +26,7 @@ const taskSummary = (task: TaskOutcome) =>
   `${taskLabel(task.task)} (${task.precision} precision, ${task.horizon}): ${categories
     .map(
       ({ key, label }) =>
-        `${label} ${task[key]}/${task.n} (${((100 * task[key]) / task.n).toFixed(2)}%)`,
+        `${label} ${task[key]}/${task.n} (${((100 * task[key]) / task.n).toFixed(1)}%)`,
     )
     .join('; ')}.`;
 
@@ -72,7 +72,7 @@ test('outcome labels, exact totals, episode thresholds, tooltips, and filters ag
     await button.click();
     await expect(button).toHaveAttribute('aria-pressed', 'true');
     await expect(host.locator('.outcome-readout')).toHaveText(
-      `${category.label} · ${category.count}/510 episodes (${((100 * category.count) / 510).toFixed(2)}%) highlighted.`,
+      `${category.label} · ${category.count}/510 episodes (${((100 * category.count) / 510).toFixed(1)}%) highlighted.`,
     );
     expect(
       await host
@@ -132,7 +132,7 @@ test('all 26 task counts and percentages survive expanding, reading, and collaps
         parseFloat((element as HTMLElement).style.width),
       );
       expect(width).toBeCloseTo(percent, 4);
-      await expect(segment).toHaveText(percent >= 10 ? `${Number(percent.toFixed(2))}%` : '');
+      await expect(segment).toHaveText(percent >= 10 ? `${Number(percent.toFixed(1))}%` : '');
     }
     await row.click();
     await expect(host.locator('#failure-readout')).toHaveText(taskSummary(task));

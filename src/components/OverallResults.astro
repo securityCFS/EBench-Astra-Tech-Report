@@ -5,7 +5,7 @@ import { buildOverallRanking } from '../lib/overall-ranking.js';
 
 const ranking = buildOverallRanking(reportFigures, onlineTotals);
 const astra = ranking.find((model) => model.key === 'Astra (ICL)')!;
-const successRate = (astra.sr * 100).toFixed(2);
+const successRate = (astra.sr * 100).toFixed(1);
 const astraRank = ranking.indexOf(astra) + 1;
 ---
 
@@ -86,8 +86,8 @@ const astraRank = ranking.indexOf(astra) + 1;
                   </sup>
                 )}
               </th>
-              <td>{index === 0 ? <b>{(sr * 100).toFixed(2)}</b> : (sr * 100).toFixed(2)}</td>
-              <td>{index === 0 ? <b>{score.toFixed(4)}</b> : score.toFixed(4)}</td>
+              <td>{index === 0 ? <b>{(sr * 100).toFixed(1)}</b> : (sr * 100).toFixed(1)}</td>
+              <td>{index === 0 ? <b>{score.toFixed(3)}</b> : score.toFixed(3)}</td>
             </tr>
           ))}
         </tbody>
@@ -122,8 +122,8 @@ const astraRank = ranking.indexOf(astra) + 1;
       const value = Number(astraRow.dataset[metric]);
       const rank = ordered.indexOf(astraRow) + 1;
       root.querySelector('.overall-value')!.textContent = isSuccess
-        ? (value * 100).toFixed(2)
-        : value.toFixed(4);
+        ? (value * 100).toFixed(1)
+        : value.toFixed(3);
       root.querySelector('.overall-unit')!.textContent = isSuccess ? '%' : 'Score';
       root.querySelector('.overall-metric-label')!.textContent = isSuccess
         ? 'Task-averaged success rate'

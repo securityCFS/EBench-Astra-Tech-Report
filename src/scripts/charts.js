@@ -118,7 +118,7 @@ function initCharts() {
         row = 32,
         groupGap = 34,
         height = 52 + groups.length * (visible.length * row + groupGap);
-      const fmt = (v) => (metric === 'sr' ? v.toFixed(2) + '%' : v.toFixed(4)),
+      const fmt = (v) => (metric === 'sr' ? v.toFixed(1) + '%' : v.toFixed(3)),
         max = metric === 'sr' ? 100 : 1;
       let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" role="group" aria-label="${spec.title}: ${metric === 'sr' ? 'success rate' : 'Score'}" font-family="STIX Two Text, Times, serif" font-size="15">`;
       for (let i = 0; i <= 4; i++) {
@@ -278,7 +278,7 @@ function initTaskTable() {
                 .map(([key, label]) => {
                   const value = Number(t[key + '_' + metric]);
                   const formatted =
-                    metric === 'sr' ? (value * 100).toFixed(2) + '%' : value.toFixed(4);
+                    metric === 'sr' ? (value * 100).toFixed(1) + '%' : value.toFixed(3);
                   return `<td class="heat-value" data-value="${value}" data-metric="${metric}" title="${title(t.task)} · ${label}: ${formatted}" style="--heat:${heatColor(value)};--heat-ink:${heatInk(value)}">${formatted}</td>`;
                 })
                 .join(
@@ -431,7 +431,7 @@ function initProfileChart(host, kind, spec) {
       );
       return { label, group, count: subset.length, values, best: Math.max(...values) };
     });
-    const format = (value) => (metric === 'sr' ? (value * 100).toFixed(2) + '%' : value.toFixed(4));
+    const format = (value) => (metric === 'sr' ? (value * 100).toFixed(1) + '%' : value.toFixed(3));
     const metricLabel = metric === 'sr' ? 'Success rate (%)' : 'Score (0–1)';
     host.querySelector('.profile-table-scroll').innerHTML =
       `<table class="report-table report-table--plain profile-results" data-profile="${kind}" data-metric="${metric}" aria-label="${spec.title}: ${metricLabel}"><thead><tr><th scope="col">Model</th>${groups.map((group) => `<th scope="col" data-group="${group.group}">${group.label}<small>${group.count} tasks</small></th>`).join('')}</tr></thead><tbody>${chartModels

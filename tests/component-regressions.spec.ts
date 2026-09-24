@@ -51,7 +51,7 @@ test('overall table sorts both metrics and keeps the Astra summary and footnote 
       Array.from({ length: 9 }, (_, index) => String(index + 1)),
     );
     expect(entries[astraPosition - 1].key).toBe('Astra (ICL)');
-    await expect(page.locator('.overall-value')).toHaveText(metric === 'sr' ? '46.73' : '0.6537');
+    await expect(page.locator('.overall-value')).toHaveText(metric === 'sr' ? '46.7' : '0.654');
     await expect(page.locator('.overall-unit')).toHaveText(metric === 'sr' ? '%' : 'Score');
     await expect(page.locator('.overall-position')).toHaveText(`${astraPosition}/9`);
     await expect(

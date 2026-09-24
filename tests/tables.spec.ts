@@ -68,12 +68,12 @@ test('aggregate values and heat contrast stay correct in both metrics', async ({
     for (let index = 0; index < models.length; index++) {
       const model = models[index];
       const expected = [
-        (model.sr * 100).toFixed(2),
-        model.score.toFixed(4),
+        (model.sr * 100).toFixed(1),
+        model.score.toFixed(3),
         ...groups.map((g) =>
           metric === 'sr'
-            ? (model.groups[g][metric] * 100).toFixed(2)
-            : model.groups[g][metric].toFixed(4),
+            ? (model.groups[g][metric] * 100).toFixed(1)
+            : model.groups[g][metric].toFixed(3),
         ),
       ];
       await expect(page.locator('.benchmark-table tbody tr').nth(index).locator('td')).toHaveText(
@@ -171,7 +171,7 @@ test('task grid omits N, retains episode counts, sorting, filtering, metric, and
   const taskId = await first.locator('[data-task-video]').getAttribute('data-task-video');
   const task = tasks.find((entry) => entry.task === taskId);
   await expect(first.locator('.heat-value').first()).toHaveText(
-    Number(task['Astra (ICL)_score']).toFixed(4),
+    Number(task['Astra (ICL)_score']).toFixed(3),
   );
   const sort = table.locator('[data-sort="task"]');
   await sort.click();
@@ -316,7 +316,7 @@ async function expectProfileValues(
         group,
         metric,
         value,
-        text: metric === 'sr' ? (value * 100).toFixed(2) + '%' : value.toFixed(4),
+        text: metric === 'sr' ? (value * 100).toFixed(1) + '%' : value.toFixed(3),
         best: value === best,
         strong: value === best,
       });
@@ -431,8 +431,8 @@ test('tab keyboard and distribution chart controls still function', async ({ pag
     const row = range.locator(`tr[data-model="${model.id}"]`);
     const rates = conditions.map((key) => model.generalization[key].sr * 100);
     await expect(row.locator('td')).toHaveText([
-      ...rates.map((rate) => `${rate.toFixed(2)}%`),
-      (Math.max(...rates) - Math.min(...rates)).toFixed(2),
+      ...rates.map((rate) => `${rate.toFixed(1)}%`),
+      (Math.max(...rates) - Math.min(...rates)).toFixed(1),
     ]);
   }
   await expect(range.locator('tbody tr').first()).toHaveAttribute('data-model', 'Astra (ICL)');

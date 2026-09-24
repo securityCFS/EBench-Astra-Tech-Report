@@ -1,6 +1,6 @@
 const $ = (s) => document.querySelector(s);
 const title = (s) => s.replaceAll('_', ' ').replace(/^./, (x) => x.toUpperCase());
-const pct = (n) => (Number(n) * 100).toFixed(2).replace(/\.00$/, '');
+const pct = (n) => (Number(n) * 100).toFixed(1).replace(/\.0$/, '');
 let tasks = [],
   demos = [],
   ablations = {},
@@ -14,7 +14,7 @@ function mainVideo(task, seed, label, detail) {
     d.path,
     label,
     detail,
-    `${d.sr ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(2)})`,
+    `${d.sr ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(3)})`,
   );
 }
 function bars(groups) {
@@ -137,7 +137,7 @@ const notes = {
 
   metrics: [
     'What the numbers mean',
-    `<p><b>SR</b> measures server-side complete success. <b>Score</b> is normalized terminal partial credit under task-specific rules.</p><p>Headline values average 26 task means equally: SR 46.73%, Score 0.6537. There are 237 successes among 510 retained episodes; episode-weighted SR is 46.47%.</p><p>24 tasks have 20 instances; make_sandwich and microwave have 15 each. Attribute groups overlap and do not represent paired changes to identical tasks.</p>`,
+    `<p><b>SR</b> measures server-side complete success. <b>Score</b> is normalized terminal partial credit under task-specific rules.</p><p>Headline values average 26 task means equally: SR 46.7%, Score 0.654. There are 237 successes among 510 retained episodes; episode-weighted SR is 46.5%.</p><p>24 tasks have 20 instances; make_sandwich and microwave have 15 each. Attribute groups overlap and do not represent paired changes to identical tasks.</p>`,
   ],
 };
 let taskVideoReturnContext = null;

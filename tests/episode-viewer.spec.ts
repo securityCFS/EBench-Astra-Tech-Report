@@ -117,7 +117,7 @@ test('all titles, outcomes, prompts, complete logs, exact tool arguments and sou
       episode.result.sr ? 'Successful' : 'Incomplete',
     );
     await expect(root.locator('.episode-outcome small')).toHaveText(
-      `Final score ${episode.result.score.toFixed(1)}`,
+      `Final score ${episode.result.score.toFixed(3)}`,
     );
     await expect(root.locator('.episode-log li')).toHaveCount(episode.calls.length);
     await expect(root.locator('video')).toHaveAttribute('src', episode.video);

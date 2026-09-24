@@ -22,8 +22,8 @@ test('field tooltip keeps model maths inline and values aligned', async ({ page 
     expect(Math.abs(shape.valueTop - shape.nameTop)).toBeLessThan(5);
   }
   expect((await tip.boundingBox())!.height).toBeLessThan(400);
-  await expect(tip.locator('.is-highlighted dd')).toHaveText('0.9000');
-  await expect(tip.locator('.viz-tip-delta strong')).toHaveText('-0.0500');
+  await expect(tip.locator('.is-highlighted dd')).toHaveText('0.900');
+  await expect(tip.locator('.viz-tip-delta strong')).toHaveText('-0.050');
   await page.keyboard.press('Escape');
   await expect(tip).toBeHidden();
 });

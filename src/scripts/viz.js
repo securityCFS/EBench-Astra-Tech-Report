@@ -9,8 +9,8 @@
       (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c],
     );
   const taskTitle = (task) => task.replaceAll('_', ' ').replace(/^./, (c) => c.toUpperCase());
-  const fmtSR = (v) => (v * 100).toFixed(2) + '%';
-  const fmtScore = (v) => v.toFixed(4);
+  const fmtSR = (v) => (v * 100).toFixed(1) + '%';
+  const fmtScore = (v) => v.toFixed(3);
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
   /* ---------- shared model registry (labels and colors come from charts.js) ---------- */
@@ -337,7 +337,7 @@
             `<div class="viz-tip-row${model.id === ASTRA ? ' is-highlighted' : ''}"><dt>${esc(model.label)}</dt><dd>${fmt(model.value)}</dd></div>`,
         )
         .join('');
-      const delta = `${r.delta > 0 ? '+' : ''}${metric === 'sr' ? (r.delta * 100).toFixed(2) + ' pp' : r.delta.toFixed(4)}`;
+      const delta = `${r.delta > 0 ? '+' : ''}${metric === 'sr' ? (r.delta * 100).toFixed(1) + ' pp' : r.delta.toFixed(3)}`;
       const g = el('g', {
         class: `viz-diverge ${positive ? 'is-pos' : zero ? 'is-zero' : 'is-neg'}`,
         tabindex: 0,
@@ -382,8 +382,8 @@
           'text',
           { x: width - 8, y: y + 4, 'text-anchor': 'end', class: 'viz-value' },
           metric === 'sr'
-            ? `${r.delta > 0 ? '+' : ''}${(r.delta * 100).toFixed(2)}`
-            : `${r.delta > 0 ? '+' : ''}${r.delta.toFixed(4)}`,
+            ? `${r.delta > 0 ? '+' : ''}${(r.delta * 100).toFixed(1)}`
+            : `${r.delta > 0 ? '+' : ''}${r.delta.toFixed(3)}`,
         ),
       );
       svg.append(g);
@@ -539,7 +539,7 @@
       const g = el('g', {
         class: `viz-pair ${up ? 'is-up' : down ? 'is-down' : 'is-tie'}`,
         tabindex: 0,
-        'data-tip': `<b>${esc(taskTitle(p.task))} / ${esc(p.seed)}</b><span>Zero-shot: Score ${p.zero_shot_score.toFixed(4)} · SR ${p.zero_shot_sr}</span><span>Single-shot ICL: Score ${p.icl_score.toFixed(4)} · SR ${p.icl_sr}</span><em>Δ Score ${p.delta_score > 0 ? '+' : ''}${p.delta_score.toFixed(4)}</em>`,
+        'data-tip': `<b>${esc(taskTitle(p.task))} / ${esc(p.seed)}</b><span>Zero-shot: Score ${p.zero_shot_score.toFixed(3)} · SR ${p.zero_shot_sr}</span><span>Single-shot ICL: Score ${p.icl_score.toFixed(3)} · SR ${p.icl_sr}</span><em>Δ Score ${p.delta_score > 0 ? '+' : ''}${p.delta_score.toFixed(3)}</em>`,
       });
       g.append(
         el(
