@@ -5,6 +5,8 @@ test('field tooltip keeps model maths inline and values aligned', async ({ page 
   await page.locator('[data-matrix="field"]').click();
   await page.locator('[data-matrix-metric="score"]').click();
   const task = page.locator('.viz-diverge[data-task="apple_to_fruit_bowl"]');
+  // Focus must not start a smooth scroll that moves the page under the open tooltip.
+  await task.scrollIntoViewIfNeeded();
   await task.focus();
   const tip = page.locator('.viz-tip');
   await expect(tip).toBeVisible();

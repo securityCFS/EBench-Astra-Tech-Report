@@ -89,8 +89,9 @@ test('cold Play all plays actual recordings and playback state follows media eve
   await page.goto('/');
   const area = page.locator('#case-adapt');
   const play = area.locator('.case-play');
-  // Dispatch before auto-scrolling can warm the lazy recordings.
-  await play.dispatchEvent('click');
+  // WebKit pauses muted videos that are off screen, so press Play all where a reader would.
+  await play.scrollIntoViewIfNeeded();
+  await play.click();
   const videos = area.locator('video');
   await expect
     .poll(

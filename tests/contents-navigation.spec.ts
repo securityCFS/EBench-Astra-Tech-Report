@@ -43,10 +43,22 @@ test('drawer and article animate together and the closed article centers', async
   await expect(page.locator('.report-toc')).not.toHaveAttribute('inert');
 });
 
-test('contents links scroll smoothly with native hashes below both bars', async ({ page }) => {
+test('contents links scroll smoothly with native hashes below both bars', async ({
+  page,
+  browserName,
+}) => {
   await page.setViewportSize({ width: 1800, height: 1000 });
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await ready(page);
+  // A native smooth scroll keeps its first target, so wait until late content stops growing.
+  let height = 0;
+  await expect
+    .poll(async () => {
+      const previous = height;
+      height = await page.evaluate(() => document.documentElement.scrollHeight);
+      return height === previous;
+    })
+    .toBe(true);
   const start = await page
     .locator('.report-toc a[href="#comparison"]')
     .evaluate((link: HTMLAnchorElement) => {
@@ -54,7 +66,9 @@ test('contents links scroll smoothly with native hashes below both bars', async 
       link.click();
       return { before, immediate: scrollY };
     });
-  expect(start.immediate).toBe(start.before);
+  // Chromium on Windows follows the OS animation setting, which CI runners turn off.
+  if (!(browserName === 'chromium' && process.platform === 'win32'))
+    expect(start.immediate).toBe(start.before);
   await expect(page).toHaveURL(/#comparison$/);
   await expect
     .poll(() =>

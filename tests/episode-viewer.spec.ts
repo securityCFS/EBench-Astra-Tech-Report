@@ -223,13 +223,28 @@ test('full-width chapters sit below both columns, expose focus/hover labels, and
   await expect(
     root.locator('[data-chapter]').first().locator('.episode-chapter-label'),
   ).toBeVisible();
-  await root.locator('[data-seek]').focus();
+  const seek = root.locator('[data-seek]');
+  // The recording loops while in view, so it may wrap to 0:00 right after reaching the end;
+  // record every announced position instead of racing the loop.
+  await seek.evaluate((element) => {
+    const announced: string[] = [];
+    (element as HTMLElement & { announced?: string[] }).announced = announced;
+    new MutationObserver(() =>
+      announced.push(element.getAttribute('aria-valuetext') || ''),
+    ).observe(element, { attributes: true, attributeFilter: ['aria-valuetext'] });
+  });
+  await seek.focus();
   await page.keyboard.press('End');
   await expect(root.locator('[data-counter]')).toHaveText('Interaction 20 / 20');
-  await expect(root.locator('[data-seek]')).toHaveAttribute(
-    'aria-valuetext',
-    /interaction 20 of 20/,
-  );
+  await expect
+    .poll(() =>
+      seek.evaluate((element) =>
+        (element as HTMLElement & { announced: string[] }).announced.some((text) =>
+          /interaction 20 of 20/.test(text),
+        ),
+      ),
+    )
+    .toBe(true);
   await page.keyboard.press('Home');
   await expect(root.locator('[data-prev]')).toBeDisabled();
 });
