@@ -140,13 +140,14 @@ async function initAnalysisInsights() {
         `<div class="outcome-trait-group" role="group" aria-label="${label}"><span class="outcome-trait-axis">${label}</span>${values.map((value) => traitButton(axis, value)).join('')}</div>`,
     )
     .join('');
-  failures.innerHTML = `<div class="outcome-breakdown-toolbar"><div class="outcome-split-legend"><span><i class="outcome-success" aria-hidden="true"></i>Complete success</span><span><i class="outcome-partial" aria-hidden="true"></i>Incomplete</span><span><i class="outcome-zero" aria-hidden="true"></i>Failed</span></div><div class="outcome-trait-filters" role="group" aria-label="Filter tasks by precision and horizon"><button type="button" class="outcome-trait-clear" hidden>Clear filters</button>${traitFilters}</div></div><div class="outcome-breakdown-heading" aria-hidden="true"><span>Task</span><span>Episode outcomes</span><span>Episodes</span></div><div id="failure-depth-rows"></div><button class="failure-expand" type="button" aria-expanded="false" aria-controls="failure-depth-extra"><span data-failure-expand-label>Show all 26 tasks</span><span class="failure-expand-icon">${reportIcon('chevron-down')}</span></button><p class="outcome-filter-status" aria-live="polite" aria-atomic="true" hidden></p><p class="outcome-breakdown-note">Percentages use all evaluated episodes of each task. The marks under each task name give its precision and horizon, as in the filters above; the more demanding end of each axis &mdash; high precision, long horizon &mdash; is set in black. Select a task for exact counts.</p><p class="outcome-breakdown-readout" id="failure-readout" aria-live="polite" aria-atomic="true"></p>`;
-  // One ordering for every block: success rate from low to high, and among equal success
-  // rates the larger share of failed (zero-score) episodes first.
-  const byFailureDepth = (a, b) =>
-    a.success / a.n - b.success / b.n || b.zero / b.n - a.zero / a.n || a.task.localeCompare(b.task);
-  const initialRows = selected.map((name) => data.tasks.find((t) => t.task === name)).sort(byFailureDepth);
-  const additionalRows = data.tasks.filter((t) => !selected.includes(t.task)).sort(byFailureDepth);
+  failures.innerHTML = `<div class="outcome-breakdown-toolbar"><div class="outcome-split-legend"><span><i class="outcome-success" aria-hidden="true"></i>Complete success</span><span><i class="outcome-partial" aria-hidden="true"></i>Incomplete</span><span><i class="outcome-zero" aria-hidden="true"></i>Failed</span></div><div class="outcome-trait-filters" role="group" aria-label="Filter tasks by precision and horizon"><button type="button" class="outcome-trait-clear" hidden>Clear filters</button>${traitFilters}</div></div><div class="outcome-breakdown-heading" aria-hidden="true"><span>Task</span><span>Episode outcomes</span><span>Episodes</span></div><div id="failure-depth-rows"></div><button class="failure-expand" type="button" aria-expanded="false" aria-controls="failure-depth-rows"><span data-failure-expand-label>Show all 26 tasks</span><span class="failure-expand-icon">${reportIcon('chevron-down')}</span></button><p class="outcome-filter-status" aria-live="polite" aria-atomic="true" hidden></p><p class="outcome-breakdown-note">Percentages use all evaluated episodes of each task. The marks under each task name give its precision and horizon, as in the filters above; the more demanding end of each axis &mdash; high precision, long horizon &mdash; is set in black. Select a task for exact counts.</p><p class="outcome-breakdown-readout" id="failure-readout" aria-live="polite" aria-atomic="true"></p>`;
+  // One list of all 26 tasks, ordered by success rate and then Score, both from low to high.
+  // The seven selected tasks are the default view; the others keep their place in the order
+  // and are shown when the list is expanded, so expanding never breaks the ranking.
+  const astraScore = (t) => Number(tasks.find((task) => task.task === t.task)['Astra (ICL)_score']);
+  const bySuccessThenScore = (a, b) =>
+    a.success / a.n - b.success / b.n || astraScore(a) - astraScore(b) || a.task.localeCompare(b.task);
+  const orderedRows = [...data.tasks].sort(bySuccessThenScore);
   const outcomeLabels = { success: 'Complete success', partial: 'Incomplete', zero: 'Failed' };
   // Colour is already spent on the outcome split, so task type is marked by fixed-width
   // glyphs: the demanding end of each axis in ink, the rest recessive. The row's aria-label
@@ -175,9 +176,7 @@ async function initAnalysisInsights() {
       .join(
         '',
       )}</span><span class="outcome-task-count">${t.n}<span class="outcome-count-unit"> episodes</span></span></button>`;
-  failures.querySelector('#failure-depth-rows').innerHTML =
-    initialRows.map(failureRow).join('') +
-    `<div id="failure-depth-extra" hidden>${additionalRows.map(failureRow).join('')}</div>`;
+  failures.querySelector('#failure-depth-rows').innerHTML = orderedRows.map(failureRow).join('');
   const expandButton = failures.querySelector('.failure-expand');
   const clearSelection = () => {
     failures.querySelector('#failure-readout').textContent = '';
@@ -188,7 +187,7 @@ async function initAnalysisInsights() {
   expandButton.addEventListener('click', () => {
     const expanded = expandButton.getAttribute('aria-expanded') !== 'true';
     expandButton.setAttribute('aria-expanded', String(expanded));
-    failures.querySelector('#failure-depth-extra').hidden = !expanded;
+    applyTraitFilters();
     expandButton.querySelector('[data-failure-expand-label]').textContent = expanded
       ? 'Show fewer · 7 tasks'
       : 'Show all 26 tasks';
@@ -216,16 +215,15 @@ async function initAnalysisInsights() {
     const expanded = expandButton.getAttribute('aria-expanded') === 'true';
     let shown = 0;
     failures.querySelectorAll('[data-failure-task]').forEach((row) => {
-      const hide =
-        active &&
-        !(
-          (!filter.precision || row.dataset.precision === filter.precision) &&
-          (!filter.horizon || row.dataset.horizon === filter.horizon)
-        );
+      const hide = active
+        ? !(
+            (!filter.precision || row.dataset.precision === filter.precision) &&
+            (!filter.horizon || row.dataset.horizon === filter.horizon)
+          )
+        : !expanded && !selected.includes(row.dataset.failureTask);
       row.hidden = hide;
       if (!hide) shown++;
     });
-    failures.querySelector('#failure-depth-extra').hidden = active ? false : !expanded;
     expandButton.hidden = active;
     const absent = [];
     failures.querySelectorAll('[data-trait-filter]').forEach((button) => {
