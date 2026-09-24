@@ -16,7 +16,7 @@ const reportNarrative = {
   ],
   shifts: [
     'Beyond differences between task types, we evaluate whether GPT-6-Astra maintains its capabilities when objects, backgrounds, and instructions change. Each task uses the same demonstration across perturbation conditions, requiring the agent to adapt that example to the current scene and instruction.',
-    "Across these conditions, GPT-6-Astra performs at an even level: no single type of perturbation stands out as harder for it. The post-trained policies show clear gaps between conditions, and every one of them performs worst under mixed perturbations.",
+    "GPT-6-Astra performs at a similar level across these conditions, while some post-trained policies, such as Qwen-RobotManip and π₀, show larger disparities between them.",
   ],
   precision: [
     'At the aggregate level, success declines most steeply as tasks move from coarse transport to precise contact. GPT-6-Astra’s success rate falls from 60.6% on low-precision tasks to 40.2% on medium-precision tasks and 11.3% on high-precision tasks; its ranking drops from second to seventh. Every model finds the high-precision group harder, but GPT-6-Astra’s relative position deteriorates particularly strongly.',
