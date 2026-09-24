@@ -66,7 +66,11 @@ test('contents toggle centers the report and dialog always exposes Close', async
   await ready(page);
   const initial = await geometry(page);
   await page.getByRole('button', { name: 'Toggle Contents' }).click();
-  const viewportCenter = await page.evaluate(() => document.documentElement.clientWidth / 2);
+  // The root box, not clientWidth: Chromium leaves the stable scrollbar gutter in clientWidth.
+  const viewportCenter = await page.evaluate(() => {
+    const root = document.documentElement.getBoundingClientRect();
+    return (root.left + root.right) / 2;
+  });
   await expect
     .poll(async () => Math.abs((await geometry(page)).reference.center - viewportCenter))
     .toBeLessThan(1);
@@ -84,15 +88,16 @@ test('contents toggle centers the report and dialog always exposes Close', async
   await close.click();
   await expect(page.locator('dialog')).not.toBeVisible();
 });
-test('tables, cases, video stages, and references retain their interactions', async ({ page }) => {
+test('tables, cases, video playback, and references retain their interactions', async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 1440, height: 1100 });
   await ready(page);
   await page.locator('[data-matrix="tasks"]').click();
   await expect(page.locator('#matrix-content')).toContainText('Task');
   await page.locator('[data-matrix="attributes"]').click();
   await expect(page.locator('#matrix-content')).toContainText('OpenWAM');
-  const outcome = page.locator('#case-adapt').getByRole('button', { name: 'Outcome', exact: true });
-  await outcome.click();
+  await page.locator('#case-adapt .case-play').click();
   try {
     await expect
       .poll(
@@ -121,7 +126,7 @@ test('tables, cases, video stages, and references retain their interactions', as
   await expect(page.locator('.citation-prompt')).toHaveText(
     'If you find this work useful, please cite:',
   );
-  await expect(page.locator('.report-reference-list li')).toHaveCount(9);
+  await expect(page.locator('.report-reference-list li')).toHaveCount(10);
 });
 for (const dpr of [1, 1.25, 2])
   test(`DPR ${dpr}: narrow window restores to the same layout`, async ({ browser, baseURL }) => {

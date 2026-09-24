@@ -61,7 +61,7 @@ test('outcome labels, exact totals, episode thresholds, tooltips, and filters ag
     expect(await circles.locator('title').allTextContents()).toEqual(
       source.map(
         (episode) =>
-          `${taskLabel(episode.task)} / ${episode.seed}: ${category.label} · SR ${episode.sr}, Score ${episode.score}`,
+          `${taskLabel(episode.task)} / ${episode.seed}: ${category.label} · SR ${episode.sr}, Score ${Number(episode.score).toFixed(3)}`,
       ),
     );
     const button = host.locator(`[data-outcome-filter="${category.key}"]`);
@@ -160,7 +160,7 @@ test('task rows are a continuous unboxed chart with in-flow readouts and no narr
   const host = page.locator('.outcome-breakdown');
   for (const width of [1440, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 1000 });
-    const first = host.locator('[data-failure-task]').first();
+    const first = host.locator('[data-failure-task]:visible').first();
     await first.scrollIntoViewIfNeeded();
     await page.mouse.move(0, 0);
     const styles = await first.evaluate((row) => {
@@ -195,7 +195,7 @@ test('task rows are a continuous unboxed chart with in-flow readouts and no narr
     await expect(readout).toHaveCSS('position', 'static');
     const firstBox = await first.boundingBox();
     const readoutBox = await readout.boundingBox();
-    const secondBox = await host.locator('[data-failure-task]').nth(1).boundingBox();
+    const secondBox = await host.locator('[data-failure-task]:visible').nth(1).boundingBox();
     expect(readoutBox!.y).toBeGreaterThanOrEqual(firstBox!.y + firstBox!.height - 1);
     expect(secondBox!.y).toBeGreaterThanOrEqual(readoutBox!.y + readoutBox!.height - 1);
     await host.locator('.failure-expand').click();
@@ -224,9 +224,7 @@ test('task rows are a continuous unboxed chart with in-flow readouts and no narr
   }
 });
 
-test('trait filters narrow the task list without moving the default', async ({
-  page,
-}) => {
+test('trait filters narrow the task list without moving the default', async ({ page }) => {
   await ready(page);
   const host = page.locator('.outcome-breakdown');
   const rows = host.locator('[data-failure-task]');
@@ -249,13 +247,17 @@ test('trait filters narrow the task list without moving the default', async ({
   await expect(host.locator('[data-failure-task]:visible')).toHaveCount(15);
   expect(
     await rows.evaluateAll((all) =>
-      all.filter((r) => !(r as HTMLElement).hidden).every((r) => (r as HTMLElement).dataset.horizon === 'Long'),
+      all
+        .filter((r) => !(r as HTMLElement).hidden)
+        .every((r) => (r as HTMLElement).dataset.horizon === 'Long'),
     ),
   ).toBe(true);
   await expect(host.locator('.failure-expand')).toBeHidden();
   // Counts on each axis are conditioned on the selection made on the other.
   expect(await counts()).toEqual(['Low:6', 'Medium:6', 'High:3', 'Short:11', 'Long:15']);
-  await expect(host.locator('.outcome-filter-status')).toHaveText('Showing 15 of 26 tasks: long horizon.');
+  await expect(host.locator('.outcome-filter-status')).toHaveText(
+    'Showing 15 of 26 tasks: long horizon.',
+  );
   const high = host.locator('[data-trait-filter="precision"][data-value="High"]');
   await high.click();
   await expect(host.locator('[data-failure-task]:visible')).toHaveCount(3);

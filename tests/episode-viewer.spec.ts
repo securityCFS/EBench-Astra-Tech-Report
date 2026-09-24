@@ -164,9 +164,9 @@ test('full-width chapters sit below both columns, expose focus/hover labels, and
           const timeline = element.querySelector('.episode-timeline')!.getBoundingClientRect();
           // Chapters that do not fit a 44px target on narrow screens are hidden.
           const chapters = [...element.querySelectorAll<HTMLElement>('[data-chapter]')];
-          const marks = chapters.filter((mark) => !mark.hidden).map((mark) =>
-            mark.getBoundingClientRect(),
-          );
+          const marks = chapters
+            .filter((mark) => !mark.hidden)
+            .map((mark) => mark.getBoundingClientRect());
           return {
             endsShown: !chapters[0].hidden && !chapters.at(-1)!.hidden,
             below: timeline.top >= stage.bottom,

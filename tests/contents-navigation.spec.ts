@@ -10,7 +10,9 @@ async function ready(page) {
 async function centeringError(page) {
   return page.locator('.showcase-hero').evaluate((el) => {
     const box = el.getBoundingClientRect();
-    return Math.abs((box.left + box.right) / 2 - document.documentElement.clientWidth / 2);
+    // The root box, not clientWidth: Chromium leaves the stable scrollbar gutter in clientWidth.
+    const root = document.documentElement.getBoundingClientRect();
+    return Math.abs((box.left + box.right) / 2 - (root.left + root.right) / 2);
   });
 }
 

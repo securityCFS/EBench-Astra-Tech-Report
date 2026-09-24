@@ -55,7 +55,7 @@ test('model tabs stay left of Play all in one row, including five POC choices', 
   }
 });
 
-test('persistent model underline and stage pill move once per arrow key', async ({ page }) => {
+test('persistent model underline moves once per arrow key', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
   const models = page.locator('#case-adapt .case-model-tabs');
@@ -79,27 +79,18 @@ test('persistent model underline and stage pill move once per arrow key', async 
     /transform/,
   );
   await models.locator('[data-focus="all"]').click();
-
-  const stages = page.locator('#case-adapt .case-stage-tabs');
-  await expect(page.locator('#case-adapt .stage-controls > span')).toHaveCount(0);
-  await expect(stages).toHaveAttribute('data-indicator', 'pill');
-  await stages.locator('[data-stage="0"]').focus();
-  await page.keyboard.press('ArrowRight');
-  await expect(stages.locator('[data-stage="1"]')).toBeFocused();
-  await expect(stages.locator('[data-stage="1"]')).toHaveAttribute('aria-pressed', 'true');
-  await expect(stages.locator('[aria-pressed="true"]')).toHaveCount(1);
-  await indicatorAligned(stages);
+  await expect(page.locator('#case-adapt .case-stage-tabs')).toHaveCount(0);
 });
 
-test('cold stage seeks play actual recordings and playback state follows media events', async ({
+test('cold Play all plays actual recordings and playback state follows media events', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1440, height: 1100 });
   await page.goto('/');
   const area = page.locator('#case-adapt');
-  await expect(area.locator('[data-stage="3"]')).toHaveCount(1);
+  const play = area.locator('.case-play');
   // Dispatch before auto-scrolling can warm the lazy recordings.
-  await area.locator('[data-stage="3"]').dispatchEvent('click');
+  await play.dispatchEvent('click');
   const videos = area.locator('video');
   await expect
     .poll(
@@ -107,13 +98,12 @@ test('cold stage seeks play actual recordings and playback state follows media e
         videos.evaluateAll((elements) =>
           elements.every((element) => {
             const v = element as HTMLVideoElement;
-            return !v.paused && v.currentTime > 40 && !v.error;
+            return !v.paused && v.currentTime > 0 && !v.error;
           }),
         ),
       { timeout: 30000 },
     )
     .toBe(true);
-  const play = area.locator('.case-play');
   await expect(play).toHaveAttribute('aria-label', 'Pause all');
   await expect(play).toHaveAttribute('aria-pressed', 'true');
   const pauseIcon = await play.locator('svg').innerHTML();

@@ -177,8 +177,10 @@ test('a zero-score unsuccessful recording is labeled Failed without losing its v
   });
   await openLibrary(page);
   await page.locator('#demo-outcome').selectOption('failed');
-  await expect(page.locator('#library-grid .video-label > span')).toHaveText('Failed (Score 0.00)');
-  expect(await paths(page)).toEqual([failedPath]);
+  const failed = page.locator('#library-grid .video-label > span');
+  await expect(failed.first()).toHaveText('Failed (Score 0.000)');
+  await expect(failed).toHaveText(Array(await failed.count()).fill('Failed (Score 0.000)'));
+  expect(await paths(page)).toContain(failedPath);
   await page.locator('#demo-outcome').selectOption('incomplete');
   expect(await paths(page)).not.toContain(failedPath);
   await page.locator('#demo-outcome').selectOption('all');

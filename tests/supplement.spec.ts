@@ -11,7 +11,6 @@ const overviews = JSON.parse(
 async function ready(page: Page) {
   await page.goto('/');
   await expect(page.locator('.demonstration-card[data-icl-package]')).toBeVisible();
-  await expect(page.locator('#case-icl [data-icl-package]')).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
 }
 

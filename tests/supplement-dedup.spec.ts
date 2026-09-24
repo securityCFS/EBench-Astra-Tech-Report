@@ -39,7 +39,8 @@ test('retired supplements disappear while canonical results retain their context
   await expect(page.locator('#behavior-content')).toContainText('Score 0.50');
 });
 
-test('execution timing appears inline before the demo with unchanged source values', async ({
+// The Execution timing block is commented out in ExperimentSetup.astro (954ad59) until it is restored.
+test.skip('execution timing appears inline before the demo with unchanged source values', async ({
   page,
 }) => {
   await ready(page);
