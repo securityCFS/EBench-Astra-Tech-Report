@@ -82,12 +82,12 @@
   },
   {
     "task": "flip_cup_collect_cookies",
-    "seed": "008",
-    "sr": 1.0,
-    "score": 1.0,
+    "seed": "001",
+    "sr": 0.0,
+    "score": 0.5,
     "selection_role": "task_overview_example",
-    "duration_s": 47.0,
-    "path": "media/demos/flip_cup_collect_cookies_008.mp4"
+    "duration_s": 109.5,
+    "path": "media/demos/flip_cup_collect_cookies_001.mp4"
   },
   {
     "task": "frame_against_pen_holder",
@@ -163,12 +163,12 @@
   },
   {
     "task": "put_glass_in_glassbox",
-    "seed": "001",
-    "sr": 1.0,
-    "score": 1.0,
+    "seed": "002",
+    "sr": 0.0,
+    "score": 0.33333,
     "selection_role": "task_overview_example",
-    "duration_s": 48.5,
-    "path": "media/demos/put_glass_in_glassbox_001.mp4"
+    "duration_s": 94.0,
+    "path": "media/demos/put_glass_in_glassbox_002.mp4"
   },
   {
     "task": "remote_to_holder",
