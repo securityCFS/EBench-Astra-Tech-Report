@@ -1,6 +1,6 @@
 // Derived comparisons; source values and denominators remain inspectable.
 async function initAnalysisInsights() {
-  const ids = ['cross-group-chart', 'fixed-task-evidence', 'failure-depth-chart'];
+  const ids = ['fixed-task-evidence', 'failure-depth-chart'];
   const esc = (s) =>
     String(s).replace(
       /[&<>"']/g,
@@ -22,83 +22,6 @@ async function initAnalysisInsights() {
   }
   const label = (id) => data.models.find((m) => m.id === id).label;
   const model = (id) => esc(label(id));
-  const groupRoot = document.getElementById('cross-group-chart');
-  const tableGroups = [
-    {
-      label: 'Operating Mode',
-      rows: [
-        ['Mobile', 'Mobile'],
-        ['Tabletop', 'Fixed'],
-      ].map(([label, mode]) => {
-        const subset = tasks.filter((task) => task.mobility === mode);
-        return {
-          id: `mode-${mode.toLowerCase()}`,
-          label,
-          n: subset.length,
-          values: (metric) =>
-            data.models.map((m) => chartAggregate(m.id, metric, 'mobility', mode, subset)),
-        };
-      }),
-    },
-    ...[
-      [
-        'Horizon (mobile tasks only)',
-        [
-          ['mobile-short', 'Mobile \u00b7 Short'],
-          ['mobile-long', 'Mobile \u00b7 Long'],
-        ],
-      ],
-    ].map(([label, rows]) => ({
-      label,
-      rows: rows.map(([id, label]) => {
-        const group = data.groups.find((group) => group.id === id);
-        const subset = tasks.filter((task) => group.tasks.includes(task.task));
-        return {
-          id,
-          label,
-          n: group.n,
-          values: (metric) =>
-            data.models.map((m) =>
-              metric === 'sr'
-                ? (group.reported_rates?.[m.id] ?? group.rates[m.id]) / 100
-                : subset.reduce((sum, task) => sum + Number(task[m.id + '_score']), 0) /
-                  subset.length,
-            ),
-        };
-      }),
-    })),
-  ];
-  let groupMetric = 'sr';
-  groupRoot.innerHTML = `<div class="capability-table-controls"><div class="chart-metrics" role="group" aria-label="Capability comparison metric"><button type="button" data-metric="sr" aria-pressed="true">SR (%)</button><button type="button" data-metric="score" aria-pressed="false">Score</button></div></div><div class="insight-table-scroll" tabindex="0" role="region" aria-label="Performance by operating mode and horizon"></div><p class="insight-note" id="capability-table-note">Each task has equal weight within its subgroup. The Operating Mode rows partition all 26 tasks. The Horizon rows split only the 19 mobile tasks, so they are cross-domain subsets and do not reproduce the benchmark's own Horizon grouping &mdash; for example the 10 mobile short-horizon tasks are a subset of the 11 short-horizon tasks. <strong>Bold</strong>: best in row; shaded column: GPT-6-Astra.</p>`;
-  initSegmentedControl(groupRoot.querySelector('.chart-metrics'));
-  function drawCapabilityTable() {
-    const metricLabel = groupMetric === 'sr' ? 'Success rate (%)' : 'Score (0–1)';
-    const format = (value) => (groupMetric === 'sr' ? (value * 100).toFixed(1) : value.toFixed(3));
-    groupRoot.querySelector('.insight-table-scroll').innerHTML =
-      `<table class="report-table report-table--plain insight-table capability-results" data-metric="${groupMetric}" aria-label="Capability comparison: ${metricLabel}" aria-describedby="capability-table-note"><caption class="chart-caption report-table-caption">Performance by operating mode, with horizon split within mobile tasks</caption><thead><tr><th scope="col" rowspan="2" class="capability-dimension">Dimension</th><th scope="col" rowspan="2" class="capability-subgroup">Subgroup</th><th scope="colgroup" colspan="${data.models.length}">${metricLabel}</th></tr><tr>${data.models.map((m) => `<th scope="col" ${m.id === astra ? 'class="insight-astra"' : ''}>${model(m.id)}</th>`).join('')}</tr></thead>${tableGroups
-        .map(
-          (group) =>
-            `<tbody>${group.rows
-              .map((row, index) => {
-                const values = row.values(groupMetric);
-                const best = Math.max(...values);
-                return `<tr data-subgroup="${row.id}">${index === 0 ? `<th scope="rowgroup" rowspan="${group.rows.length}" class="capability-dimension">${esc(group.label)}</th>` : ''}<th scope="row" class="capability-subgroup"><span class="subgroup-label">${esc(row.label)}</span></th>${data.models.map((m, i) => `<td data-model="${m.id}" data-value="${values[i]}" class="${m.id === astra ? 'insight-astra' : ''}">${Math.abs(values[i] - best) < 1e-8 ? `<strong>${format(values[i])}</strong>` : format(values[i])}</td>`).join('')}</tr>`;
-              })
-              .join('')}</tbody>`,
-        )
-        .join('')}</table>`;
-  }
-  groupRoot.addEventListener('click', (event) => {
-    const button = event.target.closest('button[data-metric]');
-    if (!button || button.dataset.metric === groupMetric) return;
-    groupMetric = button.dataset.metric;
-    groupRoot
-      .querySelectorAll('button[data-metric]')
-      .forEach((control) => control.setAttribute('aria-pressed', String(control === button)));
-    drawCapabilityTable();
-  });
-  drawCapabilityTable();
-
   const fixed = document.getElementById('fixed-task-evidence');
   fixed.innerHTML = `<div class="insight-table-scroll"><table class="report-table report-table--plain insight-table fixed-insight-table"><thead><tr><th scope="col" rowspan="2">Task</th><th scope="colgroup" colspan="2">Success rate (%)</th><th scope="col" rowspan="2">Video</th></tr><tr><th scope="col">GPT-6-Astra</th><th scope="col">Qwen-RobotManip</th></tr></thead><tbody>${data.groups
     .find((g) => g.id === 'fixed-low-medium')
