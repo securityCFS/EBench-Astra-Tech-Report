@@ -14,7 +14,7 @@ function mainVideo(task, seed, label, detail) {
     d.path,
     label,
     detail,
-    `${d.sr ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(3)})`,
+    `${d.sr ? 'Success' : 'Failed'} (Score ${d.score.toFixed(3)})`,
   );
 }
 function bars(groups) {

@@ -44,7 +44,7 @@ assert.equal(context.cameraPosition(comparison, 'center'), 'center');
 assert.equal(context.cameraPosition(comparison, 'left'), 'left');
 for (const demo of demos) {
   const markup = context.mainVideo(demo.task, demo.seed, 'Task video', '');
-  assert.ok(markup.includes(demo.sr ? 'Success' : 'Incomplete'));
+  assert.ok(markup.includes(demo.sr ? 'Success' : 'Failed'));
   assert.ok(markup.includes(`Score ${demo.score.toFixed(3)}`));
   assert.ok(!markup.includes('<figcaption>'));
   assert.ok(!markup.includes('Episode '));

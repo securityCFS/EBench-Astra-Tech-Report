@@ -163,12 +163,12 @@
   },
   {
     "task": "put_glass_in_glassbox",
-    "seed": "002",
+    "seed": "009",
     "sr": 0.0,
-    "score": 0.33333,
+    "score": 0.0,
     "selection_role": "task_overview_example",
-    "duration_s": 94.0,
-    "path": "media/demos/put_glass_in_glassbox_002.mp4"
+    "duration_s": 100.03,
+    "path": "media/demos/put_glass_in_glassbox_009.mp4"
   },
   {
     "task": "remote_to_holder",
