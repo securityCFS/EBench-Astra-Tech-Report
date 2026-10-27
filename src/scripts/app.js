@@ -8,7 +8,24 @@ let tasks = [],
   demos = [],
   reportFigures = {};
 function video(path, label, detail, badge = 'Selected rollout') {
-  return `<figure class="evidence-video"><div class="video-label"><strong>${label}</strong>${badge ? `<span>${badge}</span>` : ''}</div><div class="media-viewport"><video playsinline preload="none" data-src="${path}" aria-label="${label}"></video><button class="video-start" aria-label="Play ${label}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14l11-7z" fill="currentColor"/></svg></button></div>${detail ? `<figcaption>${detail}</figcaption>` : ''}</figure>`;
+  return `<figure class="evidence-video"><div class="video-label"><strong>${label}</strong>${badge ? `<span>${badge}</span>` : ''}</div><div class="media-viewport"><video playsinline preload="none" data-src="${path}" aria-label="${label}"></video><button class="video-start" aria-label="Play ${label}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14l11-7z" fill="currentColor"/></svg></button></div>${stitched(path) ? cameraBar() : ''}${detail ? `<figcaption>${detail}</figcaption>` : ''}</figure>`;
+}
+// Task recordings stitch overview, left wrist and right wrist side by side. Their camera selector is
+// rendered with the video, so the layout does not shift when the recording loads.
+function stitched(path) {
+  return /(^|\/)media\/demos\/|-web\.mp4$/.test(path);
+}
+function cameraBar() {
+  return `<div class="camera-controls segmented-control" aria-label="Recording view">${[
+    ['center', 'Overview'],
+    ['left', 'Left wrist'],
+    ['right', 'Right wrist'],
+  ]
+    .map(
+      ([key, name]) =>
+        `<button data-camera="${key}" aria-pressed="${key === 'center'}">${name}</button>`,
+    )
+    .join('')}</div>`;
 }
 function mainVideo(task, seed, label, detail) {
   let d = demos.find((x) => x.task === task && x.seed === seed);
@@ -96,6 +113,7 @@ const observer = new IntersectionObserver(
   { rootMargin: '200px' },
 );
 function initVideos() {
+  document.querySelectorAll('.camera-controls').forEach((bar) => initSegmentedControl(bar));
   document.querySelectorAll('video[data-src]').forEach((v) => {
     if (v.dataset.bound) return;
     v.dataset.bound = 'true';
@@ -263,21 +281,14 @@ function cameraPosition(video, view) {
 function enhanceCameraView(v) {
   if (v.videoWidth / v.videoHeight < 4 || v.dataset.cameraReady) return;
   v.dataset.cameraReady = 'true';
-  v.dataset.view = cameraPosition(v, 'center');
-  const bar = document.createElement('div');
-  bar.className = 'camera-controls';
-  bar.setAttribute('aria-label', 'Recording view');
-  bar.innerHTML = [
-    ['center', 'Overview'],
-    ['left', 'Left wrist'],
-    ['right', 'Right wrist'],
-  ]
-    .map(
-      ([key, name]) =>
-        `<button data-camera="${key}" aria-pressed="${key === 'center'}">${name}</button>`,
-    )
-    .join('');
-  (v.closest('.media-viewport') || v).insertAdjacentElement('afterend', bar);
+  const viewport = v.closest('.media-viewport') || v;
+  if (!viewport.nextElementSibling?.classList.contains('camera-controls'))
+    viewport.insertAdjacentHTML('afterend', cameraBar());
+  const bar = viewport.nextElementSibling;
+  v.dataset.view = cameraPosition(
+    v,
+    bar.querySelector('[aria-pressed="true"]')?.dataset.camera || 'center',
+  );
   initSegmentedControl(bar);
 }
 document.addEventListener(
