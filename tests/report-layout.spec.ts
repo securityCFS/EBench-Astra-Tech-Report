@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 
 async function ready(page) {
   await page.goto('/');
-  await expect(page.locator('#overall-content')).toContainText('AMapbot');
-  await expect(page.locator('#fixed-task-evidence table')).toBeVisible();
+  await expect(page.locator('#matrix-content')).toContainText('OpenWAM');
+  await expect(page.locator('#episode-outcomes circle')).toHaveCount(510);
   await page.evaluate(() => document.fonts.ready);
 }
 async function geometry(page) {
@@ -76,7 +76,7 @@ test('contents toggle centers the report and dialog always exposes Close', async
     .toBeLessThan(1);
   await page.getByRole('button', { name: 'Toggle Contents' }).click();
   await expect.poll(async () => (await geometry(page)).reference).toEqual(initial.reference);
-  await page.locator('#model-references a').click();
+  await page.locator('.demonstration-card').click();
   const close = page.getByRole('button', { name: 'Close supplementary material' });
   await expect(close).toBeVisible();
   await page.locator('#appendix-body').evaluate((e) => {
@@ -88,7 +88,7 @@ test('contents toggle centers the report and dialog always exposes Close', async
   await close.click();
   await expect(page.locator('dialog')).not.toBeVisible();
 });
-test('tables, cases, video playback, and references retain their interactions', async ({
+test('tables, cases, video playback, and the citation retain their interactions', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1440, height: 1100 });
@@ -126,7 +126,7 @@ test('tables, cases, video playback, and references retain their interactions', 
   await expect(page.locator('.citation-prompt')).toHaveText(
     'If you find this work useful, please cite:',
   );
-  await expect(page.locator('.report-reference-list li')).toHaveCount(10);
+  await expect(page.locator('.report-footer pre')).toContainText('2610.35832');
 });
 for (const dpr of [1, 1.25, 2])
   test(`DPR ${dpr}: narrow window restores to the same layout`, async ({ browser, baseURL }) => {

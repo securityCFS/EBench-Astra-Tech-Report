@@ -2,8 +2,8 @@
   "id": "fruit_015",
   "task": "fruit",
   "seed": "015",
-  "title": "Adapting through a long task",
-  "description": "Fruit placement, recovery and vessel manipulation unfold across 66 calls; the final score is 0.6.",
+  "title": "Fruit",
+  "description": "The agent carries the fruit toward the right container, and the episode ends at score 0.60 without success.",
   "instruction": "Make a fruit milkshake directly in the cup.",
   "result": {
     "sr": 0.0,

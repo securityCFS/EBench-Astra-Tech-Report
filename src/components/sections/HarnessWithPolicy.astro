@@ -1,0 +1,59 @@
+---
+import ExecutionDemo from '../ExecutionDemo.astro';
+---
+
+<section id="tool" class="section" aria-labelledby="tool-title">
+  <div class="section-inner">
+    <h2 id="tool-title">03 Harness with Policy</h2>
+    <div class="report-prose">
+      <p>
+        Invoking a post-trained policy raises SR from 46.7% under direct control to 53.0% with π₀.₅
+        and to 56.0% with InternW0-Δ, mainly on long-horizon and tabletop tasks. The harness with
+        InternW0-Δ thereby surpasses OpenWAM-α, the strongest post-trained policy, on both metrics.
+      </p>
+    </div>
+    <ul
+      class="highlight-grid highlight-grid--compact"
+      aria-label="Direct control against the harness with π₀.₅ and with InternW0-Δ"
+    >
+      <li>
+        <strong>46.7 → 53.0 / 56.0</strong>
+        <span>SR (%) with π₀.₅ / InternW0-Δ</span>
+      </li>
+      <li>
+        <strong>8.1M → 3.5M / 4.0M</strong>
+        <span>tokens per success</span>
+      </li>
+      <li>
+        <strong>42.6 → 23.7 / 22.7</strong>
+        <span>tool calls per episode</span>
+      </li>
+    </ul>
+    <figure class="paper-figure" id="fig-harness-radar">
+      <img
+        src="media/figures/harness_radar.svg"
+        alt="Radar charts of SR for direct control, each policy alone, and the harness with that policy"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption>
+        SR of the agent under direct control, of each policy alone, and of the harness with that
+        policy, for π₀.₅ in (a, b) and InternW0-Δ in (c, d), across task groups in (a, c) and across
+        generalization dimensions in (b, d).
+      </figcaption>
+    </figure>
+    <ExecutionDemo
+      id="harness-episodes"
+      title="How the agent and the policy share the work"
+      catalog="data/episodes/harness.json"
+    >
+      <p>
+        The bar under each recording marks the executor: the agent's own commands in blue, π₀.₅ in
+        purple, and InternW0-Δ in teal. In the two successes, the policy completes the bimanual and
+        articulated stages. The three failures show where the coordination stays loose: a completion
+        claim on an unseated gear, a grasp left unmaintained after a policy segment, and a policy
+        segment that undoes a completed stage.
+      </p>
+    </ExecutionDemo>
+  </div>
+</section>

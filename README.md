@@ -21,7 +21,7 @@ Open the URL printed by Astro (normally http://127.0.0.1:4322/).
 - `src/pages/index.astro`: report section order.
 - `src/components/`: section content, static results, execution demo, recording library and shared supplementary dialog. Static component styles are scoped.
 - `src/scripts/`: interactive evidence viewers and data-driven tables.
-- `src/lib/`: shared SVG icons and overall ranking data adapter.
+- `src/lib/`: shared SVG icons.
 - `src/styles/`: tokens, shared table/control styles, namespaced interactive components and remaining legacy widget styles.
 - `integrations/report-runtime.mjs`: Vite compatibility boundary for the interdependent evidence scripts; watches source changes without generating runtime files.
 - `dist/data`, `dist/media`, `dist/vendor`: **versioned research assets**, not build output. This legacy asset path is retained in this pass.
@@ -53,4 +53,4 @@ The existing **Deploy report to GitHub Pages** workflow is Astro-compatible:
 3. Build with `REPORT_BASE=/EBench-Astra-Tech-Report` (CI takes it from `actions/configure-pages`).
 4. Upload `_site-next` and deploy it using GitHub Pages Actions.
 
-Use `clean` as the working branch. In Actions, run **Deploy report to GitHub Pages** and select `clean` to publish it. The `github-pages` environment permits deployment only from `clean`, and the workflow enforces the same branch. Deployment remains **manual**; pushing `clean` does not automatically replace the live report. No local build output needs to be committed.
+Use `clean` as the working branch. Pushing `clean` runs **Deploy report to GitHub Pages** and replaces the live report; the workflow can also be run manually from Actions. The `github-pages` environment permits deployment only from `clean`, and the workflow enforces the same branch. No local build output needs to be committed.

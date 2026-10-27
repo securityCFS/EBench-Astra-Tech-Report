@@ -1,0 +1,27 @@
+[
+  {
+    "id": "harness_glass_pi05",
+    "title": "Glass into box",
+    "description": "π₀.₅ carries the glasses into the case, folds the temples, and closes the lid."
+  },
+  {
+    "id": "harness_flip_cup_internw0",
+    "title": "Flip cup & cookies",
+    "description": "The agent tests the cup grasp, then leaves the handover, the reorientation, and the pour to InternW0-Δ."
+  },
+  {
+    "id": "harness_gear_pi05",
+    "title": "Gear",
+    "description": "The agent claims completion while the gear rests unseated beside the middle shaft."
+  },
+  {
+    "id": "harness_detergent_internw0",
+    "title": "Detergent",
+    "description": "The agent opens the left hand without holding the right closed, and the bottle falls to the floor."
+  },
+  {
+    "id": "harness_teacup_pi05",
+    "title": "Teacup & teapot",
+    "description": "A recovery segment of π₀.₅ tips the saucer and undoes the cup placement that the agent completed."
+  }
+]

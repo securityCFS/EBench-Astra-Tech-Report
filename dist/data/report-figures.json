@@ -86,6 +86,86 @@
       }
     },
     {
+      "id": "InternW0-Delta",
+      "label": "InternW0-Δ",
+      "sr": 0.4923,
+      "score": 0.6604,
+      "groups": {
+        "Low": {
+          "sr": 0.5869,
+          "score": 0.7036,
+          "tasks": 14,
+          "episodes": 275
+        },
+        "Medium": {
+          "sr": 0.4917,
+          "score": 0.7229,
+          "tasks": 8,
+          "episodes": 155
+        },
+        "High": {
+          "sr": 0.1625,
+          "score": 0.3839,
+          "tasks": 4,
+          "episodes": 80
+        },
+        "Mobile": {
+          "sr": 0.55,
+          "score": 0.7004,
+          "tasks": 19,
+          "episodes": 370
+        },
+        "Fixed": {
+          "sr": 0.3357,
+          "score": 0.5518,
+          "tasks": 7,
+          "episodes": 140
+        },
+        "Short Horizon": {
+          "sr": 0.5909,
+          "score": 0.6386,
+          "tasks": 11,
+          "episodes": 220
+        },
+        "Long Horizon": {
+          "sr": 0.42,
+          "score": 0.6763,
+          "tasks": 15,
+          "episodes": 290
+        }
+      },
+      "generalization": {
+        "object": {
+          "sr": 0.4917,
+          "score": 0.6454,
+          "n": 120,
+          "tasks": 24,
+          "successes": 59
+        },
+        "background": {
+          "sr": 0.5154,
+          "score": 0.6725,
+          "n": 130,
+          "tasks": 26,
+          "successes": 67
+        },
+        "instruction": {
+          "sr": 0.5231,
+          "score": 0.694,
+          "n": 130,
+          "tasks": 26,
+          "successes": 68
+        },
+        "mix": {
+          "sr": 0.4462,
+          "score": 0.6187,
+          "n": 130,
+          "tasks": 26,
+          "successes": 58
+        }
+      }
+    },
+    {
       "id": "Astra (ICL)",
       "label": "Astra (ICL)",
       "sr": 0.4673,
@@ -744,6 +824,10 @@
         "Astra (ICL)": {
           "sr": 0.7,
           "score": 0.7
+        },
+        "InternW0-Delta": {
+          "sr": 0.15,
+          "score": 0.15
         }
       }
     },
@@ -786,6 +870,10 @@
         "Astra (ICL)": {
           "sr": 0.9,
           "score": 0.9
+        },
+        "InternW0-Delta": {
+          "sr": 0.95,
+          "score": 0.95
         }
       }
     },
@@ -828,6 +916,10 @@
         "Astra (ICL)": {
           "sr": 0.9,
           "score": 0.9
+        },
+        "InternW0-Delta": {
+          "sr": 0.35,
+          "score": 0.35
         }
       }
     },
@@ -870,6 +962,10 @@
         "Astra (ICL)": {
           "sr": 0.0,
           "score": 0.166667
+        },
+        "InternW0-Delta": {
+          "sr": 0.0,
+          "score": 0.4417
         }
       }
     },
@@ -912,6 +1008,10 @@
         "Astra (ICL)": {
           "sr": 0.75,
           "score": 0.75
+        },
+        "InternW0-Delta": {
+          "sr": 0.8,
+          "score": 0.8
         }
       }
     },
@@ -954,6 +1054,10 @@
         "Astra (ICL)": {
           "sr": 0.0,
           "score": 0.2357135
+        },
+        "InternW0-Delta": {
+          "sr": 0.05,
+          "score": 0.1107
         }
       }
     },
@@ -996,6 +1100,10 @@
         "Astra (ICL)": {
           "sr": 0.55,
           "score": 0.8000005
+        },
+        "InternW0-Delta": {
+          "sr": 0.95,
+          "score": 0.9833
         }
       }
     },
@@ -1038,6 +1146,10 @@
         "Astra (ICL)": {
           "sr": 0.5,
           "score": 0.81
+        },
+        "InternW0-Delta": {
+          "sr": 0.5,
+          "score": 0.89
         }
       }
     },
@@ -1080,6 +1192,10 @@
         "Astra (ICL)": {
           "sr": 0.05,
           "score": 0.53333325
+        },
+        "InternW0-Delta": {
+          "sr": 0.85,
+          "score": 0.9333
         }
       }
     },
@@ -1122,6 +1238,10 @@
         "Astra (ICL)": {
           "sr": 0.1,
           "score": 0.44
+        },
+        "InternW0-Delta": {
+          "sr": 0.5,
+          "score": 0.91
         }
       }
     },
@@ -1164,6 +1284,10 @@
         "Astra (ICL)": {
           "sr": 0.65,
           "score": 0.80000075
+        },
+        "InternW0-Delta": {
+          "sr": 0.6,
+          "score": 0.7
         }
       }
     },
@@ -1206,6 +1330,10 @@
         "Astra (ICL)": {
           "sr": 0.4,
           "score": 0.59
+        },
+        "InternW0-Delta": {
+          "sr": 0.6,
+          "score": 0.84
         }
       }
     },
@@ -1248,6 +1376,10 @@
         "Astra (ICL)": {
           "sr": 0.15,
           "score": 0.2
+        },
+        "InternW0-Delta": {
+          "sr": 0.5,
+          "score": 0.6
         }
       }
     },
@@ -1290,6 +1422,10 @@
         "Astra (ICL)": {
           "sr": 0.4666666666666667,
           "score": 0.7
+        },
+        "InternW0-Delta": {
+          "sr": 0.7333,
+          "score": 0.9333
         }
       }
     },
@@ -1332,6 +1468,10 @@
         "Astra (ICL)": {
           "sr": 0.7333333333333333,
           "score": 0.9000003333333333
+        },
+        "InternW0-Delta": {
+          "sr": 0.0667,
+          "score": 0.6444
         }
       }
     },
@@ -1374,6 +1514,10 @@
         "Astra (ICL)": {
           "sr": 0.2,
           "score": 0.6
+        },
+        "InternW0-Delta": {
+          "sr": 0.1,
+          "score": 0.325
         }
       }
     },
@@ -1416,6 +1560,10 @@
         "Astra (ICL)": {
           "sr": 0.15,
           "score": 0.550001
+        },
+        "InternW0-Delta": {
+          "sr": 0.15,
+          "score": 0.3167
         }
       }
     },
@@ -1458,6 +1606,10 @@
         "Astra (ICL)": {
           "sr": 0.75,
           "score": 0.875
+        },
+        "InternW0-Delta": {
+          "sr": 0.3,
+          "score": 0.3
         }
       }
     },
@@ -1500,6 +1652,10 @@
         "Astra (ICL)": {
           "sr": 0.2,
           "score": 0.299999
+        },
+        "InternW0-Delta": {
+          "sr": 0.6,
+          "score": 0.7167
         }
       }
     },
@@ -1542,6 +1698,10 @@
         "Astra (ICL)": {
           "sr": 1.0,
           "score": 1.0
+        },
+        "InternW0-Delta": {
+          "sr": 0.85,
+          "score": 0.85
         }
       }
     },
@@ -1582,6 +1742,10 @@
           "score": 0.8
         },
         "Astra (ICL)": {
+          "sr": 1.0,
+          "score": 1.0
+        },
+        "InternW0-Delta": {
           "sr": 1.0,
           "score": 1.0
         }
@@ -1626,6 +1790,10 @@
         "Astra (ICL)": {
           "sr": 0.0,
           "score": 0.5958335
+        },
+        "InternW0-Delta": {
+          "sr": 0.6,
+          "score": 0.9
         }
       }
     },
@@ -1668,6 +1836,10 @@
         "Astra (ICL)": {
           "sr": 0.95,
           "score": 0.95
+        },
+        "InternW0-Delta": {
+          "sr": 1.0,
+          "score": 1.0
         }
       }
     },
@@ -1710,6 +1882,10 @@
         "Astra (ICL)": {
           "sr": 0.85,
           "score": 0.925
+        },
+        "InternW0-Delta": {
+          "sr": 0.45,
+          "score": 0.575
         }
       }
     },
@@ -1752,6 +1928,10 @@
         "Astra (ICL)": {
           "sr": 0.1,
           "score": 0.55
+        },
+        "InternW0-Delta": {
+          "sr": 0.0,
+          "score": 0.5
         }
       }
     },
@@ -1794,6 +1974,10 @@
         "Astra (ICL)": {
           "sr": 0.1,
           "score": 0.225
+        },
+        "InternW0-Delta": {
+          "sr": 0.15,
+          "score": 0.45
         }
       }
     }

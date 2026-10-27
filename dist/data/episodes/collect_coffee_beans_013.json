@@ -2,8 +2,8 @@
   "id": "collect_coffee_beans_013",
   "task": "collect_coffee_beans",
   "seed": "013",
-  "title": "Exploring contact",
-  "description": "The agent changes tools and contact poses, but does not complete the task.",
+  "title": "Coffee beans",
+  "description": "After a sweep leaves the beans in place, the agent lowers the edge and tilts the fingertips, reaching a 0.50 score.",
   "instruction": "Fill the jar with all the coffee beans and then close it with the lid.",
   "result": {
     "sr": 0.0,

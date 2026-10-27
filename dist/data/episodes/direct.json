@@ -1,0 +1,17 @@
+[
+  {
+    "id": "apple_to_fruit_bowl_006",
+    "title": "Apple to bowl",
+    "description": "After a slip, the agent takes a wider view and carries the apple with the arm alone, reaching a 1.00 score."
+  },
+  {
+    "id": "collect_coffee_beans_013",
+    "title": "Coffee beans",
+    "description": "After a sweep leaves the beans in place, the agent lowers the edge and tilts the fingertips, reaching a 0.50 score."
+  },
+  {
+    "id": "fruit_015",
+    "title": "Fruit",
+    "description": "The agent carries the fruit toward the right container, and the episode ends at score 0.60 without success."
+  }
+]

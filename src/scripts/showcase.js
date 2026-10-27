@@ -9,14 +9,6 @@ function initShowcase() {
     }),
   );
   document.addEventListener('click', (e) => {
-    const link = e.target.closest('[data-open-case]');
-    if (link) {
-      if (link.dataset.openCase === 'mobile') {
-        document.getElementById('mobile').scrollIntoView({ behavior: 'smooth' });
-        return;
-      }
-      openSelectedCase(link.dataset.openCase);
-    }
     const limit = e.target.closest('[data-limit]');
     if (limit) {
       document.querySelectorAll('#limits-content video').forEach((v) => {

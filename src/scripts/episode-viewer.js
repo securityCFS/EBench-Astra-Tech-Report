@@ -1,7 +1,6 @@
 // Whole-episode public actions, synchronized by recorded execution chunks.
-(() => {
-  const root = document.querySelector('.execution-demo #episode-viewer');
-  if (!root) return;
+// Each viewer reads its own episode catalog, so the page can hold several.
+document.querySelectorAll('.execution-demo [data-episode-viewer]').forEach((root) => {
   const picker = root.querySelector('.episode-picker');
   const content = root.querySelector('[data-episode-content]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -13,6 +12,22 @@
   const time = (value) =>
     `${Math.floor(value / 60)}:${String(Math.floor(value % 60)).padStart(2, '0')}`;
   const icon = (name) => `<span class="episode-icon" aria-hidden="true">${reportIcon(name)}</span>`;
+  const executorNames = { agent: 'GPT-6-Astra', pi05: 'π₀.₅', internw0: 'InternW0-Δ' };
+  const executorOf = (call) => call.executor ?? 'agent';
+  function executorBar() {
+    const used = [...new Set(episode.calls.map(executorOf))];
+    if (used.length < 2) return '';
+    const share = (seconds) => (seconds / episode.duration) * 100;
+    return `<div class="episode-executors" aria-hidden="true">${episode.calls
+      .filter((call) => call.video_end > call.video_start)
+      .map(
+        (call) =>
+          `<span data-executor="${executorOf(call)}" style="left:${share(call.video_start)}%;width:${share(call.video_end - call.video_start)}%"></span>`,
+      )
+      .join('')}</div><p class="episode-executor-legend">${used
+      .map((key) => `<span data-executor="${key}">${executorNames[key]}</span>`)
+      .join('')}</p>`;
+  }
   const actionName = (call) =>
     call.arguments.reason ||
     `${call.arguments.opening === 0 ? 'Close' : call.arguments.opening === 1 ? 'Open' : 'Adjust'} the ${call.arguments.side} gripper`;
@@ -149,7 +164,7 @@
   }
 
   function render() {
-    content.innerHTML = `<div class="episode-heading"><div class="episode-task"><h4>${escape(episode.instruction)}</h4><details class="episode-prompt-disclosure"><summary>${icon('chevron-down')}Initial task prompt</summary><div class="episode-prompt" tabindex="0">${escape(episode.initial_prompt)}</div></details></div><span class="episode-outcome" data-success="${Boolean(episode.result.sr)}">${episode.result.sr ? `${icon('check')}Successful` : 'Incomplete'}<small>Final score ${episode.result.score.toFixed(3)}</small></span></div>
+    content.innerHTML = `<div class="episode-heading"><div class="episode-task">${episode.configuration ? `<p class="episode-configuration">${escape(episode.configuration)}</p>` : ''}<h4>${escape(episode.instruction)}</h4><details class="episode-prompt-disclosure"><summary>${icon('chevron-down')}Initial task prompt</summary><div class="episode-prompt" tabindex="0">${escape(episode.initial_prompt)}</div></details></div><span class="episode-outcome" data-success="${Boolean(episode.result.sr)}">${episode.result.sr ? `${icon('check')}Successful` : 'Unsuccessful'}<small>Final score ${episode.result.score.toFixed(3)}</small></span></div>
       <div class="episode-stage">
         <div class="episode-screen">
           <div class="episode-cameras" role="group" aria-label="Video camera"><span class="episode-camera-indicator" aria-hidden="true"></span>${[
@@ -173,7 +188,7 @@
           <div class="episode-transport" role="group" aria-label="Episode playback"><button type="button" data-play aria-label="Play episode">${icon('play')}</button><span class="episode-control-divider" aria-hidden="true"></span><button type="button" data-prev aria-label="Previous interaction">${icon('chevron-left')}</button><span data-counter></span><button type="button" data-next aria-label="Next interaction">${icon('chevron-right')}</button></div>
           <div class="episode-playback-meta"><output data-time aria-live="off">0:00 / ${time(episode.duration)}</output><select data-speed aria-label="Playback speed">${[0.5, 1, 2].map((rate) => `<option value="${rate}"${speed === rate ? ' selected' : ''}>${rate}×</option>`).join('')}</select></div>
         </div>
-        <div class="episode-timeline"><div class="episode-scrubber"><input data-seek type="range" min="0" max="${episode.duration}" step="0.01" value="0" aria-label="Video position" aria-valuetext="0:00 of ${time(episode.duration)}"><div class="episode-chapters" role="group" aria-label="Episode chapters">${episode.bookmarks
+        <div class="episode-timeline"><div class="episode-scrubber"><input data-seek type="range" min="0" max="${episode.duration}" step="0.01" value="0" aria-label="Video position" aria-valuetext="0:00 of ${time(episode.duration)}">${executorBar()}<div class="episode-chapters" role="group" aria-label="Episode chapters">${episode.bookmarks
           .map((bookmark) => {
             const start = episode.calls[bookmark.call - 1].video_start;
             return `<button type="button" class="episode-chapter" data-chapter data-call="${bookmark.call - 1}" data-position="${Math.max(0, Math.min(1, start / episode.duration))}" aria-label="Seek to ${escape(bookmark.label)}, ${time(start)}"><span class="episode-chapter-label" aria-hidden="true">${escape(bookmark.label)}<small>${time(start)}</small></span></button>`;
@@ -333,7 +348,10 @@
   function renderCall() {
     const call = episode.calls[index],
       reason = call.arguments.reason,
-      result = call.response.episode_results[0];
+      // An episode the agent ends is scored by the evaluator after its last call.
+      result =
+        call.response.episode_results[0] ??
+        (episode.ended_by_agent && index === episode.calls.length - 1 ? episode.result : null);
     const detailsOpen = root.querySelector('.episode-raw')?.open;
     const previousInteraction = root.querySelector('[data-interaction]');
     const focused = previousInteraction.contains(document.activeElement)
@@ -537,7 +555,7 @@
     content.setAttribute('aria-busy', 'true');
     content.innerHTML = '<p class="episode-state" role="status">Loading episode interactions…</p>';
     try {
-      entries = await get('data/episodes/index.json');
+      entries = await get(root.dataset.catalog);
       if (!entries.length) throw Error('No episodes');
       // Only the catalog initializes these buttons. Episode changes never replace them.
       picker.insertAdjacentHTML(
@@ -558,4 +576,4 @@
     }
   }
   init();
-})();
+});

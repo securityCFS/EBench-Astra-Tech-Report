@@ -1,0 +1,4723 @@
+{
+  "id": "harness_detergent_internw0",
+  "task": "detergent",
+  "seed": "017",
+  "title": "Detergent",
+  "description": "The agent opens the left hand without holding the right closed, and the bottle falls to the floor.",
+  "configuration": "Harness with InternW0-Δ",
+  "instruction": "Place every detergent in the basket.",
+  "result": {
+    "sr": 0.0,
+    "score": 0.66667
+  },
+  "ended_by_agent": true,
+  "video": "media/harness/harness_detergent_internw0-web.mp4",
+  "duration": 193.5,
+  "fps": 4,
+  "frame_count": 774,
+  "physics_steps": 4368,
+  "physics_hz": 30,
+  "bookmarks": [
+    {
+      "call": 4,
+      "label": "InternW0-Δ handover"
+    },
+    {
+      "call": 5,
+      "label": "Left hand opens"
+    },
+    {
+      "call": 6,
+      "label": "Bottle falls"
+    },
+    {
+      "call": 19,
+      "label": "Recovery attempts"
+    }
+  ],
+  "initial_prompt": "Complete this single task yourself using the tools: Place every detergent in the basket.\nRobot: manip/lift2/R5a, two arms and a movable planar base. Left arm is left in the overlook view. EEF poses are local to each arm's planner base: +X forward, +Y robot-left, +Z up; quaternion order wxyz. Fingers extend along tool +X and open along tool Y. Wrist cameras move/rotate with the hands. Measured local EEF z is not height above the tabletop. There is no supplied depth, object pose or camera calibration. Only RGB and measured robot EEF/gripper/base state are available. Base observed yaw is radians; tool command yaw is degrees. You have one continuous conversation and may choose any continuous EEF target, both arms, base motion and waypoint batching. Use execute_eef sequentially, not parallel calls. Use observations to judge motion and object manipulation. The server determines task success independently. Do not start another episode. Resource limits: unlimited tool calls, physics deadline enforced by the server; no hard token limit; resource reminders start after 2,000,000 cumulative tokens. Resource reminders ask you to reduce unnecessary token use while continuing useful work. Select only useful camera views after the initial observation to control resource use. When finished, state the observed outcome concisely.\nYou may call execute_wam to delegate a manipulation segment to a learned policy. Choose when to delegate using the current scene. It replans every 10 steps and automatically returns control after the requested segment (at most 300 steps). The WAM prompt is fixed to this task's instruction; always pass instruction=null and never invent a per-call prompt. Inspect its returned RGB/state and take over with EEF waypoints or delegate again. Use your own waypoint planning for approach, coordination and recovery as useful. The learned policy uses the same current three RGB cameras plus robot state, and its own frames from earlier in this episode; it receives no object ground truth or demonstration images.\nManipulation guidance: after visually aligning, close at a stationary pose and allow settling. A nonzero finger gap on the table is contact evidence, not proof of a secure grasp. Test each grasp by lifting only 0.01 m first, using motion_steps=16 or more, then hold 8..16 steps and request the active wrist plus overlook views. Keep orientation and base fixed during this test. Check both finger gap and RGB to confirm the object rises with the gripper before further lifting or transport. If it remains on the table or slips, lower and adjust local contact depth/centering using current images. There is no fixed limit on failed grasp attempts; retry or change approach within the remaining experiment budgets. Avoid large instantaneous target jumps while holding an object; use motion_steps for controlled transport. Total steps per waypoint must remain <=64 and includes the ramp. Use only the active wrist for local corrections, adding overlook when establishing alignment, testing grasp, or verifying placement.\nRGB inputs are downsampled: overlook 640x360, wrist 384x288; no crop or object annotation.\nThe saved ICL demonstration remains available through query_icl throughout this episode. Revisit it when the target region, stage order or arm roles are unclear, and when repeated failures or a change of approach make the reference useful. Use view=text for the original annotation and keyframe index, view=frames with frame_indices for selected images, or view=all for the full reference. Indices are zero-based entries in the keyframe index, not source video frame numbers. Querying does not advance simulation. Ground actions in the current RGB/state.",
+  "calls": [
+    {
+      "number": 1,
+      "id": "call_00001",
+      "tool": "execute_wam",
+      "arguments": {
+        "steps": 100,
+        "instruction": null,
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Approach the first detergent using the learned manipulation policy."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 0,
+        "physics_steps": 100,
+        "episode_results": []
+      },
+      "executor": "internw0",
+      "start_step": 0,
+      "end_step": 100,
+      "video_start": 0.0,
+      "video_end": 5.0
+    },
+    {
+      "number": 2,
+      "id": "call_00002",
+      "tool": "execute_wam",
+      "arguments": {
+        "steps": 60,
+        "instruction": null,
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Finish alignment and grasp of the first blue/red detergent."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 0,
+        "physics_steps": 160,
+        "episode_results": []
+      },
+      "executor": "internw0",
+      "start_step": 100,
+      "end_step": 160,
+      "video_start": 5.0,
+      "video_end": 8.0
+    },
+    {
+      "number": 3,
+      "id": "call_00003",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Test the left grasp with a slow one-centimetre lift before transport.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.23501,
+                -0.13749,
+                0.10723
+              ],
+              "quaternion_wxyz": [
+                0.99927,
+                0.03151,
+                0.02087,
+                -0.00579
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "right": null,
+            "base_xy_yaw_deg": null,
+            "motion_steps": 20,
+            "steps": 32
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 1,
+        "physics_steps": 192,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 160,
+      "end_step": 192,
+      "video_start": 8.0,
+      "video_end": 9.0
+    },
+    {
+      "number": 4,
+      "id": "call_00004",
+      "tool": "execute_wam",
+      "arguments": {
+        "steps": 250,
+        "instruction": null,
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "The first bottle followed the test lift; continue the coordinated handover toward the basket."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 1,
+        "physics_steps": 442,
+        "episode_results": []
+      },
+      "executor": "internw0",
+      "start_step": 192,
+      "end_step": 442,
+      "video_start": 9.0,
+      "video_end": 21.5
+    },
+    {
+      "number": 5,
+      "id": "call_00005",
+      "tool": "set_gripper",
+      "arguments": {
+        "side": "left",
+        "opening": 1,
+        "steps": 16,
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 2,
+        "physics_steps": 458,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 442,
+      "end_step": 458,
+      "video_start": 21.5,
+      "video_end": 22.0
+    },
+    {
+      "number": 6,
+      "id": "call_00006",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Check whether the receiving hand retained the bottle using a small lift.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.24488,
+                0.15546,
+                0.25695
+              ],
+              "quaternion_wxyz": [
+                0.7167,
+                -0.05388,
+                0.03843,
+                0.69423
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 20,
+            "steps": 32
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 3,
+        "physics_steps": 490,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 458,
+      "end_step": 490,
+      "video_start": 22.0,
+      "video_end": 23.0
+    },
+    {
+      "number": 7,
+      "id": "call_00007",
+      "tool": "execute_wam",
+      "arguments": {
+        "steps": 300,
+        "instruction": null,
+        "cameras": [
+          "overlook",
+          "left_wrist",
+          "right_wrist"
+        ],
+        "reason": "The receiving grasp slipped; let the learned policy reassess and recover the detergents from the current scene."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 3,
+        "physics_steps": 790,
+        "episode_results": []
+      },
+      "executor": "internw0",
+      "start_step": 490,
+      "end_step": 790,
+      "video_start": 23.0,
+      "video_end": 38.0
+    },
+    {
+      "number": 8,
+      "id": "call_00008",
+      "tool": "execute_wam",
+      "arguments": {
+        "steps": 80,
+        "instruction": null,
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Align the left hand and grasp the next standing detergent."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 3,
+        "physics_steps": 870,
+        "episode_results": []
+      },
+      "executor": "internw0",
+      "start_step": 790,
+      "end_step": 870,
+      "video_start": 38.0,
+      "video_end": 42.0
+    },
+    {
+      "number": 9,
+      "id": "call_00009",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Test the second detergent grasp with a slow one-centimetre lift.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.2599,
+                0.01558,
+                0.12107
+              ],
+              "quaternion_wxyz": [
+                0.99922,
+                -0.00894,
+                0.01624,
+                -0.03494
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "right": null,
+            "base_xy_yaw_deg": null,
+            "motion_steps": 20,
+            "steps": 32
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 4,
+        "physics_steps": 902,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 870,
+      "end_step": 902,
+      "video_start": 42.0,
+      "video_end": 43.0
+    },
+    {
+      "number": 10,
+      "id": "call_00010",
+      "tool": "execute_wam",
+      "arguments": {
+        "steps": 300,
+        "instruction": null,
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Continue the verified lift and allow the learned bimanual policy to complete the next handover."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 4,
+        "physics_steps": 1202,
+        "episode_results": []
+      },
+      "executor": "internw0",
+      "start_step": 902,
+      "end_step": 1202,
+      "video_start": 43.0,
+      "video_end": 58.0
+    },
+    {
+      "number": 11,
+      "id": "call_00011",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Test the transferred detergent with a one-centimetre right-hand lift before transport.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.20455,
+                0.0638,
+                0.22944
+              ],
+              "quaternion_wxyz": [
+                0.71942,
+                -0.05135,
+                -0.01361,
+                0.69254
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 20,
+            "steps": 32
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 5,
+        "physics_steps": 1234,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 1202,
+      "end_step": 1234,
+      "video_start": 58.0,
+      "video_end": 59.0
+    },
+    {
+      "number": 12,
+      "id": "call_00012",
+      "tool": "execute_wam",
+      "arguments": {
+        "steps": 270,
+        "instruction": null,
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "The receiving grasp passed its lift test; place this detergent into the basket and approach the remaining standing bottle."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 5,
+        "physics_steps": 1504,
+        "episode_results": []
+      },
+      "executor": "internw0",
+      "start_step": 1234,
+      "end_step": 1504,
+      "video_start": 59.0,
+      "video_end": 72.5
+    },
+    {
+      "number": 13,
+      "id": "call_00013",
+      "tool": "execute_wam",
+      "arguments": {
+        "steps": 180,
+        "instruction": null,
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Finish the basket release and approach the remaining white/green detergent."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 5,
+        "physics_steps": 1684,
+        "episode_results": []
+      },
+      "executor": "internw0",
+      "start_step": 1504,
+      "end_step": 1684,
+      "video_start": 72.5,
+      "video_end": 81.5
+    },
+    {
+      "number": 14,
+      "id": "call_00014",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Test the white/green detergent grasp by lifting one centimetre slowly.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.38091,
+                -0.08469,
+                0.11945
+              ],
+              "quaternion_wxyz": [
+                0.99988,
+                -0.00973,
+                -0.01064,
+                -0.00488
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "right": null,
+            "base_xy_yaw_deg": null,
+            "motion_steps": 20,
+            "steps": 32
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 6,
+        "physics_steps": 1716,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 1684,
+      "end_step": 1716,
+      "video_start": 81.5,
+      "video_end": 82.5
+    },
+    {
+      "number": 15,
+      "id": "call_00015",
+      "tool": "execute_wam",
+      "arguments": {
+        "steps": 300,
+        "instruction": null,
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "The white/green bottle moved with the test lift; continue its coordinated handover."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 6,
+        "physics_steps": 2016,
+        "episode_results": []
+      },
+      "executor": "internw0",
+      "start_step": 1716,
+      "end_step": 2016,
+      "video_start": 82.5,
+      "video_end": 97.5
+    },
+    {
+      "number": 16,
+      "id": "call_00016",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Verify the receiving grasp with a slow one-centimetre lift.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.24265,
+                0.15972,
+                0.22831
+              ],
+              "quaternion_wxyz": [
+                0.74831,
+                -0.03298,
+                -0.02266,
+                0.66214
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 20,
+            "steps": 32
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 7,
+        "physics_steps": 2048,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 2016,
+      "end_step": 2048,
+      "video_start": 97.5,
+      "video_end": 98.5
+    },
+    {
+      "number": 17,
+      "id": "call_00017",
+      "tool": "execute_wam",
+      "arguments": {
+        "steps": 300,
+        "instruction": null,
+        "cameras": [
+          "overlook"
+        ],
+        "reason": "The receiving lift is stable; carry and release the white/green bottle into the basket."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 7,
+        "physics_steps": 2348,
+        "episode_results": []
+      },
+      "executor": "internw0",
+      "start_step": 2048,
+      "end_step": 2348,
+      "video_start": 98.5,
+      "video_end": 113.5
+    },
+    {
+      "number": 18,
+      "id": "call_00018",
+      "tool": "query_icl",
+      "arguments": {
+        "view": "text",
+        "frame_indices": []
+      },
+      "response": {
+        "success": true,
+        "waypoints": 7,
+        "physics_steps": 2348,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 2348,
+      "end_step": 2348,
+      "video_start": 113.5,
+      "video_end": 113.5
+    },
+    {
+      "number": 19,
+      "id": "call_00019",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Back away carefully to reveal the dropped blue/red detergent below the counter edge.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.15,
+                0,
+                0.1
+              ],
+              "quaternion_wxyz": [
+                0.92388,
+                0,
+                0.38268,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": {
+              "xyz_m": [
+                0.1,
+                0,
+                0.1635
+              ],
+              "quaternion_wxyz": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": [
+              -0.35,
+              0,
+              0
+            ],
+            "motion_steps": 56,
+            "steps": 64
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 8,
+        "physics_steps": 2412,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 2348,
+      "end_step": 2412,
+      "video_start": 113.5,
+      "video_end": 115.5
+    },
+    {
+      "number": 20,
+      "id": "call_00020",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Approach the visible dropped bottle from above with the left hand, keeping clear of the counter.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.3,
+                -0.2,
+                -0.3
+              ],
+              "quaternion_wxyz": [
+                0.707107,
+                0,
+                0.707107,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": null,
+            "base_xy_yaw_deg": null,
+            "motion_steps": 56,
+            "steps": 64
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 9,
+        "physics_steps": 2476,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 2412,
+      "end_step": 2476,
+      "video_start": 115.5,
+      "video_end": 117.5
+    },
+    {
+      "number": 21,
+      "id": "call_00021",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "left_wrist",
+          "overlook"
+        ],
+        "reason": "Adjust the recovery viewing angle to center the floor bottle before descending further.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.25,
+                -0.19,
+                -0.38
+              ],
+              "quaternion_wxyz": [
+                0.92388,
+                0,
+                0.38268,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": null,
+            "base_xy_yaw_deg": null,
+            "motion_steps": 40,
+            "steps": 48
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 10,
+        "physics_steps": 2524,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 2476,
+      "end_step": 2524,
+      "video_start": 117.5,
+      "video_end": 119.0
+    },
+    {
+      "number": 22,
+      "id": "call_00022",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "left_wrist"
+        ],
+        "reason": "Move closer to the floor bottle with an open angled grasp.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.33,
+                -0.18,
+                -0.52
+              ],
+              "quaternion_wxyz": [
+                0.92388,
+                0,
+                0.38268,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": null,
+            "base_xy_yaw_deg": null,
+            "motion_steps": 48,
+            "steps": 56
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 11,
+        "physics_steps": 2580,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 2524,
+      "end_step": 2580,
+      "video_start": 119.0,
+      "video_end": 120.75
+    },
+    {
+      "number": 23,
+      "id": "call_00023",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Use a vertical wrist orientation to extend downward within the arm workspace.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.36,
+                -0.18,
+                -0.5
+              ],
+              "quaternion_wxyz": [
+                0.707107,
+                0,
+                0.707107,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": null,
+            "base_xy_yaw_deg": null,
+            "motion_steps": 48,
+            "steps": 56
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 12,
+        "physics_steps": 2636,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 2580,
+      "end_step": 2636,
+      "video_start": 120.75,
+      "video_end": 122.5
+    },
+    {
+      "number": 24,
+      "id": "call_00024",
+      "tool": "execute_wam",
+      "arguments": {
+        "steps": 300,
+        "instruction": null,
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "The floor bottle is visible but direct downward IK is stalled; use learned dexterity to attempt its recovery."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 12,
+        "physics_steps": 2936,
+        "episode_results": []
+      },
+      "executor": "internw0",
+      "start_step": 2636,
+      "end_step": 2936,
+      "video_start": 122.5,
+      "video_end": 137.5
+    },
+    {
+      "number": 25,
+      "id": "call_00025",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Reposition the base so the floor bottle is directly below the left arm, reducing reach distance.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.15,
+                0,
+                -0.25
+              ],
+              "quaternion_wxyz": [
+                0.707107,
+                0,
+                0.707107,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": {
+              "xyz_m": [
+                0.1,
+                0,
+                0.1635
+              ],
+              "quaternion_wxyz": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": [
+              -0.25,
+              -0.2,
+              0
+            ],
+            "motion_steps": 56,
+            "steps": 64
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 13,
+        "physics_steps": 3000,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 2936,
+      "end_step": 3000,
+      "video_start": 137.5,
+      "video_end": 139.5
+    },
+    {
+      "number": 26,
+      "id": "call_00026",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Correct lateral base alignment and extend the left hand downward near the dropped bottle.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.25,
+                0,
+                -0.4
+              ],
+              "quaternion_wxyz": [
+                0.707107,
+                0,
+                0.707107,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": null,
+            "base_xy_yaw_deg": [
+              -0.3,
+              0.2,
+              0
+            ],
+            "motion_steps": 56,
+            "steps": 64
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 14,
+        "physics_steps": 3064,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 3000,
+      "end_step": 3064,
+      "video_start": 139.5,
+      "video_end": 141.5
+    },
+    {
+      "number": 27,
+      "id": "call_00027",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "left_wrist",
+          "overlook"
+        ],
+        "reason": "Attempt a closer vertical recovery grasp at the arm's lower reach boundary.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.32,
+                -0.07,
+                -0.48
+              ],
+              "quaternion_wxyz": [
+                0.707107,
+                0,
+                0.707107,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": null,
+            "base_xy_yaw_deg": null,
+            "motion_steps": 48,
+            "steps": 64
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 15,
+        "physics_steps": 3128,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 3064,
+      "end_step": 3128,
+      "video_start": 141.5,
+      "video_end": 143.5
+    },
+    {
+      "number": 28,
+      "id": "call_00028",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "left_wrist",
+          "overlook"
+        ],
+        "reason": "Try an alternate wrist roll to avoid the stalled lower-arm configuration while reaching for the dropped bottle.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.28,
+                -0.06,
+                -0.35
+              ],
+              "quaternion_wxyz": [
+                0,
+                0.707107,
+                0,
+                -0.707107
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": null,
+            "base_xy_yaw_deg": null,
+            "motion_steps": 56,
+            "steps": 64
+          },
+          {
+            "left": {
+              "xyz_m": [
+                0.28,
+                -0.06,
+                -0.5
+              ],
+              "quaternion_wxyz": [
+                0,
+                0.707107,
+                0,
+                -0.707107
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": null,
+            "base_xy_yaw_deg": null,
+            "motion_steps": 48,
+            "steps": 64
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 17,
+        "physics_steps": 3256,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 3128,
+      "end_step": 3256,
+      "video_start": 143.5,
+      "video_end": 147.5
+    },
+    {
+      "number": 29,
+      "id": "call_00029",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Shift the base forward to bring the bottle under the downward fingers rather than beyond them.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.27,
+                -0.03,
+                -0.37
+              ],
+              "quaternion_wxyz": [
+                0.707107,
+                0,
+                0.707107,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": null,
+            "base_xy_yaw_deg": [
+              -0.15,
+              0.25,
+              0
+            ],
+            "motion_steps": 56,
+            "steps": 64
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 18,
+        "physics_steps": 3320,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 3256,
+      "end_step": 3320,
+      "video_start": 147.5,
+      "video_end": 149.5
+    },
+    {
+      "number": 30,
+      "id": "call_00030",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "left_wrist",
+          "overlook"
+        ],
+        "reason": "Center the bottle beneath the recovery hand with another small base correction.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": null,
+            "base_xy_yaw_deg": [
+              0,
+              0.2,
+              0
+            ],
+            "motion_steps": 56,
+            "steps": 64
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 19,
+        "physics_steps": 3384,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 3320,
+      "end_step": 3384,
+      "video_start": 149.5,
+      "video_end": 151.5
+    },
+    {
+      "number": 31,
+      "id": "call_00031",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Back clear of the counter collision and place the left wrist in a less folded low approach.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.4,
+                -0.07,
+                -0.3
+              ],
+              "quaternion_wxyz": [
+                0.92388,
+                0,
+                0.38268,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": {
+              "xyz_m": [
+                0.05,
+                -0.1,
+                0.25
+              ],
+              "quaternion_wxyz": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": [
+              -0.25,
+              0.2,
+              0
+            ],
+            "motion_steps": 56,
+            "steps": 64
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 20,
+        "physics_steps": 3448,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 3384,
+      "end_step": 3448,
+      "video_start": 151.5,
+      "video_end": 153.5
+    },
+    {
+      "number": 32,
+      "id": "call_00032",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "left_wrist",
+          "overlook"
+        ],
+        "reason": "Descend from the extended low approach, monitoring reach and clearance.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.4,
+                -0.07,
+                -0.45
+              ],
+              "quaternion_wxyz": [
+                0.92388,
+                0,
+                0.38268,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": null,
+            "base_xy_yaw_deg": null,
+            "motion_steps": 48,
+            "steps": 64
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 21,
+        "physics_steps": 3512,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 3448,
+      "end_step": 3512,
+      "video_start": 153.5,
+      "video_end": 155.5
+    },
+    {
+      "number": 33,
+      "id": "call_00033",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "left_wrist",
+          "overlook"
+        ],
+        "reason": "Retract from the appliance and try a nearly straight-down reach without the forward extension.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.15,
+                -0.04,
+                -0.45
+              ],
+              "quaternion_wxyz": [
+                0.707107,
+                0,
+                0.707107,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": null,
+            "base_xy_yaw_deg": [
+              -0.2,
+              0.2,
+              0
+            ],
+            "motion_steps": 56,
+            "steps": 64
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 22,
+        "physics_steps": 3576,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 3512,
+      "end_step": 3576,
+      "video_start": 155.5,
+      "video_end": 157.5
+    },
+    {
+      "number": 34,
+      "id": "call_00034",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Clear the obstructed wrist view before another learned recovery attempt.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.22,
+                -0.05,
+                -0.3
+              ],
+              "quaternion_wxyz": [
+                0.92388,
+                0,
+                0.38268,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": null,
+            "base_xy_yaw_deg": [
+              -0.35,
+              0.2,
+              0
+            ],
+            "motion_steps": 56,
+            "steps": 64
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 23,
+        "physics_steps": 3640,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 3576,
+      "end_step": 3640,
+      "video_start": 157.5,
+      "video_end": 159.5
+    },
+    {
+      "number": 35,
+      "id": "call_00035",
+      "tool": "execute_wam",
+      "arguments": {
+        "steps": 300,
+        "instruction": null,
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Attempt learned recovery of the clearly visible remaining floor bottle from the adjusted base position."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 23,
+        "physics_steps": 3940,
+        "episode_results": []
+      },
+      "executor": "internw0",
+      "start_step": 3640,
+      "end_step": 3940,
+      "video_start": 159.5,
+      "video_end": 174.5
+    },
+    {
+      "number": 36,
+      "id": "call_00036",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Switch to a right-arm floor recovery approach after the left-arm reach stalled.",
+        "waypoints": [
+          {
+            "left": {
+              "xyz_m": [
+                0.1,
+                0,
+                0.1635
+              ],
+              "quaternion_wxyz": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "right": {
+              "xyz_m": [
+                0.25,
+                0,
+                -0.35
+              ],
+              "quaternion_wxyz": [
+                0.92388,
+                0,
+                0.38268,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": [
+              -0.35,
+              -0.25,
+              0
+            ],
+            "motion_steps": 56,
+            "steps": 64
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 24,
+        "physics_steps": 4004,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 3940,
+      "end_step": 4004,
+      "video_start": 174.5,
+      "video_end": 176.5
+    },
+    {
+      "number": 37,
+      "id": "call_00037",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "right_wrist",
+          "overlook"
+        ],
+        "reason": "Lower the right hand toward the centered bottle with a downward grasp orientation.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.29,
+                0.04,
+                -0.48
+              ],
+              "quaternion_wxyz": [
+                0.707107,
+                0,
+                0.707107,
+                0
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 48,
+            "steps": 64
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 25,
+        "physics_steps": 4068,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 4004,
+      "end_step": 4068,
+      "video_start": 176.5,
+      "video_end": 178.5
+    },
+    {
+      "number": 38,
+      "id": "call_00038",
+      "tool": "execute_wam",
+      "arguments": {
+        "steps": 300,
+        "instruction": null,
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Attempt learned fine recovery from the right-hand approach, since both direct low IK approaches reached their limits."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 25,
+        "physics_steps": 4368,
+        "episode_results": []
+      },
+      "executor": "internw0",
+      "start_step": 4068,
+      "end_step": 4368,
+      "video_start": 178.5,
+      "video_end": 193.5
+    }
+  ],
+  "alignment": {
+    "method": "Recorded nonterminal execution chunks in order, one video frame per returned state.",
+    "frames": [
+      {
+        "start_step": 0,
+        "end_step": 8
+      },
+      {
+        "start_step": 8,
+        "end_step": 10
+      },
+      {
+        "start_step": 10,
+        "end_step": 18
+      },
+      {
+        "start_step": 18,
+        "end_step": 20
+      },
+      {
+        "start_step": 20,
+        "end_step": 28
+      },
+      {
+        "start_step": 28,
+        "end_step": 30
+      },
+      {
+        "start_step": 30,
+        "end_step": 38
+      },
+      {
+        "start_step": 38,
+        "end_step": 40
+      },
+      {
+        "start_step": 40,
+        "end_step": 48
+      },
+      {
+        "start_step": 48,
+        "end_step": 50
+      },
+      {
+        "start_step": 50,
+        "end_step": 58
+      },
+      {
+        "start_step": 58,
+        "end_step": 60
+      },
+      {
+        "start_step": 60,
+        "end_step": 68
+      },
+      {
+        "start_step": 68,
+        "end_step": 70
+      },
+      {
+        "start_step": 70,
+        "end_step": 78
+      },
+      {
+        "start_step": 78,
+        "end_step": 80
+      },
+      {
+        "start_step": 80,
+        "end_step": 88
+      },
+      {
+        "start_step": 88,
+        "end_step": 90
+      },
+      {
+        "start_step": 90,
+        "end_step": 98
+      },
+      {
+        "start_step": 98,
+        "end_step": 100
+      },
+      {
+        "start_step": 100,
+        "end_step": 108
+      },
+      {
+        "start_step": 108,
+        "end_step": 110
+      },
+      {
+        "start_step": 110,
+        "end_step": 118
+      },
+      {
+        "start_step": 118,
+        "end_step": 120
+      },
+      {
+        "start_step": 120,
+        "end_step": 128
+      },
+      {
+        "start_step": 128,
+        "end_step": 130
+      },
+      {
+        "start_step": 130,
+        "end_step": 138
+      },
+      {
+        "start_step": 138,
+        "end_step": 140
+      },
+      {
+        "start_step": 140,
+        "end_step": 148
+      },
+      {
+        "start_step": 148,
+        "end_step": 150
+      },
+      {
+        "start_step": 150,
+        "end_step": 158
+      },
+      {
+        "start_step": 158,
+        "end_step": 160
+      },
+      {
+        "start_step": 160,
+        "end_step": 168
+      },
+      {
+        "start_step": 168,
+        "end_step": 176
+      },
+      {
+        "start_step": 176,
+        "end_step": 184
+      },
+      {
+        "start_step": 184,
+        "end_step": 192
+      },
+      {
+        "start_step": 192,
+        "end_step": 200
+      },
+      {
+        "start_step": 200,
+        "end_step": 202
+      },
+      {
+        "start_step": 202,
+        "end_step": 210
+      },
+      {
+        "start_step": 210,
+        "end_step": 212
+      },
+      {
+        "start_step": 212,
+        "end_step": 220
+      },
+      {
+        "start_step": 220,
+        "end_step": 222
+      },
+      {
+        "start_step": 222,
+        "end_step": 230
+      },
+      {
+        "start_step": 230,
+        "end_step": 232
+      },
+      {
+        "start_step": 232,
+        "end_step": 240
+      },
+      {
+        "start_step": 240,
+        "end_step": 242
+      },
+      {
+        "start_step": 242,
+        "end_step": 250
+      },
+      {
+        "start_step": 250,
+        "end_step": 252
+      },
+      {
+        "start_step": 252,
+        "end_step": 260
+      },
+      {
+        "start_step": 260,
+        "end_step": 262
+      },
+      {
+        "start_step": 262,
+        "end_step": 270
+      },
+      {
+        "start_step": 270,
+        "end_step": 272
+      },
+      {
+        "start_step": 272,
+        "end_step": 280
+      },
+      {
+        "start_step": 280,
+        "end_step": 282
+      },
+      {
+        "start_step": 282,
+        "end_step": 290
+      },
+      {
+        "start_step": 290,
+        "end_step": 292
+      },
+      {
+        "start_step": 292,
+        "end_step": 300
+      },
+      {
+        "start_step": 300,
+        "end_step": 302
+      },
+      {
+        "start_step": 302,
+        "end_step": 310
+      },
+      {
+        "start_step": 310,
+        "end_step": 312
+      },
+      {
+        "start_step": 312,
+        "end_step": 320
+      },
+      {
+        "start_step": 320,
+        "end_step": 322
+      },
+      {
+        "start_step": 322,
+        "end_step": 330
+      },
+      {
+        "start_step": 330,
+        "end_step": 332
+      },
+      {
+        "start_step": 332,
+        "end_step": 340
+      },
+      {
+        "start_step": 340,
+        "end_step": 342
+      },
+      {
+        "start_step": 342,
+        "end_step": 350
+      },
+      {
+        "start_step": 350,
+        "end_step": 352
+      },
+      {
+        "start_step": 352,
+        "end_step": 360
+      },
+      {
+        "start_step": 360,
+        "end_step": 362
+      },
+      {
+        "start_step": 362,
+        "end_step": 370
+      },
+      {
+        "start_step": 370,
+        "end_step": 372
+      },
+      {
+        "start_step": 372,
+        "end_step": 380
+      },
+      {
+        "start_step": 380,
+        "end_step": 382
+      },
+      {
+        "start_step": 382,
+        "end_step": 390
+      },
+      {
+        "start_step": 390,
+        "end_step": 392
+      },
+      {
+        "start_step": 392,
+        "end_step": 400
+      },
+      {
+        "start_step": 400,
+        "end_step": 402
+      },
+      {
+        "start_step": 402,
+        "end_step": 410
+      },
+      {
+        "start_step": 410,
+        "end_step": 412
+      },
+      {
+        "start_step": 412,
+        "end_step": 420
+      },
+      {
+        "start_step": 420,
+        "end_step": 422
+      },
+      {
+        "start_step": 422,
+        "end_step": 430
+      },
+      {
+        "start_step": 430,
+        "end_step": 432
+      },
+      {
+        "start_step": 432,
+        "end_step": 440
+      },
+      {
+        "start_step": 440,
+        "end_step": 442
+      },
+      {
+        "start_step": 442,
+        "end_step": 450
+      },
+      {
+        "start_step": 450,
+        "end_step": 458
+      },
+      {
+        "start_step": 458,
+        "end_step": 466
+      },
+      {
+        "start_step": 466,
+        "end_step": 474
+      },
+      {
+        "start_step": 474,
+        "end_step": 482
+      },
+      {
+        "start_step": 482,
+        "end_step": 490
+      },
+      {
+        "start_step": 490,
+        "end_step": 498
+      },
+      {
+        "start_step": 498,
+        "end_step": 500
+      },
+      {
+        "start_step": 500,
+        "end_step": 508
+      },
+      {
+        "start_step": 508,
+        "end_step": 510
+      },
+      {
+        "start_step": 510,
+        "end_step": 518
+      },
+      {
+        "start_step": 518,
+        "end_step": 520
+      },
+      {
+        "start_step": 520,
+        "end_step": 528
+      },
+      {
+        "start_step": 528,
+        "end_step": 530
+      },
+      {
+        "start_step": 530,
+        "end_step": 538
+      },
+      {
+        "start_step": 538,
+        "end_step": 540
+      },
+      {
+        "start_step": 540,
+        "end_step": 548
+      },
+      {
+        "start_step": 548,
+        "end_step": 550
+      },
+      {
+        "start_step": 550,
+        "end_step": 558
+      },
+      {
+        "start_step": 558,
+        "end_step": 560
+      },
+      {
+        "start_step": 560,
+        "end_step": 568
+      },
+      {
+        "start_step": 568,
+        "end_step": 570
+      },
+      {
+        "start_step": 570,
+        "end_step": 578
+      },
+      {
+        "start_step": 578,
+        "end_step": 580
+      },
+      {
+        "start_step": 580,
+        "end_step": 588
+      },
+      {
+        "start_step": 588,
+        "end_step": 590
+      },
+      {
+        "start_step": 590,
+        "end_step": 598
+      },
+      {
+        "start_step": 598,
+        "end_step": 600
+      },
+      {
+        "start_step": 600,
+        "end_step": 608
+      },
+      {
+        "start_step": 608,
+        "end_step": 610
+      },
+      {
+        "start_step": 610,
+        "end_step": 618
+      },
+      {
+        "start_step": 618,
+        "end_step": 620
+      },
+      {
+        "start_step": 620,
+        "end_step": 628
+      },
+      {
+        "start_step": 628,
+        "end_step": 630
+      },
+      {
+        "start_step": 630,
+        "end_step": 638
+      },
+      {
+        "start_step": 638,
+        "end_step": 640
+      },
+      {
+        "start_step": 640,
+        "end_step": 648
+      },
+      {
+        "start_step": 648,
+        "end_step": 650
+      },
+      {
+        "start_step": 650,
+        "end_step": 658
+      },
+      {
+        "start_step": 658,
+        "end_step": 660
+      },
+      {
+        "start_step": 660,
+        "end_step": 668
+      },
+      {
+        "start_step": 668,
+        "end_step": 670
+      },
+      {
+        "start_step": 670,
+        "end_step": 678
+      },
+      {
+        "start_step": 678,
+        "end_step": 680
+      },
+      {
+        "start_step": 680,
+        "end_step": 688
+      },
+      {
+        "start_step": 688,
+        "end_step": 690
+      },
+      {
+        "start_step": 690,
+        "end_step": 698
+      },
+      {
+        "start_step": 698,
+        "end_step": 700
+      },
+      {
+        "start_step": 700,
+        "end_step": 708
+      },
+      {
+        "start_step": 708,
+        "end_step": 710
+      },
+      {
+        "start_step": 710,
+        "end_step": 718
+      },
+      {
+        "start_step": 718,
+        "end_step": 720
+      },
+      {
+        "start_step": 720,
+        "end_step": 728
+      },
+      {
+        "start_step": 728,
+        "end_step": 730
+      },
+      {
+        "start_step": 730,
+        "end_step": 738
+      },
+      {
+        "start_step": 738,
+        "end_step": 740
+      },
+      {
+        "start_step": 740,
+        "end_step": 748
+      },
+      {
+        "start_step": 748,
+        "end_step": 750
+      },
+      {
+        "start_step": 750,
+        "end_step": 758
+      },
+      {
+        "start_step": 758,
+        "end_step": 760
+      },
+      {
+        "start_step": 760,
+        "end_step": 768
+      },
+      {
+        "start_step": 768,
+        "end_step": 770
+      },
+      {
+        "start_step": 770,
+        "end_step": 778
+      },
+      {
+        "start_step": 778,
+        "end_step": 780
+      },
+      {
+        "start_step": 780,
+        "end_step": 788
+      },
+      {
+        "start_step": 788,
+        "end_step": 790
+      },
+      {
+        "start_step": 790,
+        "end_step": 798
+      },
+      {
+        "start_step": 798,
+        "end_step": 800
+      },
+      {
+        "start_step": 800,
+        "end_step": 808
+      },
+      {
+        "start_step": 808,
+        "end_step": 810
+      },
+      {
+        "start_step": 810,
+        "end_step": 818
+      },
+      {
+        "start_step": 818,
+        "end_step": 820
+      },
+      {
+        "start_step": 820,
+        "end_step": 828
+      },
+      {
+        "start_step": 828,
+        "end_step": 830
+      },
+      {
+        "start_step": 830,
+        "end_step": 838
+      },
+      {
+        "start_step": 838,
+        "end_step": 840
+      },
+      {
+        "start_step": 840,
+        "end_step": 848
+      },
+      {
+        "start_step": 848,
+        "end_step": 850
+      },
+      {
+        "start_step": 850,
+        "end_step": 858
+      },
+      {
+        "start_step": 858,
+        "end_step": 860
+      },
+      {
+        "start_step": 860,
+        "end_step": 868
+      },
+      {
+        "start_step": 868,
+        "end_step": 870
+      },
+      {
+        "start_step": 870,
+        "end_step": 878
+      },
+      {
+        "start_step": 878,
+        "end_step": 886
+      },
+      {
+        "start_step": 886,
+        "end_step": 894
+      },
+      {
+        "start_step": 894,
+        "end_step": 902
+      },
+      {
+        "start_step": 902,
+        "end_step": 910
+      },
+      {
+        "start_step": 910,
+        "end_step": 912
+      },
+      {
+        "start_step": 912,
+        "end_step": 920
+      },
+      {
+        "start_step": 920,
+        "end_step": 922
+      },
+      {
+        "start_step": 922,
+        "end_step": 930
+      },
+      {
+        "start_step": 930,
+        "end_step": 932
+      },
+      {
+        "start_step": 932,
+        "end_step": 940
+      },
+      {
+        "start_step": 940,
+        "end_step": 942
+      },
+      {
+        "start_step": 942,
+        "end_step": 950
+      },
+      {
+        "start_step": 950,
+        "end_step": 952
+      },
+      {
+        "start_step": 952,
+        "end_step": 960
+      },
+      {
+        "start_step": 960,
+        "end_step": 962
+      },
+      {
+        "start_step": 962,
+        "end_step": 970
+      },
+      {
+        "start_step": 970,
+        "end_step": 972
+      },
+      {
+        "start_step": 972,
+        "end_step": 980
+      },
+      {
+        "start_step": 980,
+        "end_step": 982
+      },
+      {
+        "start_step": 982,
+        "end_step": 990
+      },
+      {
+        "start_step": 990,
+        "end_step": 992
+      },
+      {
+        "start_step": 992,
+        "end_step": 1000
+      },
+      {
+        "start_step": 1000,
+        "end_step": 1002
+      },
+      {
+        "start_step": 1002,
+        "end_step": 1010
+      },
+      {
+        "start_step": 1010,
+        "end_step": 1012
+      },
+      {
+        "start_step": 1012,
+        "end_step": 1020
+      },
+      {
+        "start_step": 1020,
+        "end_step": 1022
+      },
+      {
+        "start_step": 1022,
+        "end_step": 1030
+      },
+      {
+        "start_step": 1030,
+        "end_step": 1032
+      },
+      {
+        "start_step": 1032,
+        "end_step": 1040
+      },
+      {
+        "start_step": 1040,
+        "end_step": 1042
+      },
+      {
+        "start_step": 1042,
+        "end_step": 1050
+      },
+      {
+        "start_step": 1050,
+        "end_step": 1052
+      },
+      {
+        "start_step": 1052,
+        "end_step": 1060
+      },
+      {
+        "start_step": 1060,
+        "end_step": 1062
+      },
+      {
+        "start_step": 1062,
+        "end_step": 1070
+      },
+      {
+        "start_step": 1070,
+        "end_step": 1072
+      },
+      {
+        "start_step": 1072,
+        "end_step": 1080
+      },
+      {
+        "start_step": 1080,
+        "end_step": 1082
+      },
+      {
+        "start_step": 1082,
+        "end_step": 1090
+      },
+      {
+        "start_step": 1090,
+        "end_step": 1092
+      },
+      {
+        "start_step": 1092,
+        "end_step": 1100
+      },
+      {
+        "start_step": 1100,
+        "end_step": 1102
+      },
+      {
+        "start_step": 1102,
+        "end_step": 1110
+      },
+      {
+        "start_step": 1110,
+        "end_step": 1112
+      },
+      {
+        "start_step": 1112,
+        "end_step": 1120
+      },
+      {
+        "start_step": 1120,
+        "end_step": 1122
+      },
+      {
+        "start_step": 1122,
+        "end_step": 1130
+      },
+      {
+        "start_step": 1130,
+        "end_step": 1132
+      },
+      {
+        "start_step": 1132,
+        "end_step": 1140
+      },
+      {
+        "start_step": 1140,
+        "end_step": 1142
+      },
+      {
+        "start_step": 1142,
+        "end_step": 1150
+      },
+      {
+        "start_step": 1150,
+        "end_step": 1152
+      },
+      {
+        "start_step": 1152,
+        "end_step": 1160
+      },
+      {
+        "start_step": 1160,
+        "end_step": 1162
+      },
+      {
+        "start_step": 1162,
+        "end_step": 1170
+      },
+      {
+        "start_step": 1170,
+        "end_step": 1172
+      },
+      {
+        "start_step": 1172,
+        "end_step": 1180
+      },
+      {
+        "start_step": 1180,
+        "end_step": 1182
+      },
+      {
+        "start_step": 1182,
+        "end_step": 1190
+      },
+      {
+        "start_step": 1190,
+        "end_step": 1192
+      },
+      {
+        "start_step": 1192,
+        "end_step": 1200
+      },
+      {
+        "start_step": 1200,
+        "end_step": 1202
+      },
+      {
+        "start_step": 1202,
+        "end_step": 1210
+      },
+      {
+        "start_step": 1210,
+        "end_step": 1218
+      },
+      {
+        "start_step": 1218,
+        "end_step": 1226
+      },
+      {
+        "start_step": 1226,
+        "end_step": 1234
+      },
+      {
+        "start_step": 1234,
+        "end_step": 1242
+      },
+      {
+        "start_step": 1242,
+        "end_step": 1244
+      },
+      {
+        "start_step": 1244,
+        "end_step": 1252
+      },
+      {
+        "start_step": 1252,
+        "end_step": 1254
+      },
+      {
+        "start_step": 1254,
+        "end_step": 1262
+      },
+      {
+        "start_step": 1262,
+        "end_step": 1264
+      },
+      {
+        "start_step": 1264,
+        "end_step": 1272
+      },
+      {
+        "start_step": 1272,
+        "end_step": 1274
+      },
+      {
+        "start_step": 1274,
+        "end_step": 1282
+      },
+      {
+        "start_step": 1282,
+        "end_step": 1284
+      },
+      {
+        "start_step": 1284,
+        "end_step": 1292
+      },
+      {
+        "start_step": 1292,
+        "end_step": 1294
+      },
+      {
+        "start_step": 1294,
+        "end_step": 1302
+      },
+      {
+        "start_step": 1302,
+        "end_step": 1304
+      },
+      {
+        "start_step": 1304,
+        "end_step": 1312
+      },
+      {
+        "start_step": 1312,
+        "end_step": 1314
+      },
+      {
+        "start_step": 1314,
+        "end_step": 1322
+      },
+      {
+        "start_step": 1322,
+        "end_step": 1324
+      },
+      {
+        "start_step": 1324,
+        "end_step": 1332
+      },
+      {
+        "start_step": 1332,
+        "end_step": 1334
+      },
+      {
+        "start_step": 1334,
+        "end_step": 1342
+      },
+      {
+        "start_step": 1342,
+        "end_step": 1344
+      },
+      {
+        "start_step": 1344,
+        "end_step": 1352
+      },
+      {
+        "start_step": 1352,
+        "end_step": 1354
+      },
+      {
+        "start_step": 1354,
+        "end_step": 1362
+      },
+      {
+        "start_step": 1362,
+        "end_step": 1364
+      },
+      {
+        "start_step": 1364,
+        "end_step": 1372
+      },
+      {
+        "start_step": 1372,
+        "end_step": 1374
+      },
+      {
+        "start_step": 1374,
+        "end_step": 1382
+      },
+      {
+        "start_step": 1382,
+        "end_step": 1384
+      },
+      {
+        "start_step": 1384,
+        "end_step": 1392
+      },
+      {
+        "start_step": 1392,
+        "end_step": 1394
+      },
+      {
+        "start_step": 1394,
+        "end_step": 1402
+      },
+      {
+        "start_step": 1402,
+        "end_step": 1404
+      },
+      {
+        "start_step": 1404,
+        "end_step": 1412
+      },
+      {
+        "start_step": 1412,
+        "end_step": 1414
+      },
+      {
+        "start_step": 1414,
+        "end_step": 1422
+      },
+      {
+        "start_step": 1422,
+        "end_step": 1424
+      },
+      {
+        "start_step": 1424,
+        "end_step": 1432
+      },
+      {
+        "start_step": 1432,
+        "end_step": 1434
+      },
+      {
+        "start_step": 1434,
+        "end_step": 1442
+      },
+      {
+        "start_step": 1442,
+        "end_step": 1444
+      },
+      {
+        "start_step": 1444,
+        "end_step": 1452
+      },
+      {
+        "start_step": 1452,
+        "end_step": 1454
+      },
+      {
+        "start_step": 1454,
+        "end_step": 1462
+      },
+      {
+        "start_step": 1462,
+        "end_step": 1464
+      },
+      {
+        "start_step": 1464,
+        "end_step": 1472
+      },
+      {
+        "start_step": 1472,
+        "end_step": 1474
+      },
+      {
+        "start_step": 1474,
+        "end_step": 1482
+      },
+      {
+        "start_step": 1482,
+        "end_step": 1484
+      },
+      {
+        "start_step": 1484,
+        "end_step": 1492
+      },
+      {
+        "start_step": 1492,
+        "end_step": 1494
+      },
+      {
+        "start_step": 1494,
+        "end_step": 1502
+      },
+      {
+        "start_step": 1502,
+        "end_step": 1504
+      },
+      {
+        "start_step": 1504,
+        "end_step": 1512
+      },
+      {
+        "start_step": 1512,
+        "end_step": 1514
+      },
+      {
+        "start_step": 1514,
+        "end_step": 1522
+      },
+      {
+        "start_step": 1522,
+        "end_step": 1524
+      },
+      {
+        "start_step": 1524,
+        "end_step": 1532
+      },
+      {
+        "start_step": 1532,
+        "end_step": 1534
+      },
+      {
+        "start_step": 1534,
+        "end_step": 1542
+      },
+      {
+        "start_step": 1542,
+        "end_step": 1544
+      },
+      {
+        "start_step": 1544,
+        "end_step": 1552
+      },
+      {
+        "start_step": 1552,
+        "end_step": 1554
+      },
+      {
+        "start_step": 1554,
+        "end_step": 1562
+      },
+      {
+        "start_step": 1562,
+        "end_step": 1564
+      },
+      {
+        "start_step": 1564,
+        "end_step": 1572
+      },
+      {
+        "start_step": 1572,
+        "end_step": 1574
+      },
+      {
+        "start_step": 1574,
+        "end_step": 1582
+      },
+      {
+        "start_step": 1582,
+        "end_step": 1584
+      },
+      {
+        "start_step": 1584,
+        "end_step": 1592
+      },
+      {
+        "start_step": 1592,
+        "end_step": 1594
+      },
+      {
+        "start_step": 1594,
+        "end_step": 1602
+      },
+      {
+        "start_step": 1602,
+        "end_step": 1604
+      },
+      {
+        "start_step": 1604,
+        "end_step": 1612
+      },
+      {
+        "start_step": 1612,
+        "end_step": 1614
+      },
+      {
+        "start_step": 1614,
+        "end_step": 1622
+      },
+      {
+        "start_step": 1622,
+        "end_step": 1624
+      },
+      {
+        "start_step": 1624,
+        "end_step": 1632
+      },
+      {
+        "start_step": 1632,
+        "end_step": 1634
+      },
+      {
+        "start_step": 1634,
+        "end_step": 1642
+      },
+      {
+        "start_step": 1642,
+        "end_step": 1644
+      },
+      {
+        "start_step": 1644,
+        "end_step": 1652
+      },
+      {
+        "start_step": 1652,
+        "end_step": 1654
+      },
+      {
+        "start_step": 1654,
+        "end_step": 1662
+      },
+      {
+        "start_step": 1662,
+        "end_step": 1664
+      },
+      {
+        "start_step": 1664,
+        "end_step": 1672
+      },
+      {
+        "start_step": 1672,
+        "end_step": 1674
+      },
+      {
+        "start_step": 1674,
+        "end_step": 1682
+      },
+      {
+        "start_step": 1682,
+        "end_step": 1684
+      },
+      {
+        "start_step": 1684,
+        "end_step": 1692
+      },
+      {
+        "start_step": 1692,
+        "end_step": 1700
+      },
+      {
+        "start_step": 1700,
+        "end_step": 1708
+      },
+      {
+        "start_step": 1708,
+        "end_step": 1716
+      },
+      {
+        "start_step": 1716,
+        "end_step": 1724
+      },
+      {
+        "start_step": 1724,
+        "end_step": 1726
+      },
+      {
+        "start_step": 1726,
+        "end_step": 1734
+      },
+      {
+        "start_step": 1734,
+        "end_step": 1736
+      },
+      {
+        "start_step": 1736,
+        "end_step": 1744
+      },
+      {
+        "start_step": 1744,
+        "end_step": 1746
+      },
+      {
+        "start_step": 1746,
+        "end_step": 1754
+      },
+      {
+        "start_step": 1754,
+        "end_step": 1756
+      },
+      {
+        "start_step": 1756,
+        "end_step": 1764
+      },
+      {
+        "start_step": 1764,
+        "end_step": 1766
+      },
+      {
+        "start_step": 1766,
+        "end_step": 1774
+      },
+      {
+        "start_step": 1774,
+        "end_step": 1776
+      },
+      {
+        "start_step": 1776,
+        "end_step": 1784
+      },
+      {
+        "start_step": 1784,
+        "end_step": 1786
+      },
+      {
+        "start_step": 1786,
+        "end_step": 1794
+      },
+      {
+        "start_step": 1794,
+        "end_step": 1796
+      },
+      {
+        "start_step": 1796,
+        "end_step": 1804
+      },
+      {
+        "start_step": 1804,
+        "end_step": 1806
+      },
+      {
+        "start_step": 1806,
+        "end_step": 1814
+      },
+      {
+        "start_step": 1814,
+        "end_step": 1816
+      },
+      {
+        "start_step": 1816,
+        "end_step": 1824
+      },
+      {
+        "start_step": 1824,
+        "end_step": 1826
+      },
+      {
+        "start_step": 1826,
+        "end_step": 1834
+      },
+      {
+        "start_step": 1834,
+        "end_step": 1836
+      },
+      {
+        "start_step": 1836,
+        "end_step": 1844
+      },
+      {
+        "start_step": 1844,
+        "end_step": 1846
+      },
+      {
+        "start_step": 1846,
+        "end_step": 1854
+      },
+      {
+        "start_step": 1854,
+        "end_step": 1856
+      },
+      {
+        "start_step": 1856,
+        "end_step": 1864
+      },
+      {
+        "start_step": 1864,
+        "end_step": 1866
+      },
+      {
+        "start_step": 1866,
+        "end_step": 1874
+      },
+      {
+        "start_step": 1874,
+        "end_step": 1876
+      },
+      {
+        "start_step": 1876,
+        "end_step": 1884
+      },
+      {
+        "start_step": 1884,
+        "end_step": 1886
+      },
+      {
+        "start_step": 1886,
+        "end_step": 1894
+      },
+      {
+        "start_step": 1894,
+        "end_step": 1896
+      },
+      {
+        "start_step": 1896,
+        "end_step": 1904
+      },
+      {
+        "start_step": 1904,
+        "end_step": 1906
+      },
+      {
+        "start_step": 1906,
+        "end_step": 1914
+      },
+      {
+        "start_step": 1914,
+        "end_step": 1916
+      },
+      {
+        "start_step": 1916,
+        "end_step": 1924
+      },
+      {
+        "start_step": 1924,
+        "end_step": 1926
+      },
+      {
+        "start_step": 1926,
+        "end_step": 1934
+      },
+      {
+        "start_step": 1934,
+        "end_step": 1936
+      },
+      {
+        "start_step": 1936,
+        "end_step": 1944
+      },
+      {
+        "start_step": 1944,
+        "end_step": 1946
+      },
+      {
+        "start_step": 1946,
+        "end_step": 1954
+      },
+      {
+        "start_step": 1954,
+        "end_step": 1956
+      },
+      {
+        "start_step": 1956,
+        "end_step": 1964
+      },
+      {
+        "start_step": 1964,
+        "end_step": 1966
+      },
+      {
+        "start_step": 1966,
+        "end_step": 1974
+      },
+      {
+        "start_step": 1974,
+        "end_step": 1976
+      },
+      {
+        "start_step": 1976,
+        "end_step": 1984
+      },
+      {
+        "start_step": 1984,
+        "end_step": 1986
+      },
+      {
+        "start_step": 1986,
+        "end_step": 1994
+      },
+      {
+        "start_step": 1994,
+        "end_step": 1996
+      },
+      {
+        "start_step": 1996,
+        "end_step": 2004
+      },
+      {
+        "start_step": 2004,
+        "end_step": 2006
+      },
+      {
+        "start_step": 2006,
+        "end_step": 2014
+      },
+      {
+        "start_step": 2014,
+        "end_step": 2016
+      },
+      {
+        "start_step": 2016,
+        "end_step": 2024
+      },
+      {
+        "start_step": 2024,
+        "end_step": 2032
+      },
+      {
+        "start_step": 2032,
+        "end_step": 2040
+      },
+      {
+        "start_step": 2040,
+        "end_step": 2048
+      },
+      {
+        "start_step": 2048,
+        "end_step": 2056
+      },
+      {
+        "start_step": 2056,
+        "end_step": 2058
+      },
+      {
+        "start_step": 2058,
+        "end_step": 2066
+      },
+      {
+        "start_step": 2066,
+        "end_step": 2068
+      },
+      {
+        "start_step": 2068,
+        "end_step": 2076
+      },
+      {
+        "start_step": 2076,
+        "end_step": 2078
+      },
+      {
+        "start_step": 2078,
+        "end_step": 2086
+      },
+      {
+        "start_step": 2086,
+        "end_step": 2088
+      },
+      {
+        "start_step": 2088,
+        "end_step": 2096
+      },
+      {
+        "start_step": 2096,
+        "end_step": 2098
+      },
+      {
+        "start_step": 2098,
+        "end_step": 2106
+      },
+      {
+        "start_step": 2106,
+        "end_step": 2108
+      },
+      {
+        "start_step": 2108,
+        "end_step": 2116
+      },
+      {
+        "start_step": 2116,
+        "end_step": 2118
+      },
+      {
+        "start_step": 2118,
+        "end_step": 2126
+      },
+      {
+        "start_step": 2126,
+        "end_step": 2128
+      },
+      {
+        "start_step": 2128,
+        "end_step": 2136
+      },
+      {
+        "start_step": 2136,
+        "end_step": 2138
+      },
+      {
+        "start_step": 2138,
+        "end_step": 2146
+      },
+      {
+        "start_step": 2146,
+        "end_step": 2148
+      },
+      {
+        "start_step": 2148,
+        "end_step": 2156
+      },
+      {
+        "start_step": 2156,
+        "end_step": 2158
+      },
+      {
+        "start_step": 2158,
+        "end_step": 2166
+      },
+      {
+        "start_step": 2166,
+        "end_step": 2168
+      },
+      {
+        "start_step": 2168,
+        "end_step": 2176
+      },
+      {
+        "start_step": 2176,
+        "end_step": 2178
+      },
+      {
+        "start_step": 2178,
+        "end_step": 2186
+      },
+      {
+        "start_step": 2186,
+        "end_step": 2188
+      },
+      {
+        "start_step": 2188,
+        "end_step": 2196
+      },
+      {
+        "start_step": 2196,
+        "end_step": 2198
+      },
+      {
+        "start_step": 2198,
+        "end_step": 2206
+      },
+      {
+        "start_step": 2206,
+        "end_step": 2208
+      },
+      {
+        "start_step": 2208,
+        "end_step": 2216
+      },
+      {
+        "start_step": 2216,
+        "end_step": 2218
+      },
+      {
+        "start_step": 2218,
+        "end_step": 2226
+      },
+      {
+        "start_step": 2226,
+        "end_step": 2228
+      },
+      {
+        "start_step": 2228,
+        "end_step": 2236
+      },
+      {
+        "start_step": 2236,
+        "end_step": 2238
+      },
+      {
+        "start_step": 2238,
+        "end_step": 2246
+      },
+      {
+        "start_step": 2246,
+        "end_step": 2248
+      },
+      {
+        "start_step": 2248,
+        "end_step": 2256
+      },
+      {
+        "start_step": 2256,
+        "end_step": 2258
+      },
+      {
+        "start_step": 2258,
+        "end_step": 2266
+      },
+      {
+        "start_step": 2266,
+        "end_step": 2268
+      },
+      {
+        "start_step": 2268,
+        "end_step": 2276
+      },
+      {
+        "start_step": 2276,
+        "end_step": 2278
+      },
+      {
+        "start_step": 2278,
+        "end_step": 2286
+      },
+      {
+        "start_step": 2286,
+        "end_step": 2288
+      },
+      {
+        "start_step": 2288,
+        "end_step": 2296
+      },
+      {
+        "start_step": 2296,
+        "end_step": 2298
+      },
+      {
+        "start_step": 2298,
+        "end_step": 2306
+      },
+      {
+        "start_step": 2306,
+        "end_step": 2308
+      },
+      {
+        "start_step": 2308,
+        "end_step": 2316
+      },
+      {
+        "start_step": 2316,
+        "end_step": 2318
+      },
+      {
+        "start_step": 2318,
+        "end_step": 2326
+      },
+      {
+        "start_step": 2326,
+        "end_step": 2328
+      },
+      {
+        "start_step": 2328,
+        "end_step": 2336
+      },
+      {
+        "start_step": 2336,
+        "end_step": 2338
+      },
+      {
+        "start_step": 2338,
+        "end_step": 2346
+      },
+      {
+        "start_step": 2346,
+        "end_step": 2348
+      },
+      {
+        "start_step": 2348,
+        "end_step": 2356
+      },
+      {
+        "start_step": 2356,
+        "end_step": 2364
+      },
+      {
+        "start_step": 2364,
+        "end_step": 2372
+      },
+      {
+        "start_step": 2372,
+        "end_step": 2380
+      },
+      {
+        "start_step": 2380,
+        "end_step": 2388
+      },
+      {
+        "start_step": 2388,
+        "end_step": 2396
+      },
+      {
+        "start_step": 2396,
+        "end_step": 2404
+      },
+      {
+        "start_step": 2404,
+        "end_step": 2412
+      },
+      {
+        "start_step": 2412,
+        "end_step": 2420
+      },
+      {
+        "start_step": 2420,
+        "end_step": 2428
+      },
+      {
+        "start_step": 2428,
+        "end_step": 2436
+      },
+      {
+        "start_step": 2436,
+        "end_step": 2444
+      },
+      {
+        "start_step": 2444,
+        "end_step": 2452
+      },
+      {
+        "start_step": 2452,
+        "end_step": 2460
+      },
+      {
+        "start_step": 2460,
+        "end_step": 2468
+      },
+      {
+        "start_step": 2468,
+        "end_step": 2476
+      },
+      {
+        "start_step": 2476,
+        "end_step": 2484
+      },
+      {
+        "start_step": 2484,
+        "end_step": 2492
+      },
+      {
+        "start_step": 2492,
+        "end_step": 2500
+      },
+      {
+        "start_step": 2500,
+        "end_step": 2508
+      },
+      {
+        "start_step": 2508,
+        "end_step": 2516
+      },
+      {
+        "start_step": 2516,
+        "end_step": 2524
+      },
+      {
+        "start_step": 2524,
+        "end_step": 2532
+      },
+      {
+        "start_step": 2532,
+        "end_step": 2540
+      },
+      {
+        "start_step": 2540,
+        "end_step": 2548
+      },
+      {
+        "start_step": 2548,
+        "end_step": 2556
+      },
+      {
+        "start_step": 2556,
+        "end_step": 2564
+      },
+      {
+        "start_step": 2564,
+        "end_step": 2572
+      },
+      {
+        "start_step": 2572,
+        "end_step": 2580
+      },
+      {
+        "start_step": 2580,
+        "end_step": 2588
+      },
+      {
+        "start_step": 2588,
+        "end_step": 2596
+      },
+      {
+        "start_step": 2596,
+        "end_step": 2604
+      },
+      {
+        "start_step": 2604,
+        "end_step": 2612
+      },
+      {
+        "start_step": 2612,
+        "end_step": 2620
+      },
+      {
+        "start_step": 2620,
+        "end_step": 2628
+      },
+      {
+        "start_step": 2628,
+        "end_step": 2636
+      },
+      {
+        "start_step": 2636,
+        "end_step": 2644
+      },
+      {
+        "start_step": 2644,
+        "end_step": 2646
+      },
+      {
+        "start_step": 2646,
+        "end_step": 2654
+      },
+      {
+        "start_step": 2654,
+        "end_step": 2656
+      },
+      {
+        "start_step": 2656,
+        "end_step": 2664
+      },
+      {
+        "start_step": 2664,
+        "end_step": 2666
+      },
+      {
+        "start_step": 2666,
+        "end_step": 2674
+      },
+      {
+        "start_step": 2674,
+        "end_step": 2676
+      },
+      {
+        "start_step": 2676,
+        "end_step": 2684
+      },
+      {
+        "start_step": 2684,
+        "end_step": 2686
+      },
+      {
+        "start_step": 2686,
+        "end_step": 2694
+      },
+      {
+        "start_step": 2694,
+        "end_step": 2696
+      },
+      {
+        "start_step": 2696,
+        "end_step": 2704
+      },
+      {
+        "start_step": 2704,
+        "end_step": 2706
+      },
+      {
+        "start_step": 2706,
+        "end_step": 2714
+      },
+      {
+        "start_step": 2714,
+        "end_step": 2716
+      },
+      {
+        "start_step": 2716,
+        "end_step": 2724
+      },
+      {
+        "start_step": 2724,
+        "end_step": 2726
+      },
+      {
+        "start_step": 2726,
+        "end_step": 2734
+      },
+      {
+        "start_step": 2734,
+        "end_step": 2736
+      },
+      {
+        "start_step": 2736,
+        "end_step": 2744
+      },
+      {
+        "start_step": 2744,
+        "end_step": 2746
+      },
+      {
+        "start_step": 2746,
+        "end_step": 2754
+      },
+      {
+        "start_step": 2754,
+        "end_step": 2756
+      },
+      {
+        "start_step": 2756,
+        "end_step": 2764
+      },
+      {
+        "start_step": 2764,
+        "end_step": 2766
+      },
+      {
+        "start_step": 2766,
+        "end_step": 2774
+      },
+      {
+        "start_step": 2774,
+        "end_step": 2776
+      },
+      {
+        "start_step": 2776,
+        "end_step": 2784
+      },
+      {
+        "start_step": 2784,
+        "end_step": 2786
+      },
+      {
+        "start_step": 2786,
+        "end_step": 2794
+      },
+      {
+        "start_step": 2794,
+        "end_step": 2796
+      },
+      {
+        "start_step": 2796,
+        "end_step": 2804
+      },
+      {
+        "start_step": 2804,
+        "end_step": 2806
+      },
+      {
+        "start_step": 2806,
+        "end_step": 2814
+      },
+      {
+        "start_step": 2814,
+        "end_step": 2816
+      },
+      {
+        "start_step": 2816,
+        "end_step": 2824
+      },
+      {
+        "start_step": 2824,
+        "end_step": 2826
+      },
+      {
+        "start_step": 2826,
+        "end_step": 2834
+      },
+      {
+        "start_step": 2834,
+        "end_step": 2836
+      },
+      {
+        "start_step": 2836,
+        "end_step": 2844
+      },
+      {
+        "start_step": 2844,
+        "end_step": 2846
+      },
+      {
+        "start_step": 2846,
+        "end_step": 2854
+      },
+      {
+        "start_step": 2854,
+        "end_step": 2856
+      },
+      {
+        "start_step": 2856,
+        "end_step": 2864
+      },
+      {
+        "start_step": 2864,
+        "end_step": 2866
+      },
+      {
+        "start_step": 2866,
+        "end_step": 2874
+      },
+      {
+        "start_step": 2874,
+        "end_step": 2876
+      },
+      {
+        "start_step": 2876,
+        "end_step": 2884
+      },
+      {
+        "start_step": 2884,
+        "end_step": 2886
+      },
+      {
+        "start_step": 2886,
+        "end_step": 2894
+      },
+      {
+        "start_step": 2894,
+        "end_step": 2896
+      },
+      {
+        "start_step": 2896,
+        "end_step": 2904
+      },
+      {
+        "start_step": 2904,
+        "end_step": 2906
+      },
+      {
+        "start_step": 2906,
+        "end_step": 2914
+      },
+      {
+        "start_step": 2914,
+        "end_step": 2916
+      },
+      {
+        "start_step": 2916,
+        "end_step": 2924
+      },
+      {
+        "start_step": 2924,
+        "end_step": 2926
+      },
+      {
+        "start_step": 2926,
+        "end_step": 2934
+      },
+      {
+        "start_step": 2934,
+        "end_step": 2936
+      },
+      {
+        "start_step": 2936,
+        "end_step": 2944
+      },
+      {
+        "start_step": 2944,
+        "end_step": 2952
+      },
+      {
+        "start_step": 2952,
+        "end_step": 2960
+      },
+      {
+        "start_step": 2960,
+        "end_step": 2968
+      },
+      {
+        "start_step": 2968,
+        "end_step": 2976
+      },
+      {
+        "start_step": 2976,
+        "end_step": 2984
+      },
+      {
+        "start_step": 2984,
+        "end_step": 2992
+      },
+      {
+        "start_step": 2992,
+        "end_step": 3000
+      },
+      {
+        "start_step": 3000,
+        "end_step": 3008
+      },
+      {
+        "start_step": 3008,
+        "end_step": 3016
+      },
+      {
+        "start_step": 3016,
+        "end_step": 3024
+      },
+      {
+        "start_step": 3024,
+        "end_step": 3032
+      },
+      {
+        "start_step": 3032,
+        "end_step": 3040
+      },
+      {
+        "start_step": 3040,
+        "end_step": 3048
+      },
+      {
+        "start_step": 3048,
+        "end_step": 3056
+      },
+      {
+        "start_step": 3056,
+        "end_step": 3064
+      },
+      {
+        "start_step": 3064,
+        "end_step": 3072
+      },
+      {
+        "start_step": 3072,
+        "end_step": 3080
+      },
+      {
+        "start_step": 3080,
+        "end_step": 3088
+      },
+      {
+        "start_step": 3088,
+        "end_step": 3096
+      },
+      {
+        "start_step": 3096,
+        "end_step": 3104
+      },
+      {
+        "start_step": 3104,
+        "end_step": 3112
+      },
+      {
+        "start_step": 3112,
+        "end_step": 3120
+      },
+      {
+        "start_step": 3120,
+        "end_step": 3128
+      },
+      {
+        "start_step": 3128,
+        "end_step": 3136
+      },
+      {
+        "start_step": 3136,
+        "end_step": 3144
+      },
+      {
+        "start_step": 3144,
+        "end_step": 3152
+      },
+      {
+        "start_step": 3152,
+        "end_step": 3160
+      },
+      {
+        "start_step": 3160,
+        "end_step": 3168
+      },
+      {
+        "start_step": 3168,
+        "end_step": 3176
+      },
+      {
+        "start_step": 3176,
+        "end_step": 3184
+      },
+      {
+        "start_step": 3184,
+        "end_step": 3192
+      },
+      {
+        "start_step": 3192,
+        "end_step": 3200
+      },
+      {
+        "start_step": 3200,
+        "end_step": 3208
+      },
+      {
+        "start_step": 3208,
+        "end_step": 3216
+      },
+      {
+        "start_step": 3216,
+        "end_step": 3224
+      },
+      {
+        "start_step": 3224,
+        "end_step": 3232
+      },
+      {
+        "start_step": 3232,
+        "end_step": 3240
+      },
+      {
+        "start_step": 3240,
+        "end_step": 3248
+      },
+      {
+        "start_step": 3248,
+        "end_step": 3256
+      },
+      {
+        "start_step": 3256,
+        "end_step": 3264
+      },
+      {
+        "start_step": 3264,
+        "end_step": 3272
+      },
+      {
+        "start_step": 3272,
+        "end_step": 3280
+      },
+      {
+        "start_step": 3280,
+        "end_step": 3288
+      },
+      {
+        "start_step": 3288,
+        "end_step": 3296
+      },
+      {
+        "start_step": 3296,
+        "end_step": 3304
+      },
+      {
+        "start_step": 3304,
+        "end_step": 3312
+      },
+      {
+        "start_step": 3312,
+        "end_step": 3320
+      },
+      {
+        "start_step": 3320,
+        "end_step": 3328
+      },
+      {
+        "start_step": 3328,
+        "end_step": 3336
+      },
+      {
+        "start_step": 3336,
+        "end_step": 3344
+      },
+      {
+        "start_step": 3344,
+        "end_step": 3352
+      },
+      {
+        "start_step": 3352,
+        "end_step": 3360
+      },
+      {
+        "start_step": 3360,
+        "end_step": 3368
+      },
+      {
+        "start_step": 3368,
+        "end_step": 3376
+      },
+      {
+        "start_step": 3376,
+        "end_step": 3384
+      },
+      {
+        "start_step": 3384,
+        "end_step": 3392
+      },
+      {
+        "start_step": 3392,
+        "end_step": 3400
+      },
+      {
+        "start_step": 3400,
+        "end_step": 3408
+      },
+      {
+        "start_step": 3408,
+        "end_step": 3416
+      },
+      {
+        "start_step": 3416,
+        "end_step": 3424
+      },
+      {
+        "start_step": 3424,
+        "end_step": 3432
+      },
+      {
+        "start_step": 3432,
+        "end_step": 3440
+      },
+      {
+        "start_step": 3440,
+        "end_step": 3448
+      },
+      {
+        "start_step": 3448,
+        "end_step": 3456
+      },
+      {
+        "start_step": 3456,
+        "end_step": 3464
+      },
+      {
+        "start_step": 3464,
+        "end_step": 3472
+      },
+      {
+        "start_step": 3472,
+        "end_step": 3480
+      },
+      {
+        "start_step": 3480,
+        "end_step": 3488
+      },
+      {
+        "start_step": 3488,
+        "end_step": 3496
+      },
+      {
+        "start_step": 3496,
+        "end_step": 3504
+      },
+      {
+        "start_step": 3504,
+        "end_step": 3512
+      },
+      {
+        "start_step": 3512,
+        "end_step": 3520
+      },
+      {
+        "start_step": 3520,
+        "end_step": 3528
+      },
+      {
+        "start_step": 3528,
+        "end_step": 3536
+      },
+      {
+        "start_step": 3536,
+        "end_step": 3544
+      },
+      {
+        "start_step": 3544,
+        "end_step": 3552
+      },
+      {
+        "start_step": 3552,
+        "end_step": 3560
+      },
+      {
+        "start_step": 3560,
+        "end_step": 3568
+      },
+      {
+        "start_step": 3568,
+        "end_step": 3576
+      },
+      {
+        "start_step": 3576,
+        "end_step": 3584
+      },
+      {
+        "start_step": 3584,
+        "end_step": 3592
+      },
+      {
+        "start_step": 3592,
+        "end_step": 3600
+      },
+      {
+        "start_step": 3600,
+        "end_step": 3608
+      },
+      {
+        "start_step": 3608,
+        "end_step": 3616
+      },
+      {
+        "start_step": 3616,
+        "end_step": 3624
+      },
+      {
+        "start_step": 3624,
+        "end_step": 3632
+      },
+      {
+        "start_step": 3632,
+        "end_step": 3640
+      },
+      {
+        "start_step": 3640,
+        "end_step": 3648
+      },
+      {
+        "start_step": 3648,
+        "end_step": 3650
+      },
+      {
+        "start_step": 3650,
+        "end_step": 3658
+      },
+      {
+        "start_step": 3658,
+        "end_step": 3660
+      },
+      {
+        "start_step": 3660,
+        "end_step": 3668
+      },
+      {
+        "start_step": 3668,
+        "end_step": 3670
+      },
+      {
+        "start_step": 3670,
+        "end_step": 3678
+      },
+      {
+        "start_step": 3678,
+        "end_step": 3680
+      },
+      {
+        "start_step": 3680,
+        "end_step": 3688
+      },
+      {
+        "start_step": 3688,
+        "end_step": 3690
+      },
+      {
+        "start_step": 3690,
+        "end_step": 3698
+      },
+      {
+        "start_step": 3698,
+        "end_step": 3700
+      },
+      {
+        "start_step": 3700,
+        "end_step": 3708
+      },
+      {
+        "start_step": 3708,
+        "end_step": 3710
+      },
+      {
+        "start_step": 3710,
+        "end_step": 3718
+      },
+      {
+        "start_step": 3718,
+        "end_step": 3720
+      },
+      {
+        "start_step": 3720,
+        "end_step": 3728
+      },
+      {
+        "start_step": 3728,
+        "end_step": 3730
+      },
+      {
+        "start_step": 3730,
+        "end_step": 3738
+      },
+      {
+        "start_step": 3738,
+        "end_step": 3740
+      },
+      {
+        "start_step": 3740,
+        "end_step": 3748
+      },
+      {
+        "start_step": 3748,
+        "end_step": 3750
+      },
+      {
+        "start_step": 3750,
+        "end_step": 3758
+      },
+      {
+        "start_step": 3758,
+        "end_step": 3760
+      },
+      {
+        "start_step": 3760,
+        "end_step": 3768
+      },
+      {
+        "start_step": 3768,
+        "end_step": 3770
+      },
+      {
+        "start_step": 3770,
+        "end_step": 3778
+      },
+      {
+        "start_step": 3778,
+        "end_step": 3780
+      },
+      {
+        "start_step": 3780,
+        "end_step": 3788
+      },
+      {
+        "start_step": 3788,
+        "end_step": 3790
+      },
+      {
+        "start_step": 3790,
+        "end_step": 3798
+      },
+      {
+        "start_step": 3798,
+        "end_step": 3800
+      },
+      {
+        "start_step": 3800,
+        "end_step": 3808
+      },
+      {
+        "start_step": 3808,
+        "end_step": 3810
+      },
+      {
+        "start_step": 3810,
+        "end_step": 3818
+      },
+      {
+        "start_step": 3818,
+        "end_step": 3820
+      },
+      {
+        "start_step": 3820,
+        "end_step": 3828
+      },
+      {
+        "start_step": 3828,
+        "end_step": 3830
+      },
+      {
+        "start_step": 3830,
+        "end_step": 3838
+      },
+      {
+        "start_step": 3838,
+        "end_step": 3840
+      },
+      {
+        "start_step": 3840,
+        "end_step": 3848
+      },
+      {
+        "start_step": 3848,
+        "end_step": 3850
+      },
+      {
+        "start_step": 3850,
+        "end_step": 3858
+      },
+      {
+        "start_step": 3858,
+        "end_step": 3860
+      },
+      {
+        "start_step": 3860,
+        "end_step": 3868
+      },
+      {
+        "start_step": 3868,
+        "end_step": 3870
+      },
+      {
+        "start_step": 3870,
+        "end_step": 3878
+      },
+      {
+        "start_step": 3878,
+        "end_step": 3880
+      },
+      {
+        "start_step": 3880,
+        "end_step": 3888
+      },
+      {
+        "start_step": 3888,
+        "end_step": 3890
+      },
+      {
+        "start_step": 3890,
+        "end_step": 3898
+      },
+      {
+        "start_step": 3898,
+        "end_step": 3900
+      },
+      {
+        "start_step": 3900,
+        "end_step": 3908
+      },
+      {
+        "start_step": 3908,
+        "end_step": 3910
+      },
+      {
+        "start_step": 3910,
+        "end_step": 3918
+      },
+      {
+        "start_step": 3918,
+        "end_step": 3920
+      },
+      {
+        "start_step": 3920,
+        "end_step": 3928
+      },
+      {
+        "start_step": 3928,
+        "end_step": 3930
+      },
+      {
+        "start_step": 3930,
+        "end_step": 3938
+      },
+      {
+        "start_step": 3938,
+        "end_step": 3940
+      },
+      {
+        "start_step": 3940,
+        "end_step": 3948
+      },
+      {
+        "start_step": 3948,
+        "end_step": 3956
+      },
+      {
+        "start_step": 3956,
+        "end_step": 3964
+      },
+      {
+        "start_step": 3964,
+        "end_step": 3972
+      },
+      {
+        "start_step": 3972,
+        "end_step": 3980
+      },
+      {
+        "start_step": 3980,
+        "end_step": 3988
+      },
+      {
+        "start_step": 3988,
+        "end_step": 3996
+      },
+      {
+        "start_step": 3996,
+        "end_step": 4004
+      },
+      {
+        "start_step": 4004,
+        "end_step": 4012
+      },
+      {
+        "start_step": 4012,
+        "end_step": 4020
+      },
+      {
+        "start_step": 4020,
+        "end_step": 4028
+      },
+      {
+        "start_step": 4028,
+        "end_step": 4036
+      },
+      {
+        "start_step": 4036,
+        "end_step": 4044
+      },
+      {
+        "start_step": 4044,
+        "end_step": 4052
+      },
+      {
+        "start_step": 4052,
+        "end_step": 4060
+      },
+      {
+        "start_step": 4060,
+        "end_step": 4068
+      },
+      {
+        "start_step": 4068,
+        "end_step": 4076
+      },
+      {
+        "start_step": 4076,
+        "end_step": 4078
+      },
+      {
+        "start_step": 4078,
+        "end_step": 4086
+      },
+      {
+        "start_step": 4086,
+        "end_step": 4088
+      },
+      {
+        "start_step": 4088,
+        "end_step": 4096
+      },
+      {
+        "start_step": 4096,
+        "end_step": 4098
+      },
+      {
+        "start_step": 4098,
+        "end_step": 4106
+      },
+      {
+        "start_step": 4106,
+        "end_step": 4108
+      },
+      {
+        "start_step": 4108,
+        "end_step": 4116
+      },
+      {
+        "start_step": 4116,
+        "end_step": 4118
+      },
+      {
+        "start_step": 4118,
+        "end_step": 4126
+      },
+      {
+        "start_step": 4126,
+        "end_step": 4128
+      },
+      {
+        "start_step": 4128,
+        "end_step": 4136
+      },
+      {
+        "start_step": 4136,
+        "end_step": 4138
+      },
+      {
+        "start_step": 4138,
+        "end_step": 4146
+      },
+      {
+        "start_step": 4146,
+        "end_step": 4148
+      },
+      {
+        "start_step": 4148,
+        "end_step": 4156
+      },
+      {
+        "start_step": 4156,
+        "end_step": 4158
+      },
+      {
+        "start_step": 4158,
+        "end_step": 4166
+      },
+      {
+        "start_step": 4166,
+        "end_step": 4168
+      },
+      {
+        "start_step": 4168,
+        "end_step": 4176
+      },
+      {
+        "start_step": 4176,
+        "end_step": 4178
+      },
+      {
+        "start_step": 4178,
+        "end_step": 4186
+      },
+      {
+        "start_step": 4186,
+        "end_step": 4188
+      },
+      {
+        "start_step": 4188,
+        "end_step": 4196
+      },
+      {
+        "start_step": 4196,
+        "end_step": 4198
+      },
+      {
+        "start_step": 4198,
+        "end_step": 4206
+      },
+      {
+        "start_step": 4206,
+        "end_step": 4208
+      },
+      {
+        "start_step": 4208,
+        "end_step": 4216
+      },
+      {
+        "start_step": 4216,
+        "end_step": 4218
+      },
+      {
+        "start_step": 4218,
+        "end_step": 4226
+      },
+      {
+        "start_step": 4226,
+        "end_step": 4228
+      },
+      {
+        "start_step": 4228,
+        "end_step": 4236
+      },
+      {
+        "start_step": 4236,
+        "end_step": 4238
+      },
+      {
+        "start_step": 4238,
+        "end_step": 4246
+      },
+      {
+        "start_step": 4246,
+        "end_step": 4248
+      },
+      {
+        "start_step": 4248,
+        "end_step": 4256
+      },
+      {
+        "start_step": 4256,
+        "end_step": 4258
+      },
+      {
+        "start_step": 4258,
+        "end_step": 4266
+      },
+      {
+        "start_step": 4266,
+        "end_step": 4268
+      },
+      {
+        "start_step": 4268,
+        "end_step": 4276
+      },
+      {
+        "start_step": 4276,
+        "end_step": 4278
+      },
+      {
+        "start_step": 4278,
+        "end_step": 4286
+      },
+      {
+        "start_step": 4286,
+        "end_step": 4288
+      },
+      {
+        "start_step": 4288,
+        "end_step": 4296
+      },
+      {
+        "start_step": 4296,
+        "end_step": 4298
+      },
+      {
+        "start_step": 4298,
+        "end_step": 4306
+      },
+      {
+        "start_step": 4306,
+        "end_step": 4308
+      },
+      {
+        "start_step": 4308,
+        "end_step": 4316
+      },
+      {
+        "start_step": 4316,
+        "end_step": 4318
+      },
+      {
+        "start_step": 4318,
+        "end_step": 4326
+      },
+      {
+        "start_step": 4326,
+        "end_step": 4328
+      },
+      {
+        "start_step": 4328,
+        "end_step": 4336
+      },
+      {
+        "start_step": 4336,
+        "end_step": 4338
+      },
+      {
+        "start_step": 4338,
+        "end_step": 4346
+      },
+      {
+        "start_step": 4346,
+        "end_step": 4348
+      },
+      {
+        "start_step": 4348,
+        "end_step": 4356
+      },
+      {
+        "start_step": 4356,
+        "end_step": 4358
+      },
+      {
+        "start_step": 4358,
+        "end_step": 4366
+      },
+      {
+        "start_step": 4366,
+        "end_step": 4368
+      }
+    ]
+  },
+  "scope": "Complete tool-call sequence and initial task prompt of one test episode in the harness with policy."
+}

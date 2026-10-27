@@ -23,20 +23,11 @@
     margin-inline: 0;
     text-align: left;
   }
-  .section-heading {
-    margin-bottom: var(--heading-gap);
-  }
   .section-inner h2 {
     margin-bottom: var(--heading-gap);
   }
-  .section-heading > div:last-child > h2 {
-    margin-bottom: 0;
-  }
   .section-inner > h2 + .report-prose {
     margin-top: 0;
-  }
-  .shift-analysis {
-    margin-top: var(--subsection-gap);
   }
   .setup-subsection,
   .case-study-section {
@@ -55,11 +46,6 @@
   .section-inner > h2 + .case-study-section,
   .section-inner > h2 + .report-prose > .setup-subsection:first-child {
     margin-top: var(--section-subsection-gap);
-    padding-top: 0;
-    border-top: 0;
-  }
-  .section-heading + :is(.case-study-section, .insight-block) {
-    margin-top: var(--subsection-gap);
     padding-top: 0;
     border-top: 0;
   }

@@ -1,73 +1,21 @@
 import { test, expect } from '@playwright/test';
 
-const retired = [
-  'full-comparison',
-  'results',
-  'generalization',
-  'protocol',
-  'attributes',
-  'horizon',
-  'behavior',
-  'limitations',
-  'study-limitations',
-];
-
 async function ready(page) {
   await page.goto('/');
   await expect(page.locator('#benchmark-matrix .benchmark-table')).toBeVisible();
 }
 
-test('retired supplements disappear while canonical results retain their context', async ({
-  page,
-}) => {
+test('the generalization tab states its scope and lists every system', async ({ page }) => {
   await ready(page);
-  for (const key of retired) await expect(page.locator(`[data-appendix="${key}"]`)).toHaveCount(0);
+  await expect(page.locator('[data-appendix]')).toHaveCount(0);
   await expect(page.locator('#matrix-scope-note')).toBeHidden();
-  await expect(page.locator('#matrix-scope-note')).toBeEmpty();
-  await expect(
-    page.locator('a[href="#study-limitations"], #study-limitations-content, .research-questions'),
-  ).toHaveCount(0);
   await page.locator('[data-matrix="shifts"]').click();
-  await expect(page.locator('#matrix-scope-note')).toContainText('60 of 130');
-  await expect(page.locator('#matrix-scope-note')).toContainText('OpenWAM-α completes 58');
+  await expect(page.locator('#matrix-scope-note')).toHaveText(
+    'Task-averaged results under the Object, Background, Instruction, and Mix dimensions.',
+  );
   await page.locator('[data-shift-view="range"]').click();
-  await expect(page.locator('.perturbation-range-table tbody tr')).toHaveCount(8);
+  await expect(page.locator('.perturbation-range-table tbody tr')).toHaveCount(9);
   await expect(page.locator('#matrix-scope-note')).toBeVisible();
-  await page.locator('[data-limit="horizon"]').click();
-  await page.locator('[data-behavior="coffee"]').click();
-  for (const key of retired) await expect(page.locator(`[data-appendix="${key}"]`)).toHaveCount(0);
-  await expect(page.locator('#behavior-content')).toContainText('Score 0.50');
-});
-
-// The Execution timing block is commented out in ExperimentSetup.astro (954ad59) until it is restored.
-test.skip('execution timing appears inline before the demo with unchanged source values', async ({
-  page,
-}) => {
-  await ready(page);
-  await expect(page.locator('#evaluation-protocol')).toHaveCount(0);
-  const timing = page.locator('#execution-timing');
-  await expect(
-    timing.getByRole('heading', { name: 'Execution timing', exact: true }),
-  ).toBeVisible();
-  const source = await (await page.request.get('/data/execution-timing.json')).json();
-  await expect(timing.locator('tbody tr')).toHaveCount(source.episodes.length);
-  for (const episode of source.episodes) {
-    await expect(timing.locator(`tr[data-episode="${episode.episode}"] td`)).toHaveText([
-      episode.policy_physics_steps.toLocaleString('en-US'),
-      episode.simulated_execution_s.toFixed(2),
-      episode.policy_elapsed_s.toFixed(2),
-      episode.max_action_sim_s.toFixed(2),
-    ]);
-  }
-  expect(
-    await timing.evaluate((el) =>
-      Boolean(
-        el.compareDocumentPosition(document.querySelector('#episode-interactions')!) &
-        Node.DOCUMENT_POSITION_FOLLOWING,
-      ),
-    ),
-  ).toBe(true);
-  await expect(page.locator('#appendix-dialog')).not.toBeVisible();
 });
 
 test('all video close paths restore the original filtered table without rebuilding it', async ({

@@ -7,7 +7,7 @@ const iclEscape = (value) =>
     /[&<>"']/g,
     (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c],
   );
-const iclTaskName = (task) => task.replaceAll('_', ' ').replace(/^./, (c) => c.toUpperCase());
+const iclTaskName = (task) => title(task);
 const iclNumber = (value) =>
   JSON.stringify(value, (_, v) => (typeof v === 'number' ? Number(v.toFixed(5)) : v)) ?? '—';
 function iclOverview(pkg) {
@@ -260,14 +260,6 @@ document.addEventListener('keydown', (e) => {
   renderICLPackage();
   document.querySelector('#icl-tab-' + iclView.tab).focus({ preventScroll: true });
 });
-
-function pairedICLContent() {
-  const groups = ablations.groups.filter((g) => g.experiment === 'frame_gear_fresh');
-  return [
-    'Zero-shot vs. ICL: gains and regressions',
-    `<div class="icl-pair-findings">${groups.map((g) => `<section><h3>${title(g.task)}</h3><p><strong>${g.zero_shot_successes}/${g.pairs} → ${g.icl_successes}/${g.pairs}</strong> complete successes</p><p>Mean Score ${g.zero_shot_score.toFixed(3)} → ${g.icl_score.toFixed(3)}</p><p>${g.score_better} pairs improve · ${g.score_worse} worsen · ${g.score_tied} tie</p><button type="button" class="supplement-action" data-icl-package="${g.task}"><span>Inspect this task’s demonstration</span>${reportIcon('book-open')}</button></section>`).join('')}</div>`,
-  ];
-}
 
 document.addEventListener('keydown', (e) => {
   if (

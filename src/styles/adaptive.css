@@ -8,14 +8,6 @@
     :root {
       --gutter: 1.5rem;
     }
-    .finding-grid,
-    .behavior-evidence,
-    .safety-layout {
-      grid-template-columns: minmax(0, 1fr);
-    }
-    .finding-map {
-      grid-template-columns: minmax(0, 1fr);
-    }
     .evidence-trio,
     #library-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -50,13 +42,6 @@
     #library-grid {
       grid-template-columns: minmax(0, 1fr);
     }
-    .failure-depth-row {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 0.4rem;
-    }
-    .stage-strip {
-      justify-content: start;
-    }
   }
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -68,7 +53,6 @@
     }
   }
   @media print {
-    #ambient-particles,
     .video-start {
       display: none;
     }

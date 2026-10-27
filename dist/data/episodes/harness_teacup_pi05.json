@@ -1,0 +1,2530 @@
+{
+  "id": "harness_teacup_pi05",
+  "task": "teacup_to_saucer_teapot_to_tray",
+  "seed": "001",
+  "title": "Teacup & teapot",
+  "description": "A recovery segment of π₀.₅ tips the saucer and undoes the cup placement that the agent completed.",
+  "configuration": "Harness with π₀.₅",
+  "instruction": "Pick up the teacup on the desk and place it into the empty saucer. Then pick up the teapot and place it into the tray.",
+  "result": {
+    "sr": 0.0,
+    "score": 0.0
+  },
+  "ended_by_agent": false,
+  "video": "media/harness/harness_teacup_pi05-web.mp4",
+  "duration": 65.0,
+  "fps": 4,
+  "frame_count": 260,
+  "physics_steps": 2000,
+  "physics_hz": 30,
+  "bookmarks": [
+    {
+      "call": 20,
+      "label": "Cup on the saucer"
+    },
+    {
+      "call": 32,
+      "label": "Teapot slips"
+    },
+    {
+      "call": 34,
+      "label": "π₀.₅ recovery"
+    },
+    {
+      "call": 38,
+      "label": "Final segment"
+    }
+  ],
+  "initial_prompt": "Complete this single task yourself using the tools: Pick up the teacup on the desk and place it into the empty saucer. Then pick up the teapot and place it into the tray.\nRobot: manip/lift2/R5a, two arms and a movable planar base. Left arm is left in the overlook view. EEF poses are local to each arm's planner base: +X forward, +Y robot-left, +Z up; quaternion order wxyz. Fingers extend along tool +X and open along tool Y. Wrist cameras move/rotate with the hands. Measured local EEF z is not height above the tabletop. There is no supplied depth, object pose or camera calibration. Only RGB and measured robot EEF/gripper/base state are available. Base observed yaw is radians; tool command yaw is degrees. You have one continuous conversation and may choose any continuous EEF target, both arms, base motion and waypoint batching. Use execute_eef sequentially, not parallel calls. Use observations to judge motion and object manipulation. The server determines task success independently. Do not start another episode. Resource limits: unlimited tool calls, physics deadline enforced by the server; no hard token limit; resource reminders start after 2,000,000 cumulative tokens. Resource reminders ask you to reduce unnecessary token use while continuing useful work. Select only useful camera views after the initial observation to control resource use. When finished, state the observed outcome concisely.\nYou may call execute_pi05 to delegate a manipulation segment to a learned policy. Choose when to delegate using the current scene. It replans every 30 steps and automatically returns control after the requested segment (at most 300 steps). The pi0.5 prompt is fixed for this task; always pass instruction=null and never invent a per-call prompt. Inspect its returned RGB/state and take over with EEF waypoints or delegate again. Use your own waypoint planning for approach, coordination and recovery as useful. The learned policy uses the same current three RGB cameras plus joint/gripper/base state; it receives no object ground truth or demonstration images.\nManipulation guidance: after visually aligning, close at a stationary pose and allow settling. A nonzero finger gap on the table is contact evidence, not proof of a secure grasp. Test each grasp by lifting only 0.01 m first, using motion_steps=16 or more, then hold 8..16 steps and request the active wrist plus overlook views. Keep orientation and base fixed during this test. Check both finger gap and RGB to confirm the object rises with the gripper before further lifting or transport. If it remains on the table or slips, lower and adjust local contact depth/centering using current images. There is no fixed limit on failed grasp attempts; retry or change approach within the remaining experiment budgets. Avoid large instantaneous target jumps while holding an object; use motion_steps for controlled transport. Total steps per waypoint must remain <=64 and includes the ramp. Use only the active wrist for local corrections, adding overlook when establishing alignment, testing grasp, or verifying placement.\nRGB inputs are downsampled: overlook 640x360, wrist 384x288; no crop or object annotation.\nThe saved ICL demonstration remains available through query_icl throughout this episode. Revisit it when the target region, stage order or arm roles are unclear, and when repeated failures or a change of approach make the reference useful. Use view=text for the original annotation and keyframe index, view=frames with frame_indices for selected images, or view=all for the full reference. Indices are zero-based entries in the keyframe index, not source video frame numbers. Querying does not advance simulation. Ground actions in the current RGB/state.",
+  "calls": [
+    {
+      "number": 1,
+      "id": "call_00001",
+      "tool": "execute_pi05",
+      "arguments": {
+        "instruction": null,
+        "steps": 150,
+        "cameras": [
+          "overlook",
+          "left_wrist"
+        ],
+        "reason": "Approach and align left hand with the teacup for first transfer."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 0,
+        "physics_steps": 150,
+        "episode_results": []
+      },
+      "executor": "pi05",
+      "start_step": 0,
+      "end_step": 150,
+      "video_start": 0.0,
+      "video_end": 5.0
+    },
+    {
+      "number": 2,
+      "id": "call_00002",
+      "tool": "execute_pi05",
+      "arguments": {
+        "instruction": null,
+        "steps": 60,
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Refine active right-hand approach to the cup."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 0,
+        "physics_steps": 210,
+        "episode_results": []
+      },
+      "executor": "pi05",
+      "start_step": 150,
+      "end_step": 210,
+      "video_start": 5.0,
+      "video_end": 7.0
+    },
+    {
+      "number": 3,
+      "id": "call_00003",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Test cup grasp with a controlled 1 cm lift while keeping orientation and base fixed.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.48361,
+                0.01852,
+                0.09771
+              ],
+              "quaternion_wxyz": [
+                0.51416,
+                0.50108,
+                0.49986,
+                -0.48446
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 20,
+            "steps": 32
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 1,
+        "physics_steps": 242,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 210,
+      "end_step": 242,
+      "video_start": 7.0,
+      "video_end": 8.0
+    },
+    {
+      "number": 4,
+      "id": "call_00004",
+      "tool": "execute_pi05",
+      "arguments": {
+        "instruction": null,
+        "steps": 120,
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Grasp test shows cup remained on desk; retry alignment and grasp using current images."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 1,
+        "physics_steps": 362,
+        "episode_results": []
+      },
+      "executor": "pi05",
+      "start_step": 242,
+      "end_step": 362,
+      "video_start": 8.0,
+      "video_end": 12.0
+    },
+    {
+      "number": 5,
+      "id": "call_00005",
+      "tool": "execute_pi05",
+      "arguments": {
+        "instruction": null,
+        "steps": 120,
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Continue cup reapproach and handle alignment."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 1,
+        "physics_steps": 482,
+        "episode_results": []
+      },
+      "executor": "pi05",
+      "start_step": 362,
+      "end_step": 482,
+      "video_start": 12.0,
+      "video_end": 16.0
+    },
+    {
+      "number": 6,
+      "id": "call_00006",
+      "tool": "query_icl",
+      "arguments": {
+        "view": "frames",
+        "frame_indices": [
+          2
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 1,
+        "physics_steps": 482,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 482,
+      "end_step": 482,
+      "video_start": 16.0,
+      "video_end": 16.0
+    },
+    {
+      "number": 7,
+      "id": "call_00007",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Recover missed cup grasp by moving open fingers toward the visible cup rim and lowering for alignment.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.4868,
+                0.0891,
+                0.035
+              ],
+              "quaternion_wxyz": [
+                0.5,
+                0.5,
+                0.5,
+                -0.5
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 48,
+            "steps": 56
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 2,
+        "physics_steps": 538,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 482,
+      "end_step": 538,
+      "video_start": 16.0,
+      "video_end": 17.75
+    },
+    {
+      "number": 8,
+      "id": "call_00008",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "right_wrist"
+        ],
+        "reason": "Lower open fingers to cup rim contact depth with planar alignment unchanged.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.48684,
+                0.08909,
+                -0.015
+              ],
+              "quaternion_wxyz": [
+                0.5,
+                0.5,
+                0.5,
+                -0.5
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 32,
+            "steps": 40
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 3,
+        "physics_steps": 578,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 538,
+      "end_step": 578,
+      "video_start": 17.75,
+      "video_end": 19.0
+    },
+    {
+      "number": 9,
+      "id": "call_00009",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "right_wrist"
+        ],
+        "reason": "Center fingers on near teacup rim before stationary closure.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.4748,
+                0.0811,
+                -0.02
+              ],
+              "quaternion_wxyz": [
+                0.5,
+                0.5,
+                0.5,
+                -0.5
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 20,
+            "steps": 24
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 4,
+        "physics_steps": 602,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 578,
+      "end_step": 602,
+      "video_start": 19.0,
+      "video_end": 19.75
+    },
+    {
+      "number": 10,
+      "id": "call_00010",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "right_wrist"
+        ],
+        "reason": "Align the visible handle between fingertips.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.47,
+                0.069,
+                -0.02
+              ],
+              "quaternion_wxyz": [
+                0.5,
+                0.5,
+                0.5,
+                -0.5
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 20,
+            "steps": 24
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 5,
+        "physics_steps": 626,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 602,
+      "end_step": 626,
+      "video_start": 19.75,
+      "video_end": 20.5
+    },
+    {
+      "number": 11,
+      "id": "call_00011",
+      "tool": "set_gripper",
+      "arguments": {
+        "side": "right",
+        "opening": 0,
+        "steps": 20,
+        "cameras": [
+          "right_wrist"
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 6,
+        "physics_steps": 646,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 626,
+      "end_step": 646,
+      "video_start": 20.5,
+      "video_end": 21.25
+    },
+    {
+      "number": 12,
+      "id": "call_00012",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Test corrected cup grasp with 1 cm slow lift and settling.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.4701,
+                0.06901,
+                -0.00993
+              ],
+              "quaternion_wxyz": [
+                0.49996,
+                0.49999,
+                0.49999,
+                -0.50006
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 20,
+            "steps": 32
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 7,
+        "physics_steps": 678,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 646,
+      "end_step": 678,
+      "video_start": 21.25,
+      "video_end": 22.25
+    },
+    {
+      "number": 13,
+      "id": "call_00013",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "right_wrist"
+        ],
+        "reason": "Adjust empty grasp deeper across cup rim and reopen.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.478,
+                0.053,
+                -0.028
+              ],
+              "quaternion_wxyz": [
+                0.5,
+                0.5,
+                0.5,
+                -0.5
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 24,
+            "steps": 32
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 8,
+        "physics_steps": 710,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 678,
+      "end_step": 710,
+      "video_start": 22.25,
+      "video_end": 23.25
+    },
+    {
+      "number": 14,
+      "id": "call_00014",
+      "tool": "set_gripper",
+      "arguments": {
+        "side": "right",
+        "opening": 0,
+        "steps": 20,
+        "cameras": [
+          "right_wrist"
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 9,
+        "physics_steps": 730,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 710,
+      "end_step": 730,
+      "video_start": 23.25,
+      "video_end": 24.0
+    },
+    {
+      "number": 15,
+      "id": "call_00015",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Test cup body grasp by lifting 1 cm slowly.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.47802,
+                0.053,
+                -0.01795
+              ],
+              "quaternion_wxyz": [
+                0.50013,
+                0.50019,
+                0.49983,
+                -0.49986
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 20,
+            "steps": 32
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 10,
+        "physics_steps": 762,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 730,
+      "end_step": 762,
+      "video_start": 24.0,
+      "video_end": 25.0
+    },
+    {
+      "number": 16,
+      "id": "call_00016",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Cup moved with fingers in lift test; raise clear of tabletop for transport.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.47807,
+                0.053,
+                0.14
+              ],
+              "quaternion_wxyz": [
+                0.50024,
+                0.50031,
+                0.49971,
+                -0.49975
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 48,
+            "steps": 56
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 11,
+        "physics_steps": 818,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 762,
+      "end_step": 818,
+      "video_start": 25.0,
+      "video_end": 26.75
+    },
+    {
+      "number": 17,
+      "id": "call_00017",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Carry grasped cup toward the empty white saucer with smooth motion.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.3,
+                -0.16,
+                0.14
+              ],
+              "quaternion_wxyz": [
+                0.50024,
+                0.50031,
+                0.49971,
+                -0.49975
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 56,
+            "steps": 64
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 12,
+        "physics_steps": 882,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 818,
+      "end_step": 882,
+      "video_start": 26.75,
+      "video_end": 28.75
+    },
+    {
+      "number": 18,
+      "id": "call_00018",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Lower cup gradually above white saucer to refine placement.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.3,
+                -0.16,
+                0.03
+              ],
+              "quaternion_wxyz": [
+                0.50024,
+                0.50031,
+                0.49971,
+                -0.49975
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 40,
+            "steps": 48
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 13,
+        "physics_steps": 930,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 882,
+      "end_step": 930,
+      "video_start": 28.75,
+      "video_end": 30.25
+    },
+    {
+      "number": 19,
+      "id": "call_00019",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Center cup over saucer and lower to resting height.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.27,
+                -0.185,
+                -0.015
+              ],
+              "quaternion_wxyz": [
+                0.50024,
+                0.50031,
+                0.49971,
+                -0.49975
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 32,
+            "steps": 40
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 14,
+        "physics_steps": 970,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 930,
+      "end_step": 970,
+      "video_start": 30.25,
+      "video_end": 31.5
+    },
+    {
+      "number": 20,
+      "id": "call_00020",
+      "tool": "set_gripper",
+      "arguments": {
+        "side": "right",
+        "opening": 1,
+        "steps": 24,
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 15,
+        "physics_steps": 994,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 970,
+      "end_step": 994,
+      "video_start": 31.5,
+      "video_end": 32.25
+    },
+    {
+      "number": 21,
+      "id": "call_00021",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook"
+        ],
+        "reason": "Withdraw hand and verify cup remains on white saucer.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.27005,
+                -0.18499,
+                0.15
+              ],
+              "quaternion_wxyz": [
+                0.5,
+                0.5,
+                0.5,
+                -0.5
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 40,
+            "steps": 48
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 16,
+        "physics_steps": 1042,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 994,
+      "end_step": 1042,
+      "video_start": 32.25,
+      "video_end": 33.75
+    },
+    {
+      "number": 22,
+      "id": "call_00022",
+      "tool": "execute_pi05",
+      "arguments": {
+        "instruction": null,
+        "steps": 120,
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Cup placement verified; approach teapot handle for second transfer."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 16,
+        "physics_steps": 1162,
+        "episode_results": []
+      },
+      "executor": "pi05",
+      "start_step": 1042,
+      "end_step": 1162,
+      "video_start": 33.75,
+      "video_end": 37.75
+    },
+    {
+      "number": 23,
+      "id": "call_00023",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Check teapot grasp with 1 cm slow lift before carrying.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.37787,
+                -0.20875,
+                0.01561
+              ],
+              "quaternion_wxyz": [
+                0.58618,
+                0.41586,
+                0.55445,
+                -0.41956
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 20,
+            "steps": 32
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 17,
+        "physics_steps": 1194,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 1162,
+      "end_step": 1194,
+      "video_start": 37.75,
+      "video_end": 38.75
+    },
+    {
+      "number": 24,
+      "id": "call_00024",
+      "tool": "execute_pi05",
+      "arguments": {
+        "instruction": null,
+        "steps": 120,
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Teapot remains on desk after lift test; retry handle grasp."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 17,
+        "physics_steps": 1314,
+        "episode_results": []
+      },
+      "executor": "pi05",
+      "start_step": 1194,
+      "end_step": 1314,
+      "video_start": 38.75,
+      "video_end": 42.75
+    },
+    {
+      "number": 25,
+      "id": "call_00025",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Take over teapot recovery: approach visible handle with open downward fingers.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.38,
+                -0.14,
+                0.055
+              ],
+              "quaternion_wxyz": [
+                0.5,
+                0.5,
+                0.5,
+                -0.5
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 48,
+            "steps": 56
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 18,
+        "physics_steps": 1370,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 1314,
+      "end_step": 1370,
+      "video_start": 42.75,
+      "video_end": 44.5
+    },
+    {
+      "number": 26,
+      "id": "call_00026",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "right_wrist"
+        ],
+        "reason": "Translate fingers from teapot lid toward the visible handle.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.38,
+                -0.19,
+                0.045
+              ],
+              "quaternion_wxyz": [
+                0.5,
+                0.5,
+                0.5,
+                -0.5
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 32,
+            "steps": 40
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 19,
+        "physics_steps": 1410,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 1370,
+      "end_step": 1410,
+      "video_start": 44.5,
+      "video_end": 45.75
+    },
+    {
+      "number": 27,
+      "id": "call_00027",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "right_wrist"
+        ],
+        "reason": "Lower and center open fingers around teapot handle.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.38,
+                -0.204,
+                0.02
+              ],
+              "quaternion_wxyz": [
+                0.5,
+                0.5,
+                0.5,
+                -0.5
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 24,
+            "steps": 32
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 20,
+        "physics_steps": 1442,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 1410,
+      "end_step": 1442,
+      "video_start": 45.75,
+      "video_end": 46.75
+    },
+    {
+      "number": 28,
+      "id": "call_00028",
+      "tool": "set_gripper",
+      "arguments": {
+        "side": "right",
+        "opening": 0,
+        "steps": 20,
+        "cameras": [
+          "right_wrist"
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 21,
+        "physics_steps": 1462,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 1442,
+      "end_step": 1462,
+      "video_start": 46.75,
+      "video_end": 47.5
+    },
+    {
+      "number": 29,
+      "id": "call_00029",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "right_wrist"
+        ],
+        "reason": "Empty closure indicates insufficient handle contact; reopen and deepen grasp slightly.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.38,
+                -0.204,
+                -0.015
+              ],
+              "quaternion_wxyz": [
+                0.5,
+                0.5,
+                0.5,
+                -0.5
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 24,
+            "steps": 32
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 22,
+        "physics_steps": 1494,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 1462,
+      "end_step": 1494,
+      "video_start": 47.5,
+      "video_end": 48.5
+    },
+    {
+      "number": 30,
+      "id": "call_00030",
+      "tool": "set_gripper",
+      "arguments": {
+        "side": "right",
+        "opening": 0,
+        "steps": 20,
+        "cameras": [
+          "right_wrist"
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 23,
+        "physics_steps": 1514,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 1494,
+      "end_step": 1514,
+      "video_start": 48.5,
+      "video_end": 49.25
+    },
+    {
+      "number": 31,
+      "id": "call_00031",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Test handle grasp with slow 1 cm lift, keeping base and rotation fixed.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.38001,
+                -0.204,
+                -0.00498
+              ],
+              "quaternion_wxyz": [
+                0.49996,
+                0.50001,
+                0.50004,
+                -0.49999
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 20,
+            "steps": 32
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 24,
+        "physics_steps": 1546,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 1514,
+      "end_step": 1546,
+      "video_start": 49.25,
+      "video_end": 50.25
+    },
+    {
+      "number": 32,
+      "id": "call_00032",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Handle remains secured in test; lift teapot clear for tray transfer.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.38002,
+                -0.204,
+                0.16
+              ],
+              "quaternion_wxyz": [
+                0.49996,
+                0.50001,
+                0.50004,
+                -0.49999
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 48,
+            "steps": 56
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 25,
+        "physics_steps": 1602,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 1546,
+      "end_step": 1602,
+      "video_start": 50.25,
+      "video_end": 52.0
+    },
+    {
+      "number": 33,
+      "id": "call_00033",
+      "tool": "query_icl",
+      "arguments": {
+        "view": "frames",
+        "frame_indices": [
+          8,
+          9
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 25,
+        "physics_steps": 1602,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 1602,
+      "end_step": 1602,
+      "video_start": 52.0,
+      "video_end": 52.0
+    },
+    {
+      "number": 34,
+      "id": "call_00034",
+      "tool": "execute_pi05",
+      "arguments": {
+        "instruction": null,
+        "steps": 180,
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Teapot slipped after lift; reapproach shifted handle with learned alignment."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 25,
+        "physics_steps": 1782,
+        "episode_results": []
+      },
+      "executor": "pi05",
+      "start_step": 1602,
+      "end_step": 1782,
+      "video_start": 52.0,
+      "video_end": 58.0
+    },
+    {
+      "number": 35,
+      "id": "call_00035",
+      "tool": "set_gripper",
+      "arguments": {
+        "side": "right",
+        "opening": 0,
+        "steps": 20,
+        "cameras": [
+          "right_wrist"
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 26,
+        "physics_steps": 1802,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 1782,
+      "end_step": 1802,
+      "video_start": 58.0,
+      "video_end": 58.75
+    },
+    {
+      "number": 36,
+      "id": "call_00036",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Check whether current pot contact is secure with a 1 cm slow lift.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.38364,
+                -0.23841,
+                0.04786
+              ],
+              "quaternion_wxyz": [
+                0.50783,
+                0.50488,
+                0.48685,
+                -0.50019
+              ],
+              "gripper_m": [
+                0,
+                0
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 20,
+            "steps": 32
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 27,
+        "physics_steps": 1834,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 1802,
+      "end_step": 1834,
+      "video_start": 58.75,
+      "video_end": 59.75
+    },
+    {
+      "number": 37,
+      "id": "call_00037",
+      "tool": "execute_eef",
+      "arguments": {
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Release unstable body contact and retreat vertically to clear nearby cup and saucer.",
+        "waypoints": [
+          {
+            "left": null,
+            "right": {
+              "xyz_m": [
+                0.38372,
+                -0.23842,
+                0.2
+              ],
+              "quaternion_wxyz": [
+                0.5,
+                0.5,
+                0.5,
+                -0.5
+              ],
+              "gripper_m": [
+                0.044,
+                0.044
+              ]
+            },
+            "base_xy_yaw_deg": null,
+            "motion_steps": 40,
+            "steps": 56
+          }
+        ]
+      },
+      "response": {
+        "success": true,
+        "waypoints": 28,
+        "physics_steps": 1890,
+        "episode_results": []
+      },
+      "executor": "agent",
+      "start_step": 1834,
+      "end_step": 1890,
+      "video_start": 59.75,
+      "video_end": 61.5
+    },
+    {
+      "number": 38,
+      "id": "call_00038",
+      "tool": "execute_pi05",
+      "arguments": {
+        "instruction": null,
+        "steps": 300,
+        "cameras": [
+          "overlook",
+          "right_wrist"
+        ],
+        "reason": "Recover displaced cup and saucer, then resume ordered transfers from updated scene."
+      },
+      "response": {
+        "success": true,
+        "waypoints": 28,
+        "physics_steps": 2000,
+        "episode_results": [
+          {
+            "sr": 0.0,
+            "score": 0.0
+          }
+        ]
+      },
+      "executor": "pi05",
+      "start_step": 1890,
+      "end_step": 2000,
+      "video_start": 61.5,
+      "video_end": 65.0
+    }
+  ],
+  "alignment": {
+    "method": "Recorded nonterminal execution chunks in order, one video frame per returned state.",
+    "frames": [
+      {
+        "start_step": 0,
+        "end_step": 8
+      },
+      {
+        "start_step": 8,
+        "end_step": 16
+      },
+      {
+        "start_step": 16,
+        "end_step": 24
+      },
+      {
+        "start_step": 24,
+        "end_step": 30
+      },
+      {
+        "start_step": 30,
+        "end_step": 38
+      },
+      {
+        "start_step": 38,
+        "end_step": 46
+      },
+      {
+        "start_step": 46,
+        "end_step": 54
+      },
+      {
+        "start_step": 54,
+        "end_step": 60
+      },
+      {
+        "start_step": 60,
+        "end_step": 68
+      },
+      {
+        "start_step": 68,
+        "end_step": 76
+      },
+      {
+        "start_step": 76,
+        "end_step": 84
+      },
+      {
+        "start_step": 84,
+        "end_step": 90
+      },
+      {
+        "start_step": 90,
+        "end_step": 98
+      },
+      {
+        "start_step": 98,
+        "end_step": 106
+      },
+      {
+        "start_step": 106,
+        "end_step": 114
+      },
+      {
+        "start_step": 114,
+        "end_step": 120
+      },
+      {
+        "start_step": 120,
+        "end_step": 128
+      },
+      {
+        "start_step": 128,
+        "end_step": 136
+      },
+      {
+        "start_step": 136,
+        "end_step": 144
+      },
+      {
+        "start_step": 144,
+        "end_step": 150
+      },
+      {
+        "start_step": 150,
+        "end_step": 158
+      },
+      {
+        "start_step": 158,
+        "end_step": 166
+      },
+      {
+        "start_step": 166,
+        "end_step": 174
+      },
+      {
+        "start_step": 174,
+        "end_step": 180
+      },
+      {
+        "start_step": 180,
+        "end_step": 188
+      },
+      {
+        "start_step": 188,
+        "end_step": 196
+      },
+      {
+        "start_step": 196,
+        "end_step": 204
+      },
+      {
+        "start_step": 204,
+        "end_step": 210
+      },
+      {
+        "start_step": 210,
+        "end_step": 218
+      },
+      {
+        "start_step": 218,
+        "end_step": 226
+      },
+      {
+        "start_step": 226,
+        "end_step": 234
+      },
+      {
+        "start_step": 234,
+        "end_step": 242
+      },
+      {
+        "start_step": 242,
+        "end_step": 250
+      },
+      {
+        "start_step": 250,
+        "end_step": 258
+      },
+      {
+        "start_step": 258,
+        "end_step": 266
+      },
+      {
+        "start_step": 266,
+        "end_step": 272
+      },
+      {
+        "start_step": 272,
+        "end_step": 280
+      },
+      {
+        "start_step": 280,
+        "end_step": 288
+      },
+      {
+        "start_step": 288,
+        "end_step": 296
+      },
+      {
+        "start_step": 296,
+        "end_step": 302
+      },
+      {
+        "start_step": 302,
+        "end_step": 310
+      },
+      {
+        "start_step": 310,
+        "end_step": 318
+      },
+      {
+        "start_step": 318,
+        "end_step": 326
+      },
+      {
+        "start_step": 326,
+        "end_step": 332
+      },
+      {
+        "start_step": 332,
+        "end_step": 340
+      },
+      {
+        "start_step": 340,
+        "end_step": 348
+      },
+      {
+        "start_step": 348,
+        "end_step": 356
+      },
+      {
+        "start_step": 356,
+        "end_step": 362
+      },
+      {
+        "start_step": 362,
+        "end_step": 370
+      },
+      {
+        "start_step": 370,
+        "end_step": 378
+      },
+      {
+        "start_step": 378,
+        "end_step": 386
+      },
+      {
+        "start_step": 386,
+        "end_step": 392
+      },
+      {
+        "start_step": 392,
+        "end_step": 400
+      },
+      {
+        "start_step": 400,
+        "end_step": 408
+      },
+      {
+        "start_step": 408,
+        "end_step": 416
+      },
+      {
+        "start_step": 416,
+        "end_step": 422
+      },
+      {
+        "start_step": 422,
+        "end_step": 430
+      },
+      {
+        "start_step": 430,
+        "end_step": 438
+      },
+      {
+        "start_step": 438,
+        "end_step": 446
+      },
+      {
+        "start_step": 446,
+        "end_step": 452
+      },
+      {
+        "start_step": 452,
+        "end_step": 460
+      },
+      {
+        "start_step": 460,
+        "end_step": 468
+      },
+      {
+        "start_step": 468,
+        "end_step": 476
+      },
+      {
+        "start_step": 476,
+        "end_step": 482
+      },
+      {
+        "start_step": 482,
+        "end_step": 490
+      },
+      {
+        "start_step": 490,
+        "end_step": 498
+      },
+      {
+        "start_step": 498,
+        "end_step": 506
+      },
+      {
+        "start_step": 506,
+        "end_step": 514
+      },
+      {
+        "start_step": 514,
+        "end_step": 522
+      },
+      {
+        "start_step": 522,
+        "end_step": 530
+      },
+      {
+        "start_step": 530,
+        "end_step": 538
+      },
+      {
+        "start_step": 538,
+        "end_step": 546
+      },
+      {
+        "start_step": 546,
+        "end_step": 554
+      },
+      {
+        "start_step": 554,
+        "end_step": 562
+      },
+      {
+        "start_step": 562,
+        "end_step": 570
+      },
+      {
+        "start_step": 570,
+        "end_step": 578
+      },
+      {
+        "start_step": 578,
+        "end_step": 586
+      },
+      {
+        "start_step": 586,
+        "end_step": 594
+      },
+      {
+        "start_step": 594,
+        "end_step": 602
+      },
+      {
+        "start_step": 602,
+        "end_step": 610
+      },
+      {
+        "start_step": 610,
+        "end_step": 618
+      },
+      {
+        "start_step": 618,
+        "end_step": 626
+      },
+      {
+        "start_step": 626,
+        "end_step": 634
+      },
+      {
+        "start_step": 634,
+        "end_step": 642
+      },
+      {
+        "start_step": 642,
+        "end_step": 646
+      },
+      {
+        "start_step": 646,
+        "end_step": 654
+      },
+      {
+        "start_step": 654,
+        "end_step": 662
+      },
+      {
+        "start_step": 662,
+        "end_step": 670
+      },
+      {
+        "start_step": 670,
+        "end_step": 678
+      },
+      {
+        "start_step": 678,
+        "end_step": 686
+      },
+      {
+        "start_step": 686,
+        "end_step": 694
+      },
+      {
+        "start_step": 694,
+        "end_step": 702
+      },
+      {
+        "start_step": 702,
+        "end_step": 710
+      },
+      {
+        "start_step": 710,
+        "end_step": 718
+      },
+      {
+        "start_step": 718,
+        "end_step": 726
+      },
+      {
+        "start_step": 726,
+        "end_step": 730
+      },
+      {
+        "start_step": 730,
+        "end_step": 738
+      },
+      {
+        "start_step": 738,
+        "end_step": 746
+      },
+      {
+        "start_step": 746,
+        "end_step": 754
+      },
+      {
+        "start_step": 754,
+        "end_step": 762
+      },
+      {
+        "start_step": 762,
+        "end_step": 770
+      },
+      {
+        "start_step": 770,
+        "end_step": 778
+      },
+      {
+        "start_step": 778,
+        "end_step": 786
+      },
+      {
+        "start_step": 786,
+        "end_step": 794
+      },
+      {
+        "start_step": 794,
+        "end_step": 802
+      },
+      {
+        "start_step": 802,
+        "end_step": 810
+      },
+      {
+        "start_step": 810,
+        "end_step": 818
+      },
+      {
+        "start_step": 818,
+        "end_step": 826
+      },
+      {
+        "start_step": 826,
+        "end_step": 834
+      },
+      {
+        "start_step": 834,
+        "end_step": 842
+      },
+      {
+        "start_step": 842,
+        "end_step": 850
+      },
+      {
+        "start_step": 850,
+        "end_step": 858
+      },
+      {
+        "start_step": 858,
+        "end_step": 866
+      },
+      {
+        "start_step": 866,
+        "end_step": 874
+      },
+      {
+        "start_step": 874,
+        "end_step": 882
+      },
+      {
+        "start_step": 882,
+        "end_step": 890
+      },
+      {
+        "start_step": 890,
+        "end_step": 898
+      },
+      {
+        "start_step": 898,
+        "end_step": 906
+      },
+      {
+        "start_step": 906,
+        "end_step": 914
+      },
+      {
+        "start_step": 914,
+        "end_step": 922
+      },
+      {
+        "start_step": 922,
+        "end_step": 930
+      },
+      {
+        "start_step": 930,
+        "end_step": 938
+      },
+      {
+        "start_step": 938,
+        "end_step": 946
+      },
+      {
+        "start_step": 946,
+        "end_step": 954
+      },
+      {
+        "start_step": 954,
+        "end_step": 962
+      },
+      {
+        "start_step": 962,
+        "end_step": 970
+      },
+      {
+        "start_step": 970,
+        "end_step": 978
+      },
+      {
+        "start_step": 978,
+        "end_step": 986
+      },
+      {
+        "start_step": 986,
+        "end_step": 994
+      },
+      {
+        "start_step": 994,
+        "end_step": 1002
+      },
+      {
+        "start_step": 1002,
+        "end_step": 1010
+      },
+      {
+        "start_step": 1010,
+        "end_step": 1018
+      },
+      {
+        "start_step": 1018,
+        "end_step": 1026
+      },
+      {
+        "start_step": 1026,
+        "end_step": 1034
+      },
+      {
+        "start_step": 1034,
+        "end_step": 1042
+      },
+      {
+        "start_step": 1042,
+        "end_step": 1050
+      },
+      {
+        "start_step": 1050,
+        "end_step": 1058
+      },
+      {
+        "start_step": 1058,
+        "end_step": 1066
+      },
+      {
+        "start_step": 1066,
+        "end_step": 1072
+      },
+      {
+        "start_step": 1072,
+        "end_step": 1080
+      },
+      {
+        "start_step": 1080,
+        "end_step": 1088
+      },
+      {
+        "start_step": 1088,
+        "end_step": 1096
+      },
+      {
+        "start_step": 1096,
+        "end_step": 1102
+      },
+      {
+        "start_step": 1102,
+        "end_step": 1110
+      },
+      {
+        "start_step": 1110,
+        "end_step": 1118
+      },
+      {
+        "start_step": 1118,
+        "end_step": 1126
+      },
+      {
+        "start_step": 1126,
+        "end_step": 1132
+      },
+      {
+        "start_step": 1132,
+        "end_step": 1140
+      },
+      {
+        "start_step": 1140,
+        "end_step": 1148
+      },
+      {
+        "start_step": 1148,
+        "end_step": 1156
+      },
+      {
+        "start_step": 1156,
+        "end_step": 1162
+      },
+      {
+        "start_step": 1162,
+        "end_step": 1170
+      },
+      {
+        "start_step": 1170,
+        "end_step": 1178
+      },
+      {
+        "start_step": 1178,
+        "end_step": 1186
+      },
+      {
+        "start_step": 1186,
+        "end_step": 1194
+      },
+      {
+        "start_step": 1194,
+        "end_step": 1202
+      },
+      {
+        "start_step": 1202,
+        "end_step": 1210
+      },
+      {
+        "start_step": 1210,
+        "end_step": 1218
+      },
+      {
+        "start_step": 1218,
+        "end_step": 1224
+      },
+      {
+        "start_step": 1224,
+        "end_step": 1232
+      },
+      {
+        "start_step": 1232,
+        "end_step": 1240
+      },
+      {
+        "start_step": 1240,
+        "end_step": 1248
+      },
+      {
+        "start_step": 1248,
+        "end_step": 1254
+      },
+      {
+        "start_step": 1254,
+        "end_step": 1262
+      },
+      {
+        "start_step": 1262,
+        "end_step": 1270
+      },
+      {
+        "start_step": 1270,
+        "end_step": 1278
+      },
+      {
+        "start_step": 1278,
+        "end_step": 1284
+      },
+      {
+        "start_step": 1284,
+        "end_step": 1292
+      },
+      {
+        "start_step": 1292,
+        "end_step": 1300
+      },
+      {
+        "start_step": 1300,
+        "end_step": 1308
+      },
+      {
+        "start_step": 1308,
+        "end_step": 1314
+      },
+      {
+        "start_step": 1314,
+        "end_step": 1322
+      },
+      {
+        "start_step": 1322,
+        "end_step": 1330
+      },
+      {
+        "start_step": 1330,
+        "end_step": 1338
+      },
+      {
+        "start_step": 1338,
+        "end_step": 1346
+      },
+      {
+        "start_step": 1346,
+        "end_step": 1354
+      },
+      {
+        "start_step": 1354,
+        "end_step": 1362
+      },
+      {
+        "start_step": 1362,
+        "end_step": 1370
+      },
+      {
+        "start_step": 1370,
+        "end_step": 1378
+      },
+      {
+        "start_step": 1378,
+        "end_step": 1386
+      },
+      {
+        "start_step": 1386,
+        "end_step": 1394
+      },
+      {
+        "start_step": 1394,
+        "end_step": 1402
+      },
+      {
+        "start_step": 1402,
+        "end_step": 1410
+      },
+      {
+        "start_step": 1410,
+        "end_step": 1418
+      },
+      {
+        "start_step": 1418,
+        "end_step": 1426
+      },
+      {
+        "start_step": 1426,
+        "end_step": 1434
+      },
+      {
+        "start_step": 1434,
+        "end_step": 1442
+      },
+      {
+        "start_step": 1442,
+        "end_step": 1450
+      },
+      {
+        "start_step": 1450,
+        "end_step": 1458
+      },
+      {
+        "start_step": 1458,
+        "end_step": 1462
+      },
+      {
+        "start_step": 1462,
+        "end_step": 1470
+      },
+      {
+        "start_step": 1470,
+        "end_step": 1478
+      },
+      {
+        "start_step": 1478,
+        "end_step": 1486
+      },
+      {
+        "start_step": 1486,
+        "end_step": 1494
+      },
+      {
+        "start_step": 1494,
+        "end_step": 1502
+      },
+      {
+        "start_step": 1502,
+        "end_step": 1510
+      },
+      {
+        "start_step": 1510,
+        "end_step": 1514
+      },
+      {
+        "start_step": 1514,
+        "end_step": 1522
+      },
+      {
+        "start_step": 1522,
+        "end_step": 1530
+      },
+      {
+        "start_step": 1530,
+        "end_step": 1538
+      },
+      {
+        "start_step": 1538,
+        "end_step": 1546
+      },
+      {
+        "start_step": 1546,
+        "end_step": 1554
+      },
+      {
+        "start_step": 1554,
+        "end_step": 1562
+      },
+      {
+        "start_step": 1562,
+        "end_step": 1570
+      },
+      {
+        "start_step": 1570,
+        "end_step": 1578
+      },
+      {
+        "start_step": 1578,
+        "end_step": 1586
+      },
+      {
+        "start_step": 1586,
+        "end_step": 1594
+      },
+      {
+        "start_step": 1594,
+        "end_step": 1602
+      },
+      {
+        "start_step": 1602,
+        "end_step": 1610
+      },
+      {
+        "start_step": 1610,
+        "end_step": 1618
+      },
+      {
+        "start_step": 1618,
+        "end_step": 1626
+      },
+      {
+        "start_step": 1626,
+        "end_step": 1632
+      },
+      {
+        "start_step": 1632,
+        "end_step": 1640
+      },
+      {
+        "start_step": 1640,
+        "end_step": 1648
+      },
+      {
+        "start_step": 1648,
+        "end_step": 1656
+      },
+      {
+        "start_step": 1656,
+        "end_step": 1662
+      },
+      {
+        "start_step": 1662,
+        "end_step": 1670
+      },
+      {
+        "start_step": 1670,
+        "end_step": 1678
+      },
+      {
+        "start_step": 1678,
+        "end_step": 1686
+      },
+      {
+        "start_step": 1686,
+        "end_step": 1692
+      },
+      {
+        "start_step": 1692,
+        "end_step": 1700
+      },
+      {
+        "start_step": 1700,
+        "end_step": 1708
+      },
+      {
+        "start_step": 1708,
+        "end_step": 1716
+      },
+      {
+        "start_step": 1716,
+        "end_step": 1722
+      },
+      {
+        "start_step": 1722,
+        "end_step": 1730
+      },
+      {
+        "start_step": 1730,
+        "end_step": 1738
+      },
+      {
+        "start_step": 1738,
+        "end_step": 1746
+      },
+      {
+        "start_step": 1746,
+        "end_step": 1752
+      },
+      {
+        "start_step": 1752,
+        "end_step": 1760
+      },
+      {
+        "start_step": 1760,
+        "end_step": 1768
+      },
+      {
+        "start_step": 1768,
+        "end_step": 1776
+      },
+      {
+        "start_step": 1776,
+        "end_step": 1782
+      },
+      {
+        "start_step": 1782,
+        "end_step": 1790
+      },
+      {
+        "start_step": 1790,
+        "end_step": 1798
+      },
+      {
+        "start_step": 1798,
+        "end_step": 1802
+      },
+      {
+        "start_step": 1802,
+        "end_step": 1810
+      },
+      {
+        "start_step": 1810,
+        "end_step": 1818
+      },
+      {
+        "start_step": 1818,
+        "end_step": 1826
+      },
+      {
+        "start_step": 1826,
+        "end_step": 1834
+      },
+      {
+        "start_step": 1834,
+        "end_step": 1842
+      },
+      {
+        "start_step": 1842,
+        "end_step": 1850
+      },
+      {
+        "start_step": 1850,
+        "end_step": 1858
+      },
+      {
+        "start_step": 1858,
+        "end_step": 1866
+      },
+      {
+        "start_step": 1866,
+        "end_step": 1874
+      },
+      {
+        "start_step": 1874,
+        "end_step": 1882
+      },
+      {
+        "start_step": 1882,
+        "end_step": 1890
+      },
+      {
+        "start_step": 1890,
+        "end_step": 1898
+      },
+      {
+        "start_step": 1898,
+        "end_step": 1906
+      },
+      {
+        "start_step": 1906,
+        "end_step": 1914
+      },
+      {
+        "start_step": 1914,
+        "end_step": 1920
+      },
+      {
+        "start_step": 1920,
+        "end_step": 1928
+      },
+      {
+        "start_step": 1928,
+        "end_step": 1936
+      },
+      {
+        "start_step": 1936,
+        "end_step": 1944
+      },
+      {
+        "start_step": 1944,
+        "end_step": 1950
+      },
+      {
+        "start_step": 1950,
+        "end_step": 1958
+      },
+      {
+        "start_step": 1958,
+        "end_step": 1966
+      },
+      {
+        "start_step": 1966,
+        "end_step": 1974
+      },
+      {
+        "start_step": 1974,
+        "end_step": 1980
+      },
+      {
+        "start_step": 1980,
+        "end_step": 1988
+      },
+      {
+        "start_step": 1988,
+        "end_step": 1996
+      }
+    ]
+  },
+  "scope": "Complete tool-call sequence and initial task prompt of one test episode in the harness with policy."
+}

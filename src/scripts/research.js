@@ -34,7 +34,7 @@ function initBenchmarkMatrix() {
     ['fixed-high', 'Tabletop · high', (t) => t.mobility === 'Fixed' && t.precision === 'High'],
   ];
   host.classList.add('benchmark-explorer');
-  host.innerHTML = `<div class="matrix-heading table-toolbar"><h3>Complete benchmark comparison</h3><a class="table-download matrix-download" href="data/report-main-results.csv" download title="Download benchmark data (CSV)" aria-label="Download benchmark data (CSV)">${reportIcon('download')}<span>CSV</span></a></div><div class="matrix-tabs" role="tablist" aria-label="Benchmark tables"><button type="button" id="matrix-tab-attributes" data-matrix="attributes" role="tab" aria-controls="matrix-content" aria-selected="true">Overall and task groups</button><button type="button" id="matrix-tab-tasks" data-matrix="tasks" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">All 26 tasks</button><button type="button" id="matrix-tab-shifts" data-matrix="shifts" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">Distribution shifts</button><button type="button" id="matrix-tab-field" data-matrix="field" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">GPT-6-Astra vs. field</button></div><p class="matrix-introduction" hidden></p><div class="matrix-controls"><div class="matrix-metric" role="group" aria-label="Table metric"><button type="button" data-matrix-metric="sr" aria-pressed="true">SR (%)</button><button type="button" data-matrix-metric="score" aria-pressed="false">Score</button></div><div class="shift-view-switch" role="group" aria-label="Distribution shifts presentation" hidden><button type="button" data-shift-view="table" aria-pressed="true">Success rates</button><button type="button" data-shift-view="range" aria-pressed="false">Variation across conditions</button></div></div><div id="matrix-content" role="tabpanel" aria-labelledby="matrix-tab-attributes" tabindex="0"></div><p class="fineprint" id="matrix-scope-note"></p>`;
+  host.innerHTML = `<div class="matrix-heading table-toolbar"><h3>Complete benchmark comparison</h3><a class="table-download matrix-download" href="data/report-main-results.csv" download title="Download benchmark data (CSV)" aria-label="Download benchmark data (CSV)">${reportIcon('download')}<span>CSV</span></a></div><div class="matrix-tabs" role="tablist" aria-label="Benchmark tables"><button type="button" id="matrix-tab-attributes" data-matrix="attributes" role="tab" aria-controls="matrix-content" aria-selected="true">Overall and task groups</button><button type="button" id="matrix-tab-tasks" data-matrix="tasks" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">All 26 tasks</button><button type="button" id="matrix-tab-shifts" data-matrix="shifts" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">Generalization dimensions</button><button type="button" id="matrix-tab-field" data-matrix="field" role="tab" aria-controls="matrix-content" aria-selected="false" tabindex="-1">GPT-6-Astra vs. field</button></div><p class="matrix-introduction" hidden></p><div class="matrix-controls"><div class="matrix-metric" role="group" aria-label="Table metric"><button type="button" data-matrix-metric="sr" aria-pressed="true">SR (%)</button><button type="button" data-matrix-metric="score" aria-pressed="false">Score</button></div><div class="shift-view-switch" role="group" aria-label="Generalization dimensions presentation" hidden><button type="button" data-shift-view="table" aria-pressed="true">Success rates</button><button type="button" data-shift-view="range" aria-pressed="false">Variation across conditions</button></div></div><div id="matrix-content" role="tabpanel" aria-labelledby="matrix-tab-attributes" tabindex="0"></div><p class="fineprint" id="matrix-scope-note"></p>`;
   initSegmentedControl(host.querySelector('.matrix-tabs'), '[aria-selected="true"]', {
     variant: 'underline',
     keyboard: false,
@@ -48,7 +48,7 @@ function initBenchmarkMatrix() {
     scopeNote.hidden = mode !== 'shifts';
     scopeNote.textContent =
       mode === 'shifts'
-        ? 'Task-averaged results under object, background, instruction and mixed perturbations. In the mixed condition, GPT-6-Astra completes 60 of 130 episodes and OpenWAM-α completes 58.'
+        ? 'Task-averaged results under the Object, Background, Instruction, and Mix dimensions.'
         : '';
     host.querySelector('.matrix-introduction').hidden = mode !== 'field';
     host.querySelector('.matrix-controls').hidden = mode === 'tasks';
@@ -82,14 +82,14 @@ function initBenchmarkMatrix() {
         ? ['object', 'background', 'instruction', 'mix']
         : ['Low', 'Medium', 'High', 'Mobile', 'Fixed', 'Short Horizon', 'Long Horizon'],
       labels = shifts
-        ? ['Object', 'Background', 'Instruction', 'Mixed']
+        ? ['Object', 'Background', 'Instruction', 'Mix']
         : ['Low', 'Medium', 'High', 'Mobile', 'Tabletop', 'Short', 'Long'];
     const systems = [...reportFigures.models].sort((a, b) => b.sr - a.sr),
       max = (get) => Math.max(...systems.map(get));
-    target.innerHTML = `<div class="table-scroll benchmark-scroll" tabindex="0" role="region" aria-label="Eight-model comparison: ${shifts ? 'controlled perturbations' : 'overall and task groups'}"><table class="report-table report-table--heat benchmark-table${shifts ? ' benchmark-table--shifts' : ''}"><thead><tr><th rowspan="2" scope="col">Model</th>${shifts ? '<th colspan="4" scope="colgroup">Controlled perturbations</th>' : '<th colspan="2" scope="colgroup">Overall</th><th colspan="3" scope="colgroup">Precision</th><th colspan="2" scope="colgroup">Mobility</th><th colspan="2" scope="colgroup">Horizon</th>'}</tr><tr>${shifts ? '' : '<th scope="col">SR (%)</th><th scope="col">Score</th>'}${labels.map((l) => `<th scope="col">${l}</th>`).join('')}</tr></thead><tbody>${systems
+    target.innerHTML = `<div class="table-scroll benchmark-scroll" tabindex="0" role="region" aria-label="Comparison of GPT-6-Astra and eight post-trained policies: ${shifts ? 'controlled perturbations' : 'overall and task groups'}"><table class="report-table report-table--heat benchmark-table${shifts ? ' benchmark-table--shifts' : ''}"><thead><tr><th rowspan="2" scope="col">Model</th>${shifts ? '<th colspan="4" scope="colgroup">Controlled perturbations</th>' : '<th colspan="2" scope="colgroup">Overall</th><th colspan="3" scope="colgroup">Precision</th><th colspan="2" scope="colgroup">Mobility</th><th colspan="2" scope="colgroup">Horizon</th>'}</tr><tr>${shifts ? '' : '<th scope="col">SR (%)</th><th scope="col">Score</th>'}${labels.map((l) => `<th scope="col">${l}</th>`).join('')}</tr></thead><tbody>${systems
       .map(
         (m) =>
-          `<tr class="${m.id === 'Astra (ICL)' ? 'astra-row' : ''}"><th scope="row">${modelLabel(m.id)}<small>${m.id === 'Astra (ICL)' ? 'single-shot ICL' : ''}</small></th>${shifts ? '' : matrixCell(m.sr, 'sr', m.sr === max((x) => x.sr)) + matrixCell(m.score, 'score', m.score === max((x) => x.score))}${groups
+          `<tr class="${m.id === 'Astra (ICL)' ? 'astra-row' : ''}"><th scope="row">${modelLabel(m.id)}<small>${m.id === 'Astra (ICL)' ? 'direct control' : ''}</small></th>${shifts ? '' : matrixCell(m.sr, 'sr', m.sr === max((x) => x.sr)) + matrixCell(m.score, 'score', m.score === max((x) => x.score))}${groups
             .map((g) => {
               const v = (shifts ? m.generalization[g] : m.groups[g])[metric];
               return matrixCell(
@@ -115,7 +115,7 @@ function initBenchmarkMatrix() {
       reference === 'best'
         ? 'the strongest alternative model on each task'
         : reference === 'median'
-          ? 'the median of the other seven models'
+          ? 'the median of the eight post-trained policies'
           : modelLabel(reference);
     host.querySelector('.matrix-introduction').textContent =
       `Here, we evaluate task-level ${metric === 'sr' ? 'success-rate' : 'Score'} differences between GPT-6-Astra and ${comparator}.${metric === 'sr' ? ' Differences are reported in percentage points.' : ''}`;
@@ -224,169 +224,12 @@ function renderPoc(area) {
   const entries = [
     ['astra-poc', 'GPT-6-Astra', 'Places the bookmark, then the pen'],
     ['pi05-poc', 'π₀.₅', 'Brings the pen over the book'],
-    ['openwam-poc-1', 'OpenWAM-α · Rollout 1', 'Pen-directed; bookmark remains off'],
-    ['openwam-poc-2', 'OpenWAM-α · Rollout 2', 'Bookmark placed; pen untouched'],
+    ['openwam-poc-1', 'OpenWAM-α · Rollout 1', 'Moves the pen before the bookmark'],
+    ['openwam-poc-2', 'OpenWAM-α · Rollout 2', 'Places the bookmark and stops'],
   ];
-  area.innerHTML = `<div class="case-video-toolbar"><div class="case-model-tabs" aria-label="Composition model view"><button type="button" data-poc-focus="all" aria-pressed="true">Compare all</button>${entries.map(([_, name], i) => `<button type="button" data-poc-focus="${i}" aria-pressed="false">${i === 0 ? 'GPT-6-Astra' : i === 1 ? 'π₀.₅' : name}</button>`).join('')}</div><button type="button" class="case-play poc-play" aria-label="Play all" aria-pressed="false">${reportIcon('play')}<span>Play all</span></button></div><div class="poc-videos">${entries.map(([file, name, condition]) => video(`media/poc/${file}.mp4`, name, condition, 'Compositional evaluation')).join('')}</div><div class="case-description report-prose"><p>Across 10 rollouts per method, GPT-6-Astra achieved a 100% success rate, whereas π₀.₅ and OpenWAM-α both achieved 0% success, with mean scores of 0.400 and 0.350, respectively.</p><p>GPT-6-Astra, evaluated zero-shot without in-context demonstrations, places the bookmark and then the pen on the book in the required order. The post-trained policies instead either manipulate the pen or place the bookmark without proceeding with execution. Their pen-directed behavior suggests partial generalization to a task absent from the post-training data, yet this transfer does not translate into successful execution of the compound instruction. One plausible contributing factor is limited coverage of sequential tasks in the training data. This could help explain why a policy engages one constituent manipulation but fails to organize the complete sequence.</p></div><div class="case-insight"><p>Together, these results highlight GPT-6-Astra’s advantage in translating a compound instruction into a complete, correctly ordered sequence of manipulations without in-context demonstrations. Post-trained policies instead focus on individual constituent manipulations, suggesting that atomic-task generalization alone does not ensure successful composition. Improving compositional execution may therefore require more than expanding atomic-task coverage: training could benefit from data that span subtask boundaries and capture continuation from the states left by preceding actions.</p></div>`;
+  area.innerHTML = `<div class="case-video-toolbar"><div class="case-model-tabs" aria-label="Composition model view"><button type="button" data-poc-focus="all" aria-pressed="true">Compare all</button>${entries.map(([_, name], i) => `<button type="button" data-poc-focus="${i}" aria-pressed="false">${i === 0 ? 'GPT-6-Astra' : i === 1 ? 'π₀.₅' : name}</button>`).join('')}</div><button type="button" class="case-play poc-play" aria-label="Play all" aria-pressed="false">${reportIcon('play')}<span>Play all</span></button></div><div class="poc-videos">${entries.map(([file, name, condition]) => video(`media/poc/${file}.mp4`, name, condition, 'Compositional evaluation')).join('')}</div>`;
   enhanceCaseControls(area);
   initVideos();
-}
-function initBehavior() {
-  // Every quoted line is verbatim from the episode's run.log. Lines with `src: 'model'`
-  // are the agent's own action descriptions, carried by the numbered tool call; all
-  // other lines were supplied to it. `t` is the call's start in the recording, taken from
-  // the episode record's video_start (the recordings run at 32 physics steps per second).
-  const entries = {
-    apple: {
-      heading: 'A failed transport changes the next attempt',
-      task: 'apple_to_fruit_bowl',
-      seed: '006',
-      score: 1,
-      trace: [
-        {
-          src: 'model',
-          call: 10,
-          t: 13.75,
-          text: 'The finger gap closed during transport, indicating the apple slipped. Move the empty hand clear to locate the apple before retrying.',
-          note: 'The slip is inferred from the gripper gap rather than from any failure signal the harness returns.',
-        },
-        {
-          src: 'model',
-          call: 11,
-          t: 15.5,
-          text: 'Withdraw to a wider view of the tabletop to locate the slipped apple without disturbing the bowl.',
-        },
-        {
-          src: 'model',
-          call: 17,
-          t: 25.75,
-          text: 'Carry the apple a short distance left and forward using the arm alone, avoiding the earlier base-motion slip.',
-          note: 'Transport is re-planned without the base motion that preceded the first slip.',
-        },
-      ],
-    },
-    coffee: {
-      heading: 'Adjusting contact after a failed sweep',
-      task: 'collect_coffee_beans',
-      seed: '013',
-      score: 0.5,
-      trace: [
-        {
-          src: 'prompt',
-          label: 'Supplied execution guidance',
-          text: 'Measured local EEF z is not height above the tabletop.',
-        },
-        {
-          src: 'model',
-          call: 45,
-          t: 74.5,
-          text: 'Sweep remaining beans with broad finger sides into the jar',
-          note: 'Sweeping edge commanded to z = 0.150 m. The beans are not displaced.',
-        },
-        {
-          src: 'model',
-          call: 46,
-          t: 77.75,
-          text: 'Lower scraping edge to actual tabletop height and repeat sweep',
-          note: 'The agent applies the supplied caveat and re-issues the same sweep 25 mm lower, at z = 0.125 m.',
-        },
-        {
-          src: 'model',
-          call: 47,
-          t: 83.25,
-          text: 'Tilt fingertips down to reach beans while keeping palm above tabletop',
-          note: 'Height alone does not recover the contact, so the wrist angle changes next.',
-        },
-      ],
-    },
-    fruit: {
-      heading: 'Reconciling the instruction with the example',
-      task: 'fruit',
-      seed: '015',
-      score: 0.6,
-      trace: [
-        {
-          src: 'prompt',
-          label: 'Live task instruction',
-          text: 'Make a fruit milkshake directly in the cup.',
-        },
-        {
-          src: 'demo',
-          label: 'Historical demonstration',
-          text: 'The left hand then carries and releases each fruit into the large pale jug.',
-        },
-        {
-          src: 'model',
-          call: 8,
-          t: 8.5,
-          text: 'Carry the secured fruit above the small cup, not the large jug.',
-          note: 'The demonstrated destination is set aside in favor of the one named in the live instruction.',
-        },
-        {
-          src: 'model',
-          call: 12,
-          t: 14.75,
-          text: 'Recover the fruit that landed behind the cup.',
-          note: 'The destination is chosen correctly, but the release misses it; the episode ends incomplete at Score 0.600.',
-        },
-      ],
-    },
-  };
-  // One transcript entry. The margin carries the line's provenance: for the agent's own
-  // lines a timecode (which seeks the recording) over the call number; for supplied text
-  // the name of its source. The body is the verbatim line, then our note.
-  function traceStep(step) {
-    const model = step.src === 'model';
-    const seek =
-      model && step.t != null
-        ? `<button type="button" class="trace-seek" data-seek="${step.t}" aria-label="Play the recording from ${step.t.toFixed(1)} seconds">${step.t.toFixed(1)} s</button>`
-        : '';
-    const margin = model
-      ? `${seek}<span class="trace-call"><span class="sr-only">GPT-6-Astra, </span>call ${step.call}</span>`
-      : `<span class="trace-origin">${step.label}</span>`;
-    return `<li class="trace-entry" data-src="${step.src}"><div class="trace-margin">${margin}</div><div class="trace-body"><blockquote class="trace-quote">${step.text}</blockquote>${step.note ? `<p class="trace-note">${step.note}</p>` : ''}</div></li>`;
-  }
-  function draw(key) {
-    const d = entries[key];
-    $('#behavior-content').innerHTML =
-      `<div class="behavior-panel"><h3>${d.heading}</h3><div class="behavior-evidence"><div class="trace"><p class="trace-legend">Timecoded lines are GPT-6-Astra’s own action descriptions, quoted verbatim from the episode log; select a timecode to play the recording from that call. Lines labeled in the margin were supplied to the agent.</p><ol class="trace-log">${d.trace.map(traceStep).join('')}</ol></div>${video(`media/cases/${d.task}_${d.seed}-web.mp4`, title(d.task), '', `${key === 'apple' ? 'Success' : 'Incomplete'} (Score ${d.score.toFixed(3)})`)}</div><div class="behavior-narrative report-prose"></div></div>`;
-    updateBehaviorNarrative(key);
-    initVideos();
-  }
-  document.querySelectorAll('[data-behavior]').forEach((b) =>
-    b.addEventListener('click', () => {
-      document.querySelectorAll('#behavior-content video').forEach((v) => {
-        v.pause();
-        observer.unobserve(v);
-      });
-      document.querySelectorAll('[data-behavior]').forEach((x) => {
-        x.setAttribute('aria-selected', String(x === b));
-        x.tabIndex = x === b ? 0 : -1;
-      });
-      draw(b.dataset.behavior);
-    }),
-  );
-  document.addEventListener('click', (e) => {
-    const b = e.target.closest('#behavior-content .trace-seek');
-    if (!b) return;
-    const v = $('#behavior-content video');
-    if (!v) return;
-    if (!v.getAttribute('src')) v.src = v.dataset.src;
-    v.controls = true;
-    const start = Number(b.dataset.seek),
-      go = () => {
-        v.currentTime = start;
-        v.play().catch(() => {});
-      };
-    if (v.readyState >= 1) go();
-    else v.addEventListener('loadedmetadata', go, { once: true });
-    v.closest('.media-viewport')?.querySelector('.video-start')?.setAttribute('hidden', '');
-    document
-      .querySelectorAll('#behavior-content .trace-seek')
-      .forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-  });
-  tabKeyboard($('.behavior-tabs'), '[data-behavior]');
-  draw('apple');
 }
 function initDemoLibrary() {
   $('#demo-group').innerHTML = taskGroupOptions();
@@ -420,7 +263,7 @@ function initDemoLibrary() {
         .slice(page * size, page * size + size)
         .map(
           ({ task: t, demo: d }) =>
-            `<article class="recording-library__item">${video(d.path, title(t.task), `Task SR <b>${pct(t['Astra (ICL)_sr'])}%</b> across ${t.episodes} episodes`, `${d.sr ? 'Success' : d.score > 0 ? 'Incomplete' : 'Failed'} (Score ${d.score.toFixed(3)})`)}</article>`,
+            `<article class="recording-library__item">${video(d.path, title(t.task), `Task SR <b>${pct(t['Astra (ICL)_sr'])}%</b> across ${t.episodes} episodes`, `${d.sr ? 'Success' : d.score > 0 ? 'Partial credit' : 'Score of zero'} (Score ${d.score.toFixed(2)})`)}</article>`,
         )
         .join('') || '<p class="recording-library__empty">No tasks match these filters.</p>';
     $('#library-count').textContent =
@@ -453,13 +296,13 @@ async function initEpisodeOutcomes() {
       { id: 'success', name: 'Complete success', color: '#3456ef', test: (d) => d.sr === 1 },
       {
         id: 'partial',
-        name: 'Incomplete',
+        name: 'Partial credit',
         color: '#9eaff9',
         test: (d) => d.sr === 0 && d.score > 0,
       },
       {
         id: 'zero',
-        name: 'Failed',
+        name: 'Score of zero',
         color: '#dce1eb',
         test: (d) => d.sr === 0 && d.score === 0,
       },
@@ -477,7 +320,7 @@ async function initEpisodeOutcomes() {
       })
       .join(
         '',
-      )}</div></div><p class="outcome-readout" aria-live="polite" aria-atomic="true"></p><p class="outcome-definition">Complete success: SR = 1; Incomplete: SR = 0 and Score > 0; Failed: SR = 0 and Score = 0.</p><p class="fineprint">Episode-weighted success is 46.5%; the headline 46.7% is the equal-weight mean across tasks. Partial Score follows each task’s scoring rules.</p>`;
+      )}</div></div><p class="outcome-readout" aria-live="polite" aria-atomic="true"></p><p class="outcome-definition">Complete success: SR = 1. Partial credit: SR = 0 and Score &gt; 0. Score of zero: SR = 0 and Score = 0.</p><p class="fineprint">Episode-weighted success is 46.5%, and the headline 46.7% is the equal-weight mean across tasks. Partial Score follows each task’s scoring rules.</p>`;
   const host = $('#episode-outcomes');
   host.addEventListener('click', (e) => {
     const button = e.target.closest('[data-outcome-filter]');
@@ -504,39 +347,27 @@ async function initEpisodeOutcomes() {
 function initSafetyEvidence() {
   const cases = {
     dishwasher: {
-      title: 'Grasp instability during coordinated manipulation risks breaking held objects',
+      title: 'Independent single-arm commands can destabilize held objects during bimanual tasks.',
       path: 'dishwasher_009-web.mp4',
       label: 'Dishwasher',
-      result: 'Incomplete (Score 0.667)',
+      result: 'Score 0.67',
       observation:
-        'The left hand holds the brown bowl while the right hand works on the dishwasher door. During this sequence, the bowl slips out of the grasp. The agent subsequently loads the blue bowl, then repeatedly searches the floor and cabinet edges for the missing brown bowl. The task remains incomplete.',
-      risk: '<strong>A secure grasp must be maintained throughout coordinated manipulation, not restored afterward.</strong> Opening the door, moving the base and carrying the bowl require coordinated control of both arms and the held object. A lapse here does not just cost time in a search — it risks the bowl hitting the floor hard enough to break.',
-      question:
-        'Grasp stability must remain a constraint throughout the other hand’s manipulation.',
-      source: 'Public action notes 6, 18–22 and 34–47; paired with the full recorded rollout.',
+        'The bowl slips from the left hand while the right hand opens the door, and the agent later searches the floor.',
     },
     apple: {
-      title: 'Exploration requests EEF targets outside the workspace',
+      title: 'Recovery attempts can drive the robot beyond safe workspace bounds.',
       path: 'apple_to_fruit_bowl_003-web.mp4',
-      label: 'Apple to fruit bowl',
-      result: 'Failed (Score 0.000)',
+      label: 'Apple to bowl',
+      result: 'Score 0.00',
       observation:
-        'The dropped apple falls outside the robot’s workspace, and GPT-6-Astra keeps exploring to recover it, searching below and around the table. One requested EEF target remains <strong>0.51 m from the recorded endpoint</strong>, followed by another attempt with a different wrist configuration.',
-      risk: '<strong>Exploratory actions need workspace checks.</strong> The agent keeps commanding targets for an object it can no longer reach. Repeated requests for unreachable targets may pose safety risks, motivating validation before execution.',
-      question:
-        'Workspace limits must constrain exploratory actions before they reach the execution controller.',
-      source:
-        'Public action notes 12–18 and 24–25. EEF target-to-endpoint distance computed from waypoint 22.',
+        'After the apple falls, the agent searches below the table and behind the robot with targets outside the workspace.',
     },
     coffee: {
-      title: 'Awkward EEF poses and overlooked scene contact disrupt manipulation',
+      title: 'Height and contact with the scene are hard to judge from RGB images without depth.',
       path: 'collect_coffee_beans_009-web.mp4',
-      label: 'Collect coffee beans',
-      result: 'Incomplete (Score 0.071)',
-      observation: `GPT-6-Astra repeatedly reorients the held jar and spoon into <strong>awkward end-effector poses</strong>. The jar interferes with the table edge; later, the spoon contacts the edge during sweeping, followed by further grasp attempts around the displaced lid. Similarly, in a related detergent failure, bottles fall over and the basket rim obstructs subsequent manipulation (<a href="media/cases/detergent_000-web.mp4" target="_blank" rel="noopener">Video link ${reportIcon('external-link')}</a>).`,
-      risk: '<strong>EEF pose selection must account for both the robot’s configuration and the held object’s interaction with the scene.</strong> The observed interference is consistent with inadequate clearance or contact handling in this rollout. Such behavior may pose risks on a physical robot; the simulation does not establish the severity of those risks. Correcting the wrist pose after interference does not necessarily restore displaced objects.',
-      question:
-        'Safe manipulation requires coordinated planning of arm posture, object orientation and scene contact.',
+      label: 'Coffee beans',
+      result: 'Score 0.07',
+      observation: 'The held jar and later the spoon contact the table edge.',
     },
   };
   const tabs = $('.safety-tabs'),
@@ -548,7 +379,7 @@ function initSafetyEvidence() {
     });
     const item = cases[key];
     panel.setAttribute('aria-labelledby', 'safety-tab-' + key);
-    panel.innerHTML = `<div class="safety-evidence"><div class="safety-case-copy"><h3>${item.title}</h3><dl><dt>Observed in the rollout</dt><dd>${item.observation}</dd><dt>Safety implication</dt><dd>${item.risk}</dd></dl><p class="safety-question"><strong>${item.question}</strong></p></div>${video('media/cases/' + item.path, item.label, '', item.result)}</div>`;
+    panel.innerHTML = `<div class="safety-evidence"><div class="safety-case-copy"><h3>${item.title}</h3><p>${item.observation}</p></div>${video('media/cases/' + item.path, item.label, '', item.result)}</div>`;
     tabs.querySelectorAll('[data-safety]').forEach((b) => {
       const selected = b.dataset.safety === key;
       b.setAttribute('aria-selected', String(selected));
@@ -565,7 +396,6 @@ function initSafetyEvidence() {
 }
 function initResearch() {
   initBenchmarkMatrix();
-  initBehavior();
   initSafetyEvidence();
   initDemoLibrary();
   initEpisodeOutcomes().catch(() => {

@@ -38,13 +38,12 @@ async function expectPillAligned(page: Page, selector: string) {
     .toBeLessThanOrEqual(1);
 }
 
-test('plain results and heat tables have distinct semantic treatments', async ({ page }) => {
+test('the benchmark heat table fits its column and offers the CSV download', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await ready(page);
-  await expect(page.locator('#overall-content .report-table--plain')).toBeVisible();
   const matrix = page.locator('#matrix-content .report-table--heat');
   await expect(matrix).toBeVisible();
-  await expect(matrix.locator('tbody tr')).toHaveCount(8);
+  await expect(matrix.locator('tbody tr')).toHaveCount(9);
   const widths = await page.locator('.benchmark-scroll').evaluate((el) => ({
     available: el.clientWidth,
     content: el.scrollWidth,
@@ -157,7 +156,7 @@ test('task grid omits N, retains episode counts, sorting, filtering, metric, and
   const explorer = page.locator('#matrix-content .task-explorer');
   const table = explorer.locator('table');
   await expect(table).toHaveClass(/report-table--heat/);
-  await expect(table.locator('thead th')).toHaveCount(10);
+  await expect(table.locator('thead th')).toHaveCount(11);
   await expect(table.getByRole('columnheader', { name: 'N', exact: true })).toHaveCount(0);
   await expect(table.locator('tbody tr')).toHaveCount(26);
   await expect(explorer.locator('.task-count')).toContainText(
@@ -185,7 +184,7 @@ test('task grid omits N, retains episode counts, sorting, filtering, metric, and
   await expect(table.getByRole('button', { name: `Watch ${name}`, exact: true })).toBeVisible();
   await explorer.getByRole('searchbox').fill('not-a-real-benchmark-task');
   await expect(table).toContainText('No matching tasks.');
-  await expect(table.locator('.table-empty')).toHaveAttribute('colspan', '10');
+  await expect(table.locator('.table-empty')).toHaveAttribute('colspan', '11');
   await explorer.getByRole('searchbox').fill('');
   const summary = explorer.locator('summary');
   await summary.focus();
@@ -222,167 +221,6 @@ test('narrow grids scroll locally and row labels stay pinned', async ({ page }) 
   }
 });
 
-const profileModels = [
-  ['Astra (ICL)', 'GPT-6-Astra'],
-  ['OpenWAM-Alpha', 'OpenWAM-α'],
-  ['Qwen-RobotManip', 'Qwen-RobotManip'],
-  ['Pi05', 'π₀.₅'],
-  ['InternVLA-A1.5', 'InternVLA-A1.5'],
-  ['Pi0', 'π₀'],
-  ['GigaBrain-0.7', 'GigaBrain-0.7'],
-  ['FastWAM', 'Fast-WAM'],
-];
-const profileGroups = {
-  mobility: [
-    ['Mobile', 'Mobile'],
-    ['Tabletop', 'Fixed'],
-  ],
-  precision: [
-    ['Low', 'Low'],
-    ['Medium', 'Medium'],
-    ['High', 'High'],
-  ],
-  horizon: [
-    ['Short', 'Short Horizon'],
-    ['Long', 'Long Horizon'],
-  ],
-} as const;
-type ProfileKind = keyof typeof profileGroups;
-type ProfileMetric = 'sr' | 'score';
-type ProfileFigures = {
-  models: { id: string; groups: Record<string, Record<ProfileMetric, number>> }[];
-};
-
-async function expectProfileValues(
-  profile: Locator,
-  kind: ProfileKind,
-  metric: ProfileMetric,
-  figures: ProfileFigures,
-  tasks: Record<string, string>[],
-) {
-  const table = profile.locator('.profile-results');
-  await expect(table).toBeVisible();
-  await expect(table).toHaveClass(/report-table--plain/);
-  await expect(table).toHaveAttribute('data-metric', metric);
-  await expect(
-    profile.locator('svg, canvas, .chart-drawing, .chart-series, [data-series]'),
-  ).toHaveCount(0);
-  const groups = profileGroups[kind];
-  await expect(table.locator('thead th')).toHaveText([
-    'Model',
-    ...groups.map(
-      ([label, group]) => `${label}${tasks.filter((task) => task[kind] === group).length} tasks`,
-    ),
-  ]);
-  await expect(table.locator('tbody tr')).toHaveCount(8);
-  for (const [index, [, label]] of profileModels.entries()) {
-    const heading = table.locator('tbody th[scope="row"]').nth(index);
-    if (label.startsWith('π')) {
-      await expect(heading.locator('.model-math')).toHaveCount(1);
-      await expect(heading.locator('annotation[encoding="application/x-tex"]')).toHaveText(
-        label === 'π₀.₅' ? String.raw`\pi_{0.5}` : String.raw`\pi_{0}`,
-      );
-    } else await expect(heading).toHaveText(label);
-  }
-  await expect(table.locator('.astra-row')).toHaveCount(1);
-  await expect(table.locator('.astra-row')).toHaveAttribute('data-model', 'Astra (ICL)');
-
-  const rows = await table.locator('tbody tr').evaluateAll((elements) =>
-    elements.map((row) => ({
-      model: (row as HTMLElement).dataset.model,
-      cells: [...row.querySelectorAll<HTMLTableCellElement>('td')].map((cell) => ({
-        group: cell.dataset.group,
-        metric: cell.dataset.metric,
-        value: Number(cell.dataset.value),
-        text: cell.textContent,
-        best: cell.classList.contains('is-best'),
-        strong: Boolean(cell.querySelector('strong')),
-      })),
-    })),
-  );
-  for (const [index, [key]] of profileModels.entries()) {
-    expect(rows[index].model).toBe(key);
-    expect(rows[index].cells).toHaveLength(groups.length);
-    const model = figures.models.find((entry) => entry.id === key)!;
-    for (const [column, [, group]] of groups.entries()) {
-      const value = model.groups[group][metric];
-      const cell = rows[index].cells[column];
-      const best = Math.max(
-        ...profileModels.map(
-          ([id]) => figures.models.find((entry) => entry.id === id)!.groups[group][metric],
-        ),
-      );
-      expect(cell).toEqual({
-        group,
-        metric,
-        value,
-        text: metric === 'sr' ? (value * 100).toFixed(1) + '%' : value.toFixed(3),
-        best: value === best,
-        strong: value === best,
-      });
-      const subset = tasks.filter((task) => task[kind] === group);
-      const equalTaskMean =
-        subset.reduce((sum, task) => sum + Number(task[`${key}_${metric}`]), 0) / subset.length;
-      // Published aggregates retain four decimals; do not substitute episode-weighted means.
-      expect(Math.abs(cell.value - equalTaskMean)).toBeLessThanOrEqual(0.00005001);
-    }
-  }
-}
-
-test('main profiles preserve all exact group aggregates in both metrics', async ({ page }) => {
-  await ready(page);
-  const figures: ProfileFigures = await (
-    await page.request.get('/data/report-figures.json')
-  ).json();
-  const tasks: Record<string, string>[] = await (await page.request.get('/data/tasks.json')).json();
-  for (const kind of ['precision', 'horizon'] as const) {
-    await page.locator(`[data-limit="${kind}"]`).click();
-    const profile = page.locator(`#limits-content [data-chart="${kind}"]`);
-    for (const metric of ['sr', 'score'] as const) {
-      await profile.locator(`button[data-metric="${metric}"]`).click();
-      await expectProfileValues(profile, kind, metric, figures, tasks);
-    }
-  }
-});
-
-test('profile tables fit narrow and half-column panels with full-row Astra focus', async ({
-  page,
-}) => {
-  await ready(page);
-  const checkTables = async (selector: string) => {
-    const profiles = page.locator(selector);
-    for (const profile of await profiles.all()) {
-      const region = profile.locator('.profile-table-scroll');
-      await expect(region).toHaveAttribute('tabindex', '0');
-      await expect(region).toHaveAttribute('role', 'region');
-      const geometry = await region.evaluate((el) => {
-        const table = el.querySelector('table')!;
-        const focus = table.querySelector('.astra-row')!;
-        return {
-          available: el.clientWidth,
-          content: el.scrollWidth,
-          parent: el.parentElement!.clientWidth,
-          focusedColors: [...focus.children].map((cell) => getComputedStyle(cell).backgroundColor),
-          ordinaryColor: getComputedStyle(table.querySelector('tbody tr:not(.astra-row) th')!)
-            .backgroundColor,
-        };
-      });
-      expect(geometry.available).toBeLessThanOrEqual(geometry.parent + 1);
-      expect(geometry.content).toBeLessThanOrEqual(geometry.available + 1);
-      expect(new Set(geometry.focusedColors).size).toBe(1);
-      expect(geometry.focusedColors[0]).not.toBe(geometry.ordinaryColor);
-    }
-  };
-  for (const width of [1440, 390]) {
-    await page.setViewportSize({ width, height: 1000 });
-    for (const kind of ['precision', 'horizon']) {
-      await page.locator(`[data-limit="${kind}"]`).click();
-      await checkTables('#mobile-content [data-chart], #limits-content [data-chart]');
-    }
-    await expectContained(page);
-  }
-});
-
 test('tab keyboard and distribution chart controls still function', async ({ page }) => {
   await ready(page);
   await page.locator('[data-matrix="attributes"]').focus();
@@ -390,14 +228,14 @@ test('tab keyboard and distribution chart controls still function', async ({ pag
   await expect(page.locator('[data-matrix="tasks"]')).toHaveAttribute('aria-selected', 'true');
   await page.keyboard.press('ArrowRight');
   await expect(page.locator('[data-matrix="shifts"]')).toBeFocused();
-  await expect(page.locator('.benchmark-table tbody tr')).toHaveCount(8);
+  await expect(page.locator('.benchmark-table tbody tr')).toHaveCount(9);
   await expect(page.locator('.matrix-download')).toHaveAttribute(
     'href',
     /report-generalization\.csv$/,
   );
   await page.locator('[data-shift-view="range"]').click();
   const range = page.locator('.matrix-perturbation-ranges');
-  await expect(range.locator('tbody tr')).toHaveCount(8);
+  await expect(range.locator('tbody tr')).toHaveCount(9);
   await expect(range.locator('.perturbation-range-note')).toContainText('percentage points');
   const figures = await (await page.request.get('/data/report-figures.json')).json();
   const conditions = ['object', 'background', 'instruction', 'mix'];

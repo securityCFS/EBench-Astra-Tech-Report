@@ -6,18 +6,15 @@
 @import './shell.css';
 @import './article.css';
 @import './results.css';
-@import './findings.css';
 @import './media.css';
 @import './analysis.css';
-@import './panels.css';
 @import './tables.css';
 @import './controls.css';
-@import './profile-tables.css';
 @import './outcomes.css';
-@import './trace.css';
 @import './case-controls.css';
 @import './figure-tooltip.css';
 @import './perturbation-ranges.css';
+@import './sections.css';
 @import './adaptive.css';
 
 @font-face {

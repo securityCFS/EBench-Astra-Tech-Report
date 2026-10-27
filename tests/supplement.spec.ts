@@ -42,46 +42,35 @@ async function shellGeometry(page: Page) {
   });
 }
 
-test('all available appendices share one shell, title, width and native Escape behavior', async ({
+test('demonstration and task-video dialogs share one shell, width and native Escape behavior', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await ready(page);
-  const keys = await page
-    .locator('[data-appendix]:visible')
-    .evaluateAll((links) => [
-      ...new Set(links.map((link) => (link as HTMLElement).dataset.appendix!)),
-    ]);
-  expect(keys).toContain('ablation');
-  keys.push('sources');
-  let shellWidth: number | undefined;
-  for (const key of keys) {
-    const trigger =
-      key === 'sources'
-        ? page.locator('#model-references a')
-        : page.locator(`[data-appendix="${key}"]:visible`).first();
-    await trigger.click();
-    const dialog = page.locator('#appendix-dialog');
-    await expect(dialog).toBeVisible();
-    await expect(dialog).toHaveClass(/report-supplement/);
-    await expect(dialog.locator('#appendix-title')).toHaveCount(1);
-    await expect(dialog.locator('#appendix-title')).not.toBeEmpty();
-    const geometry = await shellGeometry(page);
-    shellWidth ??= geometry.width;
-    expect(geometry.width, key).toBe(shellWidth);
-    expect(geometry.alignment, key).toBe('left');
-    expect(geometry.outsideViewport, key).toBe(false);
-    expect(geometry.closeVisible, key).toBe(true);
-    await page.keyboard.press('Escape');
-    await expect(dialog).not.toBeVisible();
-    await expect(trigger).toBeFocused();
-  }
+  const dialog = page.locator('#appendix-dialog');
+  const card = page.locator('.demonstration-card[data-icl-package]');
   await openICL(page);
-  await expect(page.locator('#appendix-dialog')).toHaveClass(/report-supplement.*icl-dialog/);
-  expect((await shellGeometry(page)).width).toBe(shellWidth);
-  await page.getByRole('button', { name: 'Close supplementary material' }).click();
-  await page.locator('#model-references a').click();
-  await expect(page.locator('#appendix-dialog')).toHaveClass('report-supplement');
+  await expect(dialog).toHaveClass(/report-supplement.*icl-dialog/);
+  await expect(dialog.locator('#appendix-title')).not.toBeEmpty();
+  const icl = await shellGeometry(page);
+  expect(icl.alignment).toBe('left');
+  expect(icl.outsideViewport).toBe(false);
+  expect(icl.closeVisible).toBe(true);
+  await page.keyboard.press('Escape');
+  await expect(dialog).not.toBeVisible();
+  await expect(card).toBeFocused();
+  await page.locator('[data-matrix="tasks"]').click();
+  const trigger = page.locator('#matrix-content [data-task-video]').first();
+  await trigger.click();
+  await expect(dialog).toHaveAttribute('data-content', 'task-video');
+  await expect(dialog.locator('#appendix-title')).not.toBeEmpty();
+  const video = await shellGeometry(page);
+  expect(video.width).toBe(icl.width);
+  expect(video.outsideViewport).toBe(false);
+  expect(video.closeVisible).toBe(true);
+  await page.keyboard.press('Escape');
+  await expect(dialog).not.toBeVisible();
+  await expect(trigger).toBeFocused();
 });
 
 test('narrow and text-scaled supplements scroll internally without clipping close or album controls', async ({
@@ -97,14 +86,7 @@ test('narrow and text-scaled supplements scroll internally without clipping clos
     await page.evaluate((size) => {
       document.documentElement.style.fontSize = size;
     }, fontSize);
-    await page.locator('#model-references a').click();
-    await page.locator('#appendix-body').evaluate((body) => {
-      body.scrollTop = body.scrollHeight;
-    });
-    const sourceGeometry = await shellGeometry(page);
-    expect(sourceGeometry.outsideViewport).toBe(false);
-    expect(sourceGeometry.closeVisible).toBe(true);
-    expect(sourceGeometry.bodyOverflow).toBeLessThanOrEqual(1);
+    await openICL(page);
     const close = page.getByRole('button', { name: 'Close supplementary material' });
     await close.focus();
     await page.keyboard.press('Tab');
@@ -113,12 +95,9 @@ test('narrow and text-scaled supplements scroll internally without clipping clos
         .locator('#appendix-dialog')
         .evaluate((dialog) => dialog.contains(document.activeElement)),
     ).toBe(true);
-    await page.keyboard.press('Escape');
-
-    await openICL(page);
     await page.getByRole('tab', { name: 'Keyframes', exact: true }).click();
     const albumGeometry = await shellGeometry(page);
-    expect(albumGeometry.width).toBe(sourceGeometry.width);
+    expect(albumGeometry.outsideViewport).toBe(false);
     expect(albumGeometry.bodyOverflow).toBeLessThanOrEqual(1);
     expect(albumGeometry.closeVisible).toBe(true);
     if (width === 390) {

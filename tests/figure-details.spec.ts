@@ -10,7 +10,7 @@ test('field tooltip keeps model maths inline and values aligned', async ({ page 
   await task.focus();
   const tip = page.locator('.viz-tip');
   await expect(tip).toBeVisible();
-  await expect(tip.locator('.viz-tip-row')).toHaveCount(8);
+  await expect(tip.locator('.viz-tip-row')).toHaveCount(9);
   await expect(tip.locator('.model-math')).toHaveCount(2);
   const shapes = await tip.locator('.viz-tip-row').evaluateAll((rows) =>
     rows.map((row) => {
@@ -35,7 +35,7 @@ test('variation table scrolls locally on a narrow screen', async ({ page }) => {
   await page.goto('/');
   await page.locator('[data-matrix="shifts"]').click();
   await page.locator('[data-shift-view="range"]').click();
-  await expect(page.locator('.perturbation-range-table tbody tr')).toHaveCount(8);
+  await expect(page.locator('.perturbation-range-table tbody tr')).toHaveCount(9);
   const geometry = await page
     .locator('.matrix-perturbation-ranges .table-scroll')
     .evaluate((el) => ({

@@ -190,33 +190,6 @@
     text-decoration: underline;
   }
 
-  .report-supplement :where(.model-reference-links, .supplement-actions) {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem 1.25rem;
-    align-items: center;
-  }
-
-  .report-supplement .model-references {
-    margin: 0 0 2rem;
-    padding-left: 1.5rem;
-  }
-
-  .report-supplement :where(.model-references > li, .model-reference) {
-    margin: 0;
-    padding: 1.125rem 0;
-    border-bottom: 1px solid var(--supplement-line);
-  }
-
-  .report-supplement .model-references > li::marker {
-    color: var(--supplement-muted);
-    font-size: 0.9em;
-  }
-
-  .report-supplement .model-references p {
-    margin: 0.3rem 0;
-  }
-
   .report-supplement :where(.table-scroll, .icl-data-scroll) {
     width: 100%;
     max-width: 100%;
@@ -637,29 +610,6 @@
     max-width: 100%;
     max-height: 32rem;
     border-radius: 0.4rem;
-  }
-
-  .report-supplement .icl-pair-findings {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-    margin: 1.5rem 0;
-  }
-
-  .report-supplement .icl-pair-findings > section {
-    min-width: 0;
-    padding: 1.25rem;
-    border: 1px solid var(--supplement-line);
-    border-radius: 0.5rem;
-    background: var(--supplement-soft);
-  }
-
-  .report-supplement .icl-pair-findings h3 {
-    margin-top: 0;
-  }
-
-  .report-supplement .icl-pair-findings p {
-    margin: 0.5rem 0;
   }
 
   @media (max-width: 48rem) {

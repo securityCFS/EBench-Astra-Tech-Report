@@ -1,0 +1,139 @@
+---
+import ExecutionDemo from '../ExecutionDemo.astro';
+import RecordingLibrary from '../RecordingLibrary.astro';
+---
+
+<section id="capability" class="section" aria-labelledby="capability-title">
+  <div class="section-inner">
+    <h2 id="capability-title">02 Direct Control</h2>
+    <div class="report-prose">
+      <p>
+        Without robot-specific training of the MLLM, the direct-control agent reaches 46.7% SR and a
+        0.654 score, third behind the WAMs OpenWAM-α and InternW0-Δ. It ranks first on short-horizon
+        tasks and keeps the smallest SR range across generalization dimensions, whereas
+        long-horizon, tabletop, and high-precision tasks limit it.
+      </p>
+    </div>
+    <div id="comparison" class="benchmark-details">
+      <div id="benchmark-matrix"></div>
+    </div>
+    <figure class="paper-figure" id="fig-radar">
+      <img
+        src="media/figures/capability_radar.svg"
+        alt="Radar charts of SR across task groups and generalization dimensions"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption>
+        SR of the direct-control agent and of OpenWAM-α, InternW0-Δ, Qwen-RobotManip, and π₀.₅ (a)
+        across mobility, horizon, and precision task groups and (b) across the four generalization
+        dimensions of the EBench test set.
+      </figcaption>
+    </figure>
+
+    <div id="mobile" class="demo-block">
+      <h3>Where the agent leads</h3>
+      <p>
+        On mobile tasks that hinge on visual grounding, the agent leads all eight post-trained
+        policies on Bookmark, Teacup &amp; teapot, and Remote.
+      </p>
+      <div id="mobile-content"></div>
+    </div>
+
+    <div id="limits" class="demo-block">
+      <h3>Where execution breaks down</h3>
+      <p>
+        Most unsuccessful episodes still earn partial credit. Of the 510 episodes, 237 succeed and
+        only 85 end with a score of zero. The recordings below show two failure patterns: contact
+        geometry at the final step and cascading disturbances over long horizons.
+      </p>
+      <div id="episode-outcomes"></div>
+      <div class="limit-switch" aria-label="Execution challenge">
+        <button data-limit="precision" aria-pressed="true">
+          Precise contact
+        </button>
+        <button data-limit="horizon" aria-pressed="false">
+          Long horizons
+        </button>
+      </div>
+      <div id="limits-content"></div>
+    </div>
+
+    <ExecutionDemo
+      id="direct-episodes"
+      title="Adaptation within an episode"
+      catalog="data/episodes/direct.json"
+    >
+      <p>
+        After a failed action, the agent records a possible explanation, explores the workspace, and
+        revises its approach. Its stated reasons name a slip, a drop, or a displaced object in 302
+        of the 510 episodes. Step through three episodes call by call.
+      </p>
+    </ExecutionDemo>
+
+    <div id="safety" class="demo-block">
+      <h3>Safety in execution</h3>
+      <p>
+        Aggregate scores do not capture how safely the agent executes its commands. It drives each
+        command toward its target without accounting for the other arm, the workspace bounds,
+        contact with the scene, or the speed of the motion.
+      </p>
+      <div class="behavior-tabs safety-tabs" role="tablist" aria-label="Safety evidence">
+        <button
+          id="safety-tab-dishwasher"
+          data-safety="dishwasher"
+          role="tab"
+          aria-controls="safety-content"
+          aria-selected="true"
+        >
+          Dishwasher
+        </button>
+        <button
+          id="safety-tab-apple"
+          data-safety="apple"
+          role="tab"
+          aria-controls="safety-content"
+          aria-selected="false"
+          tabindex="-1"
+        >
+          Apple to bowl
+        </button>
+        <button
+          id="safety-tab-coffee"
+          data-safety="coffee"
+          role="tab"
+          aria-controls="safety-content"
+          aria-selected="false"
+          tabindex="-1"
+        >
+          Coffee beans
+        </button>
+      </div>
+      <div
+        id="safety-content"
+        role="tabpanel"
+        aria-labelledby="safety-tab-dishwasher"
+        tabindex="0"
+      ></div>
+    </div>
+
+    <div id="case-icl" class="case-study-section">
+      <div class="case-study-content"></div>
+    </div>
+    <div id="case-adapt" class="case-study-section">
+      <div class="case-study-content"></div>
+    </div>
+
+    <div id="case-poc" class="case-study-section">
+      <h3>Zero-shot composition</h3>
+      <p>
+        Asked to place a bookmark and then a pen onto the same open book, an instruction outside the
+        EBench tasks, the agent succeeds in all 10 zero-shot rollouts, whereas π₀.₅ and OpenWAM-α
+        succeed in none.
+      </p>
+      <div class="case-study-content"></div>
+    </div>
+
+    <RecordingLibrary />
+  </div>
+</section>

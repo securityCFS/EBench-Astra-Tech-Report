@@ -1,0 +1,44 @@
+---
+import { icon } from '../../lib/icons.js';
+import DemonstrationCard from '../DemonstrationCard.astro';
+---
+
+<section id="setup" class="section" aria-labelledby="setup-title">
+  <div class="section-inner">
+    <h2 id="setup-title">01 Agent and Harness</h2>
+    <div class="report-prose">
+      <p>
+        GPT-6-Astra controls the robot through an agent harness that returns the same RGB views and
+        proprioception that post-trained policies receive. Under <strong>direct control</strong>,
+        the agent commands end-effector waypoints itself. In the{' '}
+        <strong>harness with policy</strong>, it can also invoke π₀.₅ or InternW0-Δ, which then acts
+        for 1 to 300 physics steps. For each task, the agent receives one annotated demonstration
+        derived from a single training episode, and the evaluation covers all 26 test tasks and 510
+        test episodes of EBench.
+      </p>
+    </div>
+    <figure class="paper-figure" id="fig-overview">
+      <img
+        src="media/figures/overview.webp"
+        alt="The GPT-6-Astra control loop on EBench and executor timelines of a Microwave episode under direct control and in the harness with π₀.₅"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption>
+        The GPT-6-Astra control loop on EBench and the executor along one Microwave test episode
+        under direct control and in the harness with π₀.₅, with blue segments executed by the agent
+        and purple segments by π₀.₅.
+      </figcaption>
+    </figure>
+    <DemonstrationCard />
+    <div class="explorer-links">
+      <a
+        href="https://internrobotics.github.io/EBench-doc/evaluation/task-showcase/"
+        target="_blank"
+        rel="noopener"
+      >
+        Explore EBench tasks <Fragment set:html={icon('external-link')} />
+      </a>
+    </div>
+  </div>
+</section>
