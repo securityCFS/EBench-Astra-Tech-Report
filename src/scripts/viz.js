@@ -1,5 +1,6 @@
 /* Interactive figures shared across the report: dot-strip profiles, per-task outcome rows,
-   Astra-versus-field bars, perturbation slopes, paired-ICL dumbbells and execution timing.
+   Astra-versus-field bars, perturbation slopes, paired-ICL dumbbells, execution timing and the
+   harness-with-policy figures.
    Every figure reads the same data files as the tables; nothing here changes a reported value. */
 (() => {
   const NS = 'http://www.w3.org/2000/svg';
@@ -86,7 +87,10 @@
       }
       showTip(mark.dataset.tip, e.clientX, e.clientY);
     });
-    root.addEventListener('pointerleave', hideTip);
+    // Scrolling under a resting pointer can leave a figure, which must not close a focused tooltip.
+    root.addEventListener('pointerleave', () => {
+      if (!tipFromFocus) hideTip();
+    });
     root.addEventListener('focusin', (e) => {
       const mark = e.target.closest('[data-tip]');
       if (!mark) return;
@@ -676,6 +680,340 @@
     host.replaceChildren(svg);
   }
 
+  /* =====================================================================================
+    7. Harness with policy: per task, direct control, the policy alone and the harness.
+    ===================================================================================== */
+  function harnessTasks(host, { rows, policy, color }) {
+    const width = Math.max(320, Math.min(1000, host.clientWidth || 760));
+    const narrow = width < 560,
+      labelW = narrow ? 120 : 210,
+      rowH = narrow ? 24 : 27,
+      top = 36;
+    const height = top + rows.length * rowH + 8;
+    const svg = svgRoot(
+      width,
+      height,
+      `Success rate per task under direct control, of ${policy} alone, and of the harness with ${policy}`,
+    );
+    const plotL = labelW + 14,
+      plotR = width - (narrow ? 50 : 72);
+    const x = (v) => plotL + ((plotR - plotL) * v) / 100;
+    [0, 25, 50, 75, 100].forEach((v) => {
+      svg.append(
+        el('line', { x1: x(v), x2: x(v), y1: top - 6, y2: height - 4, class: 'viz-grid' }),
+      );
+      if (!narrow || v % 50 === 0)
+        svg.append(
+          el('text', { x: x(v), y: top - 12, 'text-anchor': 'middle', class: 'viz-axis' }, `${v}%`),
+        );
+    });
+    if (!narrow)
+      svg.append(
+        el('text', { x: width - 8, y: top - 12, 'text-anchor': 'end', class: 'viz-axis' }, 'Δ pp'),
+      );
+    const pct = (v) => `${v.toFixed(1)}%`;
+    rows.forEach((r, i) => {
+      const y = top + i * rowH + rowH / 2,
+        delta = r.harness - r.direct,
+        sign = delta > 0.05 ? 'is-up' : delta < -0.05 ? 'is-down' : 'is-tie',
+        signed = `${delta > 0.05 ? '+' : ''}${delta.toFixed(1)}`;
+      const g = el('g', {
+        class: `viz-gain ${sign}`,
+        tabindex: 0,
+        'data-tip': `<b>${esc(r.title)}</b><dl class="viz-tip-values"><div class="viz-tip-row"><dt>Direct control</dt><dd>${pct(r.direct)}</dd></div><div class="viz-tip-row"><dt>${esc(policy)} alone</dt><dd>${pct(r.alone)}</dd></div><div class="viz-tip-row is-highlighted"><dt>Harness with ${esc(policy)}</dt><dd>${pct(r.harness)}</dd></div><div class="viz-tip-row"><dt>Steps executed by ${esc(policy)}</dt><dd>${pct(r.share)}</dd></div></dl><div class="viz-tip-delta"><span>Δ vs. direct control</span><strong>${signed} pp</strong></div>`,
+      });
+      g.append(el('rect', { x: 0, y: y - rowH / 2, width, height: rowH, class: 'viz-rowhit' }));
+      g.append(
+        el(
+          'text',
+          {
+            x: labelW,
+            y: y + 4,
+            'text-anchor': 'end',
+            class: narrow ? 'viz-label viz-label--small' : 'viz-label',
+          },
+          narrow && r.title.length > 14 ? r.title.slice(0, 13) + '…' : r.title,
+        ),
+      );
+      g.append(
+        el('line', { x1: x(r.direct), x2: x(r.harness), y1: y, y2: y, class: 'viz-gain-line' }),
+      );
+      g.append(
+        el('line', {
+          x1: x(r.alone),
+          x2: x(r.alone),
+          y1: y - 8,
+          y2: y + 8,
+          class: 'viz-gain-alone',
+        }),
+      );
+      g.append(el('circle', { cx: x(r.direct), cy: y, r: 4.5, class: 'viz-gain-direct' }));
+      g.append(
+        el('circle', { cx: x(r.harness), cy: y, r: 5.5, class: 'viz-gain-harness', fill: color }),
+      );
+      g.append(
+        el('text', { x: width - 8, y: y + 4, 'text-anchor': 'end', class: 'viz-value' }, signed),
+      );
+      svg.append(g);
+    });
+    host.replaceChildren(svg);
+  }
+
+  /* Where the episodes of each direct-control ending end in the harness, as shares of the row. */
+  function harnessTurnover(host, { rows, endings }) {
+    const width = Math.max(320, Math.min(1000, host.clientWidth || 760));
+    const narrow = width < 560,
+      labelW = narrow ? 0 : 250,
+      barH = 26,
+      rowH = narrow ? 64 : 44;
+    const height = rows.length * rowH + 4;
+    const svg = svgRoot(
+      width,
+      height,
+      'Harness endings of the episodes of each direct-control ending',
+    );
+    const plotL = narrow ? 0 : labelW + 14,
+      plotW = width - plotL - 2;
+    rows.forEach((r, i) => {
+      const top = i * rowH,
+        barY = narrow ? top + 26 : top + (rowH - barH) / 2;
+      const label = el('text', {
+        x: narrow ? 0 : labelW,
+        y: narrow ? top + 17 : barY + 18,
+        'text-anchor': narrow ? 'start' : 'end',
+        class: 'viz-label',
+      });
+      label.append(r.label, el('tspan', { class: 'viz-row-sub', dx: 8 }, `n = ${r.n}`));
+      svg.append(label);
+      let left = plotL;
+      r.counts.forEach((count, k) => {
+        if (!count) return;
+        const w = (plotW * count) / r.n,
+          share = ((100 * count) / r.n).toFixed(1);
+        const g = el('g', {
+          class: `viz-ending ${endings[k].cls}`,
+          tabindex: 0,
+          'data-tip': `<b>${esc(r.label)} under direct control</b><span>${esc(endings[k].name)} in the harness</span><em>${count} of ${r.n} episodes (${share}%)</em>`,
+        });
+        g.append(
+          el('rect', { x: left, y: barY, width: Math.max(w - 1.5, 1), height: barH, rx: 3 }),
+        );
+        if (w > 30)
+          g.append(
+            el(
+              'text',
+              {
+                x: left + w / 2,
+                y: barY + 18,
+                'text-anchor': 'middle',
+                class: 'viz-ending-count',
+              },
+              String(count),
+            ),
+          );
+        svg.append(g);
+        left += w;
+      });
+    });
+    host.replaceChildren(svg);
+  }
+
+  /* Paired horizontal bars, one row per category and one bar per series. */
+  function pairedBars(host, { rows, series, active, label }) {
+    const width = Math.max(300, Math.min(760, host.clientWidth || 640));
+    const barH = 11,
+      lineH = 19,
+      perLine = Math.floor(width / 8.2);
+    // SVG text does not wrap, so break each label into lines that fit the chart width.
+    const lines = rows.map((r) =>
+      r.label
+        .split(' ')
+        .reduce(
+          (acc, word) => {
+            const last = acc[acc.length - 1];
+            if (last && (last + ' ' + word).length <= perLine)
+              acc[acc.length - 1] = last + ' ' + word;
+            else acc.push(word);
+            return acc;
+          },
+          [''],
+        )
+        .filter(Boolean),
+    );
+    const heights = lines.map((l) => l.length * lineH + 2 * barH + 22);
+    const height = heights.reduce((a, b) => a + b, 0);
+    const svg = svgRoot(width, height, label);
+    const plotW = width - 40,
+      max = Math.max(...rows.flatMap((r) => r.values));
+    let top = 0;
+    rows.forEach((r, i) => {
+      const text = el('text', { x: 0, y: top + 15, class: 'viz-label viz-label--small' });
+      lines[i].forEach((line, j) => text.append(el('tspan', { x: 0, dy: j ? lineH : 0 }, line)));
+      svg.append(text);
+      const barsY = top + lines[i].length * lineH + 4;
+      r.values.forEach((v, k) => {
+        const y = barsY + k * (barH + 3),
+          w = (plotW * v) / max;
+        const g = el('g', {
+          class: `viz-paired${k === active ? '' : ' is-dim'}`,
+          tabindex: 0,
+          'data-tip': `<b>${esc(r.label)}</b><span>${esc(series[k].label)}</span><em>${v} episodes</em>`,
+        });
+        g.append(
+          el('rect', {
+            x: 0,
+            y,
+            width: Math.max(w, 1.5),
+            height: barH,
+            rx: 2.5,
+            fill: series[k].color,
+          }),
+        );
+        g.append(el('text', { x: w + 6, y: y + barH - 1, class: 'viz-value' }, String(v)));
+        svg.append(g);
+      });
+      top += heights[i];
+    });
+    host.replaceChildren(svg);
+  }
+
+  /* Share of physics steps executed by the policy in each tenth of an episode. */
+  function harnessDelegation(host, { success, failure, policy, color }) {
+    const width = Math.max(320, Math.min(1000, host.clientWidth || 760));
+    const left = 46,
+      right = 14,
+      top = 14,
+      bottom = 44,
+      height = width < 560 ? 260 : 320,
+      plotW = width - left - right;
+    const svg = svgRoot(
+      width,
+      height,
+      `Share of physics steps executed by ${policy} over an episode`,
+    );
+    const x = (k) => left + (plotW * (k + 0.5)) / 10,
+      y = (v) => top + ((height - top - bottom) * (100 - v)) / 100;
+    [0, 25, 50, 75, 100].forEach((v) => {
+      svg.append(
+        el('line', {
+          x1: left,
+          x2: width - right,
+          y1: y(v),
+          y2: y(v),
+          class: v === 50 ? 'viz-zero' : 'viz-grid',
+        }),
+      );
+      svg.append(
+        el('text', { x: left - 8, y: y(v) + 4, 'text-anchor': 'end', class: 'viz-axis' }, `${v}%`),
+      );
+    });
+    [0, 50, 100].forEach((p) =>
+      svg.append(
+        el(
+          'text',
+          {
+            x: left + (plotW * p) / 100,
+            y: height - 22,
+            'text-anchor': p === 0 ? 'start' : p === 100 ? 'end' : 'middle',
+            class: 'viz-axis',
+          },
+          `${p}%`,
+        ),
+      ),
+    );
+    svg.append(
+      el(
+        'text',
+        {
+          x: left + plotW / 2,
+          y: height - 4,
+          'text-anchor': 'middle',
+          class: 'viz-axis-note',
+        },
+        'Progress through the episode',
+      ),
+    );
+    const point = (v, k) => `${x(k).toFixed(1)},${y(v).toFixed(1)}`;
+    const path = (values) => values.map((v, k) => `${k ? 'L' : 'M'}${point(v, k)}`).join('');
+    const back = failure.map((_, k) => `L${point(failure[9 - k], 9 - k)}`).join('');
+    svg.append(el('path', { d: `${path(success)}${back}Z`, class: 'viz-share-gap', fill: color }));
+    svg.append(el('path', { d: path(failure), class: 'viz-share-line is-failure' }));
+    svg.append(el('path', { d: path(success), class: 'viz-share-line', stroke: color }));
+    success.forEach((v, k) => {
+      const g = el('g', {
+        class: 'viz-share-tenth',
+        tabindex: 0,
+        'data-tip': `<b>${k * 10}–${k * 10 + 10}% of the episode</b><dl class="viz-tip-values"><div class="viz-tip-row is-highlighted"><dt>Successful episodes</dt><dd>${v.toFixed(1)}%</dd></div><div class="viz-tip-row"><dt>Unsuccessful episodes</dt><dd>${failure[k].toFixed(1)}%</dd></div></dl><small>Share of physics steps executed by ${esc(policy)}</small>`,
+      });
+      g.append(
+        el('rect', {
+          x: x(k) - plotW / 20,
+          y: top,
+          width: plotW / 10,
+          height: height - top - bottom,
+          class: 'viz-rowhit',
+        }),
+      );
+      g.append(
+        el('circle', { cx: x(k), cy: y(failure[k]), r: 3.5, class: 'viz-share-dot is-failure' }),
+      );
+      g.append(el('circle', { cx: x(k), cy: y(v), r: 4, class: 'viz-share-dot', fill: color }));
+      svg.append(g);
+    });
+    host.replaceChildren(svg);
+  }
+
+  /* Grouped horizontal bars: one group per row label, one bar per configuration. */
+  function groupedBars(host, { groups, series, format, label }) {
+    const width = Math.max(280, Math.min(560, host.clientWidth || 480));
+    const labelW = width < 400 ? 92 : 128,
+      barH = 13,
+      gap = 3,
+      groupH = series.length * (barH + gap) + 18;
+    const height = groups.length * groupH;
+    const svg = svgRoot(width, height, label);
+    const plotL = labelW + 12,
+      plotW = width - plotL - 58,
+      max = Math.max(...groups.flatMap((g) => g.values));
+    groups.forEach((group, i) => {
+      const top = i * groupH + 6;
+      svg.append(
+        el(
+          'text',
+          {
+            x: labelW,
+            y: top + (series.length * (barH + gap)) / 2 + 3,
+            'text-anchor': 'end',
+            class: 'viz-label viz-label--small',
+          },
+          group.label,
+        ),
+      );
+      group.values.forEach((v, k) => {
+        const y = top + k * (barH + gap),
+          w = (plotW * v) / max;
+        const g = el('g', {
+          class: 'viz-paired',
+          tabindex: 0,
+          'data-tip': `<b>${esc(group.label)}</b><span>${esc(series[k].label)}</span><em>${format(v)}</em>`,
+        });
+        g.append(
+          el('rect', {
+            x: plotL,
+            y,
+            width: Math.max(w, 1.5),
+            height: barH,
+            rx: 2.5,
+            fill: series[k].color,
+          }),
+        );
+        g.append(el('text', { x: plotL + w + 6, y: y + barH - 2, class: 'viz-value' }, format(v)));
+        svg.append(g);
+      });
+    });
+    host.replaceChildren(svg);
+  }
+
   /* ---------- small widgets ---------- */
   function readingProgress() {
     const bar = document.createElement('div');
@@ -760,6 +1098,11 @@
     perturbationSlopes,
     pairedDumbbells,
     timingBars,
+    harnessTasks,
+    harnessTurnover,
+    pairedBars,
+    harnessDelegation,
+    groupedBars,
     readingProgress,
     backToTop,
     sectionAnchors,

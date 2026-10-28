@@ -1,5 +1,5 @@
 {
-  "source": "arXiv:2610.35832, harness with policy across all 510 EBench test episodes",
+  "source": "arXiv:2610.35832, Section 6: harness with policy across all 510 EBench test episodes, paired with direct control",
   "configurations": [
     {
       "id": "harness-pi05",
@@ -15,7 +15,198 @@
         "Fixed": 0.314,
         "Short Horizon": 0.705,
         "Long Horizon": 0.402
-      }
+      },
+      "tasks": {
+        "apple_from_shelf": {
+          "sr": 85.0,
+          "share": 53.4
+        },
+        "apple_to_fruit_bowl": {
+          "sr": 95.0,
+          "share": 48.9
+        },
+        "bookmark_on_book": {
+          "sr": 85.0,
+          "share": 47.0
+        },
+        "bottle": {
+          "sr": 0,
+          "share": 41.8
+        },
+        "bowl_to_plate": {
+          "sr": 95.0,
+          "share": 47.0
+        },
+        "collect_coffee_beans": {
+          "sr": 0,
+          "share": 75.8
+        },
+        "detergent": {
+          "sr": 90.0,
+          "share": 88.4
+        },
+        "dish": {
+          "sr": 60.0,
+          "share": 73.6
+        },
+        "dishwasher": {
+          "sr": 60.0,
+          "share": 91.6
+        },
+        "flip_cup_collect_cookies": {
+          "sr": 40.0,
+          "share": 78.9
+        },
+        "frame_against_pen_holder": {
+          "sr": 65.0,
+          "share": 81.9
+        },
+        "fruit": {
+          "sr": 30.0,
+          "share": 57.3
+        },
+        "install_gear": {
+          "sr": 10.0,
+          "share": 59.4
+        },
+        "make_sandwich": {
+          "sr": 73.3,
+          "share": 82.3
+        },
+        "microwave": {
+          "sr": 60.0,
+          "share": 75.0
+        },
+        "peg_in_hole": {
+          "sr": 5.0,
+          "share": 61.1
+        },
+        "pen": {
+          "sr": 5.0,
+          "share": 53.5
+        },
+        "perfume_to_cosmetics_rack": {
+          "sr": 80.0,
+          "share": 62.9
+        },
+        "put_glass_in_glassbox": {
+          "sr": 85.0,
+          "share": 93.8
+        },
+        "remote_to_holder": {
+          "sr": 90.0,
+          "share": 67.4
+        },
+        "salt_to_spice_rack": {
+          "sr": 100,
+          "share": 79.0
+        },
+        "shop": {
+          "sr": 15.0,
+          "share": 89.7
+        },
+        "soap_to_dish": {
+          "sr": 90.0,
+          "share": 68.3
+        },
+        "teacup_to_saucer_teapot_to_tray": {
+          "sr": 30.0,
+          "share": 51.9
+        },
+        "tighten_nut": {
+          "sr": 15.0,
+          "share": 53.6
+        },
+        "utensils_to_holder": {
+          "sr": 15.0,
+          "share": 55.7
+        }
+      },
+      "stepShare": {
+        "success": [
+          97.5,
+          90.3,
+          82.0,
+          73.0,
+          61.0,
+          59.5,
+          62.7,
+          63.2,
+          66.5,
+          64.2
+        ],
+        "failure": [
+          92.4,
+          82.9,
+          77.3,
+          69.3,
+          59.4,
+          48.4,
+          51.6,
+          48.8,
+          41.8,
+          35.3
+        ]
+      },
+      "generalization": {
+        "object": 0.591667,
+        "background": 0.5,
+        "instruction": 0.561538,
+        "mix": 0.461538
+      },
+      "endings": {
+        "success": [
+          178,
+          52,
+          3,
+          4,
+          0
+        ],
+        "limit": [
+          72,
+          140,
+          6,
+          10,
+          1
+        ],
+        "claim": [
+          10,
+          3,
+          6,
+          2,
+          0
+        ],
+        "failed": [
+          8,
+          6,
+          0,
+          8,
+          0
+        ],
+        "other": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "newlyFailed": [
+        16,
+        5,
+        30,
+        3,
+        5
+      ],
+      "switches": [
+        4.2,
+        7.2
+      ],
+      "recovery": [
+        6.3,
+        22.0
+      ],
+      "policyStepShare": 66.9
     },
     {
       "id": "harness-internw0",
@@ -31,7 +222,235 @@
         "Fixed": 0.336,
         "Short Horizon": 0.773,
         "Long Horizon": 0.404
-      }
+      },
+      "tasks": {
+        "apple_from_shelf": {
+          "sr": 75.0,
+          "share": 39.3
+        },
+        "apple_to_fruit_bowl": {
+          "sr": 100.0,
+          "share": 62.4
+        },
+        "bookmark_on_book": {
+          "sr": 90.0,
+          "share": 46.0
+        },
+        "bottle": {
+          "sr": 0.0,
+          "share": 88.1
+        },
+        "bowl_to_plate": {
+          "sr": 95.0,
+          "share": 44.6
+        },
+        "collect_coffee_beans": {
+          "sr": 0.0,
+          "share": 69.1
+        },
+        "detergent": {
+          "sr": 70.0,
+          "share": 83.2
+        },
+        "dish": {
+          "sr": 70.0,
+          "share": 70.1
+        },
+        "dishwasher": {
+          "sr": 75.0,
+          "share": 88.2
+        },
+        "flip_cup_collect_cookies": {
+          "sr": 60.0,
+          "share": 83.0
+        },
+        "frame_against_pen_holder": {
+          "sr": 45.0,
+          "share": 67.5
+        },
+        "fruit": {
+          "sr": 45.0,
+          "share": 64.0
+        },
+        "install_gear": {
+          "sr": 40.0,
+          "share": 72.3
+        },
+        "make_sandwich": {
+          "sr": 86.7,
+          "share": 86.1
+        },
+        "microwave": {
+          "sr": 60.0,
+          "share": 71.2
+        },
+        "peg_in_hole": {
+          "sr": 0.0,
+          "share": 63.4
+        },
+        "pen": {
+          "sr": 0.0,
+          "share": 53.4
+        },
+        "perfume_to_cosmetics_rack": {
+          "sr": 80.0,
+          "share": 48.1
+        },
+        "put_glass_in_glassbox": {
+          "sr": 80.0,
+          "share": 85.4
+        },
+        "remote_to_holder": {
+          "sr": 100.0,
+          "share": 54.0
+        },
+        "salt_to_spice_rack": {
+          "sr": 100.0,
+          "share": 74.0
+        },
+        "shop": {
+          "sr": 5.0,
+          "share": 82.9
+        },
+        "soap_to_dish": {
+          "sr": 100.0,
+          "share": 52.3
+        },
+        "teacup_to_saucer_teapot_to_tray": {
+          "sr": 55.0,
+          "share": 48.9
+        },
+        "tighten_nut": {
+          "sr": 10.0,
+          "share": 47.0
+        },
+        "utensils_to_holder": {
+          "sr": 15.0,
+          "share": 54.4
+        }
+      },
+      "stepShare": {
+        "success": [
+          97.5,
+          89.5,
+          80.9,
+          65.8,
+          50.0,
+          49.8,
+          58.3,
+          58.8,
+          60.8,
+          57.9
+        ],
+        "failure": [
+          91.9,
+          85.2,
+          82.9,
+          73.3,
+          63.5,
+          55.1,
+          47.6,
+          47.8,
+          44.8,
+          35.7
+        ]
+      },
+      "generalization": {
+        "object": 0.575,
+        "background": 0.546154,
+        "instruction": 0.576923,
+        "mix": 0.530769
+      },
+      "endings": {
+        "success": [
+          188,
+          33,
+          2,
+          13,
+          1
+        ],
+        "limit": [
+          76,
+          135,
+          8,
+          9,
+          1
+        ],
+        "claim": [
+          11,
+          5,
+          3,
+          2,
+          0
+        ],
+        "failed": [
+          9,
+          4,
+          0,
+          9,
+          0
+        ],
+        "other": [
+          0,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "newlyFailed": [
+        30,
+        1,
+        12,
+        2,
+        4
+      ],
+      "switches": [
+        3.8,
+        6.8
+      ],
+      "recovery": [
+        5.8,
+        20.7
+      ],
+      "policyStepShare": 65.4
     }
-  ]
+  ],
+  "tokens": {
+    "direct": {
+      "perEpisode": 3.77,
+      "perSuccess": 8.12,
+      "successful": 1.84,
+      "unsuccessful": 5.45,
+      "shortPerSuccess": 2.23,
+      "longPerSuccess": 20.61,
+      "toolCalls": 42.6,
+      "usdPerEpisode": 7.82,
+      "usdPerSuccess": 16.82
+    },
+    "harness-pi05": {
+      "perEpisode": 1.83,
+      "perSuccess": 3.46,
+      "successful": 1.04,
+      "unsuccessful": 2.7,
+      "shortPerSuccess": 1.47,
+      "longPerSuccess": 6.18,
+      "toolCalls": 23.7,
+      "usdPerEpisode": 2.63,
+      "usdPerSuccess": 4.99,
+      "policyInferences": 45
+    },
+    "harness-internw0": {
+      "perEpisode": 2.22,
+      "perSuccess": 4.0,
+      "successful": 1.36,
+      "unsuccessful": 3.31,
+      "shortPerSuccess": 1.63,
+      "longPerSuccess": 7.53,
+      "toolCalls": 22.7,
+      "usdPerEpisode": 3.06,
+      "usdPerSuccess": 5.49,
+      "policyInferences": 135
+    }
+  }
 }

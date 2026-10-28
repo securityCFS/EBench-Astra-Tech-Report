@@ -52,12 +52,26 @@
           the Score from 0.654 to 0.692 and 0.744. With InternW0-Δ, the harness surpasses OpenWAM-α,
           the strongest post-trained policy, on both metrics. The gains concentrate on long-horizon
           and tabletop tasks, where the policies alone outperform direct control, whereas on
-          high-precision tasks both configurations remain below the policies alone. Invoking a
-          policy also reduces the token cost per success from 8.1M under direct control to 3.5M with
-          π₀.₅ and 4.0M with InternW0-Δ.
+          high-precision tasks both configurations remain below the policies alone. Under
+          distribution shifts, the harness with InternW0-Δ improves on all four conditions and
+          reaches 53.1% under mixed perturbations, while the harness with π₀.₅ gains mainly on new
+          objects and instructions.
         </p>
       </div>
       <div id="harness-table"></div>
+    </section>
+    <section id="harness-tasks" class="case-study-section" aria-labelledby="harness-tasks-title">
+      <h3 id="harness-tasks-title">Where the Gains Land</h3>
+      <div class="report-prose">
+        <p>
+          Across the 26 tasks, the gain of the harness over direct control follows the advantage of
+          the policy alone. The largest gains arise on Glass into glassbox and Dishwasher, where the
+          policy executes the bimanual transport, lid closure, and rack manipulation that direct
+          control does not finish. On Peg in hole, Pen, Microwave, and Teacup &amp; teapot, where
+          neither policy alone exceeds direct control, both configurations fall below it.
+        </p>
+      </div>
+      <div class="harness-figure" data-harness-figure="tasks"></div>
     </section>
     <section
       id="case-harness-gain"
@@ -68,12 +82,69 @@
       <div class="case-study-content"></div>
     </section>
     <section
+      id="harness-episodes"
+      class="case-study-section"
+      aria-labelledby="harness-episodes-title"
+    >
+      <h3 id="harness-episodes-title">Episodes Won and Lost</h3>
+      <div class="report-prose">
+        <p>
+          The net gains combine turnover in both directions over the 510 paired episodes. Most newly
+          successful episodes exhausted the physics-step limit under direct control, and the policy
+          completes their remaining stages. The newly failed episodes end differently with the two
+          policies. With π₀.₅, half of them begin when the agent's own grasp slips. With InternW0-Δ,
+          most lose an object during a policy segment or just after the agent resumes control.
+        </p>
+      </div>
+      <div class="harness-figure" data-harness-figure="episodes"></div>
+    </section>
+    <section
+      id="harness-delegation"
+      class="case-study-section"
+      aria-labelledby="harness-delegation-title"
+    >
+      <h3 id="harness-delegation-title">Who Drives the Robot</h3>
+      <div class="report-prose">
+        <p>
+          Every episode starts with a policy invocation, and the policy executes nearly all physics
+          steps in the first tenth. GPT-6-Astra then steps in with grasp tests, corrections, and
+          recoveries. Successful episodes hand the final stages back to the policy, whereas
+          unsuccessful ones end largely under the agent's own commands. The delegation follows task
+          horizon rather than the competence of the policy: on the seven tasks where π₀.₅ alone
+          succeeds in at most 10% of episodes, the agent still leaves it 60% of the physics steps.
+        </p>
+      </div>
+      <div class="harness-figure" data-harness-figure="delegation"></div>
+    </section>
+    <section
       id="case-harness-loss"
       class="case-study-section"
       aria-labelledby="case-harness-loss-title"
     >
       <h3 id="case-harness-loss-title">Where the Coordination Breaks</h3>
       <div class="case-study-content"></div>
+    </section>
+    <section id="harness-cost" class="case-study-section" aria-labelledby="harness-cost-title">
+      <h3 id="harness-cost-title">Token Cost</h3>
+      <div class="report-prose">
+        <p>
+          Invoking a policy also moves computation from the agent into the policy. GPT-6-Astra makes
+          about half as many tool calls per episode, and its tokens per success fall by more than
+          half. The savings concentrate on long-horizon tasks, where one success costs less than two
+          fifths of its tokens under direct control. In exchange, the policy runs 45 inferences of
+          π₀.₅ or 135 of InternW0-Δ per episode.
+        </p>
+      </div>
+      <div class="harness-figure" data-harness-figure="tokens"></div>
+      <div class="case-insight">
+        <p>
+          With a post-trained policy, GPT-6-Astra reaches further on long-horizon and tabletop tasks
+          at a lower token cost per success. It remains bounded by high-precision contact, which
+          none of its components masters, and by loose coordination: the agent delegates by horizon
+          rather than by the competence of the policy, the policy receives the task instruction
+          instead of the agent's subgoal, and grasps left by a policy segment go unmaintained.
+        </p>
+      </div>
     </section>
   </div>
 </section>

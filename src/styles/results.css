@@ -17,6 +17,19 @@
     margin: 0;
     font-size: 1.375rem;
   }
+  .harness-figure-title,
+  .harness-kpi h4 {
+    margin: 26px 0 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #243756;
+  }
+  .harness-chart + .harness-figure-title {
+    margin-top: 44px;
+  }
+  .harness-kpi h4 {
+    margin: 0 0 6px;
+  }
   .chart-mode,
   .chart-metric,
   .result-view,

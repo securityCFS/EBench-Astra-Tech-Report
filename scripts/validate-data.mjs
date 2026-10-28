@@ -54,11 +54,28 @@ assert.deepEqual(
     ['InternW0-Delta', 0.56, 0.744],
   ],
 );
-for (const c of harness.configurations)
+for (const c of harness.configurations) {
   assert.ok(
     figures.models.some((m) => m.id === c.policy),
     c.policy + ' alone',
   );
+  // The per-task results average to the headline SR, and the endings cover the 510 paired episodes.
+  assert.deepEqual(Object.keys(c.tasks).sort(), figures.tasks.map((t) => t.task).sort());
+  const mean = Object.values(c.tasks).reduce((a, t) => a + t.sr, 0) / figures.tasks.length;
+  assert.ok(Math.abs(mean - 100 * c.sr) < 0.05, `${c.id} per-task mean ${mean}`);
+  const direct = Object.fromEntries(
+    Object.entries(c.endings).map(([k, v]) => [k, v.reduce((a, b) => a + b, 0)]),
+  );
+  assert.deepEqual(direct, { success: 237, limit: 229, claim: 21, failed: 22, other: 1 });
+  assert.equal(
+    c.newlyFailed.reduce((a, b) => a + b, 0),
+    c.endings.success.slice(1).reduce((a, b) => a + b, 0),
+  );
+  assert.equal(c.stepShare.success.length, 10);
+  assert.equal(c.stepShare.failure.length, 10);
+}
+for (const key of ['direct', ...harness.configurations.map((c) => c.id)])
+  assert.ok(harness.tokens[key].perSuccess > 0, key + ' tokens');
 for (const name of [
   'harness_glass_pi05',
   'harness_flip_cup_internw0',

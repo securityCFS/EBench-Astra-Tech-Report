@@ -229,34 +229,239 @@ function harnessCaseHTML(id) {
     .join('');
   return `<div class="case-heading"><div><h3>${c.title}</h3></div><div class="segmented" aria-label="${group.label}">${choices}</div></div><div class="${trio ? 'evidence-trio' : 'evidence-pair'} case-videos"${trio ? ` data-focus-labels="${c.focus.join('|')}"` : ''}>${c.videos.map(([path, label, detail, badge]) => video(path, label, detail, badge)).join('')}</div><div class="case-description report-prose">${c.text.map((p) => `<p>${p}</p>`).join('')}</div><div class="case-insight"><p>${group.insight}</p></div>`;
 }
-function renderHarnessTable(results) {
-  const groups = ['Low', 'Medium', 'High', 'Mobile', 'Fixed', 'Short Horizon', 'Long Horizon'];
-  const alone = (id) => {
-    const m = reportFigures.models.find((x) => x.id === id);
-    return {
-      sr: m.sr,
-      score: m.score,
-      groups: Object.fromEntries(groups.map((g) => [g, m.groups[g].sr])),
-    };
+// Section 07 shows one policy at a time, and every policy switch in it follows the last choice.
+let harnessResults,
+  harnessView = 'groups',
+  harnessPolicy = 0;
+const harnessColors = ['#7374b8', '#3f6d8f'],
+  harnessGroups = ['Low', 'Medium', 'High', 'Mobile', 'Fixed', 'Short Horizon', 'Long Horizon'],
+  harnessShifts = ['object', 'background', 'instruction', 'mix'];
+function harnessAlone(id) {
+  const m = reportFigures.models.find((x) => x.id === id);
+  return {
+    sr: m.sr,
+    score: m.score,
+    groups: Object.fromEntries(harnessGroups.map((g) => [g, m.groups[g].sr])),
+    generalization: Object.fromEntries(harnessShifts.map((s) => [s, m.generalization[s].sr])),
   };
+}
+function drawHarnessTable() {
   const rows = [
-    { label: 'GPT-6-Astra', note: 'direct control', agent: true, ...alone('Astra (ICL)') },
-    ...results.configurations.flatMap((c) => [
-      { label: modelLabel(c.policy), note: 'policy alone', ...alone(c.policy) },
+    { label: 'GPT-6-Astra', note: 'direct control', agent: true, ...harnessAlone('Astra (ICL)') },
+    ...harnessResults.configurations.flatMap((c) => [
+      { label: modelLabel(c.policy), note: 'policy alone', ...harnessAlone(c.policy) },
       { label: c.label, note: 'GPT-6-Astra + policy', agent: true, ...c },
     ]),
   ];
+  const groups = harnessView === 'groups',
+    columns = groups
+      ? harnessGroups.map((g) => (r) => r.groups[g])
+      : harnessShifts.map((s) => (r) => r.generalization[s]);
   const max = (get) => Math.max(...rows.map(get));
-  $('#harness-table').innerHTML =
-    `<div class="table-scroll benchmark-scroll" tabindex="0" role="region" aria-label="Direct control, each policy alone, and the harness with that policy"><table class="report-table report-table--heat benchmark-table"><thead><tr><th rowspan="2" scope="col">Configuration</th><th colspan="2" scope="colgroup">Overall</th><th colspan="3" scope="colgroup">Precision</th><th colspan="2" scope="colgroup">Mobility</th><th colspan="2" scope="colgroup">Horizon</th></tr><tr><th scope="col">SR (%)</th><th scope="col">Score</th><th scope="col">Low</th><th scope="col">Medium</th><th scope="col">High</th><th scope="col">Mobile</th><th scope="col">Tabletop</th><th scope="col">Short</th><th scope="col">Long</th></tr></thead><tbody>${rows
+  const head = groups
+    ? '<th colspan="3" scope="colgroup">Precision</th><th colspan="2" scope="colgroup">Mobility</th><th colspan="2" scope="colgroup">Horizon</th></tr><tr><th scope="col">SR (%)</th><th scope="col">Score</th><th scope="col">Low</th><th scope="col">Medium</th><th scope="col">High</th><th scope="col">Mobile</th><th scope="col">Tabletop</th><th scope="col">Short</th><th scope="col">Long</th>'
+    : '<th colspan="4" scope="colgroup">Controlled perturbations</th></tr><tr><th scope="col">SR (%)</th><th scope="col">Score</th><th scope="col">Object</th><th scope="col">Background</th><th scope="col">Instruction</th><th scope="col">Mixed</th>';
+  $('#harness-table .harness-table-body').innerHTML =
+    `<div class="table-scroll benchmark-scroll" tabindex="0" role="region" aria-label="Direct control, each policy alone, and the harness with that policy"><table class="report-table report-table--heat benchmark-table"><thead><tr><th rowspan="2" scope="col">Configuration</th><th colspan="2" scope="colgroup">Overall</th>${head}</tr></thead><tbody>${rows
       .map(
         (r) =>
-          `<tr class="${r.agent ? 'astra-row' : ''}"><th scope="row">${r.label}<small>${r.note}</small></th>${matrixCell(r.sr, 'sr', r.sr === max((x) => x.sr))}${matrixCell(r.score, 'score', r.score === max((x) => x.score))}${groups.map((g) => matrixCell(r.groups[g], 'sr', r.groups[g] === max((x) => x.groups[g]))).join('')}</tr>`,
+          `<tr class="${r.agent ? 'astra-row' : ''}"><th scope="row">${r.label}<small>${r.note}</small></th>${matrixCell(r.sr, 'sr', r.sr === max((x) => x.sr))}${matrixCell(r.score, 'score', r.score === max((x) => x.score))}${columns.map((get) => matrixCell(get(r), 'sr', get(r) === max(get))).join('')}</tr>`,
       )
       .join(
         '',
-      )}</tbody></table></div><p class="fineprint">Task-group columns give SR (%). Bold: best in column; shaded rows: GPT-6-Astra configurations.</p>`;
+      )}</tbody></table></div><p class="fineprint">${groups ? 'Task-group columns give SR (%).' : 'Perturbation columns give SR (%) over the episodes of each condition.'} Bold: best in column; shaded rows: GPT-6-Astra configurations.</p>`;
 }
+function harnessLegend(items) {
+  return `<div class="viz-legend">${items.map(([cls, label, color]) => `<span><i class="${cls}"${color ? ` style="--mark:${color}"` : ''}></i>${label}</span>`).join('')}</div>`;
+}
+const harnessFigures = {
+  tasks(body) {
+    const c = harnessResults.configurations[harnessPolicy],
+      policy = modelLabel(c.policy),
+      color = harnessColors[harnessPolicy];
+    const rows = reportFigures.tasks
+      .map((t) => ({
+        title: t.label,
+        direct: 100 * t.models['Astra (ICL)'].sr,
+        alone: 100 * t.models[c.policy].sr,
+        harness: c.tasks[t.task].sr,
+        share: c.tasks[t.task].share,
+      }))
+      .sort((a, b) => b.harness - b.direct - (a.harness - a.direct) || b.harness - a.harness);
+    const better = (r) => Math.max(r.direct, r.alone),
+      above = rows.filter((r) => r.harness > better(r) + 0.05).length,
+      below = rows.filter((r) => r.harness < better(r) - 0.05).length;
+    body.innerHTML = `<div class="field-summary"><div class="pos"><b>${above}</b><span>tasks where the harness exceeds both components</span></div><div><b>${rows.length - above - below}</b><span>tasks where it matches the better one</span></div><div class="neg"><b>${below}</b><span>tasks where it falls below the better one</span></div></div>${harnessLegend(
+      [
+        ['is-direct', 'Direct control'],
+        ['is-alone', `${policy} alone`],
+        ['is-harness', `Harness with ${policy}`, color],
+      ],
+    )}<div class="viz-figure harness-chart"></div><p class="fineprint">Tasks are ordered by the change in SR from direct control, given on the right in percentage points. Hover or focus a task for the share of physics steps that ${policy} executes.</p>`;
+    viz.harnessTasks(body.querySelector('.harness-chart'), { rows, policy, color });
+  },
+  episodes(body) {
+    const c = harnessResults.configurations[harnessPolicy],
+      e = c.endings,
+      endings = [
+        ['Success', 'is-success'],
+        ['Step limit reached', 'is-limit'],
+        ['Completion claimed', 'is-claim'],
+        ['Failure reported', 'is-failed'],
+        ['Other', 'is-other'],
+      ].map(([name, cls]) => ({ name, cls }));
+    const rows = [
+      ['Success', e.success],
+      ['Step limit reached', e.limit],
+      ['Completion claimed', e.claim],
+      ['Failure reported', e.failed],
+    ].map(([label, counts]) => ({ label, counts, n: counts.reduce((a, b) => a + b, 0) }));
+    const lost = e.success.slice(1).reduce((a, b) => a + b, 0),
+      won = [e.limit, e.claim, e.failed, e.other].reduce((a, r) => a + r[0], 0);
+    body.innerHTML = `<div class="field-summary"><div class="pos"><b>+${won}</b><span>episodes that fail under direct control succeed in the harness</span></div><div class="neg"><b>−${lost}</b><span>episodes that succeed under direct control fail in the harness</span></div><div><b>+${won - lost}</b><span>successful episodes in net, out of 510</span></div></div><h4 class="harness-figure-title">How each direct-control ending ends in the harness</h4>${harnessLegend(
+      endings.map((x) => [`is-ending ${x.cls}`, x.name]),
+    )}<div class="viz-figure harness-chart" data-chart-part="turnover"></div><h4 class="harness-figure-title">What decides the newly failed episodes</h4>${harnessLegend(
+      harnessResults.configurations.map((x, i) => ['is-series', x.label, harnessColors[i]]),
+    )}<div class="viz-figure harness-chart" data-chart-part="incidents"></div><p class="fineprint">Bars in the upper chart give shares of each direct-control ending, and the one episode that ends otherwise under direct control is omitted. Counts in the lower chart come from a call-by-call reading of each newly failed episode.</p>`;
+    viz.harnessTurnover(body.querySelector('[data-chart-part="turnover"]'), { rows, endings });
+    viz.pairedBars(body.querySelector('[data-chart-part="incidents"]'), {
+      // newlyFailed follows the paper's table: object lost in or after a policy segment, policy
+      // segment without the object or undoing a stage, own grasp slip, unmet completion, other.
+      rows: [
+        [0, 'Object lost in a policy segment or as the agent resumes control'],
+        [2, "The agent's own grasp slips"],
+        [1, 'Policy segment without the object, on the wrong one, or undoing a stage'],
+        [3, 'Completion claimed while a stage is unmet'],
+        [4, 'Other'],
+      ].map(([k, label]) => ({
+        label,
+        values: harnessResults.configurations.map((x) => x.newlyFailed[k]),
+      })),
+      series: harnessResults.configurations.map((x, i) => ({
+        label: x.label,
+        color: harnessColors[i],
+      })),
+      active: harnessPolicy,
+      label: 'Decisive incident of the newly failed episodes in each harness configuration',
+    });
+  },
+  delegation(body) {
+    const c = harnessResults.configurations[harnessPolicy],
+      policy = modelLabel(c.policy),
+      color = harnessColors[harnessPolicy];
+    body.innerHTML = `<div class="field-summary"><div><b>${c.policyStepShare.toFixed(1)}%</b><span>of the physics steps of a task executed by ${policy}, on average</span></div><div><b>${c.switches[0].toFixed(1)} <small>vs.</small> ${c.switches[1].toFixed(1)}</b><span>transitions between agent and policy per successful and unsuccessful episode</span></div><div><b>${c.recovery[0].toFixed(1)}% <small>vs.</small> ${c.recovery[1].toFixed(1)}%</b><span>of policy invocations ask to recover a slipped, missed, or displaced object</span></div></div>${harnessLegend(
+      [
+        ['is-line', 'Successful episodes', color],
+        ['is-line is-failure', 'Unsuccessful episodes'],
+      ],
+    )}<div class="viz-figure harness-chart"></div><p class="fineprint">Each point averages the share of physics steps executed by ${policy} in one tenth of an episode. Waypoint and gripper commands of GPT-6-Astra count as its own steps.</p>`;
+    viz.harnessDelegation(body.querySelector('.harness-chart'), {
+      ...c.stepShare,
+      policy,
+      color,
+    });
+  },
+  tokens(body) {
+    const t = harnessResults.tokens,
+      keys = ['direct', ...harnessResults.configurations.map((c) => c.id)],
+      series = [
+        { label: 'Direct control', color: '#3456ef' },
+        ...harnessResults.configurations.map((c, i) => ({
+          label: c.label,
+          color: harnessColors[i],
+        })),
+      ];
+    const card = (title, field, format, extra = () => '') =>
+      `<div class="harness-kpi"><h4>${title}</h4><dl>${keys
+        .map((k, i) => {
+          const cut = i
+            ? ` <small>−${Math.round(100 * (1 - t[k][field] / t.direct[field]))}%</small>`
+            : '';
+          return `<div style="--mark:${series[i].color}"><dt>${series[i].label}${extra(k)}</dt><dd>${format(t[k][field])}${cut}</dd></div>`;
+        })
+        .join('')}</dl></div>`;
+    const millions = (v) => `${v.toFixed(1)}M`;
+    body.innerHTML = `<div class="harness-kpis">${card('Tokens per success', 'perSuccess', millions)}${card('API cost per success', 'usdPerSuccess', (v) => `$${v.toFixed(2)}`)}${card(
+      'Tool calls per episode',
+      'toolCalls',
+      (v) => v.toFixed(1),
+      (k) =>
+        t[k].policyInferences
+          ? `<small class="harness-kpi-note">+ ${t[k].policyInferences} policy inferences</small>`
+          : '',
+    )}</div>${harnessLegend(series.map((s) => ['is-series', s.label, s.color]))}<div class="harness-token-charts"><figure><figcaption>Tokens per episode</figcaption><div class="viz-figure" data-chart-part="episode"></div></figure><figure><figcaption>Tokens per success</figcaption><div class="viz-figure" data-chart-part="success"></div></figure></div><p class="fineprint">Tokens count the input and output of GPT-6-Astra. Tokens per success divide all tokens of a group, including those of its unsuccessful episodes, by its successful episodes, and the API cost applies the published GPT-6-Astra tariff. Direct-control values are lower bounds, since 44 of its episodes lack their final token record.</p>`;
+    const bars = (part, groups, label) =>
+      viz.groupedBars(body.querySelector(`[data-chart-part="${part}"]`), {
+        groups: groups.map(([name, field]) => ({
+          label: name,
+          values: keys.map((k) => t[k][field]),
+        })),
+        series,
+        format: (v) => `${v.toFixed(2)}M`,
+        label,
+      });
+    bars(
+      'episode',
+      [
+        ['Successful', 'successful'],
+        ['Unsuccessful', 'unsuccessful'],
+      ],
+      'Mean tokens per successful and per unsuccessful episode',
+    );
+    bars(
+      'success',
+      [
+        ['Short horizon', 'shortPerSuccess'],
+        ['Long horizon', 'longPerSuccess'],
+      ],
+      'Tokens per success on short-horizon and long-horizon tasks',
+    );
+  },
+};
+function drawHarnessFigures() {
+  document.querySelectorAll('[data-harness-figure]').forEach((host) => {
+    harnessFigures[host.dataset.harnessFigure](host.querySelector('.harness-figure-body'));
+  });
+}
+function renderHarness(results) {
+  harnessResults = results;
+  $('#harness-table').innerHTML =
+    '<div class="harness-view" aria-label="Table columns"><button type="button" data-harness-view="groups" aria-pressed="true">Task groups</button><button type="button" data-harness-view="shifts" aria-pressed="false">Distribution shifts</button></div><div class="harness-table-body"></div>';
+  initSegmentedControl($('#harness-table .harness-view'));
+  drawHarnessTable();
+  document.querySelectorAll('[data-harness-figure]').forEach((host) => {
+    const switchable = host.dataset.harnessFigure !== 'tokens';
+    host.innerHTML = `${switchable ? `<div class="harness-policy" aria-label="Policy in the harness">${results.configurations.map((c, i) => `<button type="button" data-harness-policy="${i}" aria-pressed="${i === harnessPolicy}">${modelLabel(c.policy)}</button>`).join('')}</div>` : ''}<div class="harness-figure-body"></div>`;
+    if (switchable) initSegmentedControl(host.querySelector('.harness-policy'));
+    const body = host.querySelector('.harness-figure-body'),
+      draw = () => harnessFigures[host.dataset.harnessFigure](body);
+    draw();
+    viz.resizeRedraw(body, draw);
+    viz.bindTips(host);
+  });
+}
+document.addEventListener('click', (e) => {
+  const view = e.target.closest('[data-harness-view]'),
+    policy = e.target.closest('[data-harness-policy]');
+  if (view) {
+    harnessView = view.dataset.harnessView;
+    document
+      .querySelectorAll('[data-harness-view]')
+      .forEach((b) => b.setAttribute('aria-pressed', String(b === view)));
+    drawHarnessTable();
+  } else if (policy) {
+    harnessPolicy = Number(policy.dataset.harnessPolicy);
+    document
+      .querySelectorAll('[data-harness-policy]')
+      .forEach((b) =>
+        b.setAttribute(
+          'aria-pressed',
+          String(b.dataset.harnessPolicy === policy.dataset.harnessPolicy),
+        ),
+      );
+    drawHarnessFigures();
+  }
+});
 let activeCase = 'icl',
   iclTask = 'frame',
   adaptTask = 'teacup';
@@ -506,7 +711,7 @@ Promise.all(
       if (m.id === 'FastWAM') m.label = 'Fast-WAM';
     });
     renderAnalysis();
-    renderHarnessTable(h);
+    renderHarness(h);
     renderCase();
     enhanceEvidence(document);
     initResearch();
