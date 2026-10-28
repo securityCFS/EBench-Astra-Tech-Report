@@ -6,7 +6,7 @@ import { icon } from '../lib/icons.js';
   <summary class="recording-library__summary">
     <span class="recording-library__heading">
       <strong>More recorded cases</strong>
-      <span>Direct-control rollouts across all 26 tasks</span>
+      <span>Selected GPT-6-Astra rollouts across all 26 tasks</span>
     </span>
     <span class="recording-library__chevron" aria-hidden="true" set:html={icon('chevron-down')} />
   </summary>
@@ -27,8 +27,8 @@ import { icon } from '../lib/icons.js';
         <select id="demo-outcome">
           <option value="all">All outcomes</option>
           <option value="success">Success</option>
-          <option value="incomplete">Partial credit</option>
-          <option value="failed">Score of zero</option>
+          <option value="incomplete">Incomplete</option>
+          <option value="failed">Failed</option>
         </select>
       </label>
     </div>

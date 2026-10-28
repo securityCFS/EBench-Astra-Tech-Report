@@ -1,0 +1,123 @@
+---
+import DemonstrationCard from '../DemonstrationCard.astro';
+import ExecutionDemo from '../ExecutionDemo.astro';
+import ExecutionTiming from '../ExecutionTiming.astro';
+---
+
+<section id="setup" class="section setup-showcase">
+  <div class="section-inner">
+    <h2>02 Experiment Setup: Benchmark composition and evaluation protocol</h2>
+    <div class="report-prose">
+      <section
+        id="evaluation-tasks"
+        class="setup-subsection"
+        aria-labelledby="evaluation-tasks-title"
+      >
+        <h3 id="evaluation-tasks-title">Evaluation Tasks</h3>
+        <h4>EBench: generalization under controlled variations</h4>
+        <p>
+          Our main evaluation covers all 26 tasks in the EBench test split, spanning nine scene categories across household, retail, and industrial settings. These include 19 mobile and 7 tabletop tasks, with task-level annotations of mobility, manipulation precision, and task horizon. We evaluate generalization under controlled variations in objects, backgrounds, instructions, and their combinations. Across the 510 evaluated episodes, we measure task success rate (SR) and Score, which captures normalized partial completion at the end of an episode. Both metrics are first averaged within each task and then averaged equally across the 26 tasks.
+        </p>
+        <h4>Beyond EBench: generalization to task compositions</h4>
+        <p>
+          We evaluate generalization to an unseen task and the ability to compose it with an
+          already-mastered task in sequence. The compositional task asks to place a bookmark and
+          then a pen on the same open book, combining the familiar "Bookmark on Book" task with a
+          new pairing, "Pen on Book". The{' '}
+          <a href="#case-poc-setting">compositional evaluation setting</a> details the training-task
+          coverage, prescribed sequence, and scoring protocol.
+        </p>
+      </section>
+
+      <section
+        id="adaptation-protocol"
+        class="setup-subsection"
+        aria-labelledby="adaptation-protocol-title"
+      >
+        <h3 id="adaptation-protocol-title">Model Adaptation and Evaluation Protocol</h3>
+        <p>
+          We compare GPT-6-Astra with eight post-trained Vision-Language-Action (VLA) and World-Action
+          Model (WAM) policies using their reported EBench leaderboard results. These policies are
+          trained on the public EBench training dataset, which contains 6,600 episodes across 26 tasks.
+          GPT-6-Astra receives one annotated training demonstration per task as in-context input,
+          without parameter updates.
+        </p>
+        <p>
+          To construct this context, a separate GPT-6-Astra instance, configured with high
+          reasoning effort, reviews one video trajectory from the training set and autonomously
+          selects and annotates 10–18 keyframes. The annotations are paired with the corresponding
+          robot states and recorded actions to form the demonstration context. All evaluation
+          episodes of the same task reuse this context across seeds. During execution, GPT-6-Astra
+          uses the demonstration to inform decisions based on current observations, rather than
+          replaying the recorded coordinates.
+        </p>
+        <DemonstrationCard />
+        <p>
+          Physical execution in the main evaluation follows the{' '}
+          <strong>same task-specific physics-step limits as the baseline policies</strong>. We
+          impose no additional aggregate cap on GPT-6-Astra's tokens, tool calls, or inference time.
+          GPT-6-Astra may issue a termination signal before the execution limit; the server determines the final
+          task success and Score. If the policy stops early, the runner holds the robot and advances
+          the simulator to obtain that terminal result.
+        </p>
+      </section>
+
+      <section
+        id="observations-control"
+        class="setup-subsection"
+        aria-labelledby="observations-control-title"
+      >
+        <h3 id="observations-control-title">Observations and Direct Robot Control</h3>
+        <h4>Inputs: camera views and robot state</h4>
+        <p>
+          GPT-6-Astra serves directly as the control agent with <code class="reasoning-effort-highlight">high</code> reasoning effort. At each decision step, it receives RGB observations and the current robot state, including end-effector (EEF) poses, gripper state, base pose, and the simulator timestep. The initial observation includes images from the overview, left wrist, and right wrist cameras; subsequent tool calls return the camera views requested by the model.
+        </p>
+        <p>
+          The model receives no privileged information like depth data, ground-truth object
+          poses, camera calibration, segmentation, intermediate task scores, or subgoal-completion
+          signals. Current elapsed simulation steps are reported, but the maximum physics-step
+          budget remains hidden.
+        </p>
+        <h4>Outputs: Actions through a fixed interface</h4>
+        <p>
+          Given the current EEF pose, gripper state, and base position, GPT-6-Astra adaptively
+          outputs one or more EEF waypoints, together with gripper and base targets and execution
+          durations. The waypoints are interpolated into an action chunk and executed open-loop
+          before the next observation is returned. No post-trained VLA or WAM generates or refines
+          GPT-6-Astra's actions.
+        </p>
+        <p>
+          The interaction follows an observation–decision–execution–feedback loop. After the
+          trajectory finishes executing, the control interface returns the updated proprioceptive
+          observations and the requested camera views for the next decision. The model does not
+          receive intermediate observations or make new decisions between the interpolated
+          segments within that chunk.
+        </p>
+
+        {/* <ExecutionTiming /> */}
+        <ExecutionDemo />
+      </section>
+    </div>
+  </div>
+</section>
+
+<style>
+  .setup-subsection {
+    text-align: left;
+    scroll-margin-top: calc(var(--header-height) + 1.5rem);
+  }
+  .setup-subsection > h3 {
+    font-size: 1.875rem;
+  }
+  .setup-subsection > h4 {
+    margin: 1.75rem 0 0.875rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .reasoning-effort-highlight {
+    background-color: #5b616b;
+    color: #fff;
+    padding: 0.1em 0.3em;
+    border-radius: 0.2em;
+  }
+</style>

@@ -1,0 +1,27 @@
+---
+import { icon } from '../../lib/icons.js';
+import OverallResults from '../OverallResults.astro';
+---
+
+<section id="overall" class="section">
+  <div class="section-inner">
+    <div class="section-heading benchmark-opening">
+      <div>
+        <h2>01 Benchmark Results</h2>
+      </div>
+      <p>
+        We report <strong>success rate (SR)</strong> alongside <strong>Score</strong>, which credits
+        partial completion at the end of an episode. Both metrics are averaged equally across tasks.
+      </p>
+      <div id="model-references" class="model-reference-entry">
+        <a href="#model-references">
+          Model References <Fragment set:html={icon('external-link')} />
+        </a>
+      </div>
+    </div>
+    <div id="overall-content">
+      <OverallResults />
+    </div>
+  </div>
+</section>
+

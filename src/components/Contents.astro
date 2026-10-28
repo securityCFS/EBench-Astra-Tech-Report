@@ -17,48 +17,100 @@ import { icon } from '../lib/icons.js';
 <aside class="report-toc" aria-label="Report contents">
   <nav id="report-toc-links" aria-label="On this page">
     <p class="toc-title">Contents</p>
-    <a href="#introduction">Abstract</a>
+    <a href="#introduction">Opening</a>
+    <a href="#overall">
+      <span class="toc-number">01</span> <span class="toc-label">Benchmark Results</span>
+    </a>
+    <a href="#model-references" class="toc-subsection">
+      <span class="toc-number" aria-hidden="true"></span>{' '}
+      <span class="toc-label">Model References</span>
+    </a>
     <a href="#setup">
-      <span class="toc-number">01</span> <span class="toc-label">Agent and Harness</span>
+      <span class="toc-number">02</span> <span class="toc-label">Experiment Setup</span>
     </a>
-    <a href="#capability">
-      <span class="toc-number">02</span> <span class="toc-label">Direct Control</span>
-    </a>
-    <a href="#comparison" class="toc-subsection">
+    <a href="#evaluation-tasks" class="toc-subsection">
       <span class="toc-number" aria-hidden="true"></span>{' '}
-      <span class="toc-label">Benchmark Results</span>
+      <span class="toc-label">Evaluation Tasks</span>
     </a>
-    <a href="#mobile" class="toc-subsection">
+    <a href="#adaptation-protocol" class="toc-subsection">
       <span class="toc-number" aria-hidden="true"></span>{' '}
-      <span class="toc-label">Where the Agent Leads</span>
+      <span class="toc-label">Adaptation and Protocol</span>
+    </a>
+    <a href="#observations-control" class="toc-subsection">
+      <span class="toc-number" aria-hidden="true"></span>{' '}
+      <span class="toc-label">Observations and Control</span>
+    </a>
+    <a href="#comparison">
+      <span class="toc-number">03</span> <span class="toc-label">Score and Ranking</span>
+    </a>
+    <a href="#findings">
+      <span class="toc-number">04</span> <span class="toc-label">General Analysis</span>
     </a>
     <a href="#limits" class="toc-subsection">
       <span class="toc-number" aria-hidden="true"></span>{' '}
-      <span class="toc-label">Where Execution Breaks Down</span>
+      <span class="toc-label">Failure Patterns</span>
     </a>
-    <a href="#direct-episodes" class="toc-subsection">
-      <span class="toc-number" aria-hidden="true"></span> <span class="toc-label">Adaptation</span>
+    <a href="#mobile" class="toc-subsection">
+      <span class="toc-number" aria-hidden="true"></span>{' '}
+      <span class="toc-label">Capability Differences</span>
+    </a>
+    <a href="#behavior" class="toc-subsection">
+      <span class="toc-number" aria-hidden="true"></span>{' '}
+      <span class="toc-label">Adaptive Capabilities</span>
     </a>
     <a href="#safety" class="toc-subsection">
-      <span class="toc-number" aria-hidden="true"></span> <span class="toc-label">Safety</span>
+      <span class="toc-number" aria-hidden="true"></span>{' '}
+      <span class="toc-label">Safety in Execution</span>
+    </a>
+    <a href="#cases">
+      <span class="toc-number">05</span> <span class="toc-label">Case Studies</span>
     </a>
     <a href="#case-icl" class="toc-subsection">
       <span class="toc-number" aria-hidden="true"></span>{' '}
-      <span class="toc-label">Case Studies</span>
+      <span class="toc-label">In-Context Learning</span>
     </a>
-    <a href="#case-poc" class="toc-subsection">
+    <a href="#case-adapt" class="toc-subsection">
       <span class="toc-number" aria-hidden="true"></span>{' '}
-      <span class="toc-label">Zero-shot Composition</span>
+      <span class="toc-label">Adaptation and Precision</span>
     </a>
-    <a href="#tool">
-      <span class="toc-number">03</span> <span class="toc-label">Harness with Policy</span>
+    <a href="#case-poc">
+      <span class="toc-number">06</span> <span class="toc-label">Compositional Generalization</span>
     </a>
-    <a href="#harness-episodes" class="toc-subsection">
+    <a href="#case-poc-setting" class="toc-subsection">
       <span class="toc-number" aria-hidden="true"></span>{' '}
-      <span class="toc-label">Agent and Policy at Work</span>
+      <span class="toc-label">Evaluation Setting</span>
+    </a>
+    <a href="#case-poc-analysis" class="toc-subsection">
+      <span class="toc-number" aria-hidden="true"></span>{' '}
+      <span class="toc-label">Compositional Task Execution</span>
+    </a>
+    <a href="#harness">
+      <span class="toc-number">07</span> <span class="toc-label">Harness with Policy</span>
+    </a>
+    <a href="#harness-setting" class="toc-subsection">
+      <span class="toc-number" aria-hidden="true"></span>{' '}
+      <span class="toc-label">Evaluation Setting</span>
+    </a>
+    <a href="#harness-results" class="toc-subsection">
+      <span class="toc-number" aria-hidden="true"></span>{' '}
+      <span class="toc-label">Overall Performance</span>
+    </a>
+    <a href="#case-harness-gain" class="toc-subsection">
+      <span class="toc-number" aria-hidden="true"></span>{' '}
+      <span class="toc-label">Where the Policy Helps</span>
+    </a>
+    <a href="#case-harness-loss" class="toc-subsection">
+      <span class="toc-number" aria-hidden="true"></span>{' '}
+      <span class="toc-label">Where the Coordination Breaks</span>
     </a>
     <a href="#conclusion">
-      <span class="toc-number">04</span> <span class="toc-label">Conclusions</span>
+      <span class="toc-number">08</span> <span class="toc-label">Conclusions and Future Works</span>
+    </a>
+    <a href="#related-work">
+      <span class="toc-number">09</span> <span class="toc-label">Related Work</span>
+    </a>
+    <a href="#references">
+      <span class="toc-number">10</span> <span class="toc-label">References</span>
     </a>
   </nav>
 </aside>

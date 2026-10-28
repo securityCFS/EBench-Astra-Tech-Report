@@ -1,61 +1,79 @@
----
-import ExecutionDemo from '../ExecutionDemo.astro';
----
-
-<section id="tool" class="section" aria-labelledby="tool-title">
+<section id="harness" class="section" aria-labelledby="harness-title">
   <div class="section-inner">
-    <h2 id="tool-title">03 Harness with Policy</h2>
-    <div class="report-prose">
-      <p>
-        Invoking a post-trained policy raises SR from 46.7% under direct control to 53.0% with π₀.₅
-        and to 56.0% with InternW0-Δ, mainly on long-horizon and tabletop tasks. The harness with
-        InternW0-Δ thereby surpasses OpenWAM-α, the strongest post-trained policy, on both metrics.
-      </p>
-    </div>
-    <ul
-      class="highlight-grid highlight-grid--compact"
-      aria-label="Direct control against the harness with π₀.₅ and with InternW0-Δ"
+    <h2 id="harness-title">07 Harness with Policy</h2>
+    <section
+      id="harness-setting"
+      class="case-study-section"
+      aria-labelledby="harness-setting-title"
     >
-      <li>
-        <strong>46.7 → 53.0 / 56.0</strong>
-        <span>SR (%) with π₀.₅ / InternW0-Δ</span>
-      </li>
-      <li>
-        <strong>8.1M → 3.5M / 4.0M</strong>
-        <span>tokens per success</span>
-      </li>
-      <li>
-        <strong>42.6 → 23.7 / 22.7</strong>
-        <span>tool calls per episode</span>
-      </li>
-    </ul>
-    <figure class="paper-figure" id="fig-harness-radar">
-      <img
-        src="media/figures/harness_radar.svg"
-        width="406"
-        height="367"
-        alt="Radar charts of SR for direct control, each policy alone, and the harness with that policy"
-        loading="lazy"
-        decoding="async"
-      />
-      <figcaption>
-        SR of the agent under direct control, of each policy alone, and of the harness with that
-        policy, for π₀.₅ in (a, b) and InternW0-Δ in (c, d), across task groups in (a, c) and across
-        generalization dimensions in (b, d).
-      </figcaption>
-    </figure>
-    <ExecutionDemo
-      id="harness-episodes"
-      title="How the agent and the policy share the work"
-      catalog="data/episodes/harness.json"
+      <h3 id="harness-setting-title">Evaluation Setting</h3>
+      <div class="report-prose">
+        <p>
+          The comparisons above suggest complementary strengths: GPT-6-Astra interprets tasks and
+          recovers disrupted goals, whereas post-trained policies execute precise and bimanual
+          contact more reliably. The harness with policy combines the two. Following{' '}
+          <a
+            class="source-link"
+            href="https://arxiv.org/abs/2607.08448"
+            target="_blank"
+            rel="noopener"
+          >
+            Harness VLA
+          </a>
+          , implemented in RPent{' '}
+          <a class="paper-citation" href="#ref-rpent" role="doc-biblioref" aria-label="Reference 1">
+            [1]
+          </a>
+          , it exposes a frozen post-trained policy as a callable tool alongside the EEF waypoint
+          interface, together with a call that returns the annotated demonstration on request. In
+          each invocation, GPT-6-Astra assigns the policy 1–300 physics steps. Within these steps,
+          the policy acts without intervention from the agent and then returns new visual and
+          proprioceptive observations.
+        </p>
+        <p>
+          We evaluate two policies post-trained on EBench demonstrations across all 510 test
+          episodes: the VLA π₀.₅, which acts on the current observation and replans every 30 physics
+          steps, and the WAM InternW0-Δ, which also conditions on two earlier frames and replans
+          every 10 physics steps. Evaluated alone, π₀.₅ trails GPT-6-Astra on both metrics, and
+          InternW0-Δ exceeds it.
+        </p>
+      </div>
+    </section>
+    <section
+      id="harness-results"
+      class="case-study-section"
+      aria-labelledby="harness-results-title"
     >
-      <p>
-        The bar under each recording marks the executor: the agent's own commands in blue, π₀.₅ in
-        purple, and InternW0-Δ in teal. In the two successes, the policy completes the bimanual and
-        articulated stages. The three failures show where the coordination stays loose: a completion
-        claim on an unseated gear, a grasp left unmaintained after a policy segment, and a policy
-        segment that undoes a completed stage.
-      </p>
-    </ExecutionDemo>
+      <h3 id="harness-results-title">Overall Performance</h3>
+      <div class="report-prose">
+        <p>
+          Each harness configuration outperforms both of its components. Overall SR rises from 46.7%
+          under direct control to <strong>53.0% with π₀.₅ and 56.0% with InternW0-Δ</strong>, and
+          the Score from 0.654 to 0.692 and 0.744. With InternW0-Δ, the harness surpasses OpenWAM-α,
+          the strongest post-trained policy, on both metrics. The gains concentrate on long-horizon
+          and tabletop tasks, where the policies alone outperform direct control, whereas on
+          high-precision tasks both configurations remain below the policies alone. Invoking a
+          policy also reduces the token cost per success from 8.1M under direct control to 3.5M with
+          π₀.₅ and 4.0M with InternW0-Δ.
+        </p>
+      </div>
+      <div id="harness-table"></div>
+    </section>
+    <section
+      id="case-harness-gain"
+      class="case-study-section"
+      aria-labelledby="case-harness-gain-title"
+    >
+      <h3 id="case-harness-gain-title">Where the Policy Helps</h3>
+      <div class="case-study-content"></div>
+    </section>
+    <section
+      id="case-harness-loss"
+      class="case-study-section"
+      aria-labelledby="case-harness-loss-title"
+    >
+      <h3 id="case-harness-loss-title">Where the Coordination Breaks</h3>
+      <div class="case-study-content"></div>
+    </section>
   </div>
 </section>

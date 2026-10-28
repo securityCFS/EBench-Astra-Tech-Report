@@ -9,6 +9,14 @@ function initShowcase() {
     }),
   );
   document.addEventListener('click', (e) => {
+    const link = e.target.closest('[data-open-case]');
+    if (link) {
+      if (link.dataset.openCase === 'mobile') {
+        document.getElementById('mobile').scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+      openSelectedCase(link.dataset.openCase);
+    }
     const limit = e.target.closest('[data-limit]');
     if (limit) {
       document.querySelectorAll('#limits-content video').forEach((v) => {
@@ -36,7 +44,7 @@ function enhanceCaseControls(area) {
     tools.className = 'case-video-toolbar';
     tools.innerHTML =
       (trio
-        ? '<div class="case-model-tabs" aria-label="Focus a model"><button type="button" data-focus="all" aria-pressed="true">Compare all</button><button type="button" data-focus="0" aria-pressed="false">GPT-6-Astra</button><button type="button" data-focus="1" aria-pressed="false">π₀.₅</button><button type="button" data-focus="2" aria-pressed="false">OpenWAM-α</button></div>'
+        ? `<div class="case-model-tabs" aria-label="Focus a model"><button type="button" data-focus="all" aria-pressed="true">Compare all</button>${(videos.dataset.focusLabels?.split('|') ?? ['GPT-6-Astra', 'π₀.₅', 'OpenWAM-α']).map((label, i) => `<button type="button" data-focus="${i}" aria-pressed="false">${label}</button>`).join('')}</div>`
         : '') +
       `<button type="button" class="case-play" aria-pressed="false" aria-label="Play all">${reportIcon('play')}<span>Play all</span></button>`;
     videos.before(tools);

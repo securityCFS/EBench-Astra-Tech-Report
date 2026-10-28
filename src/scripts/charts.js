@@ -9,6 +9,149 @@ const chartModels = [
   ['GigaBrain-0.7', 'GigaBrain-0.7', '#bac4d8'],
   ['FastWAM', 'Fast-WAM', '#7e9fbd'],
 ];
+const chartSpecs = {
+  overall: { title: 'Overall benchmark performance', groups: [['All tasks', null]], note: '' },
+  mobility: {
+    title: 'Performance by mobility',
+    field: 'mobility',
+    groups: [
+      ['Mobile', 'Mobile'],
+      ['Tabletop', 'Fixed'],
+    ],
+  },
+  precision: {
+    title: 'Performance by precision requirement',
+    field: 'precision',
+    groups: [
+      ['Low', 'Low'],
+      ['Medium', 'Medium'],
+      ['High', 'High'],
+    ],
+  },
+  horizon: {
+    title: 'Performance by task horizon',
+    field: 'horizon',
+    groups: [
+      ['Short', 'Short Horizon'],
+      ['Long', 'Long Horizon'],
+    ],
+  },
+  perturbation: {
+    title: 'Performance under controlled perturbations',
+    groups: [['Object'], ['Background'], ['Instruction'], ['Mixed']],
+    note: 'Object: 24 tasks / 120 episodes. Other conditions: 26 tasks / 130 episodes. Five episodes per task and condition.',
+    values: [
+      [44.17, 50.77, 44.62, 46.15],
+      [52.5, 61.54, 60, 44.62],
+      [40.83, 55.38, 51.54, 33.85],
+      [41.67, 42.31, 46.15, 34.62],
+    ],
+  },
+};
+function reportChart(kind) {
+  return `<figure class="report-chart" data-chart="${kind}"></figure>`;
+}
+function initCharts() {
+  document.querySelectorAll('[data-chart]:not([data-chart-ready])').forEach((host) => {
+    host.dataset.chartReady = 'true';
+    const kind = host.dataset.chart,
+      spec = chartSpecs[kind];
+    if (['mobility', 'precision', 'horizon'].includes(kind)) {
+      initProfileChart(host, kind, spec);
+      return;
+    }
+    const available = kind === 'perturbation' ? chartModels.slice(0, 4) : chartModels;
+    let metric = 'sr',
+      selected = available.map((_, i) => kind === 'overall' || i < 3);
+    host.innerHTML = `<div class="chart-heading"><h4>${spec.title}</h4>${kind === 'perturbation' ? '<span>Success rate (%)</span>' : '<div class="chart-metrics" aria-label="Chart metric"><button data-metric="sr" aria-pressed="true">SR (%)</button><button data-metric="score" aria-pressed="false">Score</button></div>'}</div><div class="chart-series" aria-label="Models to compare">${available.map(([key, label, color], i) => `<button data-series="${i}" aria-pressed="${selected[i]}" style="--series:${color}"><i></i>${label}</button>`).join('')}</div><div class="chart-drawing"></div><p class="chart-readout" aria-live="polite"></p>${spec.note === '' ? '' : `<figcaption>${spec.note || 'Task-averaged performance within each attribute group.'}</figcaption>`}`;
+    initSegmentedControl(host.querySelector('.chart-metrics'));
+    function draw() {
+      const visible = available
+        .map((m, i) => ({ ...{ key: m[0], label: m[1], color: m[2] }, index: i }))
+        .filter((m) => selected[m.index]);
+      const groups = spec.groups.map(([label, value], gi) => {
+        const subset = tasks.filter((t) => !spec.field || t[spec.field] === value);
+        return {
+          label: label + (spec.field ? ` · ${subset.length} tasks` : ''),
+          values: visible.map((m) => ({
+            ...m,
+            value: spec.values
+              ? spec.values[m.index][gi]
+              : chartAggregate(m.key, metric, spec.field, value, subset) *
+                (metric === 'sr' ? 100 : 1),
+          })),
+        };
+      });
+      if (kind === 'overall')
+        groups.forEach((group) => group.values.sort((a, b) => b.value - a.value));
+      const width = Math.max(280, Math.min(760, host.clientWidth)),
+        left = width < 500 ? 165 : 190,
+        right = 75,
+        plot = width - left - right,
+        row = 32,
+        groupGap = 34,
+        height = 52 + groups.length * (visible.length * row + groupGap);
+      const fmt = (v) => (metric === 'sr' ? v.toFixed(1) + '%' : v.toFixed(3)),
+        max = metric === 'sr' ? 100 : 1;
+      let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" role="group" aria-label="${spec.title}: ${metric === 'sr' ? 'success rate' : 'Score'}" font-family="STIX Two Text, Times, serif" font-size="15">`;
+      for (let i = 0; i <= 4; i++) {
+        const x = left + (plot * i) / 4;
+        svg += `<line x1="${x}" x2="${x}" y1="24" y2="${height - 25}" stroke="#e4e8ed"/><text x="${x}" y="15" text-anchor="middle" fill="#77818b">${metric === 'sr' ? i * 25 : (i / 4).toFixed(2)}</text>`;
+      }
+      let y = 43;
+      groups.forEach((g) => {
+        if (kind !== 'overall') {
+          svg += `<text x="0" y="${y}" fill="#283645" font-weight="600">${g.label}</text>`;
+          y += 21;
+        }
+        g.values.forEach((m) => {
+          const label = `${g.label} — ${m.label}: ${fmt(m.value)}`;
+          svg += `<g class="chart-mark" tabindex="0" aria-label="${label}"><title>${label}</title><rect x="0" y="${y - 15}" width="${width}" height="26" fill="transparent"/>${chartModelLabel(m.label, left, y)}<rect x="${left}" y="${y - 12}" width="${(plot * m.value) / max}" height="16" rx="7" fill="${m.color}"/><text x="${left + (plot * m.value) / max + 7}" y="${y}" fill="#273542">${fmt(m.value)}</text></g>`;
+          y += row;
+        });
+        y += kind === 'overall' ? 0 : 13;
+      });
+      host.querySelector('.chart-drawing').innerHTML = svg + '</svg>';
+      host.querySelectorAll('.chart-mark').forEach((mark) => {
+        const show = () =>
+          (host.querySelector('.chart-readout').textContent = mark.getAttribute('aria-label'));
+        mark.addEventListener('pointerenter', show);
+        mark.addEventListener('focus', show);
+        mark.addEventListener('click', show);
+      });
+    }
+    host.addEventListener('click', (e) => {
+      const metricButton = e.target.closest('[data-metric]'),
+        seriesButton = e.target.closest('[data-series]');
+      if (metricButton) {
+        metric = metricButton.dataset.metric;
+        host
+          .querySelectorAll('[data-metric]')
+          .forEach((b) => b.setAttribute('aria-pressed', String(b === metricButton)));
+      } else if (seriesButton) {
+        const i = +seriesButton.dataset.series;
+        if (selected[i] && selected.filter(Boolean).length === 1) return;
+        selected[i] = !selected[i];
+        seriesButton.setAttribute('aria-pressed', String(selected[i]));
+      } else return;
+      draw();
+      host.querySelector('.chart-readout').textContent = '';
+    });
+    draw();
+    let lastWidth = host.clientWidth;
+    const resize = new ResizeObserver(() => {
+      if (!host.isConnected) {
+        resize.disconnect();
+        return;
+      }
+      if (host.clientWidth !== lastWidth) {
+        lastWidth = host.clientWidth;
+        draw();
+      }
+    });
+    resize.observe(host);
+  });
+}
 const taskGroupDimensions = [
   {
     field: 'mobility',
@@ -115,8 +258,7 @@ function initTaskTable() {
                   '',
                 )}<td><button type="button" class="table-video" data-task-video="${t.task}" title="Watch ${title(t.task)}" aria-label="Watch ${title(t.task)}">${reportIcon('play')}</button></td></tr>`,
           )
-          .join('') ||
-        `<tr><td class="table-empty" colspan="${orderedModels.length + 2}">No matching tasks.</td></tr>`
+          .join('') || '<tr><td class="table-empty" colspan="10">No matching tasks.</td></tr>'
       }</tbody></table>`;
     };
     const menu = root.querySelector('.task-group-control'),
@@ -209,6 +351,15 @@ function initTaskTable() {
   });
 }
 
+function chartAggregate(key, metric, field, group, subset) {
+  const model = reportFigures.models?.find((m) => m.id === key);
+  if (model) {
+    const value = field ? model.groups[group]?.[metric] : model[metric];
+    if (value !== undefined) return value;
+  }
+  return subset.reduce((sum, t) => sum + Number(t[key + '_' + metric]), 0) / subset.length;
+}
+
 // Shared absolute scale for both heatmaps, with luminance-based text contrast.
 function heatRGB(value) {
   const stops = [
@@ -235,4 +386,48 @@ function heatInk(value) {
   });
   const luminance = 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
   return 1.05 / (luminance + 0.05) >= (luminance + 0.05) / 0.05 ? '#fff' : '#000';
+}
+
+function initProfileChart(host, kind, spec) {
+  let metric = 'sr';
+  host.classList.add('profile-table-chart');
+  host.innerHTML = `<div class="chart-heading"><h4>${spec.title}</h4><div class="chart-metrics" role="group" aria-label="${spec.title} metric"><button type="button" data-metric="sr" aria-pressed="true">SR (%)</button><button type="button" data-metric="score" aria-pressed="false">Score</button></div></div><div class="table-scroll profile-table-scroll" tabindex="0" role="region" aria-label="${spec.title} results"></div><figcaption>Equal-task means within each group. <strong>Bold</strong>: best in column; shaded row: GPT-6-Astra.</figcaption>`;
+  initSegmentedControl(host.querySelector('.chart-metrics'));
+
+  function draw() {
+    const groups = spec.groups.map(([label, group]) => {
+      const subset = tasks.filter((task) => task[spec.field] === group);
+      // Keep the same published equal-task aggregates (and fallback) as the profile plots.
+      const values = chartModels.map(([key]) =>
+        chartAggregate(key, metric, spec.field, group, subset),
+      );
+      return { label, group, count: subset.length, values, best: Math.max(...values) };
+    });
+    const format = (value) => (metric === 'sr' ? (value * 100).toFixed(1) + '%' : value.toFixed(3));
+    const metricLabel = metric === 'sr' ? 'Success rate (%)' : 'Score (0–1)';
+    host.querySelector('.profile-table-scroll').innerHTML =
+      `<table class="report-table report-table--plain profile-results" data-profile="${kind}" data-metric="${metric}" aria-label="${spec.title}: ${metricLabel}"><thead><tr><th scope="col">Model</th>${groups.map((group) => `<th scope="col" data-group="${group.group}">${group.label}<small>${group.count} tasks</small></th>`).join('')}</tr></thead><tbody>${chartModels
+        .map(
+          ([key, label], index) =>
+            `<tr data-model="${key}"${key === 'Astra (ICL)' ? ' class="astra-row"' : ''}><th scope="row">${label}</th>${groups
+              .map((group) => {
+                const value = group.values[index];
+                const best = value === group.best;
+                return `<td data-group="${group.group}" data-value="${value}" data-metric="${metric}"${best ? ' class="is-best"' : ''}>${best ? `<strong>${format(value)}</strong>` : format(value)}</td>`;
+              })
+              .join('')}</tr>`,
+        )
+        .join('')}</tbody></table>`;
+  }
+
+  host.addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-metric]');
+    if (!button || button.dataset.metric === metric) return;
+    metric = button.dataset.metric;
+    host
+      .querySelectorAll('button[data-metric]')
+      .forEach((control) => control.setAttribute('aria-pressed', String(control === button)));
+    draw();
+  });
+  draw();
 }

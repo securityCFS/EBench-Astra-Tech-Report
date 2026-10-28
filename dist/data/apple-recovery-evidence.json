@@ -1,0 +1,28 @@
+{
+  "task": "apple_to_fruit_bowl",
+  "seed": "006",
+  "condition": "icl",
+  "server_instruction": "Move the apple from the dining table into the fruit bowl.",
+  "server_result": {
+    "sr": 1.0,
+    "score": 1.0
+  },
+  "policy_physics_steps": 1041,
+  "source_archive": "astra_web_evidence_20260918_core.zip",
+  "source_path": "evidence/main/episodes/apple_to_fruit_bowl_006/",
+  "record_type": "Public tool action arguments, not hidden reasoning",
+  "actions": [
+    {
+      "call": "call_00010",
+      "reason": "The finger gap closed during transport, indicating the apple slipped. Move the empty hand clear to locate the apple before retrying."
+    },
+    {
+      "call": "call_00011",
+      "reason": "Withdraw to a wider view of the tabletop to locate the slipped apple without disturbing the bowl."
+    },
+    {
+      "call": "call_00017",
+      "reason": "Carry the apple a short distance left and forward using the arm alone, avoiding the earlier base-motion slip."
+    }
+  ]
+}

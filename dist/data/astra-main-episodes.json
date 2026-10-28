@@ -1,0 +1,3572 @@
+[
+  {
+    "task": "apple_from_shelf",
+    "seed": "000",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/000"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "001",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/001"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "002",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/002"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "003",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/003"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "004",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/004"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/005"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "006",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/006"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "007",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/007"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "008",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/008"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "009",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/009"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "010",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/010"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/011"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "012",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/012"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "013",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/013"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "014",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/014"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "015",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/015"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "016",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/016"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/017"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "018",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/018"
+  },
+  {
+    "task": "apple_from_shelf",
+    "seed": "019",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_apple_solo_20260917/ebench/mobile_manip/apple_from_shelf_test_mini/019"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "000",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/000"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "001",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/001"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "002",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/002"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/003"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "004",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/004"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "005",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/005"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "006",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/006"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "007",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/007"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "008",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/008"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/009"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "010",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/010"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/011"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "012",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/012"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "013",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/013"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "014",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/014"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "015",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/015"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "016",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/016"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "017",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/017"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "018",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/018"
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "019",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/apple_to_fruit_bowl_test_mini/019"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "000",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/000"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "001",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/001"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "002",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/002"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "003",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/003"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "004",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/004"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "005",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/005"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "006",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/006"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "007",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/007"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "008",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/008"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "009",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/009"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "010",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/010"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/011"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "012",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/012"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "013",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/013"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "014",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/014"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "015",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/015"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "016",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/016"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "017",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/017"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "018",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/018"
+  },
+  {
+    "task": "bookmark_on_book",
+    "seed": "019",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bookmark_on_book_test_mini/019"
+  },
+  {
+    "task": "bottle",
+    "seed": "000",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/000"
+  },
+  {
+    "task": "bottle",
+    "seed": "001",
+    "sr": 0.0,
+    "score": 0.08333,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/001"
+  },
+  {
+    "task": "bottle",
+    "seed": "002",
+    "sr": 0.0,
+    "score": 0.16667,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/002"
+  },
+  {
+    "task": "bottle",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/003"
+  },
+  {
+    "task": "bottle",
+    "seed": "004",
+    "sr": 0.0,
+    "score": 0.08333,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/004"
+  },
+  {
+    "task": "bottle",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/005"
+  },
+  {
+    "task": "bottle",
+    "seed": "006",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/006"
+  },
+  {
+    "task": "bottle",
+    "seed": "007",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/007"
+  },
+  {
+    "task": "bottle",
+    "seed": "008",
+    "sr": 0.0,
+    "score": 0.16667,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/008"
+  },
+  {
+    "task": "bottle",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.16667,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/009"
+  },
+  {
+    "task": "bottle",
+    "seed": "010",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/010"
+  },
+  {
+    "task": "bottle",
+    "seed": "011",
+    "sr": 0.0,
+    "score": 0.16667,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/011"
+  },
+  {
+    "task": "bottle",
+    "seed": "012",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/012"
+  },
+  {
+    "task": "bottle",
+    "seed": "013",
+    "sr": 0.0,
+    "score": 0.25,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/013"
+  },
+  {
+    "task": "bottle",
+    "seed": "014",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/014"
+  },
+  {
+    "task": "bottle",
+    "seed": "015",
+    "sr": 0.0,
+    "score": 0.08333,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/015"
+  },
+  {
+    "task": "bottle",
+    "seed": "016",
+    "sr": 0.0,
+    "score": 0.16667,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/016"
+  },
+  {
+    "task": "bottle",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/017"
+  },
+  {
+    "task": "bottle",
+    "seed": "018",
+    "sr": 0.0,
+    "score": 0.25,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/018"
+  },
+  {
+    "task": "bottle",
+    "seed": "019",
+    "sr": 0.0,
+    "score": 0.41667,
+    "episode_id": "ebench/astra_full_icl_20260914/ebench/mobile_manip/bottle_test_mini/019"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "000",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/000"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "001",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/001"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "002",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/002"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/003"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "004",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/004"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "005",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/005"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "006",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/006"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "007",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/007"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "008",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/008"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "009",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/009"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "010",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/010"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/011"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "012",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/012"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "013",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/013"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "014",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/014"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "015",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/015"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "016",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/016"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "017",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/017"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "018",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/018"
+  },
+  {
+    "task": "bowl_to_plate",
+    "seed": "019",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/bowl_to_plate_test_mini/019"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "000",
+    "sr": 0.0,
+    "score": 0.14286,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/000"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "001",
+    "sr": 0.0,
+    "score": 0.35714,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/001"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "002",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/002"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.35714,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/003"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "004",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/004"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.35714,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/005"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "006",
+    "sr": 0.0,
+    "score": 0.35714,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/006"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "007",
+    "sr": 0.0,
+    "score": 0.42857,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/007"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "008",
+    "sr": 0.0,
+    "score": 0.35714,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/008"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.07143,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/009"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "010",
+    "sr": 0.0,
+    "score": 0.92857,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/010"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "011",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/011"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "012",
+    "sr": 0.0,
+    "score": 0.07143,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/012"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "013",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/013"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "014",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/014"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "015",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/015"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "016",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/016"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/017"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "018",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/018"
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "019",
+    "sr": 0.0,
+    "score": 0.28571,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/collect_coffee_beans_test_mini/019"
+  },
+  {
+    "task": "detergent",
+    "seed": "000",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/000"
+  },
+  {
+    "task": "detergent",
+    "seed": "001",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/001"
+  },
+  {
+    "task": "detergent",
+    "seed": "002",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/002"
+  },
+  {
+    "task": "detergent",
+    "seed": "003",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/003"
+  },
+  {
+    "task": "detergent",
+    "seed": "004",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/004"
+  },
+  {
+    "task": "detergent",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/005"
+  },
+  {
+    "task": "detergent",
+    "seed": "006",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/006"
+  },
+  {
+    "task": "detergent",
+    "seed": "007",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/007"
+  },
+  {
+    "task": "detergent",
+    "seed": "008",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/008"
+  },
+  {
+    "task": "detergent",
+    "seed": "009",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/009"
+  },
+  {
+    "task": "detergent",
+    "seed": "010",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/010"
+  },
+  {
+    "task": "detergent",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/011"
+  },
+  {
+    "task": "detergent",
+    "seed": "012",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/012"
+  },
+  {
+    "task": "detergent",
+    "seed": "013",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/013"
+  },
+  {
+    "task": "detergent",
+    "seed": "014",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/014"
+  },
+  {
+    "task": "detergent",
+    "seed": "015",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/015"
+  },
+  {
+    "task": "detergent",
+    "seed": "016",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/016"
+  },
+  {
+    "task": "detergent",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/017"
+  },
+  {
+    "task": "detergent",
+    "seed": "018",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/018"
+  },
+  {
+    "task": "detergent",
+    "seed": "019",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/detergent_test_mini/019"
+  },
+  {
+    "task": "dish",
+    "seed": "000",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/000"
+  },
+  {
+    "task": "dish",
+    "seed": "001",
+    "sr": 0.0,
+    "score": 0.8,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/001"
+  },
+  {
+    "task": "dish",
+    "seed": "002",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/002"
+  },
+  {
+    "task": "dish",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.8,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/003"
+  },
+  {
+    "task": "dish",
+    "seed": "004",
+    "sr": 0.0,
+    "score": 0.6,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/004"
+  },
+  {
+    "task": "dish",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.6,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/005"
+  },
+  {
+    "task": "dish",
+    "seed": "006",
+    "sr": 0.0,
+    "score": 0.6,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/006"
+  },
+  {
+    "task": "dish",
+    "seed": "007",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/007"
+  },
+  {
+    "task": "dish",
+    "seed": "008",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/008"
+  },
+  {
+    "task": "dish",
+    "seed": "009",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/009"
+  },
+  {
+    "task": "dish",
+    "seed": "010",
+    "sr": 0.0,
+    "score": 0.8,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/010"
+  },
+  {
+    "task": "dish",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/011"
+  },
+  {
+    "task": "dish",
+    "seed": "012",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/012"
+  },
+  {
+    "task": "dish",
+    "seed": "013",
+    "sr": 0.0,
+    "score": 0.4,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/013"
+  },
+  {
+    "task": "dish",
+    "seed": "014",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/014"
+  },
+  {
+    "task": "dish",
+    "seed": "015",
+    "sr": 0.0,
+    "score": 0.2,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/015"
+  },
+  {
+    "task": "dish",
+    "seed": "016",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/016"
+  },
+  {
+    "task": "dish",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.8,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/017"
+  },
+  {
+    "task": "dish",
+    "seed": "018",
+    "sr": 0.0,
+    "score": 0.6,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/018"
+  },
+  {
+    "task": "dish",
+    "seed": "019",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dish_test_mini/019"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "000",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/000"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "001",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/001"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "002",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/002"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/003"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "004",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/004"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/005"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "006",
+    "sr": 0.0,
+    "score": 0.6666650000000001,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/006"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "007",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/007"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "008",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/008"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.6666650000000001,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/009"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "010",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/010"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/011"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "012",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/012"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "013",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/013"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "014",
+    "sr": 0.0,
+    "score": 0.8333349999999999,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/014"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "015",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/015"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "016",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/016"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/017"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "018",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/018"
+  },
+  {
+    "task": "dishwasher",
+    "seed": "019",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_4task_20260915/ebench/mobile_manip/dishwasher_test_mini/019"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "000",
+    "sr": 0.0,
+    "score": 0.1,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/000"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "001",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/001"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "002",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/002"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.6,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/003"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "004",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/004"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/005"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "006",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/006"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "007",
+    "sr": 0.0,
+    "score": 0.2,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/007"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "008",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/008"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/009"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "010",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/010"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "011",
+    "sr": 0.0,
+    "score": 0.4,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/011"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "012",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/012"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "013",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/013"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "014",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/014"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "015",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/015"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "016",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/016"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/017"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "018",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/018"
+  },
+  {
+    "task": "flip_cup_collect_cookies",
+    "seed": "019",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/flip_cup_collect_cookies_test_mini/019"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "000",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/000"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "001",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/001"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "002",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/002"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "003",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/003"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "004",
+    "sr": 0.0,
+    "score": 0.333335,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/004"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.333335,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/005"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "006",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/006"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "007",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/007"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "008",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/008"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/009"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "010",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/010"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/011"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "012",
+    "sr": 0.0,
+    "score": 0.333335,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/012"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "013",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/013"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "014",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/014"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "015",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/015"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "016",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/016"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "017",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/017"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "018",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/018"
+  },
+  {
+    "task": "frame_against_pen_holder",
+    "seed": "019",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/frame_against_pen_holder_test_mini/019"
+  },
+  {
+    "task": "fruit",
+    "seed": "000",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/000"
+  },
+  {
+    "task": "fruit",
+    "seed": "001",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/001"
+  },
+  {
+    "task": "fruit",
+    "seed": "002",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/002"
+  },
+  {
+    "task": "fruit",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/003"
+  },
+  {
+    "task": "fruit",
+    "seed": "004",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/004"
+  },
+  {
+    "task": "fruit",
+    "seed": "005",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/005"
+  },
+  {
+    "task": "fruit",
+    "seed": "006",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/006"
+  },
+  {
+    "task": "fruit",
+    "seed": "007",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/007"
+  },
+  {
+    "task": "fruit",
+    "seed": "008",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/008"
+  },
+  {
+    "task": "fruit",
+    "seed": "009",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/009"
+  },
+  {
+    "task": "fruit",
+    "seed": "010",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/010"
+  },
+  {
+    "task": "fruit",
+    "seed": "011",
+    "sr": 0.0,
+    "score": 0.8,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/011"
+  },
+  {
+    "task": "fruit",
+    "seed": "012",
+    "sr": 0.0,
+    "score": 0.8,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/012"
+  },
+  {
+    "task": "fruit",
+    "seed": "013",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/013"
+  },
+  {
+    "task": "fruit",
+    "seed": "014",
+    "sr": 0.0,
+    "score": 0.8,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/014"
+  },
+  {
+    "task": "fruit",
+    "seed": "015",
+    "sr": 0.0,
+    "score": 0.6,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/015"
+  },
+  {
+    "task": "fruit",
+    "seed": "016",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/016"
+  },
+  {
+    "task": "fruit",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/017"
+  },
+  {
+    "task": "fruit",
+    "seed": "018",
+    "sr": 0.0,
+    "score": 0.8,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/018"
+  },
+  {
+    "task": "fruit",
+    "seed": "019",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/fruit_test_mini/019"
+  },
+  {
+    "task": "install_gear",
+    "seed": "000",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/000"
+  },
+  {
+    "task": "install_gear",
+    "seed": "001",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/001"
+  },
+  {
+    "task": "install_gear",
+    "seed": "002",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/002"
+  },
+  {
+    "task": "install_gear",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/003"
+  },
+  {
+    "task": "install_gear",
+    "seed": "004",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/004"
+  },
+  {
+    "task": "install_gear",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/005"
+  },
+  {
+    "task": "install_gear",
+    "seed": "006",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/006"
+  },
+  {
+    "task": "install_gear",
+    "seed": "007",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/007"
+  },
+  {
+    "task": "install_gear",
+    "seed": "008",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/008"
+  },
+  {
+    "task": "install_gear",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/009"
+  },
+  {
+    "task": "install_gear",
+    "seed": "010",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/010"
+  },
+  {
+    "task": "install_gear",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/011"
+  },
+  {
+    "task": "install_gear",
+    "seed": "012",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/012"
+  },
+  {
+    "task": "install_gear",
+    "seed": "013",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/013"
+  },
+  {
+    "task": "install_gear",
+    "seed": "014",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/014"
+  },
+  {
+    "task": "install_gear",
+    "seed": "015",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/015"
+  },
+  {
+    "task": "install_gear",
+    "seed": "016",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/016"
+  },
+  {
+    "task": "install_gear",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/017"
+  },
+  {
+    "task": "install_gear",
+    "seed": "018",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/018"
+  },
+  {
+    "task": "install_gear",
+    "seed": "019",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/install_gear_test_mini/019"
+  },
+  {
+    "task": "make_sandwich",
+    "seed": "000",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/make_sandwich_test_mini/000"
+  },
+  {
+    "task": "make_sandwich",
+    "seed": "001",
+    "sr": 0.0,
+    "score": 0.75,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/make_sandwich_test_mini/001"
+  },
+  {
+    "task": "make_sandwich",
+    "seed": "002",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/make_sandwich_test_mini/002"
+  },
+  {
+    "task": "make_sandwich",
+    "seed": "003",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/make_sandwich_test_mini/003"
+  },
+  {
+    "task": "make_sandwich",
+    "seed": "004",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/make_sandwich_test_mini/004"
+  },
+  {
+    "task": "make_sandwich",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/make_sandwich_test_mini/005"
+  },
+  {
+    "task": "make_sandwich",
+    "seed": "006",
+    "sr": 0.0,
+    "score": 0.25,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/make_sandwich_test_mini/006"
+  },
+  {
+    "task": "make_sandwich",
+    "seed": "007",
+    "sr": 0.0,
+    "score": 0.75,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/make_sandwich_test_mini/007"
+  },
+  {
+    "task": "make_sandwich",
+    "seed": "008",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/make_sandwich_test_mini/008"
+  },
+  {
+    "task": "make_sandwich",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.75,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/make_sandwich_test_mini/009"
+  },
+  {
+    "task": "make_sandwich",
+    "seed": "010",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/make_sandwich_test_mini/010"
+  },
+  {
+    "task": "make_sandwich",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/make_sandwich_test_mini/011"
+  },
+  {
+    "task": "make_sandwich",
+    "seed": "012",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/make_sandwich_test_mini/012"
+  },
+  {
+    "task": "make_sandwich",
+    "seed": "013",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/make_sandwich_test_mini/013"
+  },
+  {
+    "task": "make_sandwich",
+    "seed": "014",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/make_sandwich_test_mini/014"
+  },
+  {
+    "task": "microwave",
+    "seed": "000",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/microwave_test_mini/000"
+  },
+  {
+    "task": "microwave",
+    "seed": "001",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/microwave_test_mini/001"
+  },
+  {
+    "task": "microwave",
+    "seed": "002",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/microwave_test_mini/002"
+  },
+  {
+    "task": "microwave",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/microwave_test_mini/003"
+  },
+  {
+    "task": "microwave",
+    "seed": "004",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/microwave_test_mini/004"
+  },
+  {
+    "task": "microwave",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.8333349999999999,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/microwave_test_mini/005"
+  },
+  {
+    "task": "microwave",
+    "seed": "006",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/microwave_test_mini/006"
+  },
+  {
+    "task": "microwave",
+    "seed": "007",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/microwave_test_mini/007"
+  },
+  {
+    "task": "microwave",
+    "seed": "008",
+    "sr": 0.0,
+    "score": 0.8333349999999999,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/microwave_test_mini/008"
+  },
+  {
+    "task": "microwave",
+    "seed": "009",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/microwave_test_mini/009"
+  },
+  {
+    "task": "microwave",
+    "seed": "010",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/microwave_test_mini/010"
+  },
+  {
+    "task": "microwave",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/microwave_test_mini/011"
+  },
+  {
+    "task": "microwave",
+    "seed": "012",
+    "sr": 0.0,
+    "score": 0.8333349999999999,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/microwave_test_mini/012"
+  },
+  {
+    "task": "microwave",
+    "seed": "013",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/microwave_test_mini/013"
+  },
+  {
+    "task": "microwave",
+    "seed": "014",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/microwave_test_mini/014"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "000",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/000"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "001",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/001"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "002",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/002"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/003"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "004",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/004"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "005",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/005"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "006",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/006"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "007",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/007"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "008",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/008"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/009"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "010",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/010"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "011",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/011"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "012",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/012"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "013",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/013"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "014",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/014"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "015",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/015"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "016",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/016"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/017"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "018",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/018"
+  },
+  {
+    "task": "peg_in_hole",
+    "seed": "019",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/peg_in_hole_test_mini/019"
+  },
+  {
+    "task": "pen",
+    "seed": "000",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/000"
+  },
+  {
+    "task": "pen",
+    "seed": "001",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/001"
+  },
+  {
+    "task": "pen",
+    "seed": "002",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/002"
+  },
+  {
+    "task": "pen",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/003"
+  },
+  {
+    "task": "pen",
+    "seed": "004",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/004"
+  },
+  {
+    "task": "pen",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/005"
+  },
+  {
+    "task": "pen",
+    "seed": "006",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/006"
+  },
+  {
+    "task": "pen",
+    "seed": "007",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/007"
+  },
+  {
+    "task": "pen",
+    "seed": "008",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/008"
+  },
+  {
+    "task": "pen",
+    "seed": "009",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/009"
+  },
+  {
+    "task": "pen",
+    "seed": "010",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/010"
+  },
+  {
+    "task": "pen",
+    "seed": "011",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/011"
+  },
+  {
+    "task": "pen",
+    "seed": "012",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/012"
+  },
+  {
+    "task": "pen",
+    "seed": "013",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/013"
+  },
+  {
+    "task": "pen",
+    "seed": "014",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/014"
+  },
+  {
+    "task": "pen",
+    "seed": "015",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/015"
+  },
+  {
+    "task": "pen",
+    "seed": "016",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/016"
+  },
+  {
+    "task": "pen",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/017"
+  },
+  {
+    "task": "pen",
+    "seed": "018",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/018"
+  },
+  {
+    "task": "pen",
+    "seed": "019",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_account4_20260915/ebench/mobile_manip/pen_test_mini/019"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "000",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/000"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "001",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/001"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "002",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/002"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "003",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/003"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "004",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/004"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "005",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/005"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "006",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/006"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "007",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/007"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "008",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/008"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/009"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "010",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/010"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/011"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "012",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/012"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "013",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/013"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "014",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/014"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "015",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/015"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "016",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/016"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "017",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/017"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "018",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/018"
+  },
+  {
+    "task": "perfume_to_cosmetics_rack",
+    "seed": "019",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/perfume_to_cosmetics_rack_test_mini/019"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "000",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/000"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "001",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/001"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "002",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/002"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "003",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/003"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "004",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/004"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/005"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "006",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/006"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "007",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/007"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "008",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/008"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/009"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "010",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/010"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "011",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/011"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "012",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/012"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "013",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/013"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "014",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/014"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "015",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/015"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "016",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/016"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/017"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "018",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/018"
+  },
+  {
+    "task": "put_glass_in_glassbox",
+    "seed": "019",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/put_glass_in_glassbox_test_mini/019"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "000",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/000"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "001",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/001"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "002",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/002"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "003",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/003"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "004",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/004"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "005",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/005"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "006",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/006"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "007",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/007"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "008",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/008"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "009",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/009"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "010",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/010"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/011"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "012",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/012"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "013",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/013"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "014",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/014"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "015",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/015"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "016",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/016"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "017",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/017"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "018",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/018"
+  },
+  {
+    "task": "remote_to_holder",
+    "seed": "019",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/remote_to_holder_test_mini/019"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "000",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/000"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "001",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/001"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "002",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/002"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "003",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/003"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "004",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/004"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "005",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/005"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "006",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/006"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "007",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/007"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "008",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/008"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "009",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/009"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "010",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/010"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/011"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "012",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/012"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "013",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/013"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "014",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/014"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "015",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/015"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "016",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/016"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "017",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/017"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "018",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/018"
+  },
+  {
+    "task": "salt_to_spice_rack",
+    "seed": "019",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/salt_to_spice_rack_test_mini/019"
+  },
+  {
+    "task": "shop",
+    "seed": "000",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/000"
+  },
+  {
+    "task": "shop",
+    "seed": "001",
+    "sr": 0.0,
+    "score": 0.25,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/001"
+  },
+  {
+    "task": "shop",
+    "seed": "002",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/002"
+  },
+  {
+    "task": "shop",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/003"
+  },
+  {
+    "task": "shop",
+    "seed": "004",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/004"
+  },
+  {
+    "task": "shop",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/005"
+  },
+  {
+    "task": "shop",
+    "seed": "006",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/006"
+  },
+  {
+    "task": "shop",
+    "seed": "007",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/007"
+  },
+  {
+    "task": "shop",
+    "seed": "008",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/008"
+  },
+  {
+    "task": "shop",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.83333,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/009"
+  },
+  {
+    "task": "shop",
+    "seed": "010",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/010"
+  },
+  {
+    "task": "shop",
+    "seed": "011",
+    "sr": 0.0,
+    "score": 0.33333,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/011"
+  },
+  {
+    "task": "shop",
+    "seed": "012",
+    "sr": 0.0,
+    "score": 0.83333,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/012"
+  },
+  {
+    "task": "shop",
+    "seed": "013",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/013"
+  },
+  {
+    "task": "shop",
+    "seed": "014",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/014"
+  },
+  {
+    "task": "shop",
+    "seed": "015",
+    "sr": 0.0,
+    "score": 0.66667,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/015"
+  },
+  {
+    "task": "shop",
+    "seed": "016",
+    "sr": 0.0,
+    "score": 0.25,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/016"
+  },
+  {
+    "task": "shop",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.83333,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/017"
+  },
+  {
+    "task": "shop",
+    "seed": "018",
+    "sr": 0.0,
+    "score": 0.91667,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/018"
+  },
+  {
+    "task": "shop",
+    "seed": "019",
+    "sr": 0.0,
+    "score": 0.83333,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/shop_test_mini/019"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "000",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/000"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "001",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/001"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "002",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/002"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "003",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/003"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "004",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/004"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "005",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/005"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "006",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/006"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "007",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/007"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "008",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/008"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "009",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/009"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "010",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/010"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/011"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "012",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/012"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "013",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/013"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "014",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/014"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "015",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/015"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "016",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/016"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "017",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/017"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "018",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/018"
+  },
+  {
+    "task": "soap_to_dish",
+    "seed": "019",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/soap_to_dish_test_mini/019"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "000",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/000"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "001",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/001"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "002",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/002"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "003",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/003"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "004",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/004"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "005",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/005"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "006",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/006"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "007",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/007"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "008",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/008"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/009"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "010",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/010"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "011",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/011"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "012",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/012"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "013",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/013"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "014",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/014"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "015",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/015"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "016",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/016"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/017"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "018",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/018"
+  },
+  {
+    "task": "teacup_to_saucer_teapot_to_tray",
+    "seed": "019",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/teacup_to_saucer_teapot_to_tray_test_mini/019"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "000",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/000"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "001",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/001"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "002",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/002"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/003"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "004",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/004"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/005"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "006",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/006"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "007",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/007"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "008",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/008"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/009"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "010",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/010"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "011",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/011"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "012",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/012"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "013",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/013"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "014",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/014"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "015",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/015"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "016",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/016"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/017"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "018",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/018"
+  },
+  {
+    "task": "tighten_nut",
+    "seed": "019",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/table_top_manip/tighten_nut_test_mini/019"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "000",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/000"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "001",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/001"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "002",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/002"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/003"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "004",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/004"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "005",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/005"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "006",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/006"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "007",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/007"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "008",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/008"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/009"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "010",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/010"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "011",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/011"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "012",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/012"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "013",
+    "sr": 1.0,
+    "score": 1.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/013"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "014",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/014"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "015",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/015"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "016",
+    "sr": 0.0,
+    "score": 0.5,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/016"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "017",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/017"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "018",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/018"
+  },
+  {
+    "task": "utensils_to_holder",
+    "seed": "019",
+    "sr": 0.0,
+    "score": 0.0,
+    "episode_id": "ebench/astra_icl_tail_20260915/ebench/mobile_manip/utensils_to_holder_test_mini/019"
+  }
+]

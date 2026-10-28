@@ -1,0 +1,17 @@
+[
+  {
+    "id": "apple_to_fruit_bowl_006",
+    "title": "Recovering a slipped apple",
+    "description": "A changed transport strategy follows a failed grasp. The episode ends in success."
+  },
+  {
+    "id": "collect_coffee_beans_013",
+    "title": "Exploring contact",
+    "description": "The agent changes tools and contact poses, but does not complete the task."
+  },
+  {
+    "id": "fruit_015",
+    "title": "Adapting through a long task",
+    "description": "Fruit placement, recovery and vessel manipulation unfold across 66 calls; the final score is 0.6."
+  }
+]

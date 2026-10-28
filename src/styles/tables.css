@@ -23,6 +23,12 @@
     outline-offset: 3px;
   }
   /* A table title belongs to the table, not to the document outline. */
+  .report-table-caption {
+    caption-side: top;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    text-wrap: balance;
+  }
   .report-table {
     --table-surface: var(--paper, #eef0f3);
     width: 100%;
@@ -91,9 +97,25 @@
     color: var(--ink, #17273b);
     font-weight: 650;
   }
+  .report-table--plain .rank {
+    display: inline-block;
+    width: 1.6rem;
+    color: var(--muted, #4c617d);
+    font: inherit;
+    font-weight: 400;
+  }
+  .paired-detail-table th[colspan] {
+    text-align: center;
+  }
+  .paired-detail-table th[rowspan] {
+    vertical-align: middle;
+  }
   /* This block's first paragraph sits under the task-level heading; match the heading gap. */
   #mobile-content {
     margin-top: 1.25rem;
+  }
+  #mobile-content > .finding-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
   .report-table--heat {
     min-width: 48rem;
@@ -132,6 +154,13 @@
     background: var(--heat);
     color: var(--heat-ink);
     border-radius: 2px;
+  }
+  .report-table--heat .heat-cell {
+    display: block;
+    padding: 0.6rem 0.3rem;
+  }
+  .report-table--heat td:has(> .heat-cell) {
+    padding: 0;
   }
   .report-table--heat .is-best {
     font-weight: 750;

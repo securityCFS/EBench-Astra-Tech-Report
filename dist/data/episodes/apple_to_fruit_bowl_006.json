@@ -2,8 +2,8 @@
   "id": "apple_to_fruit_bowl_006",
   "task": "apple_to_fruit_bowl",
   "seed": "006",
-  "title": "Apple to bowl",
-  "description": "After a slip, the agent takes a wider view and carries the apple with the arm alone, reaching a 1.00 score.",
+  "title": "Recovering a slipped apple",
+  "description": "A changed transport strategy follows a failed grasp. The episode ends in success.",
   "instruction": "Move the apple from the dining table into the fruit bowl.",
   "result": {
     "sr": 1.0,

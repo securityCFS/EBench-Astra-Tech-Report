@@ -1,4 +1,4 @@
-/* KaTeX typesetting of the π₀ and π₀.₅ model names in dynamic HTML. */
+/* Gauge's KaTeX configuration, shared by dynamic HTML and SVG chart labels. */
 const modelFormulas = new Map([
   ['π₀', String.raw`\pi_{0}`],
   ['π₀.₅', String.raw`\pi_{0.5}`],
@@ -16,6 +16,11 @@ function modelMathHTML(label) {
       }),
     );
   return modelMathCache.get(label);
+}
+function chartModelLabel(label, left, baseline) {
+  if (!modelFormulas.has(label))
+    return `<text x="${left - 12}" y="${baseline}" text-anchor="end" fill="#4b5661">${label}</text>`;
+  return `<foreignObject x="0" y="${baseline - 18}" width="${left - 12}" height="28"><div xmlns="http://www.w3.org/1999/xhtml" class="chart-model-math">${modelMathHTML(label)}</div></foreignObject>`;
 }
 function typesetModelNames(root) {
   if (!root.isConnected) return;

@@ -3,6 +3,7 @@
   "model-math.js",
   "charts.js",
   "viz.js",
+  "ambient-particles.js",
   "showcase.js",
   "quote-effect.js",
   "report-navigation.js",

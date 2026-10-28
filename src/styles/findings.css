@@ -1,0 +1,51 @@
+/* Analysis grids and finding index */
+@layer layout {
+  .finding-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    max-width: none;
+    margin: 0;
+    align-items: start;
+  }
+  .finding-grid > * {
+    min-width: 0;
+  }
+  .finding-story p {
+    font-size: var(--text);
+    line-height: 1.65;
+  }
+  .finding-metric,
+  .task-highlights {
+    display: none;
+  }
+  .finding-map {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+  .finding-map a {
+    display: block;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+    font-size: var(--small);
+  }
+  .finding-map a > span {
+    display: block;
+    font-size: 1rem;
+    color: var(--muted);
+  }
+  .finding-map a strong {
+    display: block;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .finding-map small {
+    display: block;
+    font-size: var(--small);
+    color: var(--muted);
+  }
+  .finding-map i {
+    display: none;
+  }
+}

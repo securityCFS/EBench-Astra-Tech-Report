@@ -1,0 +1,72 @@
+[
+  {
+    "model": "OpenWAM-Alpha",
+    "task_id": "638cdd05f0f84c568337afc2c36f0bf0",
+    "url": "https://internrobotics.shlab.org.cn/eval/task-details?task_id=638cdd05f0f84c568337afc2c36f0bf0",
+    "retrieved_utc": "2026-09-17T17:52:54.404296+00:00",
+    "sr": 0.5532,
+    "score": 0.7005,
+    "source": "online taskOverview response",
+    "source_sha256": "88c3c26b5fcd995c71a14ba3154b0dc1faa084ec90a59d4bf658711b0956d45a"
+  },
+  {
+    "model": "Qwen-RobotManip",
+    "task_id": "190ea74cce954ae696ebda9bb8588573",
+    "url": "https://internrobotics.shlab.org.cn/eval/task-details?task_id=190ea74cce954ae696ebda9bb8588573",
+    "retrieved_utc": "2026-09-17T17:53:34.564684+00:00",
+    "sr": 0.4558,
+    "score": 0.6081,
+    "source": "online taskOverview response",
+    "source_sha256": "25f5b811687988981f81a975f739aaaf80fad3584b13d4b2ef7ab4c1eec8dca4"
+  },
+  {
+    "model": "Pi05",
+    "task_id": "3a11ae653393432698f78ab6241d9e69",
+    "url": "https://internrobotics.shlab.org.cn/eval/task-details?task_id=3a11ae653393432698f78ab6241d9e69",
+    "retrieved_utc": "2026-09-17T17:53:14.601119+00:00",
+    "sr": 0.4141,
+    "score": 0.5441,
+    "source": "online taskOverview response",
+    "source_sha256": "3e02b29e2642b666b623ade4f741205fb570091ae3b591f9ca438fad28bf1294"
+  },
+  {
+    "model": "InternVLA-A1.5",
+    "task_id": "6bda5acf14584108ad3b9d9e8c0f6a47",
+    "url": "https://internrobotics.shlab.org.cn/eval/task-details?task_id=6bda5acf14584108ad3b9d9e8c0f6a47",
+    "retrieved_utc": "2026-09-17T17:52:54.660921+00:00",
+    "sr": 0.3417,
+    "score": 0.4684,
+    "source": "online taskOverview response",
+    "source_sha256": "a0e990dcac361d11fabb949726e07a563dfe5bc74e5d9b52c05e7c0dd92d0e88"
+  },
+  {
+    "model": "Pi0",
+    "task_id": "4cb34afab348466fb738ebf30c11a8ad",
+    "url": "https://internrobotics.shlab.org.cn/eval/task-details?task_id=4cb34afab348466fb738ebf30c11a8ad",
+    "retrieved_utc": "2026-09-17T17:53:14.843749+00:00",
+    "sr": 0.3372,
+    "score": 0.4748,
+    "source": "online taskOverview response",
+    "source_sha256": "1e4de34d7ca5634e74bbef9cc343c7835a92be9bf69b032edde7f90738db90d8"
+  },
+  {
+    "model": "GigaBrain-0.7",
+    "task_id": "5188762ea59f410d9858e7d1be116369",
+    "url": "https://internrobotics.shlab.org.cn/eval/task-details?task_id=5188762ea59f410d9858e7d1be116369",
+    "retrieved_utc": "2026-09-17T17:53:15.023789+00:00",
+    "sr": 0.3327,
+    "score": 0.4603,
+    "source": "online taskOverview response",
+    "source_sha256": "510e1858ae91501cb375b57190a0d04a804edb870eb9d4647d8d897907ffa859"
+  },
+  {
+    "model": "FastWAM",
+    "task_id": "0bccffe700ea4f9e97f436448236146c",
+    "url": "https://internrobotics.shlab.org.cn/eval/task-details?task_id=0bccffe700ea4f9e97f436448236146c",
+    "retrieved_utc": "2026-09-17T17:53:15.051263+00:00",
+    "sr": 0.2564,
+    "score": 0.3712,
+    "source": "online taskOverview response",
+    "source_sha256": "a95cdf82eadfbf5026cc23d08a3a476ed6f448dff620bd2ece736eed68c3d6d2"
+  }
+]

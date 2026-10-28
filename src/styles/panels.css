@@ -1,0 +1,10 @@
+/* Episode demo, ICL card, method links */
+@layer layout {
+  .method-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    font-size: var(--small);
+  }
+}

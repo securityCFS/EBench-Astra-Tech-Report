@@ -1,9 +1,79 @@
 /* Episode outcomes own their chart, list, readouts, and responsive behavior. */
 @layer components {
+  .outcome-breakdown {
+    margin-block: 1.5rem 2rem;
+    min-width: 0;
+  }
+
   /* The outcome legend and the trait filters share one row: legend left, filters flush
      right, their text on one baseline. "Clear filters" sits left of the filters, so when it
      appears the row grows into the gap and the options stay put. On a narrow page the
      filters wrap below the legend, still flush right. */
+  .outcome-breakdown .outcome-breakdown-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: last baseline;
+    justify-content: space-between;
+    gap: 0.75rem 2.5rem;
+    margin: 0 0 1rem;
+  }
+
+  .outcome-breakdown .outcome-split-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin: 0;
+    color: var(--muted);
+    font-size: var(--small);
+  }
+
+  .outcome-breakdown .outcome-split-legend > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .outcome-breakdown .outcome-split-legend i {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    flex: none;
+  }
+
+  .outcome-breakdown .outcome-breakdown-heading,
+  .outcome-breakdown .failure-depth-row {
+    display: grid;
+    grid-template-columns: minmax(11rem, 1fr) minmax(0, 2fr) 4.5rem;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  .outcome-breakdown .outcome-breakdown-heading {
+    color: var(--muted);
+    font-size: 0.875rem;
+    padding-block: 0 0.35rem;
+  }
+
+  .outcome-breakdown .outcome-breakdown-heading > :last-child {
+    text-align: right;
+  }
+
+  .outcome-breakdown .failure-depth-row {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    font-size: var(--small);
+    line-height: 1.4;
+    text-align: left;
+    cursor: pointer;
+  }
 
   .outcome-breakdown .failure-depth-row:hover,
   .outcome-breakdown .failure-depth-row:focus-visible,
@@ -19,8 +89,248 @@
     outline-offset: -2px;
   }
 
+  .outcome-breakdown .outcome-task-label {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  /* Task traits sit under the name as two fixed-width marks (precision, then horizon).
+     Marks rather than words: a bordered chip inside a row that is itself a button read as
+     a toggle, and uppercase text in fixed columns was aligned but verbose. The filter row
+     above the table doubles as the legend. */
+  .outcome-breakdown .task-tags {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.2rem;
+    line-height: 1;
+  }
+
+  .outcome-breakdown .task-tags .report-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    vertical-align: 0;
+  }
+
+  .task-tag {
+    display: inline-flex;
+    color: #9aa6bd;
+  }
+
+  .task-tag--demanding {
+    color: var(--ink);
+  }
+
+  /* Trait filters: quiet text controls, one group per axis, each showing its mark, its
+     value and how many tasks it would leave. The row is set like the outcome legend
+     above it; a pressed value gains ink and an accent underline. */
+  .outcome-breakdown .outcome-trait-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: last baseline;
+    gap: 0.4rem 2rem;
+    /* Stay flush right even when wrapped under the legend, so "Clear filters" still grows
+       leftward and never pushes the options. */
+    margin: 0 0 0 auto;
+    color: var(--muted);
+    font-size: var(--small);
+    line-height: 1.4;
+  }
+
+  /* Each axis name sits centred above its own options. */
+  .outcome-breakdown .outcome-trait-group {
+    display: inline-grid;
+    grid-auto-flow: column;
+    align-items: center;
+    gap: 0.15rem 1rem;
+  }
+
+  .outcome-breakdown .outcome-trait-axis {
+    grid-row: 1;
+    grid-column: 1 / span 2;
+    justify-self: center;
+  }
+
+  .outcome-breakdown .outcome-trait-group:has(> button:nth-of-type(3)) .outcome-trait-axis {
+    grid-column: 1 / span 3;
+  }
+
+  .outcome-breakdown .outcome-trait-group > button {
+    grid-row: 2;
+  }
+
+  .outcome-breakdown [data-trait-filter] {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0.1rem 0 0;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: var(--muted);
+    font: inherit;
+    line-height: 1.4;
+    cursor: pointer;
+    transition:
+      color var(--motion-duration) var(--motion-ease),
+      border-color var(--motion-duration) var(--motion-ease);
+  }
+
+  .outcome-breakdown [data-trait-filter] .report-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    color: #9aa6bd;
+    transition: color var(--motion-duration) var(--motion-ease);
+  }
+
+  .outcome-breakdown [data-trait-filter] .outcome-trait-count {
+    color: #9aa6bd;
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .outcome-breakdown [data-trait-filter]:hover {
+    background: transparent;
+    border-color: transparent;
+    color: var(--ink);
+  }
+
+  .outcome-breakdown [data-trait-filter][aria-pressed='true'] {
+    background: transparent;
+    border-color: transparent;
+    border-bottom-color: var(--accent);
+    color: var(--ink);
+  }
+
+  .outcome-breakdown [data-trait-filter]:is(:hover, [aria-pressed='true']) .report-icon {
+    color: var(--ink);
+  }
+
   /* A value with no task under the other axis's selection stays in place, greyed and
      explained by the status line, so the absent combination is never presented as real. */
+  .outcome-breakdown [data-trait-filter][aria-disabled='true'] {
+    color: #b1bacb;
+    cursor: not-allowed;
+  }
+
+  .outcome-breakdown [data-trait-filter][aria-disabled='true'] .report-icon,
+  .outcome-breakdown [data-trait-filter][aria-disabled='true'] .outcome-trait-count {
+    color: #c3cad8;
+  }
+
+  .outcome-breakdown [data-trait-filter]:focus-visible,
+  .outcome-breakdown .outcome-trait-clear:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .outcome-breakdown .outcome-trait-clear {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: var(--accent);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .outcome-breakdown .outcome-trait-clear:hover {
+    background: transparent;
+    border-color: transparent;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .outcome-breakdown .outcome-filter-status {
+    margin: 0.6rem 0 0;
+    padding: 0.6rem 0.5rem;
+    color: var(--muted);
+    font-size: var(--small);
+    line-height: 1.5;
+  }
+
+  .outcome-breakdown [data-active] .outcome-task-label {
+    color: var(--accent);
+  }
+
+  .outcome-breakdown .outcome-task-count {
+    color: var(--muted);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .outcome-breakdown .outcome-count-unit {
+    display: none;
+  }
+
+  .outcome-breakdown .outcome-split-track {
+    display: flex;
+    min-width: 0;
+    height: 1.5rem;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .outcome-breakdown .outcome-split-track > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    overflow: hidden;
+    font-size: 0.8rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .outcome-breakdown .outcome-success {
+    background: #3456ef;
+    color: white;
+  }
+
+  .outcome-breakdown .outcome-partial {
+    background: #9eaff9;
+    color: #17273b;
+  }
+
+  .outcome-breakdown .outcome-zero {
+    background: #dce1eb;
+    color: #17273b;
+  }
+
+  .outcome-breakdown .failure-expand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin: 0.6rem 0 0;
+    padding: 0.6rem;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    color: var(--accent);
+    font: inherit;
+    font-size: var(--small);
+    cursor: pointer;
+  }
+
+  .outcome-breakdown .failure-expand-icon {
+    display: inline-flex;
+    font-size: 1rem;
+    line-height: 1;
+    transition: transform 160ms ease;
+  }
+
+  .outcome-breakdown .failure-expand[aria-expanded='true'] .failure-expand-icon {
+    transform: rotate(180deg);
+  }
 
   .outcome-breakdown .outcome-breakdown-note,
   .outcome-breakdown .outcome-breakdown-readout,
@@ -33,6 +343,11 @@
     font-size: var(--small);
     line-height: 1.5;
     overflow-wrap: anywhere;
+  }
+
+  .outcome-breakdown .outcome-breakdown-readout {
+    margin: 0.2rem 0 0.65rem;
+    padding-inline: 0.5rem;
   }
 
   .outcome-breakdown .outcome-breakdown-readout:empty,
@@ -128,6 +443,30 @@
   }
 
   @media (max-width: 42rem) {
+    .outcome-breakdown .outcome-breakdown-heading {
+      display: none;
+    }
+
+    .outcome-breakdown .failure-depth-row {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.35rem 0.75rem;
+      padding-block: 0.5rem;
+    }
+
+    .outcome-breakdown .outcome-split-track {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+
+    .outcome-breakdown .outcome-task-count {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .outcome-breakdown .outcome-count-unit {
+      display: inline;
+    }
+
     #episode-outcomes .outcome-layout {
       grid-template-columns: minmax(0, 1fr);
       gap: 1rem;

@@ -1,0 +1,108 @@
+{
+  "physics_hz": 30,
+  "frequency_source": "Evaluation author clarification, 2026-09-19",
+  "scope": "Three selected main-cohort episodes, not a cohort-wide latency estimate.",
+  "timing_definition": "policy_elapsed_s is the archived policy-phase wall duration; it includes model and execution-system time. steps / Hz is simulated duration. Their difference is not isolated model inference time.",
+  "joint_definition": "Absolute raw joint endpoint displacement / segment simulated duration. Segment averages do not resolve within-segment peaks. Confirm joint identity and angle wrapping against the evaluated robot configuration before comparing limits.",
+  "episodes": [
+    {
+      "episode": "apple_to_fruit_bowl_006",
+      "policy_physics_steps": 1041,
+      "simulated_execution_s": 34.7,
+      "policy_elapsed_s": 729.840891122818,
+      "wall_to_sim_ratio": 21.03287870670945,
+      "terminal_hold_steps": 0,
+      "api_context_restarts": 0,
+      "action_calls_advancing_physics": 20,
+      "median_action_sim_s": 1.8666666666666667,
+      "max_action_sim_s": 2.1333333333333333,
+      "recorded_chunks": 131,
+      "chunk_steps": [
+        4,
+        5,
+        8
+      ],
+      "joint_segment_samples": 1560,
+      "max_abs_joint_segment_average": {
+        "joint_index_zero_based": 7,
+        "abs_segment_average_rad_s": 2.320900800768868,
+        "q_before_rad": 0.000831937009934336,
+        "q_after_rad": 0.6197388172149658,
+        "step_before": 560,
+        "step_after": 568,
+        "waypoint": 11,
+        "chunk": 70
+      },
+      "source_sha256": {
+        "episode_summary.json": "ab16696790b20270f517f0244a56a326cd541d9897587437b6abafb1d0e459ba",
+        "waypoints.jsonl": "aec3de1e7d2c344cf399ced0af7ac97c3e6b691f884416003c1a44f8cdce9195",
+        "public-action-records.json": "5a6159bd3ff1d6790677e591cfd0a5953b6297f113c29121aa7692dfb24348aa"
+      }
+    },
+    {
+      "episode": "collect_coffee_beans_013",
+      "policy_physics_steps": 3500,
+      "simulated_execution_s": 116.66666666666667,
+      "policy_elapsed_s": 5050.403418779373,
+      "wall_to_sim_ratio": 43.289172160966054,
+      "terminal_hold_steps": 0,
+      "api_context_restarts": 0,
+      "action_calls_advancing_physics": 54,
+      "median_action_sim_s": 1.6,
+      "max_action_sim_s": 6.4,
+      "recorded_chunks": 438,
+      "chunk_steps": [
+        4,
+        8
+      ],
+      "joint_segment_samples": 5244,
+      "max_abs_joint_segment_average": {
+        "joint_index_zero_based": 7,
+        "abs_segment_average_rad_s": 1.888767329219263,
+        "q_before_rad": 0.0017232305835932493,
+        "q_after_rad": 0.5053945183753967,
+        "step_before": 208,
+        "step_after": 216,
+        "waypoint": 5,
+        "chunk": 26
+      },
+      "source_sha256": {
+        "episode_summary.json": "e43a4876394e82cb44ecd4ff91a22f21045dd12355502f56f6e77beb48d2900c",
+        "waypoints.jsonl": "35b383b4fb423e27002791139ccb7cacb25d3199699d6ef16e975fa910697350",
+        "public-action-records.json": "575a7017c1ae6be4ea5a0e6da20ef7e3b67062afb815c53e71bd359208c8cf83"
+      }
+    },
+    {
+      "episode": "utensils_to_holder_000",
+      "policy_physics_steps": 2000,
+      "simulated_execution_s": 66.66666666666667,
+      "policy_elapsed_s": 2658.4253664016724,
+      "wall_to_sim_ratio": 39.876380496025085,
+      "terminal_hold_steps": 0,
+      "api_context_restarts": 0,
+      "action_calls_advancing_physics": 43,
+      "median_action_sim_s": 1.3333333333333333,
+      "max_action_sim_s": 4.0,
+      "recorded_chunks": 250,
+      "chunk_steps": [
+        8
+      ],
+      "joint_segment_samples": 2988,
+      "max_abs_joint_segment_average": {
+        "joint_index_zero_based": 7,
+        "abs_segment_average_rad_s": 1.9016928897963226,
+        "q_before_rad": 1.6154801414813846e-05,
+        "q_after_rad": 0.5071342587471008,
+        "step_before": 0,
+        "step_after": 8,
+        "waypoint": 0,
+        "chunk": 0
+      },
+      "source_sha256": {
+        "episode_summary.json": "db9f84fb9aa6c4cf7f2f29efc9f873299620c71b8c9a6faf219d2658665e3dc3",
+        "waypoints.jsonl": "5f973d3cd8900137df5441790c9a33c3c2d0aade1e9620c86c407bd79607ee09",
+        "public-action-records.json": "f39e0e34fac3f9e5f9a9571d73709e37cc1aabec52f743960d009080383b90cb"
+      }
+    }
+  ]
+}

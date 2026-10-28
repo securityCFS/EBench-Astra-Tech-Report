@@ -1,0 +1,207 @@
+[
+  {
+    "task": "dishwasher",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.6666650000000001,
+    "video": "media/cases/dishwasher_009-web.mp4",
+    "camera_order": [
+      "overview",
+      "left_wrist",
+      "right_wrist"
+    ],
+    "public_actions": [
+      {
+        "call": "call_00006",
+        "reason": "Raise the supported bowl clear of the counter and approach the dishwasher handle with the free hand."
+      },
+      {
+        "call": "call_00019",
+        "reason": "Continue the door-opening arc while moving the base clear of its swing."
+      },
+      {
+        "call": "call_00021",
+        "reason": "Inspect below the left hand after the bowl slipped, and bring the arm to a safe viewing pose."
+      },
+      {
+        "call": "call_00034",
+        "reason": "Inspect the reflective object on the floor left of the dishwasher to recover the slipped bowl."
+      },
+      {
+        "call": "call_00042",
+        "reason": "Look low along the cabinet toe-kick for an occluded fallen bowl."
+      }
+    ]
+  },
+  {
+    "task": "apple_to_fruit_bowl",
+    "seed": "003",
+    "sr": 0.0,
+    "score": 0.0,
+    "video": "media/cases/apple_to_fruit_bowl_003-web.mp4",
+    "camera_order": [
+      "overview",
+      "left_wrist",
+      "right_wrist"
+    ],
+    "public_actions": [
+      {
+        "call": "call_00012",
+        "reason": "The apple rose with the hand; lift it clear of the table before moving toward the bowl."
+      },
+      {
+        "call": "call_00013",
+        "reason": "The apple slipped during the larger lift; reopen and approach its new position for a deeper grasp."
+      },
+      {
+        "call": "call_00017",
+        "reason": "Look below the table edge for the apple after the slip."
+      },
+      {
+        "call": "call_00024",
+        "reason": "Inspect deeper beneath the table from the new angle."
+      },
+      {
+        "call": "call_00025",
+        "reason": "Reconfigure the wrist to reach the under-table viewing pose."
+      }
+    ],
+    "missed_target": {
+      "call": "call_00024",
+      "waypoint": 22,
+      "arm": "right",
+      "target_xyz_m": [
+        0.43,
+        -0.15,
+        -0.26
+      ],
+      "achieved_xyz_m": [
+        0.23153546452522278,
+        -0.03395684435963631,
+        0.19084933400154114
+      ],
+      "distance_m": 0.5060823132473866,
+      "interpretation": "Position mismatch after the requested 64 steps; not an IK diagnosis or joint-limit test."
+    }
+  },
+  {
+    "task": "collect_coffee_beans",
+    "seed": "009",
+    "sr": 0.0,
+    "score": 0.07143,
+    "video": "media/cases/collect_coffee_beans_009-web.mp4",
+    "camera_order": [
+      "overview",
+      "left_wrist",
+      "right_wrist"
+    ],
+    "public_actions": [
+      {
+        "call": "call_00005",
+        "reason": "Carry jar clear of edge then lower its mouth beside beans"
+      },
+      {
+        "call": "call_00006",
+        "reason": "Clear jar from table edge to recover upright alignment"
+      },
+      {
+        "call": "call_00007",
+        "reason": "Rotate held jar upright away from the edge"
+      },
+      {
+        "call": "call_00010",
+        "reason": "Retract jar from edge interference"
+      },
+      {
+        "call": "call_00012",
+        "reason": "Correct jar tilt in free space"
+      },
+      {
+        "call": "call_00013",
+        "reason": "Orient jar opening upward"
+      },
+      {
+        "call": "call_00029",
+        "reason": "Turn spoon bowl toward beans while clear of table"
+      },
+      {
+        "call": "call_00030",
+        "reason": "Reorient spoon in reachable stages"
+      },
+      {
+        "call": "call_00034",
+        "reason": "Sweep beans toward jar mouth at edge"
+      },
+      {
+        "call": "call_00035",
+        "reason": "Clear spoon and inspect after edge contact"
+      },
+      {
+        "call": "call_00036",
+        "reason": "Regrasp spoon handle clear of displaced lid"
+      },
+      {
+        "call": "call_00039",
+        "reason": "Move grip onto overhanging handle away from tabletop collision"
+      }
+    ]
+  },
+  {
+    "task": "detergent",
+    "seed": "000",
+    "sr": 0.0,
+    "score": 0.33333,
+    "video": "media/cases/detergent_000-web.mp4",
+    "camera_order": [
+      "overview",
+      "left_wrist",
+      "right_wrist"
+    ],
+    "public_actions": [
+      {
+        "call": "call_00003",
+        "reason": "Back off slightly and align with the displaced green detergent body"
+      },
+      {
+        "call": "call_00004",
+        "reason": "Approach the now-horizontal green bottle from above"
+      },
+      {
+        "call": "call_00008",
+        "reason": "Recenter above the green body without dragging fingertips on the table"
+      },
+      {
+        "call": "call_00022",
+        "reason": "Relieve table contact before closing around the centered body"
+      },
+      {
+        "call": "call_00053",
+        "reason": "Recover the blue bottle from the basket's near edge with a top-down grasp"
+      },
+      {
+        "call": "call_00056",
+        "reason": "Lower fingers clear of the basket rim to engage the blue bottle"
+      },
+      {
+        "call": "call_00058",
+        "reason": "Approach the blue bottle at an angle from the free table edge to avoid basket-wall interference"
+      },
+      {
+        "call": "call_00068",
+        "reason": "Clear the basket-side collision and return the base to a free approach"
+      },
+      {
+        "call": "call_00089",
+        "reason": "Angle the side grasp downward so fingers reach the green bottle without the wrist hitting the table"
+      },
+      {
+        "call": "call_00094",
+        "reason": "Lift away from table constraints before reorienting"
+      },
+      {
+        "call": "call_00095",
+        "reason": "Reset wrist through a reachable neutral orientation"
+      }
+    ]
+  }
+]

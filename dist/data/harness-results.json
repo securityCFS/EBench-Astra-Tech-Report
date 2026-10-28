@@ -1,0 +1,37 @@
+{
+  "source": "arXiv:2610.35832, harness with policy across all 510 EBench test episodes",
+  "configurations": [
+    {
+      "id": "harness-pi05",
+      "label": "Harness with π₀.₅",
+      "policy": "Pi05",
+      "sr": 0.53,
+      "score": 0.692,
+      "groups": {
+        "Low": 0.689,
+        "Medium": 0.479,
+        "High": 0.075,
+        "Mobile": 0.61,
+        "Fixed": 0.314,
+        "Short Horizon": 0.705,
+        "Long Horizon": 0.402
+      }
+    },
+    {
+      "id": "harness-internw0",
+      "label": "Harness with InternW0-Δ",
+      "policy": "InternW0-Delta",
+      "sr": 0.56,
+      "score": 0.744,
+      "groups": {
+        "Low": 0.682,
+        "Medium": 0.565,
+        "High": 0.125,
+        "Mobile": 0.643,
+        "Fixed": 0.336,
+        "Short Horizon": 0.773,
+        "Long Horizon": 0.404
+      }
+    }
+  ]
+}

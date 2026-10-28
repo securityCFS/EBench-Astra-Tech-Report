@@ -1,7 +1,17 @@
 import { test, expect } from '@playwright/test';
 
-test('BibTeX uses a readable code block', async ({ page }) => {
+test('bibliography numbers stay on one line and BibTeX uses a readable code block', async ({
+  page,
+}) => {
   await page.goto('/');
+  const reference = page.locator('.report-reference-list li').first();
+  const marker = await reference.evaluate((el) => {
+    const style = getComputedStyle(el, '::before');
+    return { width: parseFloat(style.width), whiteSpace: style.whiteSpace, left: style.left };
+  });
+  expect(marker.width).toBeGreaterThanOrEqual(24);
+  expect(marker.whiteSpace).toBe('nowrap');
+  expect(marker.left).toBe('0px');
   const code = page.locator('.report-citation code');
   await expect(code).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
   await expect(code).toContainText('@article{yao2026profiling,');
@@ -12,7 +22,7 @@ test('BibTeX uses a readable code block', async ({ page }) => {
 
 test('playback renders a real pause glyph, not an empty icon', async ({ page }) => {
   await page.goto('/');
-  const player = page.locator('#direct-episodes');
+  const player = page.locator('.execution-demo');
   const video = player.locator('video');
   await player.scrollIntoViewIfNeeded();
   await expect

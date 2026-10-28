@@ -27,7 +27,7 @@ test('recorded cases use a compact native disclosure from 320px to 1440px', asyn
   const library = page.locator('.recording-library');
   const summary = library.locator('summary');
   await expect(summary.locator('strong')).toHaveText('More recorded cases');
-  await expect(summary).toContainText('Direct-control rollouts across all 26 tasks');
+  await expect(summary).toContainText('Selected GPT-6-Astra rollouts across all 26 tasks');
   await expect(summary.locator('svg')).toHaveCount(1);
   await expect(summary.locator('svg')).toHaveAttribute('aria-hidden', 'true');
 
@@ -134,9 +134,8 @@ test('search, task attributes, outcomes, and empty states compose and reset pagi
       `${matches.length} tasks · ${matches.length ? 1 : 0}–${Math.min(6, matches.length)} shown`,
     );
     expect(await paths(page)).toEqual(matches.slice(0, 6).map(({ recording }) => recording.path));
-    const label = { success: 'Success', incomplete: 'Partial credit', failed: 'Score of zero' };
     for (const badge of await page.locator('#library-grid .video-label > span').all()) {
-      await expect(badge).toContainText(label[outcome]);
+      await expect(badge).toContainText(outcome[0].toUpperCase() + outcome.slice(1));
     }
   }
 
@@ -164,7 +163,7 @@ test('search, task attributes, outcomes, and empty states compose and reset pagi
   await expect(page.locator('#library-count')).toHaveText('26 tasks · 1–6 shown');
 });
 
-test('a zero-score recording is labeled Score of zero without losing its video', async ({
+test('a zero-score unsuccessful recording is labeled Failed without losing its video', async ({
   page,
 }) => {
   let failedPath = '';
@@ -179,8 +178,8 @@ test('a zero-score recording is labeled Score of zero without losing its video',
   await openLibrary(page);
   await page.locator('#demo-outcome').selectOption('failed');
   const failed = page.locator('#library-grid .video-label > span');
-  await expect(failed.first()).toHaveText('Score of zero (Score 0.00)');
-  await expect(failed).toHaveText(Array(await failed.count()).fill('Score of zero (Score 0.00)'));
+  await expect(failed.first()).toHaveText('Failed (Score 0.000)');
+  await expect(failed).toHaveText(Array(await failed.count()).fill('Failed (Score 0.000)'));
   expect(await paths(page)).toContain(failedPath);
   await page.locator('#demo-outcome').selectOption('incomplete');
   expect(await paths(page)).not.toContain(failedPath);

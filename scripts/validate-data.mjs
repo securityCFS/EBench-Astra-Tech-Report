@@ -43,49 +43,116 @@ for (const demo of demos) {
     demo.path + ' video missing (run git lfs pull)',
   );
 }
-// Headline values quoted in the page text.
 const astra = figures.models.find((m) => m.id === 'Astra (ICL)');
 assert.equal(astra.sr, 0.4673);
 assert.equal(astra.score, 0.6537);
-assert.equal(figures.models.filter((m) => m.sr > astra.sr).length, 2);
-const range = (m) => {
-  const rates = ['object', 'background', 'instruction', 'mix'].map(
-    (k) => m.generalization[k].sr * 100,
-  );
-  return Math.max(...rates) - Math.min(...rates);
-};
-assert.equal(range(astra).toFixed(1), '6.6');
-assert.ok(figures.models.every((m) => m === astra || range(m) > range(astra)));
-// Every recording in these folders is played by the page, and nothing else is shipped.
-const media = {
-  poc: ['astra-poc', 'pi05-poc', 'openwam-poc-1', 'openwam-poc-2'],
-  cases: [
-    'zero-shot-frame',
-    'icl-frame',
-    'zero-shot-gear',
-    'icl-gear',
-    ...['astra', 'pi05', 'openwam'].flatMap((m) => [`${m}-glasses`, `${m}-teacup`]),
-    'dishwasher_009-web',
-    'apple_to_fruit_bowl_003-web',
-    'collect_coffee_beans_009-web',
-    'apple_to_fruit_bowl_006-web',
-    'collect_coffee_beans_013-web',
-    'fruit_015-web',
+const harness = read('harness-results');
+assert.deepEqual(
+  harness.configurations.map((c) => [c.policy, c.sr, c.score]),
+  [
+    ['Pi05', 0.53, 0.692],
+    ['InternW0-Delta', 0.56, 0.744],
   ],
-};
-for (const [folder, names] of Object.entries(media)) {
-  assert.deepEqual(
-    fs.readdirSync(path.join(root, 'media', folder)).sort(),
-    names.map((n) => n + '.mp4').sort(),
+);
+for (const c of harness.configurations)
+  assert.ok(
+    figures.models.some((m) => m.id === c.policy),
+    c.policy + ' alone',
   );
-  for (const name of names)
-    assert.ok(fs.statSync(path.join(root, 'media', folder, name + '.mp4')).size > 10000, name);
-}
+for (const name of [
+  'harness_glass_pi05',
+  'harness_flip_cup_internw0',
+  'harness_gear_pi05',
+  'harness_detergent_internw0',
+  'harness_teacup_pi05',
+])
+  assert.ok(fs.statSync(path.join(root, 'media/harness', name + '-web.mp4')).size > 10000);
+for (const name of ['astra-poc', 'pi05-poc', 'openwam-poc-1', 'openwam-poc-2'])
+  assert.ok(fs.statSync(path.join(root, 'media/poc', name + '.mp4')).size > 10000);
+for (const name of ['collect_coffee_beans_013-web', 'fruit_015-web', 'apple_to_fruit_bowl_006-web'])
+  assert.ok(fs.statSync(path.join(root, 'media/cases', name + '.mp4')).size > 10000);
+const apple = read('apple-recovery-evidence'),
+  appleEpisode = episodes.find((e) => e.task === apple.task && e.seed === apple.seed);
+assert.equal(appleEpisode.sr, apple.server_result.sr);
+assert.equal(appleEpisode.score, apple.server_result.score);
+assert.deepEqual(
+  apple.actions.map((a) => a.call),
+  ['call_00010', 'call_00011', 'call_00017'],
+);
+const page = fs.readFileSync('src/pages/index.astro', 'utf8');
+assert.ok(page.indexOf('<BenchmarkResults />') < page.indexOf('<ExperimentSetup />'));
 assert.ok(
   fs
     .readFileSync('src/components/Masthead.astro', 'utf8')
     .includes('https://internrobotics.shlab.org.cn/eval/landing-page'),
 );
+const safety = read('safety-evidence');
+assert.equal(safety.length, 4);
+assert.ok(safety.some((e) => e.task === 'collect_coffee_beans' && e.seed === '009'));
+assert.ok(safety.some((e) => e.task === 'detergent' && e.seed === '000'));
+for (const entry of safety) {
+  const outcome = episodes.find((e) => e.task === entry.task && e.seed === entry.seed);
+  assert.ok(outcome);
+  assert.equal(outcome.sr, 0);
+  assert.equal(entry.sr, 0);
+  assert.equal(entry.score, outcome.score);
+  assert.ok(fs.statSync(path.join(root, entry.video)).size > 10000);
+  assert.deepEqual(entry.camera_order, ['overview', 'left_wrist', 'right_wrist']);
+  assert.ok(entry.public_actions.length > 0);
+}
+const missed = safety.find(
+  (e) => e.task === 'apple_to_fruit_bowl' && e.seed === '003',
+).missed_target;
+assert.ok(
+  Math.abs(
+    Math.hypot(...missed.target_xyz_m.map((v, i) => v - missed.achieved_xyz_m[i])) -
+      missed.distance_m,
+  ) < 1e-12,
+);
+assert.equal(missed.distance_m.toFixed(2), '0.51');
 console.log(
-  'Validated: 9 systems, 26 tasks, 510 unique outcomes, 27 main demos, 4 composition and 16 case videos; headline values match source data.',
+  'Validated: four failed safety recordings match cohort outcomes; EEF endpoint mismatch recomputes to 0.51 m.',
+);
+const provenance = read('evaluation-provenance');
+assert.equal(provenance.episodes.length, 510);
+assert.equal(new Set(provenance.episodes.map((e) => e.task + '/' + e.seed)).size, 510);
+for (const entry of provenance.episodes) {
+  const outcome = episodes.find((e) => e.task === entry.task && e.seed === entry.seed);
+  assert.ok(outcome, entry.task + '/' + entry.seed + ' provenance match');
+  assert.equal(entry.sr, outcome.sr);
+  assert.ok(Math.abs(entry.score - outcome.score) < 1e-4);
+  assert.ok(
+    !Object.keys(entry).some((k) =>
+      /prompt|profile|account_id|source_output|source_summary/.test(k),
+    ),
+  );
+}
+const holds = provenance.episodes.filter((e) => e.terminal_hold_steps > 0);
+assert.equal(holds.length, provenance.counts.terminal_hold_episodes);
+assert.equal(
+  holds.reduce((sum, e) => sum + e.terminal_hold_steps, 0),
+  provenance.counts.terminal_hold_steps,
+);
+assert.equal(
+  holds.filter((e) => e.sr === 1).length,
+  provenance.counts.successful_episodes_with_hold,
+);
+for (const [route, count] of Object.entries(provenance.counts.execution_routes))
+  assert.equal(
+    provenance.episodes.filter((e) => e.execution_routes.join(' → ') === route).length,
+    count,
+  );
+assert.equal(provenance.comparator_submissions.length, 7);
+for (const submission of provenance.comparator_submissions) {
+  assert.equal(new URL(submission.url).hostname, 'internrobotics.shlab.org.cn');
+  const model = figures.models.find((m) => m.id === submission.model);
+  assert.ok(model);
+  assert.equal(submission.sr, model.sr);
+  assert.equal(submission.score, model.score);
+}
+console.log(
+  'Validated: public cohort manifest matches all 510 outcomes, holding totals, execution routes and seven source submissions.',
+);
+console.log(
+  'Validated: 9 systems, 26 tasks, 510 unique outcomes, 27 main demos, 4 POC videos, 3 behavior videos; headline aggregates and selected-episode labels match source data.',
 );

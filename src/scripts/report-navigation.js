@@ -40,6 +40,8 @@
       event.altKey
     )
       return;
+    // This anchor opens the shared source dialog, not a reading destination.
+    if (link.hash === '#model-references') event.preventDefault();
     if (compact.matches) {
       setOpen(false);
       toggle.focus({ preventScroll: true });

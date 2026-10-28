@@ -1,17 +1,14 @@
 ---
 import '../styles/episode-viewer.css';
-interface Props {
-  id: string;
-  title: string;
-  catalog: string;
-}
-const { id, title, catalog } = Astro.props;
 ---
 
-<section class="execution-demo" id={id} aria-labelledby={`${id}-title`}>
-  <h3 id={`${id}-title`}>{title}</h3>
-  <slot />
-  <div data-episode-viewer data-catalog={catalog}>
+<section
+  class="execution-demo"
+  id="episode-interactions"
+  aria-labelledby="episode-interactions-title"
+>
+  <h3 id="episode-interactions-title">Execution Demo</h3>
+  <div id="episode-viewer">
     <!-- Kept in place while episode content loads, so the underline can travel. -->
     <div class="episode-picker" role="group" aria-label="Choose an episode" hidden>
       <span class="episode-picker-indicator" aria-hidden="true"></span>
@@ -24,8 +21,8 @@ const { id, title, catalog } = Astro.props;
   </div>
   <noscript>
     <p>
-      Enable JavaScript to explore the synchronized recordings, or{' '}
-      <a href={catalog}>browse the episode index</a>.
+      Enable JavaScript to explore the synchronized recordings, or
+      <a href="data/episodes/index.json">browse the public episode index</a>.
     </p>
   </noscript>
 </section>

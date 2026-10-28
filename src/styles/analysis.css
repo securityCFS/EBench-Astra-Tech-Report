@@ -1,5 +1,21 @@
 /* Behavior, outcome and library layouts */
 @layer layout {
+  .behavior-evidence,
+  .safety-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    align-items: start;
+    gap: 2.5rem;
+    max-width: none;
+    margin: 2rem 0;
+  }
+  .behavior-evidence > * {
+    min-width: 0;
+  }
+  .behavior-evidence p {
+    font-size: var(--text);
+    line-height: 1.65;
+  }
   .outcome-layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -30,6 +46,13 @@
     max-width: none;
     font-size: var(--small);
   }
+  .outcome-split-track {
+    min-width: 0;
+  }
+  .failure-depth-row {
+    grid-template-columns: minmax(8rem, 1fr) minmax(8rem, 2fr) auto;
+    gap: 1rem;
+  }
   #video-library {
     margin-top: 3rem;
     border-top: 1px solid var(--line);
@@ -47,5 +70,15 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem 1.5rem;
+  }
+  .library-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .library-controls > * {
+    min-width: 0;
+    max-width: 100%;
   }
 }

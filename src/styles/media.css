@@ -68,6 +68,24 @@
   .evidence-video figcaption {
     margin-top: 1rem;
   }
+  .demo-toolbar,
+  .poc-controls,
+  .play-evidence,
+  .case-playback,
+  .recording-playback {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 1.25rem 0;
+  }
+  .focus-switch {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
   .behavior-tabs,
   .case-recording-tabs {
     display: flex;
@@ -92,6 +110,26 @@
   .behavior-tabs button[aria-selected='true'],
   .case-recording-tabs button[aria-pressed='true'] {
     border-bottom-color: var(--accent);
+  }
+  .focus-switch > span {
+    display: none;
+  }
+  .focus-switch button,
+  .stage-strip button,
+  .stage-strip span {
+    font-size: var(--small);
+  }
+  .stage-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  .case-study-panel {
+    border-top: 1px solid var(--line);
+    padding-top: 3rem;
+    margin-top: 3rem;
   }
   .case-heading {
     margin: 2rem 0 1rem;
