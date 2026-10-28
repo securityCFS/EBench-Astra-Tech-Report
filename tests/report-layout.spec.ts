@@ -126,7 +126,7 @@ test('tables, cases, video playback, and references retain their interactions', 
   await expect(page.locator('.citation-prompt')).toHaveText(
     'If you find this work useful, please cite:',
   );
-  await expect(page.locator('.report-reference-list li')).toHaveCount(10);
+  await expect(page.locator('.report-reference-list li')).toHaveCount(15);
 });
 for (const dpr of [1, 1.25, 2])
   test(`DPR ${dpr}: narrow window restores to the same layout`, async ({ browser, baseURL }) => {

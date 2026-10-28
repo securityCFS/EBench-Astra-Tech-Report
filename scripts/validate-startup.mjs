@@ -73,7 +73,7 @@ const referenceIds = [
     .matchAll(/<li id="([^"]+)" role="doc-biblioentry">/g),
 ].map(([, id]) => id);
 const citations = [...relatedWork.matchAll(/<a\b[^>]*href="#([^"]+)"[^>]*>\[(\d+)\]<\/a>/g)];
-assert.equal(citations.length, 8);
+assert.equal(citations.length, 12);
 for (const [, target, number] of citations)
   assert.equal(target, referenceIds[Number(number) - 1], `Reference ${number} target mismatch.`);
 const page = fs.readFileSync('src/pages/index.astro', 'utf8');
