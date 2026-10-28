@@ -135,6 +135,8 @@ test('POC group starts cold media in parallel and focuses only one model', async
   await page.goto('/');
   const area = page.locator('#case-poc');
   const play = area.locator('.case-play');
+  // WebKit does not load muted videos that are off screen, so bring the whole grid into view.
+  await area.locator('.case-video-toolbar').evaluate((el) => el.scrollIntoView({ block: 'start' }));
   await play.click();
   await expect
     .poll(
