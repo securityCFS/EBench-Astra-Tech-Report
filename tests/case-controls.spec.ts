@@ -176,9 +176,12 @@ test('camera selectors use the same sliding pill and keep the requested crop', a
   const camera = area.locator('.camera-controls').first();
   await expect(camera).toHaveAttribute('data-indicator', 'pill', { timeout: 30000 });
   const video = area.locator('video').first();
-  expect(
-    await video.evaluate((v: HTMLVideoElement) => v.videoWidth / v.videoHeight),
-  ).toBeGreaterThan(4);
+  // The selector is rendered before the recording loads, so wait for the recording itself.
+  await expect
+    .poll(() => video.evaluate((v: HTMLVideoElement) => v.videoWidth / v.videoHeight), {
+      timeout: 30000,
+    })
+    .toBeGreaterThan(4);
   await expect(video).toHaveCSS('object-fit', 'cover');
   await expect(video).toHaveCSS('object-position', '0% 50%');
   const cameraBox = (await camera.boundingBox())!;

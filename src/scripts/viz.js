@@ -24,6 +24,21 @@
   /* ---------- one floating tooltip for every figure ---------- */
   let tip;
   let tipContent;
+  let tipFromFocus = false;
+  // WebKit sends a pointermove after each scroll even when the pointer has not moved. Such an
+  // event must not close or replace the tooltip that keyboard focus opened.
+  let pointerX;
+  let pointerY;
+  let pointerStill = false;
+  document.addEventListener(
+    'pointermove',
+    (e) => {
+      pointerStill = e.clientX === pointerX && e.clientY === pointerY;
+      pointerX = e.clientX;
+      pointerY = e.clientY;
+    },
+    true,
+  );
   function tooltip() {
     if (tip) return tip;
     tip = document.createElement('div');
@@ -60,6 +75,8 @@
     if (root.dataset?.tipsBound) return;
     if (root.dataset) root.dataset.tipsBound = 'true';
     root.addEventListener('pointermove', (e) => {
+      if (pointerStill && tipFromFocus) return;
+      tipFromFocus = false;
       const mark = e.target.closest('[data-tip]');
       if (!mark) {
         hideTip();
@@ -72,6 +89,7 @@
       const mark = e.target.closest('[data-tip]');
       if (!mark) return;
       const box = mark.getBoundingClientRect();
+      tipFromFocus = true;
       showTip(mark.dataset.tip, box.left + box.width / 2, box.top + box.height / 2);
     });
     root.addEventListener('focusout', hideTip);
