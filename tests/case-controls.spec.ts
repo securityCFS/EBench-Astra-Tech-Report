@@ -173,20 +173,21 @@ test('POC group starts cold media in parallel and focuses only one model', async
 
 test('camera selectors use the same sliding pill and keep the requested crop', async ({ page }) => {
   await page.goto('/');
-  const area = page.locator('#mobile-content');
-  await area.locator('.evidence-video').first().scrollIntoViewIfNeeded();
-  const camera = area.locator('.camera-controls').first();
+  // Both recordings load their metadata at once, so read the controls of the first one only.
+  const figure = page.locator('#mobile-content .evidence-video').first();
+  await figure.scrollIntoViewIfNeeded();
+  const camera = figure.locator('.camera-controls');
   await expect(camera).toHaveAttribute('data-indicator', 'pill', { timeout: 30000 });
-  const video = area.locator('video').first();
+  const video = figure.locator('video');
   expect(
     await video.evaluate((v: HTMLVideoElement) => v.videoWidth / v.videoHeight),
   ).toBeGreaterThan(4);
   await expect(video).toHaveCSS('object-fit', 'cover');
   await expect(video).toHaveCSS('object-position', '0% 50%');
   const cameraBox = (await camera.boundingBox())!;
-  const viewportBox = (await area.locator('.media-viewport').first().boundingBox())!;
+  const viewportBox = (await figure.locator('.media-viewport').boundingBox())!;
   expect(cameraBox.y - viewportBox.y - viewportBox.height).toBeCloseTo(12, 0);
-  const captionBox = (await area.locator('.evidence-video > figcaption').first().boundingBox())!;
+  const captionBox = (await figure.locator(':scope > figcaption').boundingBox())!;
   expect(captionBox.y - cameraBox.y - cameraBox.height).toBeCloseTo(12, 0);
   await camera.locator('[data-camera="center"]').focus();
   await page.keyboard.press('ArrowRight');
