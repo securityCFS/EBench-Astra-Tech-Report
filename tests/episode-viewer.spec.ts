@@ -216,7 +216,10 @@ test('full-width chapters sit below both columns, expose focus/hover labels, and
   await slip.focus();
   await page.keyboard.press('Enter');
   await expect(root.locator('[data-counter]')).toHaveText('Interaction 10 / 20');
-  await expect(root.locator('[data-seek]')).toHaveValue(String(episodes[0].calls[9].video_start));
+  // The range input keeps 0.01 s steps; call boundaries fall on 30 fps frames.
+  await expect
+    .poll(async () => Number(await root.locator('[data-seek]').inputValue()))
+    .toBeCloseTo(episodes[0].calls[9].video_start, 2);
   await page.keyboard.press('Escape');
   await expect(slip.locator('.episode-chapter-label')).not.toBeVisible();
   await root.locator('[data-chapter]').first().hover();

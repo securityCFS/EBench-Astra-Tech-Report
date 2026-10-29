@@ -10,10 +10,10 @@
     "score": 0.6
   },
   "video": "media/cases/fruit_015-web.mp4",
-  "duration": 95.0,
-  "fps": 4,
-  "frame_count": 380,
-  "video_sha256": "4e25bade0fa56d88fd25243d0589dc6fbfb0177a70546b1adb7201f8d528a622",
+  "duration": 100.0,
+  "fps": 30,
+  "frame_count": 3000,
+  "video_sha256": "3da70956a87aa23be80ecffcfcd0c576a5fd70dfd60a380f01da0b6226765a30",
   "physics_steps": 3000,
   "physics_hz": 30,
   "bookmarks": [
@@ -85,7 +85,7 @@
       "start_step": 0,
       "end_step": 64,
       "video_start": 0.0,
-      "video_end": 2.0,
+      "video_end": 2.1333333333333333,
       "request_sha256": "b8b252e154f6e1f867629dfaa05fb7b092303befaca4590c0d64cde7c2a50bb9"
     },
     {
@@ -131,8 +131,8 @@
       },
       "start_step": 64,
       "end_step": 112,
-      "video_start": 2.0,
-      "video_end": 3.5,
+      "video_start": 2.1333333333333333,
+      "video_end": 3.7333333333333334,
       "request_sha256": "91685e1fddf4d714b519b5651dcfd7b414f76d40d92e2c2a58bbafe470e1c1bf"
     },
     {
@@ -155,8 +155,8 @@
       },
       "start_step": 112,
       "end_step": 136,
-      "video_start": 3.5,
-      "video_end": 4.25,
+      "video_start": 3.7333333333333334,
+      "video_end": 4.533333333333333,
       "request_sha256": "8b4dba01e5b663285902e53324c8d1fc45d1ea239895f1c313f275776d236643"
     },
     {
@@ -224,8 +224,8 @@
       },
       "start_step": 136,
       "end_step": 180,
-      "video_start": 4.25,
-      "video_end": 5.75,
+      "video_start": 4.533333333333333,
+      "video_end": 6.0,
       "request_sha256": "e92a9cb3635b1a37367e8af804ef743c780478c6dea3623f868eb6716ac04c27"
     },
     {
@@ -271,8 +271,8 @@
       },
       "start_step": 180,
       "end_step": 212,
-      "video_start": 5.75,
-      "video_end": 6.75,
+      "video_start": 6.0,
+      "video_end": 7.066666666666666,
       "request_sha256": "2615ac72c24c8ab81325cb07024a00524c7000175943236f8f3d90abf1aed1fe"
     },
     {
@@ -295,8 +295,8 @@
       },
       "start_step": 212,
       "end_step": 236,
-      "video_start": 6.75,
-      "video_end": 7.5,
+      "video_start": 7.066666666666666,
+      "video_end": 7.866666666666666,
       "request_sha256": "84dd545417fbfab0b89ac428a7bfd05032b1c810b3a70ecaaa6ab9d53648f473"
     },
     {
@@ -343,8 +343,8 @@
       },
       "start_step": 236,
       "end_step": 264,
-      "video_start": 7.5,
-      "video_end": 8.5,
+      "video_start": 7.866666666666666,
+      "video_end": 8.8,
       "request_sha256": "8bbc4a26b8b93276e90d38d27e0fa98464828d91c23587223ec0851f0538c3b7"
     },
     {
@@ -414,8 +414,8 @@
       },
       "start_step": 264,
       "end_step": 360,
-      "video_start": 8.5,
-      "video_end": 11.5,
+      "video_start": 8.8,
+      "video_end": 12.0,
       "request_sha256": "a153f29ba652b7aca6b9a3002a3a175acca7312c73e5c1dfaafd7615bfd3d97d"
     },
     {
@@ -461,8 +461,8 @@
       },
       "start_step": 360,
       "end_step": 400,
-      "video_start": 11.5,
-      "video_end": 12.75,
+      "video_start": 12.0,
+      "video_end": 13.333333333333334,
       "request_sha256": "af2b32099efdaa01cc747de72ddaa21a1d8d214ae6a100e692ec180a557b7440"
     },
     {
@@ -508,8 +508,8 @@
       },
       "start_step": 400,
       "end_step": 432,
-      "video_start": 12.75,
-      "video_end": 13.75,
+      "video_start": 13.333333333333334,
+      "video_end": 14.4,
       "request_sha256": "93d214b47587fade17c62a8e3a5150bfbec07a8816e8ae57e99d21e15ab4e5a3"
     },
     {
@@ -533,8 +533,8 @@
       },
       "start_step": 432,
       "end_step": 464,
-      "video_start": 13.75,
-      "video_end": 14.75,
+      "video_start": 14.4,
+      "video_end": 15.466666666666667,
       "request_sha256": "ea0d81d8ba2e8258e90edb0ac8da8d3517085673340a907cffbd43002aa1a01f"
     },
     {
@@ -580,8 +580,8 @@
       },
       "start_step": 464,
       "end_step": 504,
-      "video_start": 14.75,
-      "video_end": 16.0,
+      "video_start": 15.466666666666667,
+      "video_end": 16.8,
       "request_sha256": "230dbae58dde8b0954c12865af97ce703f93e89a3b9b696e11a002c1c47439d8"
     },
     {
@@ -627,8 +627,8 @@
       },
       "start_step": 504,
       "end_step": 528,
-      "video_start": 16.0,
-      "video_end": 16.75,
+      "video_start": 16.8,
+      "video_end": 17.6,
       "request_sha256": "6455a985e3da1d68ad96487795617490bc0f75f52f65466a79e8c075fd460e41"
     },
     {
@@ -651,8 +651,8 @@
       },
       "start_step": 528,
       "end_step": 552,
-      "video_start": 16.75,
-      "video_end": 17.5,
+      "video_start": 17.6,
+      "video_end": 18.4,
       "request_sha256": "f61f37a32907186171674a8e086352097481431b789a6079b3750729bd0e9a6c"
     },
     {
@@ -699,8 +699,8 @@
       },
       "start_step": 552,
       "end_step": 580,
-      "video_start": 17.5,
-      "video_end": 18.5,
+      "video_start": 18.4,
+      "video_end": 19.333333333333332,
       "request_sha256": "09fb601128524ad608fd133d8525f8f489424459995420fcfefbb9c60375654e"
     },
     {
@@ -769,8 +769,8 @@
       },
       "start_step": 580,
       "end_step": 660,
-      "video_start": 18.5,
-      "video_end": 21.0,
+      "video_start": 19.333333333333332,
+      "video_end": 22.0,
       "request_sha256": "5e17d676364e456374af16610a612fda9baa3d65c1734c031b1195fe6c1f6bb8"
     },
     {
@@ -794,8 +794,8 @@
       },
       "start_step": 660,
       "end_step": 700,
-      "video_start": 21.0,
-      "video_end": 22.25,
+      "video_start": 22.0,
+      "video_end": 23.333333333333332,
       "request_sha256": "5e4084a50e7f7462b24bc3409295edeed142f63572ba584153e443e26b731832"
     },
     {
@@ -864,8 +864,8 @@
       },
       "start_step": 700,
       "end_step": 780,
-      "video_start": 22.25,
-      "video_end": 24.75,
+      "video_start": 23.333333333333332,
+      "video_end": 26.0,
       "request_sha256": "8a3f8578efff8cd83bc5f19217fe04c77466ad34a27bb2d179439b228111772b"
     },
     {
@@ -911,8 +911,8 @@
       },
       "start_step": 780,
       "end_step": 804,
-      "video_start": 24.75,
-      "video_end": 25.5,
+      "video_start": 26.0,
+      "video_end": 26.8,
       "request_sha256": "4c9749f4495378151dfd006b2a2c1361c1e2bc51f839786c92dab4bdb3228550"
     },
     {
@@ -935,8 +935,8 @@
       },
       "start_step": 804,
       "end_step": 828,
-      "video_start": 25.5,
-      "video_end": 26.25,
+      "video_start": 26.8,
+      "video_end": 27.6,
       "request_sha256": "7881f10c3561c224e4c0b8e21f0d31abd46c7131c2a1f7c69569a9336a446330"
     },
     {
@@ -983,8 +983,8 @@
       },
       "start_step": 828,
       "end_step": 856,
-      "video_start": 26.25,
-      "video_end": 27.25,
+      "video_start": 27.6,
+      "video_end": 28.533333333333335,
       "request_sha256": "ef568173701b6470b45a74e7cecef39a1cb6f64f8f9e30bd54127fefb4bf8ca8"
     },
     {
@@ -1053,8 +1053,8 @@
       },
       "start_step": 856,
       "end_step": 936,
-      "video_start": 27.25,
-      "video_end": 29.75,
+      "video_start": 28.533333333333335,
+      "video_end": 31.2,
       "request_sha256": "07eaa356e5b1c9b17c115c592e6528df291cdaa1ca050a86762536e38335b86c"
     },
     {
@@ -1078,8 +1078,8 @@
       },
       "start_step": 936,
       "end_step": 976,
-      "video_start": 29.75,
-      "video_end": 31.0,
+      "video_start": 31.2,
+      "video_end": 32.53333333333333,
       "request_sha256": "8a2839bd6ffb1274759f299a5b41f020253d7e79eabe31d0790dc7d89d103534"
     },
     {
@@ -1148,8 +1148,8 @@
       },
       "start_step": 976,
       "end_step": 1056,
-      "video_start": 31.0,
-      "video_end": 33.5,
+      "video_start": 32.53333333333333,
+      "video_end": 35.2,
       "request_sha256": "9489e851c7309db852515447a770343cc6173edcd929093e87cd9717bde4000b"
     },
     {
@@ -1195,8 +1195,8 @@
       },
       "start_step": 1056,
       "end_step": 1080,
-      "video_start": 33.5,
-      "video_end": 34.25,
+      "video_start": 35.2,
+      "video_end": 36.0,
       "request_sha256": "72f7e4bcc4e97528e66b1d8352d68ac3a1472529864750d54782e73c97e411a0"
     },
     {
@@ -1219,8 +1219,8 @@
       },
       "start_step": 1080,
       "end_step": 1104,
-      "video_start": 34.25,
-      "video_end": 35.0,
+      "video_start": 36.0,
+      "video_end": 36.8,
       "request_sha256": "f68301c141666dfac0d7e9aac7cd73884ed9937099799e2d50945cc29f796d6a"
     },
     {
@@ -1267,8 +1267,8 @@
       },
       "start_step": 1104,
       "end_step": 1132,
-      "video_start": 35.0,
-      "video_end": 36.0,
+      "video_start": 36.8,
+      "video_end": 37.733333333333334,
       "request_sha256": "375ebe6f4fd7d10ca230c575b9f4ee7a0004a9f9be75c0e51ce7c4f286797f2c"
     },
     {
@@ -1337,8 +1337,8 @@
       },
       "start_step": 1132,
       "end_step": 1220,
-      "video_start": 36.0,
-      "video_end": 38.75,
+      "video_start": 37.733333333333334,
+      "video_end": 40.666666666666664,
       "request_sha256": "3f493f4e13c6aed8b5a40d687f754ec49de1ae425f777ee63b1b741c97dbe2c3"
     },
     {
@@ -1362,8 +1362,8 @@
       },
       "start_step": 1220,
       "end_step": 1268,
-      "video_start": 38.75,
-      "video_end": 40.25,
+      "video_start": 40.666666666666664,
+      "video_end": 42.266666666666666,
       "request_sha256": "996c1228889f4a8784ca27e73344eb74f16e4a12deadd82cdd458bcd453bdd14"
     },
     {
@@ -1433,8 +1433,8 @@
       },
       "start_step": 1268,
       "end_step": 1348,
-      "video_start": 40.25,
-      "video_end": 42.75,
+      "video_start": 42.266666666666666,
+      "video_end": 44.93333333333333,
       "request_sha256": "1dfa42047839506a500d0dac016e18f14bbc33ac8bbe8375e07e763401f15281"
     },
     {
@@ -1457,8 +1457,8 @@
       },
       "start_step": 1348,
       "end_step": 1372,
-      "video_start": 42.75,
-      "video_end": 43.5,
+      "video_start": 44.93333333333333,
+      "video_end": 45.733333333333334,
       "request_sha256": "50b725c548d536cb666f6a77ca46eae541079ee9914d08fba1e74d6690eb020a"
     },
     {
@@ -1526,8 +1526,8 @@
       },
       "start_step": 1372,
       "end_step": 1416,
-      "video_start": 43.5,
-      "video_end": 45.0,
+      "video_start": 45.733333333333334,
+      "video_end": 47.2,
       "request_sha256": "eb85388a7d54ec5309229d10cc9a8b96180d0c7ae691f5fe0703120e673ceafd"
     },
     {
@@ -1573,8 +1573,8 @@
       },
       "start_step": 1416,
       "end_step": 1448,
-      "video_start": 45.0,
-      "video_end": 46.0,
+      "video_start": 47.2,
+      "video_end": 48.266666666666666,
       "request_sha256": "e82f90724cd06e050f22e9ab895aa79e9e6ea8a2bd72c1b7aa9e6ac09f1b85c2"
     },
     {
@@ -1620,8 +1620,8 @@
       },
       "start_step": 1448,
       "end_step": 1480,
-      "video_start": 46.0,
-      "video_end": 47.0,
+      "video_start": 48.266666666666666,
+      "video_end": 49.333333333333336,
       "request_sha256": "d9968904e783a0f3106cdaa99c04913fbb828c011bd4f1968289c12cc71afa2b"
     },
     {
@@ -1645,8 +1645,8 @@
       },
       "start_step": 1480,
       "end_step": 1504,
-      "video_start": 47.0,
-      "video_end": 47.75,
+      "video_start": 49.333333333333336,
+      "video_end": 50.13333333333333,
       "request_sha256": "baaef21fe2a14ceafff7d016d7ae838c2e1ad9a382d78dd0e20b20c7ca101000"
     },
     {
@@ -1693,8 +1693,8 @@
       },
       "start_step": 1504,
       "end_step": 1532,
-      "video_start": 47.75,
-      "video_end": 48.75,
+      "video_start": 50.13333333333333,
+      "video_end": 51.06666666666667,
       "request_sha256": "caab49dd1e59013c6965b6c71578021b23b088ac4984636696e9f480233f1dc8"
     },
     {
@@ -1741,8 +1741,8 @@
       },
       "start_step": 1532,
       "end_step": 1576,
-      "video_start": 48.75,
-      "video_end": 50.25,
+      "video_start": 51.06666666666667,
+      "video_end": 52.53333333333333,
       "request_sha256": "2caadc5a4de566f84d3146923ed9a98ff79e2a4c295fc903fcbf627751ea99d0"
     },
     {
@@ -1816,8 +1816,8 @@
       },
       "start_step": 1576,
       "end_step": 1688,
-      "video_start": 50.25,
-      "video_end": 53.75,
+      "video_start": 52.53333333333333,
+      "video_end": 56.266666666666666,
       "request_sha256": "ac53f83699d956fa8db5bb437622819f80ae80384d6b49394ee92c1a529c23d0"
     },
     {
@@ -1864,8 +1864,8 @@
       },
       "start_step": 1688,
       "end_step": 1728,
-      "video_start": 53.75,
-      "video_end": 55.0,
+      "video_start": 56.266666666666666,
+      "video_end": 57.6,
       "request_sha256": "0d507dafa78741f536a1da56722b670a14ddf95ee5daf309cdb46b0baea811d8"
     },
     {
@@ -1911,8 +1911,8 @@
       },
       "start_step": 1728,
       "end_step": 1768,
-      "video_start": 55.0,
-      "video_end": 56.25,
+      "video_start": 57.6,
+      "video_end": 58.93333333333333,
       "request_sha256": "d3858f9ead524094e196d02872b80266b22e18b681289332e355a8ce22a01985"
     },
     {
@@ -1959,8 +1959,8 @@
       },
       "start_step": 1768,
       "end_step": 1808,
-      "video_start": 56.25,
-      "video_end": 57.5,
+      "video_start": 58.93333333333333,
+      "video_end": 60.266666666666666,
       "request_sha256": "8a01266ee49da118baf423af5b73299a4a3446fc24c35d1a42f60636c7eda981"
     },
     {
@@ -2006,8 +2006,8 @@
       },
       "start_step": 1808,
       "end_step": 1848,
-      "video_start": 57.5,
-      "video_end": 58.75,
+      "video_start": 60.266666666666666,
+      "video_end": 61.6,
       "request_sha256": "b803a6dd046b41d54c90ee73da44e2bb5c6031c20b0abf573c789fcab9e2bcb8"
     },
     {
@@ -2030,8 +2030,8 @@
       },
       "start_step": 1848,
       "end_step": 1872,
-      "video_start": 58.75,
-      "video_end": 59.5,
+      "video_start": 61.6,
+      "video_end": 62.4,
       "request_sha256": "67ddece6f18eae2aeee8d713185f5a5cf400d3dd1638e3a0fc4ff2c01676566b"
     },
     {
@@ -2078,8 +2078,8 @@
       },
       "start_step": 1872,
       "end_step": 1900,
-      "video_start": 59.5,
-      "video_end": 60.5,
+      "video_start": 62.4,
+      "video_end": 63.333333333333336,
       "request_sha256": "4b7c4a44b748b946a7df21a37e6ef50e4fd93c530086ff0a19413924f3fa16c1"
     },
     {
@@ -2148,8 +2148,8 @@
       },
       "start_step": 1900,
       "end_step": 1988,
-      "video_start": 60.5,
-      "video_end": 63.25,
+      "video_start": 63.333333333333336,
+      "video_end": 66.26666666666667,
       "request_sha256": "000916a22fe9c0612f6cba7cb8789f8638fe697c0f65313f789e4645625fc1ae"
     },
     {
@@ -2195,8 +2195,8 @@
       },
       "start_step": 1988,
       "end_step": 2020,
-      "video_start": 63.25,
-      "video_end": 64.25,
+      "video_start": 66.26666666666667,
+      "video_end": 67.33333333333333,
       "request_sha256": "9fd8a78731420e18664266b80e80770ecbb9e151c250bbcb241cab6927411bc0"
     },
     {
@@ -2220,8 +2220,8 @@
       },
       "start_step": 2020,
       "end_step": 2060,
-      "video_start": 64.25,
-      "video_end": 65.5,
+      "video_start": 67.33333333333333,
+      "video_end": 68.66666666666667,
       "request_sha256": "9ef5e3de2d3bfbdcd2552cebc9e9f5295c0bafd259ea81f90582b59c436a6e2b"
     },
     {
@@ -2267,8 +2267,8 @@
       },
       "start_step": 2060,
       "end_step": 2100,
-      "video_start": 65.5,
-      "video_end": 66.75,
+      "video_start": 68.66666666666667,
+      "video_end": 70.0,
       "request_sha256": "9609532542bee4fbb6da586fa8634d17bc369c11343d2f8b83abdd43d25d1955"
     },
     {
@@ -2314,8 +2314,8 @@
       },
       "start_step": 2100,
       "end_step": 2140,
-      "video_start": 66.75,
-      "video_end": 68.0,
+      "video_start": 70.0,
+      "video_end": 71.33333333333333,
       "request_sha256": "d7ab5df56ca8d13fb3086eec8aa5e15863e71474ba2fae568cb0778f65a04139"
     },
     {
@@ -2338,8 +2338,8 @@
       },
       "start_step": 2140,
       "end_step": 2164,
-      "video_start": 68.0,
-      "video_end": 68.75,
+      "video_start": 71.33333333333333,
+      "video_end": 72.13333333333334,
       "request_sha256": "74f3dd4f374d7387fd337522d9e5106b5f5df17a6569ab3b49f6969d7e4aae80"
     },
     {
@@ -2386,8 +2386,8 @@
       },
       "start_step": 2164,
       "end_step": 2192,
-      "video_start": 68.75,
-      "video_end": 69.75,
+      "video_start": 72.13333333333334,
+      "video_end": 73.06666666666666,
       "request_sha256": "b21ba59eead6ff160427afb7cf3c1cb756138e59a31ba8f2ba90d8b4a2bab373"
     },
     {
@@ -2434,8 +2434,8 @@
       },
       "start_step": 2192,
       "end_step": 2252,
-      "video_start": 69.75,
-      "video_end": 71.75,
+      "video_start": 73.06666666666666,
+      "video_end": 75.06666666666666,
       "request_sha256": "562a05cdbe22e60d5d36d44d02e59646800cd4c256310651099a989ad4bcef5b"
     },
     {
@@ -2482,8 +2482,8 @@
       },
       "start_step": 2252,
       "end_step": 2316,
-      "video_start": 71.75,
-      "video_end": 73.75,
+      "video_start": 75.06666666666666,
+      "video_end": 77.2,
       "request_sha256": "895722c6a22303bbcc390774dd8b688be0f20b9660ad20774ead0ef282f1ae19"
     },
     {
@@ -2530,8 +2530,8 @@
       },
       "start_step": 2316,
       "end_step": 2380,
-      "video_start": 73.75,
-      "video_end": 75.75,
+      "video_start": 77.2,
+      "video_end": 79.33333333333333,
       "request_sha256": "b143007a110c318fd0c3acd95a250208be258f862e96bbbf92a0745da2b7ee0e"
     },
     {
@@ -2577,8 +2577,8 @@
       },
       "start_step": 2380,
       "end_step": 2428,
-      "video_start": 75.75,
-      "video_end": 77.25,
+      "video_start": 79.33333333333333,
+      "video_end": 80.93333333333334,
       "request_sha256": "f7cd31bf30ac15a94894825ca3cd2de92c50b035cb00bbb25d119addf7566264"
     },
     {
@@ -2624,8 +2624,8 @@
       },
       "start_step": 2428,
       "end_step": 2476,
-      "video_start": 77.25,
-      "video_end": 78.75,
+      "video_start": 80.93333333333334,
+      "video_end": 82.53333333333333,
       "request_sha256": "d62ef44b7a170864bad2a1512571989662ea1d831d0b5c3bac79ae12b3cf3dab"
     },
     {
@@ -2671,8 +2671,8 @@
       },
       "start_step": 2476,
       "end_step": 2508,
-      "video_start": 78.75,
-      "video_end": 79.75,
+      "video_start": 82.53333333333333,
+      "video_end": 83.6,
       "request_sha256": "a21c2d582cd0f8ebb6d46ed86ab6ba5fb70554f048508be95b3431adc203f91b"
     },
     {
@@ -2695,8 +2695,8 @@
       },
       "start_step": 2508,
       "end_step": 2532,
-      "video_start": 79.75,
-      "video_end": 80.5,
+      "video_start": 83.6,
+      "video_end": 84.4,
       "request_sha256": "5b243ecdd40f07c90eebb736dd32ab7718f630d9a66391c3fa0ba818551948d8"
     },
     {
@@ -2743,8 +2743,8 @@
       },
       "start_step": 2532,
       "end_step": 2560,
-      "video_start": 80.5,
-      "video_end": 81.5,
+      "video_start": 84.4,
+      "video_end": 85.33333333333333,
       "request_sha256": "338305e3c65a8a117d35ed14a312a429f3d78787889900afcc3788f6c072889f"
     },
     {
@@ -2814,8 +2814,8 @@
       },
       "start_step": 2560,
       "end_step": 2664,
-      "video_start": 81.5,
-      "video_end": 84.75,
+      "video_start": 85.33333333333333,
+      "video_end": 88.8,
       "request_sha256": "af2acd8b5ef6d5ca36357619318b3ba9498dc0c6e12e4d4e05f3df4d3ff58f27"
     },
     {
@@ -2862,8 +2862,8 @@
       },
       "start_step": 2664,
       "end_step": 2712,
-      "video_start": 84.75,
-      "video_end": 86.25,
+      "video_start": 88.8,
+      "video_end": 90.4,
       "request_sha256": "fd3ac6c758b907f299b24ab7278eda83a00f04762053d7ce315e91dfd0fa3059"
     },
     {
@@ -2932,8 +2932,8 @@
       },
       "start_step": 2712,
       "end_step": 2816,
-      "video_start": 86.25,
-      "video_end": 89.5,
+      "video_start": 90.4,
+      "video_end": 93.86666666666666,
       "request_sha256": "c67ca63cc540da019a812f09c6380fc245a4c0c841ea7fd17431581b6c1ac5e9"
     },
     {
@@ -2956,8 +2956,8 @@
       },
       "start_step": 2816,
       "end_step": 2840,
-      "video_start": 89.5,
-      "video_end": 90.25,
+      "video_start": 93.86666666666666,
+      "video_end": 94.66666666666667,
       "request_sha256": "c8a063cc944498f37f6ca2982309d0ff074b4a484d3e3797085e1144ec3ab6cf"
     },
     {
@@ -3031,8 +3031,8 @@
       },
       "start_step": 2840,
       "end_step": 2944,
-      "video_start": 90.25,
-      "video_end": 93.5,
+      "video_start": 94.66666666666667,
+      "video_end": 98.13333333333334,
       "request_sha256": "d9fbddfd9114281f901c98a5514f18372060dd2f78744eb62d3cccbc0e9d86b6"
     },
     {
@@ -3078,8 +3078,8 @@
       },
       "start_step": 2944,
       "end_step": 2984,
-      "video_start": 93.5,
-      "video_end": 94.75,
+      "video_start": 98.13333333333334,
+      "video_end": 99.46666666666667,
       "request_sha256": "6292371e13a2d55ff815fea64be9603282e8b291f0e62786a2ecce17dec84fb7"
     },
     {
@@ -3107,8 +3107,8 @@
       },
       "start_step": 2984,
       "end_step": 3000,
-      "video_start": 94.75,
-      "video_end": 95.0,
+      "video_start": 99.46666666666667,
+      "video_end": 100.0,
       "request_sha256": "ada861c6df29fe333f7f723c30361717563d4f6863f6870019760ee2d7e1d1ff"
     }
   ],
@@ -3123,1529 +3123,7 @@
     }
   },
   "alignment": {
-    "method": "Recorded nonterminal execution chunks in order, one video frame per returned state; frame counts checked against each encoded video. The terminal result has no additional video frame.",
-    "frames": [
-      {
-        "start_step": 0,
-        "end_step": 8
-      },
-      {
-        "start_step": 8,
-        "end_step": 16
-      },
-      {
-        "start_step": 16,
-        "end_step": 24
-      },
-      {
-        "start_step": 24,
-        "end_step": 32
-      },
-      {
-        "start_step": 32,
-        "end_step": 40
-      },
-      {
-        "start_step": 40,
-        "end_step": 48
-      },
-      {
-        "start_step": 48,
-        "end_step": 56
-      },
-      {
-        "start_step": 56,
-        "end_step": 64
-      },
-      {
-        "start_step": 64,
-        "end_step": 72
-      },
-      {
-        "start_step": 72,
-        "end_step": 80
-      },
-      {
-        "start_step": 80,
-        "end_step": 88
-      },
-      {
-        "start_step": 88,
-        "end_step": 96
-      },
-      {
-        "start_step": 96,
-        "end_step": 104
-      },
-      {
-        "start_step": 104,
-        "end_step": 112
-      },
-      {
-        "start_step": 112,
-        "end_step": 120
-      },
-      {
-        "start_step": 120,
-        "end_step": 128
-      },
-      {
-        "start_step": 128,
-        "end_step": 136
-      },
-      {
-        "start_step": 136,
-        "end_step": 144
-      },
-      {
-        "start_step": 144,
-        "end_step": 148
-      },
-      {
-        "start_step": 148,
-        "end_step": 156
-      },
-      {
-        "start_step": 156,
-        "end_step": 164
-      },
-      {
-        "start_step": 164,
-        "end_step": 172
-      },
-      {
-        "start_step": 172,
-        "end_step": 180
-      },
-      {
-        "start_step": 180,
-        "end_step": 188
-      },
-      {
-        "start_step": 188,
-        "end_step": 196
-      },
-      {
-        "start_step": 196,
-        "end_step": 204
-      },
-      {
-        "start_step": 204,
-        "end_step": 212
-      },
-      {
-        "start_step": 212,
-        "end_step": 220
-      },
-      {
-        "start_step": 220,
-        "end_step": 228
-      },
-      {
-        "start_step": 228,
-        "end_step": 236
-      },
-      {
-        "start_step": 236,
-        "end_step": 244
-      },
-      {
-        "start_step": 244,
-        "end_step": 252
-      },
-      {
-        "start_step": 252,
-        "end_step": 260
-      },
-      {
-        "start_step": 260,
-        "end_step": 264
-      },
-      {
-        "start_step": 264,
-        "end_step": 272
-      },
-      {
-        "start_step": 272,
-        "end_step": 280
-      },
-      {
-        "start_step": 280,
-        "end_step": 288
-      },
-      {
-        "start_step": 288,
-        "end_step": 296
-      },
-      {
-        "start_step": 296,
-        "end_step": 304
-      },
-      {
-        "start_step": 304,
-        "end_step": 312
-      },
-      {
-        "start_step": 312,
-        "end_step": 320
-      },
-      {
-        "start_step": 320,
-        "end_step": 328
-      },
-      {
-        "start_step": 328,
-        "end_step": 336
-      },
-      {
-        "start_step": 336,
-        "end_step": 344
-      },
-      {
-        "start_step": 344,
-        "end_step": 352
-      },
-      {
-        "start_step": 352,
-        "end_step": 360
-      },
-      {
-        "start_step": 360,
-        "end_step": 368
-      },
-      {
-        "start_step": 368,
-        "end_step": 376
-      },
-      {
-        "start_step": 376,
-        "end_step": 384
-      },
-      {
-        "start_step": 384,
-        "end_step": 392
-      },
-      {
-        "start_step": 392,
-        "end_step": 400
-      },
-      {
-        "start_step": 400,
-        "end_step": 408
-      },
-      {
-        "start_step": 408,
-        "end_step": 416
-      },
-      {
-        "start_step": 416,
-        "end_step": 424
-      },
-      {
-        "start_step": 424,
-        "end_step": 432
-      },
-      {
-        "start_step": 432,
-        "end_step": 440
-      },
-      {
-        "start_step": 440,
-        "end_step": 448
-      },
-      {
-        "start_step": 448,
-        "end_step": 456
-      },
-      {
-        "start_step": 456,
-        "end_step": 464
-      },
-      {
-        "start_step": 464,
-        "end_step": 472
-      },
-      {
-        "start_step": 472,
-        "end_step": 480
-      },
-      {
-        "start_step": 480,
-        "end_step": 488
-      },
-      {
-        "start_step": 488,
-        "end_step": 496
-      },
-      {
-        "start_step": 496,
-        "end_step": 504
-      },
-      {
-        "start_step": 504,
-        "end_step": 512
-      },
-      {
-        "start_step": 512,
-        "end_step": 520
-      },
-      {
-        "start_step": 520,
-        "end_step": 528
-      },
-      {
-        "start_step": 528,
-        "end_step": 536
-      },
-      {
-        "start_step": 536,
-        "end_step": 544
-      },
-      {
-        "start_step": 544,
-        "end_step": 552
-      },
-      {
-        "start_step": 552,
-        "end_step": 560
-      },
-      {
-        "start_step": 560,
-        "end_step": 568
-      },
-      {
-        "start_step": 568,
-        "end_step": 576
-      },
-      {
-        "start_step": 576,
-        "end_step": 580
-      },
-      {
-        "start_step": 580,
-        "end_step": 588
-      },
-      {
-        "start_step": 588,
-        "end_step": 596
-      },
-      {
-        "start_step": 596,
-        "end_step": 604
-      },
-      {
-        "start_step": 604,
-        "end_step": 612
-      },
-      {
-        "start_step": 612,
-        "end_step": 620
-      },
-      {
-        "start_step": 620,
-        "end_step": 628
-      },
-      {
-        "start_step": 628,
-        "end_step": 636
-      },
-      {
-        "start_step": 636,
-        "end_step": 644
-      },
-      {
-        "start_step": 644,
-        "end_step": 652
-      },
-      {
-        "start_step": 652,
-        "end_step": 660
-      },
-      {
-        "start_step": 660,
-        "end_step": 668
-      },
-      {
-        "start_step": 668,
-        "end_step": 676
-      },
-      {
-        "start_step": 676,
-        "end_step": 684
-      },
-      {
-        "start_step": 684,
-        "end_step": 692
-      },
-      {
-        "start_step": 692,
-        "end_step": 700
-      },
-      {
-        "start_step": 700,
-        "end_step": 708
-      },
-      {
-        "start_step": 708,
-        "end_step": 716
-      },
-      {
-        "start_step": 716,
-        "end_step": 724
-      },
-      {
-        "start_step": 724,
-        "end_step": 732
-      },
-      {
-        "start_step": 732,
-        "end_step": 740
-      },
-      {
-        "start_step": 740,
-        "end_step": 748
-      },
-      {
-        "start_step": 748,
-        "end_step": 756
-      },
-      {
-        "start_step": 756,
-        "end_step": 764
-      },
-      {
-        "start_step": 764,
-        "end_step": 772
-      },
-      {
-        "start_step": 772,
-        "end_step": 780
-      },
-      {
-        "start_step": 780,
-        "end_step": 788
-      },
-      {
-        "start_step": 788,
-        "end_step": 796
-      },
-      {
-        "start_step": 796,
-        "end_step": 804
-      },
-      {
-        "start_step": 804,
-        "end_step": 812
-      },
-      {
-        "start_step": 812,
-        "end_step": 820
-      },
-      {
-        "start_step": 820,
-        "end_step": 828
-      },
-      {
-        "start_step": 828,
-        "end_step": 836
-      },
-      {
-        "start_step": 836,
-        "end_step": 844
-      },
-      {
-        "start_step": 844,
-        "end_step": 852
-      },
-      {
-        "start_step": 852,
-        "end_step": 856
-      },
-      {
-        "start_step": 856,
-        "end_step": 864
-      },
-      {
-        "start_step": 864,
-        "end_step": 872
-      },
-      {
-        "start_step": 872,
-        "end_step": 880
-      },
-      {
-        "start_step": 880,
-        "end_step": 888
-      },
-      {
-        "start_step": 888,
-        "end_step": 896
-      },
-      {
-        "start_step": 896,
-        "end_step": 904
-      },
-      {
-        "start_step": 904,
-        "end_step": 912
-      },
-      {
-        "start_step": 912,
-        "end_step": 920
-      },
-      {
-        "start_step": 920,
-        "end_step": 928
-      },
-      {
-        "start_step": 928,
-        "end_step": 936
-      },
-      {
-        "start_step": 936,
-        "end_step": 944
-      },
-      {
-        "start_step": 944,
-        "end_step": 952
-      },
-      {
-        "start_step": 952,
-        "end_step": 960
-      },
-      {
-        "start_step": 960,
-        "end_step": 968
-      },
-      {
-        "start_step": 968,
-        "end_step": 976
-      },
-      {
-        "start_step": 976,
-        "end_step": 984
-      },
-      {
-        "start_step": 984,
-        "end_step": 992
-      },
-      {
-        "start_step": 992,
-        "end_step": 1000
-      },
-      {
-        "start_step": 1000,
-        "end_step": 1008
-      },
-      {
-        "start_step": 1008,
-        "end_step": 1016
-      },
-      {
-        "start_step": 1016,
-        "end_step": 1024
-      },
-      {
-        "start_step": 1024,
-        "end_step": 1032
-      },
-      {
-        "start_step": 1032,
-        "end_step": 1040
-      },
-      {
-        "start_step": 1040,
-        "end_step": 1048
-      },
-      {
-        "start_step": 1048,
-        "end_step": 1056
-      },
-      {
-        "start_step": 1056,
-        "end_step": 1064
-      },
-      {
-        "start_step": 1064,
-        "end_step": 1072
-      },
-      {
-        "start_step": 1072,
-        "end_step": 1080
-      },
-      {
-        "start_step": 1080,
-        "end_step": 1088
-      },
-      {
-        "start_step": 1088,
-        "end_step": 1096
-      },
-      {
-        "start_step": 1096,
-        "end_step": 1104
-      },
-      {
-        "start_step": 1104,
-        "end_step": 1112
-      },
-      {
-        "start_step": 1112,
-        "end_step": 1120
-      },
-      {
-        "start_step": 1120,
-        "end_step": 1128
-      },
-      {
-        "start_step": 1128,
-        "end_step": 1132
-      },
-      {
-        "start_step": 1132,
-        "end_step": 1140
-      },
-      {
-        "start_step": 1140,
-        "end_step": 1148
-      },
-      {
-        "start_step": 1148,
-        "end_step": 1156
-      },
-      {
-        "start_step": 1156,
-        "end_step": 1164
-      },
-      {
-        "start_step": 1164,
-        "end_step": 1172
-      },
-      {
-        "start_step": 1172,
-        "end_step": 1180
-      },
-      {
-        "start_step": 1180,
-        "end_step": 1188
-      },
-      {
-        "start_step": 1188,
-        "end_step": 1196
-      },
-      {
-        "start_step": 1196,
-        "end_step": 1204
-      },
-      {
-        "start_step": 1204,
-        "end_step": 1212
-      },
-      {
-        "start_step": 1212,
-        "end_step": 1220
-      },
-      {
-        "start_step": 1220,
-        "end_step": 1228
-      },
-      {
-        "start_step": 1228,
-        "end_step": 1236
-      },
-      {
-        "start_step": 1236,
-        "end_step": 1244
-      },
-      {
-        "start_step": 1244,
-        "end_step": 1252
-      },
-      {
-        "start_step": 1252,
-        "end_step": 1260
-      },
-      {
-        "start_step": 1260,
-        "end_step": 1268
-      },
-      {
-        "start_step": 1268,
-        "end_step": 1276
-      },
-      {
-        "start_step": 1276,
-        "end_step": 1284
-      },
-      {
-        "start_step": 1284,
-        "end_step": 1292
-      },
-      {
-        "start_step": 1292,
-        "end_step": 1300
-      },
-      {
-        "start_step": 1300,
-        "end_step": 1308
-      },
-      {
-        "start_step": 1308,
-        "end_step": 1316
-      },
-      {
-        "start_step": 1316,
-        "end_step": 1324
-      },
-      {
-        "start_step": 1324,
-        "end_step": 1332
-      },
-      {
-        "start_step": 1332,
-        "end_step": 1340
-      },
-      {
-        "start_step": 1340,
-        "end_step": 1348
-      },
-      {
-        "start_step": 1348,
-        "end_step": 1356
-      },
-      {
-        "start_step": 1356,
-        "end_step": 1364
-      },
-      {
-        "start_step": 1364,
-        "end_step": 1372
-      },
-      {
-        "start_step": 1372,
-        "end_step": 1380
-      },
-      {
-        "start_step": 1380,
-        "end_step": 1384
-      },
-      {
-        "start_step": 1384,
-        "end_step": 1392
-      },
-      {
-        "start_step": 1392,
-        "end_step": 1400
-      },
-      {
-        "start_step": 1400,
-        "end_step": 1408
-      },
-      {
-        "start_step": 1408,
-        "end_step": 1416
-      },
-      {
-        "start_step": 1416,
-        "end_step": 1424
-      },
-      {
-        "start_step": 1424,
-        "end_step": 1432
-      },
-      {
-        "start_step": 1432,
-        "end_step": 1440
-      },
-      {
-        "start_step": 1440,
-        "end_step": 1448
-      },
-      {
-        "start_step": 1448,
-        "end_step": 1456
-      },
-      {
-        "start_step": 1456,
-        "end_step": 1464
-      },
-      {
-        "start_step": 1464,
-        "end_step": 1472
-      },
-      {
-        "start_step": 1472,
-        "end_step": 1480
-      },
-      {
-        "start_step": 1480,
-        "end_step": 1488
-      },
-      {
-        "start_step": 1488,
-        "end_step": 1496
-      },
-      {
-        "start_step": 1496,
-        "end_step": 1504
-      },
-      {
-        "start_step": 1504,
-        "end_step": 1512
-      },
-      {
-        "start_step": 1512,
-        "end_step": 1520
-      },
-      {
-        "start_step": 1520,
-        "end_step": 1528
-      },
-      {
-        "start_step": 1528,
-        "end_step": 1532
-      },
-      {
-        "start_step": 1532,
-        "end_step": 1540
-      },
-      {
-        "start_step": 1540,
-        "end_step": 1548
-      },
-      {
-        "start_step": 1548,
-        "end_step": 1556
-      },
-      {
-        "start_step": 1556,
-        "end_step": 1564
-      },
-      {
-        "start_step": 1564,
-        "end_step": 1572
-      },
-      {
-        "start_step": 1572,
-        "end_step": 1576
-      },
-      {
-        "start_step": 1576,
-        "end_step": 1584
-      },
-      {
-        "start_step": 1584,
-        "end_step": 1592
-      },
-      {
-        "start_step": 1592,
-        "end_step": 1600
-      },
-      {
-        "start_step": 1600,
-        "end_step": 1608
-      },
-      {
-        "start_step": 1608,
-        "end_step": 1616
-      },
-      {
-        "start_step": 1616,
-        "end_step": 1624
-      },
-      {
-        "start_step": 1624,
-        "end_step": 1632
-      },
-      {
-        "start_step": 1632,
-        "end_step": 1640
-      },
-      {
-        "start_step": 1640,
-        "end_step": 1648
-      },
-      {
-        "start_step": 1648,
-        "end_step": 1656
-      },
-      {
-        "start_step": 1656,
-        "end_step": 1664
-      },
-      {
-        "start_step": 1664,
-        "end_step": 1672
-      },
-      {
-        "start_step": 1672,
-        "end_step": 1680
-      },
-      {
-        "start_step": 1680,
-        "end_step": 1688
-      },
-      {
-        "start_step": 1688,
-        "end_step": 1696
-      },
-      {
-        "start_step": 1696,
-        "end_step": 1704
-      },
-      {
-        "start_step": 1704,
-        "end_step": 1712
-      },
-      {
-        "start_step": 1712,
-        "end_step": 1720
-      },
-      {
-        "start_step": 1720,
-        "end_step": 1728
-      },
-      {
-        "start_step": 1728,
-        "end_step": 1736
-      },
-      {
-        "start_step": 1736,
-        "end_step": 1744
-      },
-      {
-        "start_step": 1744,
-        "end_step": 1752
-      },
-      {
-        "start_step": 1752,
-        "end_step": 1760
-      },
-      {
-        "start_step": 1760,
-        "end_step": 1768
-      },
-      {
-        "start_step": 1768,
-        "end_step": 1776
-      },
-      {
-        "start_step": 1776,
-        "end_step": 1784
-      },
-      {
-        "start_step": 1784,
-        "end_step": 1792
-      },
-      {
-        "start_step": 1792,
-        "end_step": 1800
-      },
-      {
-        "start_step": 1800,
-        "end_step": 1808
-      },
-      {
-        "start_step": 1808,
-        "end_step": 1816
-      },
-      {
-        "start_step": 1816,
-        "end_step": 1824
-      },
-      {
-        "start_step": 1824,
-        "end_step": 1832
-      },
-      {
-        "start_step": 1832,
-        "end_step": 1840
-      },
-      {
-        "start_step": 1840,
-        "end_step": 1848
-      },
-      {
-        "start_step": 1848,
-        "end_step": 1856
-      },
-      {
-        "start_step": 1856,
-        "end_step": 1864
-      },
-      {
-        "start_step": 1864,
-        "end_step": 1872
-      },
-      {
-        "start_step": 1872,
-        "end_step": 1880
-      },
-      {
-        "start_step": 1880,
-        "end_step": 1888
-      },
-      {
-        "start_step": 1888,
-        "end_step": 1896
-      },
-      {
-        "start_step": 1896,
-        "end_step": 1900
-      },
-      {
-        "start_step": 1900,
-        "end_step": 1908
-      },
-      {
-        "start_step": 1908,
-        "end_step": 1916
-      },
-      {
-        "start_step": 1916,
-        "end_step": 1924
-      },
-      {
-        "start_step": 1924,
-        "end_step": 1932
-      },
-      {
-        "start_step": 1932,
-        "end_step": 1940
-      },
-      {
-        "start_step": 1940,
-        "end_step": 1948
-      },
-      {
-        "start_step": 1948,
-        "end_step": 1956
-      },
-      {
-        "start_step": 1956,
-        "end_step": 1964
-      },
-      {
-        "start_step": 1964,
-        "end_step": 1972
-      },
-      {
-        "start_step": 1972,
-        "end_step": 1980
-      },
-      {
-        "start_step": 1980,
-        "end_step": 1988
-      },
-      {
-        "start_step": 1988,
-        "end_step": 1996
-      },
-      {
-        "start_step": 1996,
-        "end_step": 2004
-      },
-      {
-        "start_step": 2004,
-        "end_step": 2012
-      },
-      {
-        "start_step": 2012,
-        "end_step": 2020
-      },
-      {
-        "start_step": 2020,
-        "end_step": 2028
-      },
-      {
-        "start_step": 2028,
-        "end_step": 2036
-      },
-      {
-        "start_step": 2036,
-        "end_step": 2044
-      },
-      {
-        "start_step": 2044,
-        "end_step": 2052
-      },
-      {
-        "start_step": 2052,
-        "end_step": 2060
-      },
-      {
-        "start_step": 2060,
-        "end_step": 2068
-      },
-      {
-        "start_step": 2068,
-        "end_step": 2076
-      },
-      {
-        "start_step": 2076,
-        "end_step": 2084
-      },
-      {
-        "start_step": 2084,
-        "end_step": 2092
-      },
-      {
-        "start_step": 2092,
-        "end_step": 2100
-      },
-      {
-        "start_step": 2100,
-        "end_step": 2108
-      },
-      {
-        "start_step": 2108,
-        "end_step": 2116
-      },
-      {
-        "start_step": 2116,
-        "end_step": 2124
-      },
-      {
-        "start_step": 2124,
-        "end_step": 2132
-      },
-      {
-        "start_step": 2132,
-        "end_step": 2140
-      },
-      {
-        "start_step": 2140,
-        "end_step": 2148
-      },
-      {
-        "start_step": 2148,
-        "end_step": 2156
-      },
-      {
-        "start_step": 2156,
-        "end_step": 2164
-      },
-      {
-        "start_step": 2164,
-        "end_step": 2172
-      },
-      {
-        "start_step": 2172,
-        "end_step": 2180
-      },
-      {
-        "start_step": 2180,
-        "end_step": 2188
-      },
-      {
-        "start_step": 2188,
-        "end_step": 2192
-      },
-      {
-        "start_step": 2192,
-        "end_step": 2200
-      },
-      {
-        "start_step": 2200,
-        "end_step": 2208
-      },
-      {
-        "start_step": 2208,
-        "end_step": 2216
-      },
-      {
-        "start_step": 2216,
-        "end_step": 2224
-      },
-      {
-        "start_step": 2224,
-        "end_step": 2232
-      },
-      {
-        "start_step": 2232,
-        "end_step": 2240
-      },
-      {
-        "start_step": 2240,
-        "end_step": 2248
-      },
-      {
-        "start_step": 2248,
-        "end_step": 2252
-      },
-      {
-        "start_step": 2252,
-        "end_step": 2260
-      },
-      {
-        "start_step": 2260,
-        "end_step": 2268
-      },
-      {
-        "start_step": 2268,
-        "end_step": 2276
-      },
-      {
-        "start_step": 2276,
-        "end_step": 2284
-      },
-      {
-        "start_step": 2284,
-        "end_step": 2292
-      },
-      {
-        "start_step": 2292,
-        "end_step": 2300
-      },
-      {
-        "start_step": 2300,
-        "end_step": 2308
-      },
-      {
-        "start_step": 2308,
-        "end_step": 2316
-      },
-      {
-        "start_step": 2316,
-        "end_step": 2324
-      },
-      {
-        "start_step": 2324,
-        "end_step": 2332
-      },
-      {
-        "start_step": 2332,
-        "end_step": 2340
-      },
-      {
-        "start_step": 2340,
-        "end_step": 2348
-      },
-      {
-        "start_step": 2348,
-        "end_step": 2356
-      },
-      {
-        "start_step": 2356,
-        "end_step": 2364
-      },
-      {
-        "start_step": 2364,
-        "end_step": 2372
-      },
-      {
-        "start_step": 2372,
-        "end_step": 2380
-      },
-      {
-        "start_step": 2380,
-        "end_step": 2388
-      },
-      {
-        "start_step": 2388,
-        "end_step": 2396
-      },
-      {
-        "start_step": 2396,
-        "end_step": 2404
-      },
-      {
-        "start_step": 2404,
-        "end_step": 2412
-      },
-      {
-        "start_step": 2412,
-        "end_step": 2420
-      },
-      {
-        "start_step": 2420,
-        "end_step": 2428
-      },
-      {
-        "start_step": 2428,
-        "end_step": 2436
-      },
-      {
-        "start_step": 2436,
-        "end_step": 2444
-      },
-      {
-        "start_step": 2444,
-        "end_step": 2452
-      },
-      {
-        "start_step": 2452,
-        "end_step": 2460
-      },
-      {
-        "start_step": 2460,
-        "end_step": 2468
-      },
-      {
-        "start_step": 2468,
-        "end_step": 2476
-      },
-      {
-        "start_step": 2476,
-        "end_step": 2484
-      },
-      {
-        "start_step": 2484,
-        "end_step": 2492
-      },
-      {
-        "start_step": 2492,
-        "end_step": 2500
-      },
-      {
-        "start_step": 2500,
-        "end_step": 2508
-      },
-      {
-        "start_step": 2508,
-        "end_step": 2516
-      },
-      {
-        "start_step": 2516,
-        "end_step": 2524
-      },
-      {
-        "start_step": 2524,
-        "end_step": 2532
-      },
-      {
-        "start_step": 2532,
-        "end_step": 2540
-      },
-      {
-        "start_step": 2540,
-        "end_step": 2548
-      },
-      {
-        "start_step": 2548,
-        "end_step": 2556
-      },
-      {
-        "start_step": 2556,
-        "end_step": 2560
-      },
-      {
-        "start_step": 2560,
-        "end_step": 2568
-      },
-      {
-        "start_step": 2568,
-        "end_step": 2576
-      },
-      {
-        "start_step": 2576,
-        "end_step": 2584
-      },
-      {
-        "start_step": 2584,
-        "end_step": 2592
-      },
-      {
-        "start_step": 2592,
-        "end_step": 2600
-      },
-      {
-        "start_step": 2600,
-        "end_step": 2608
-      },
-      {
-        "start_step": 2608,
-        "end_step": 2616
-      },
-      {
-        "start_step": 2616,
-        "end_step": 2624
-      },
-      {
-        "start_step": 2624,
-        "end_step": 2632
-      },
-      {
-        "start_step": 2632,
-        "end_step": 2640
-      },
-      {
-        "start_step": 2640,
-        "end_step": 2648
-      },
-      {
-        "start_step": 2648,
-        "end_step": 2656
-      },
-      {
-        "start_step": 2656,
-        "end_step": 2664
-      },
-      {
-        "start_step": 2664,
-        "end_step": 2672
-      },
-      {
-        "start_step": 2672,
-        "end_step": 2680
-      },
-      {
-        "start_step": 2680,
-        "end_step": 2688
-      },
-      {
-        "start_step": 2688,
-        "end_step": 2696
-      },
-      {
-        "start_step": 2696,
-        "end_step": 2704
-      },
-      {
-        "start_step": 2704,
-        "end_step": 2712
-      },
-      {
-        "start_step": 2712,
-        "end_step": 2720
-      },
-      {
-        "start_step": 2720,
-        "end_step": 2728
-      },
-      {
-        "start_step": 2728,
-        "end_step": 2736
-      },
-      {
-        "start_step": 2736,
-        "end_step": 2744
-      },
-      {
-        "start_step": 2744,
-        "end_step": 2752
-      },
-      {
-        "start_step": 2752,
-        "end_step": 2760
-      },
-      {
-        "start_step": 2760,
-        "end_step": 2768
-      },
-      {
-        "start_step": 2768,
-        "end_step": 2776
-      },
-      {
-        "start_step": 2776,
-        "end_step": 2784
-      },
-      {
-        "start_step": 2784,
-        "end_step": 2792
-      },
-      {
-        "start_step": 2792,
-        "end_step": 2800
-      },
-      {
-        "start_step": 2800,
-        "end_step": 2808
-      },
-      {
-        "start_step": 2808,
-        "end_step": 2816
-      },
-      {
-        "start_step": 2816,
-        "end_step": 2824
-      },
-      {
-        "start_step": 2824,
-        "end_step": 2832
-      },
-      {
-        "start_step": 2832,
-        "end_step": 2840
-      },
-      {
-        "start_step": 2840,
-        "end_step": 2848
-      },
-      {
-        "start_step": 2848,
-        "end_step": 2856
-      },
-      {
-        "start_step": 2856,
-        "end_step": 2864
-      },
-      {
-        "start_step": 2864,
-        "end_step": 2872
-      },
-      {
-        "start_step": 2872,
-        "end_step": 2880
-      },
-      {
-        "start_step": 2880,
-        "end_step": 2888
-      },
-      {
-        "start_step": 2888,
-        "end_step": 2896
-      },
-      {
-        "start_step": 2896,
-        "end_step": 2904
-      },
-      {
-        "start_step": 2904,
-        "end_step": 2912
-      },
-      {
-        "start_step": 2912,
-        "end_step": 2920
-      },
-      {
-        "start_step": 2920,
-        "end_step": 2928
-      },
-      {
-        "start_step": 2928,
-        "end_step": 2936
-      },
-      {
-        "start_step": 2936,
-        "end_step": 2944
-      },
-      {
-        "start_step": 2944,
-        "end_step": 2952
-      },
-      {
-        "start_step": 2952,
-        "end_step": 2960
-      },
-      {
-        "start_step": 2960,
-        "end_step": 2968
-      },
-      {
-        "start_step": 2968,
-        "end_step": 2976
-      },
-      {
-        "start_step": 2976,
-        "end_step": 2984
-      },
-      {
-        "start_step": 2984,
-        "end_step": 2992
-      }
-    ]
+    "method": "One video frame per physics step at 30 Hz: frame k shows the state after step k + 1, so each call spans start_step / 30 to end_step / 30 seconds."
   },
   "scope": "Complete archived public tool-call sequence and initial task prompt. Response summaries are preserved; the execution video is not a reconstruction of all model input images."
 }

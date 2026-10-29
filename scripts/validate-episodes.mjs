@@ -9,7 +9,7 @@ for (const item of index) {
   const e = read(`dist/data/episodes/${item.id}.json`);
   assert(fs.existsSync(`dist/${e.video}`));
   assert.equal(e.duration, e.frame_count / e.fps);
-  assert.equal(e.frame_count, e.alignment.frames.length);
+  assert.equal(e.frame_count, e.physics_steps);
   assert(e.initial_prompt.includes(e.instruction));
   assert(read('dist/data/icl-packages.json').some((p) => p.task === e.task));
   let step = 0,
@@ -24,10 +24,8 @@ for (const item of index) {
     assert(c.end_step > c.start_step);
     assert(c.video_end > c.video_start);
     assert.equal(c.response.physics_steps, c.end_step);
-    const slice = e.alignment.frames.slice(c.video_start * e.fps, c.video_end * e.fps);
-    assert.equal(slice[0].start_step, c.start_step);
-    assert(slice.at(-1).end_step <= c.end_step);
-    if (i < e.calls.length - 1) assert.equal(slice.at(-1).end_step, c.end_step);
+    assert.equal(c.video_start, c.start_step / e.fps);
+    assert.equal(c.video_end, c.end_step / e.fps);
     step = c.end_step;
     end = c.video_end;
   }

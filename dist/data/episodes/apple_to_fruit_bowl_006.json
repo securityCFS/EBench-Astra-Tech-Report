@@ -10,10 +10,10 @@
     "score": 1.0
   },
   "video": "media/cases/apple_to_fruit_bowl_006-web.mp4",
-  "duration": 32.5,
-  "fps": 4,
-  "frame_count": 130,
-  "video_sha256": "7ec89f51f119f4913f5bd790659ba3f71088a540b2c8f80eb4b2c0ce43ed2d4e",
+  "duration": 34.7,
+  "fps": 30,
+  "frame_count": 1041,
+  "video_sha256": "6cd825ecbbcd2155b1e02a19a5856f8dacd92d06301c92a43be4e096d558b89d",
   "physics_steps": 1041,
   "physics_hz": 30,
   "bookmarks": [
@@ -89,7 +89,7 @@
       "start_step": 0,
       "end_step": 64,
       "video_start": 0.0,
-      "video_end": 2.0,
+      "video_end": 2.1333333333333333,
       "request_sha256": "3efeec86936fddd1f117c0b4d69a671d85bbd53589630004e8b90447619ea65f"
     },
     {
@@ -135,8 +135,8 @@
       },
       "start_step": 64,
       "end_step": 104,
-      "video_start": 2.0,
-      "video_end": 3.25,
+      "video_start": 2.1333333333333333,
+      "video_end": 3.466666666666667,
       "request_sha256": "8e0e283fd929249a8e90bb4bade8480be070bf7fc1887e31c52bd6e2e091acbf"
     },
     {
@@ -183,8 +183,8 @@
       },
       "start_step": 104,
       "end_step": 152,
-      "video_start": 3.25,
-      "video_end": 4.75,
+      "video_start": 3.466666666666667,
+      "video_end": 5.066666666666666,
       "request_sha256": "dfb3527e941769133a91d18fba9f40ea99c6e35ff24bf41c73fd9d91d6a6aa7f"
     },
     {
@@ -230,8 +230,8 @@
       },
       "start_step": 152,
       "end_step": 200,
-      "video_start": 4.75,
-      "video_end": 6.25,
+      "video_start": 5.066666666666666,
+      "video_end": 6.666666666666667,
       "request_sha256": "ece6a748c06c08ada5d3ae9aef733f3743743c80b22fbd3475e07876ec5e07c1"
     },
     {
@@ -278,8 +278,8 @@
       },
       "start_step": 200,
       "end_step": 248,
-      "video_start": 6.25,
-      "video_end": 7.75,
+      "video_start": 6.666666666666667,
+      "video_end": 8.266666666666667,
       "request_sha256": "f3613029675c449bd3c90da5cfd661145858a28cce1c41cc342309b6cd4f2bb8"
     },
     {
@@ -302,8 +302,8 @@
       },
       "start_step": 248,
       "end_step": 280,
-      "video_start": 7.75,
-      "video_end": 8.75,
+      "video_start": 8.266666666666667,
+      "video_end": 9.333333333333334,
       "request_sha256": "aa051ff7b7253a1c5d00e6686d33d2c521bb56d571374505ab19ba796145a1b0"
     },
     {
@@ -350,8 +350,8 @@
       },
       "start_step": 280,
       "end_step": 312,
-      "video_start": 8.75,
-      "video_end": 9.75,
+      "video_start": 9.333333333333334,
+      "video_end": 10.4,
       "request_sha256": "600e94e5726fc886fcea58a75c342805f1af74a79140c8478e08be4a0df7b2d0"
     },
     {
@@ -398,8 +398,8 @@
       },
       "start_step": 312,
       "end_step": 376,
-      "video_start": 9.75,
-      "video_end": 11.75,
+      "video_start": 10.4,
+      "video_end": 12.533333333333333,
       "request_sha256": "f71b990dc22174da13a4d2fc67411611e262c37ff19c497ac65906b9e9a0c32f"
     },
     {
@@ -434,8 +434,8 @@
       },
       "start_step": 376,
       "end_step": 440,
-      "video_start": 11.75,
-      "video_end": 13.75,
+      "video_start": 12.533333333333333,
+      "video_end": 14.666666666666666,
       "request_sha256": "210106f0ef0b87ef1e1deed98af4e812c996ccdd0c726b655516f89070681fae"
     },
     {
@@ -482,8 +482,8 @@
       },
       "start_step": 440,
       "end_step": 496,
-      "video_start": 13.75,
-      "video_end": 15.5,
+      "video_start": 14.666666666666666,
+      "video_end": 16.533333333333335,
       "request_sha256": "60935c8b323f5416a23b43e4f5e80499d205a1c58ab984cc0283a13a756ca0c0"
     },
     {
@@ -534,8 +534,8 @@
       },
       "start_step": 496,
       "end_step": 560,
-      "video_start": 15.5,
-      "video_end": 17.5,
+      "video_start": 16.533333333333335,
+      "video_end": 18.666666666666668,
       "request_sha256": "1a50b9f8b4fd003f9b2168a9b186f792576447439264b68ff18e0dcf7337cfb6"
     },
     {
@@ -586,8 +586,8 @@
       },
       "start_step": 560,
       "end_step": 624,
-      "video_start": 17.5,
-      "video_end": 19.5,
+      "video_start": 18.666666666666668,
+      "video_end": 20.8,
       "request_sha256": "b192674d7cc9b682cc55d25bc76f7f8598d61059ffd40d5a20ba8cca1a6b3a42"
     },
     {
@@ -633,8 +633,8 @@
       },
       "start_step": 624,
       "end_step": 680,
-      "video_start": 19.5,
-      "video_end": 21.25,
+      "video_start": 20.8,
+      "video_end": 22.666666666666668,
       "request_sha256": "41ca7c6038929b561fed54449abc701a194edb3514dcb702c1898f4c6e8e24bf"
     },
     {
@@ -657,8 +657,8 @@
       },
       "start_step": 680,
       "end_step": 720,
-      "video_start": 21.25,
-      "video_end": 22.5,
+      "video_start": 22.666666666666668,
+      "video_end": 24.0,
       "request_sha256": "9a88b0f6ba66af10a178039224e089939d3c6a1cd3710ab35d1a9f9d0dbf950b"
     },
     {
@@ -705,8 +705,8 @@
       },
       "start_step": 720,
       "end_step": 756,
-      "video_start": 22.5,
-      "video_end": 23.75,
+      "video_start": 24.0,
+      "video_end": 25.2,
       "request_sha256": "a47d3082001434bcfce34f1d6baafe6d96e13531a5caa421182df352d6b4ba21"
     },
     {
@@ -753,8 +753,8 @@
       },
       "start_step": 756,
       "end_step": 820,
-      "video_start": 23.75,
-      "video_end": 25.75,
+      "video_start": 25.2,
+      "video_end": 27.333333333333332,
       "request_sha256": "6d5d10a78ff1a8b36674161e9ba4532fc316e850267d9d15a8bdc7c2867ae1af"
     },
     {
@@ -801,8 +801,8 @@
       },
       "start_step": 820,
       "end_step": 884,
-      "video_start": 25.75,
-      "video_end": 27.75,
+      "video_start": 27.333333333333332,
+      "video_end": 29.466666666666665,
       "request_sha256": "e8172f94a85603d122bc3643655f57cdd4623e80d6f916c20129d6132806d9f6"
     },
     {
@@ -848,8 +848,8 @@
       },
       "start_step": 884,
       "end_step": 948,
-      "video_start": 27.75,
-      "video_end": 29.75,
+      "video_start": 29.466666666666665,
+      "video_end": 31.6,
       "request_sha256": "d55a9f4a0e407a75b06e0b30880ec765bf8d8c0bc93e3a13d4a49bed2870e322"
     },
     {
@@ -896,8 +896,8 @@
       },
       "start_step": 948,
       "end_step": 1012,
-      "video_start": 29.75,
-      "video_end": 31.75,
+      "video_start": 31.6,
+      "video_end": 33.733333333333334,
       "request_sha256": "744f339694f531eba874e5e336f91a0779d78b4961455d7d85a160ccfe4f8bd5"
     },
     {
@@ -937,8 +937,8 @@
       },
       "start_step": 1012,
       "end_step": 1041,
-      "video_start": 31.75,
-      "video_end": 32.5,
+      "video_start": 33.733333333333334,
+      "video_end": 34.7,
       "request_sha256": "9a1c0f8a137351e4fd79706a3d03dcf1533d7068cf2874a852d5769f17b03ce9"
     }
   ],
@@ -953,529 +953,7 @@
     }
   },
   "alignment": {
-    "method": "Recorded nonterminal execution chunks in order, one video frame per returned state; frame counts checked against each encoded video. The terminal result has no additional video frame.",
-    "frames": [
-      {
-        "start_step": 0,
-        "end_step": 8
-      },
-      {
-        "start_step": 8,
-        "end_step": 16
-      },
-      {
-        "start_step": 16,
-        "end_step": 24
-      },
-      {
-        "start_step": 24,
-        "end_step": 32
-      },
-      {
-        "start_step": 32,
-        "end_step": 40
-      },
-      {
-        "start_step": 40,
-        "end_step": 48
-      },
-      {
-        "start_step": 48,
-        "end_step": 56
-      },
-      {
-        "start_step": 56,
-        "end_step": 64
-      },
-      {
-        "start_step": 64,
-        "end_step": 72
-      },
-      {
-        "start_step": 72,
-        "end_step": 80
-      },
-      {
-        "start_step": 80,
-        "end_step": 88
-      },
-      {
-        "start_step": 88,
-        "end_step": 96
-      },
-      {
-        "start_step": 96,
-        "end_step": 104
-      },
-      {
-        "start_step": 104,
-        "end_step": 112
-      },
-      {
-        "start_step": 112,
-        "end_step": 120
-      },
-      {
-        "start_step": 120,
-        "end_step": 128
-      },
-      {
-        "start_step": 128,
-        "end_step": 136
-      },
-      {
-        "start_step": 136,
-        "end_step": 144
-      },
-      {
-        "start_step": 144,
-        "end_step": 152
-      },
-      {
-        "start_step": 152,
-        "end_step": 160
-      },
-      {
-        "start_step": 160,
-        "end_step": 168
-      },
-      {
-        "start_step": 168,
-        "end_step": 176
-      },
-      {
-        "start_step": 176,
-        "end_step": 184
-      },
-      {
-        "start_step": 184,
-        "end_step": 192
-      },
-      {
-        "start_step": 192,
-        "end_step": 200
-      },
-      {
-        "start_step": 200,
-        "end_step": 208
-      },
-      {
-        "start_step": 208,
-        "end_step": 216
-      },
-      {
-        "start_step": 216,
-        "end_step": 224
-      },
-      {
-        "start_step": 224,
-        "end_step": 232
-      },
-      {
-        "start_step": 232,
-        "end_step": 240
-      },
-      {
-        "start_step": 240,
-        "end_step": 248
-      },
-      {
-        "start_step": 248,
-        "end_step": 256
-      },
-      {
-        "start_step": 256,
-        "end_step": 264
-      },
-      {
-        "start_step": 264,
-        "end_step": 272
-      },
-      {
-        "start_step": 272,
-        "end_step": 280
-      },
-      {
-        "start_step": 280,
-        "end_step": 288
-      },
-      {
-        "start_step": 288,
-        "end_step": 296
-      },
-      {
-        "start_step": 296,
-        "end_step": 304
-      },
-      {
-        "start_step": 304,
-        "end_step": 312
-      },
-      {
-        "start_step": 312,
-        "end_step": 320
-      },
-      {
-        "start_step": 320,
-        "end_step": 328
-      },
-      {
-        "start_step": 328,
-        "end_step": 336
-      },
-      {
-        "start_step": 336,
-        "end_step": 344
-      },
-      {
-        "start_step": 344,
-        "end_step": 352
-      },
-      {
-        "start_step": 352,
-        "end_step": 360
-      },
-      {
-        "start_step": 360,
-        "end_step": 368
-      },
-      {
-        "start_step": 368,
-        "end_step": 376
-      },
-      {
-        "start_step": 376,
-        "end_step": 384
-      },
-      {
-        "start_step": 384,
-        "end_step": 392
-      },
-      {
-        "start_step": 392,
-        "end_step": 400
-      },
-      {
-        "start_step": 400,
-        "end_step": 408
-      },
-      {
-        "start_step": 408,
-        "end_step": 416
-      },
-      {
-        "start_step": 416,
-        "end_step": 424
-      },
-      {
-        "start_step": 424,
-        "end_step": 432
-      },
-      {
-        "start_step": 432,
-        "end_step": 440
-      },
-      {
-        "start_step": 440,
-        "end_step": 448
-      },
-      {
-        "start_step": 448,
-        "end_step": 456
-      },
-      {
-        "start_step": 456,
-        "end_step": 464
-      },
-      {
-        "start_step": 464,
-        "end_step": 472
-      },
-      {
-        "start_step": 472,
-        "end_step": 480
-      },
-      {
-        "start_step": 480,
-        "end_step": 488
-      },
-      {
-        "start_step": 488,
-        "end_step": 496
-      },
-      {
-        "start_step": 496,
-        "end_step": 504
-      },
-      {
-        "start_step": 504,
-        "end_step": 512
-      },
-      {
-        "start_step": 512,
-        "end_step": 520
-      },
-      {
-        "start_step": 520,
-        "end_step": 528
-      },
-      {
-        "start_step": 528,
-        "end_step": 536
-      },
-      {
-        "start_step": 536,
-        "end_step": 544
-      },
-      {
-        "start_step": 544,
-        "end_step": 552
-      },
-      {
-        "start_step": 552,
-        "end_step": 560
-      },
-      {
-        "start_step": 560,
-        "end_step": 568
-      },
-      {
-        "start_step": 568,
-        "end_step": 576
-      },
-      {
-        "start_step": 576,
-        "end_step": 584
-      },
-      {
-        "start_step": 584,
-        "end_step": 592
-      },
-      {
-        "start_step": 592,
-        "end_step": 600
-      },
-      {
-        "start_step": 600,
-        "end_step": 608
-      },
-      {
-        "start_step": 608,
-        "end_step": 616
-      },
-      {
-        "start_step": 616,
-        "end_step": 624
-      },
-      {
-        "start_step": 624,
-        "end_step": 632
-      },
-      {
-        "start_step": 632,
-        "end_step": 640
-      },
-      {
-        "start_step": 640,
-        "end_step": 648
-      },
-      {
-        "start_step": 648,
-        "end_step": 656
-      },
-      {
-        "start_step": 656,
-        "end_step": 664
-      },
-      {
-        "start_step": 664,
-        "end_step": 672
-      },
-      {
-        "start_step": 672,
-        "end_step": 680
-      },
-      {
-        "start_step": 680,
-        "end_step": 688
-      },
-      {
-        "start_step": 688,
-        "end_step": 696
-      },
-      {
-        "start_step": 696,
-        "end_step": 704
-      },
-      {
-        "start_step": 704,
-        "end_step": 712
-      },
-      {
-        "start_step": 712,
-        "end_step": 720
-      },
-      {
-        "start_step": 720,
-        "end_step": 728
-      },
-      {
-        "start_step": 728,
-        "end_step": 736
-      },
-      {
-        "start_step": 736,
-        "end_step": 744
-      },
-      {
-        "start_step": 744,
-        "end_step": 752
-      },
-      {
-        "start_step": 752,
-        "end_step": 756
-      },
-      {
-        "start_step": 756,
-        "end_step": 764
-      },
-      {
-        "start_step": 764,
-        "end_step": 772
-      },
-      {
-        "start_step": 772,
-        "end_step": 780
-      },
-      {
-        "start_step": 780,
-        "end_step": 788
-      },
-      {
-        "start_step": 788,
-        "end_step": 796
-      },
-      {
-        "start_step": 796,
-        "end_step": 804
-      },
-      {
-        "start_step": 804,
-        "end_step": 812
-      },
-      {
-        "start_step": 812,
-        "end_step": 820
-      },
-      {
-        "start_step": 820,
-        "end_step": 828
-      },
-      {
-        "start_step": 828,
-        "end_step": 836
-      },
-      {
-        "start_step": 836,
-        "end_step": 844
-      },
-      {
-        "start_step": 844,
-        "end_step": 852
-      },
-      {
-        "start_step": 852,
-        "end_step": 860
-      },
-      {
-        "start_step": 860,
-        "end_step": 868
-      },
-      {
-        "start_step": 868,
-        "end_step": 876
-      },
-      {
-        "start_step": 876,
-        "end_step": 884
-      },
-      {
-        "start_step": 884,
-        "end_step": 892
-      },
-      {
-        "start_step": 892,
-        "end_step": 900
-      },
-      {
-        "start_step": 900,
-        "end_step": 908
-      },
-      {
-        "start_step": 908,
-        "end_step": 916
-      },
-      {
-        "start_step": 916,
-        "end_step": 924
-      },
-      {
-        "start_step": 924,
-        "end_step": 932
-      },
-      {
-        "start_step": 932,
-        "end_step": 940
-      },
-      {
-        "start_step": 940,
-        "end_step": 948
-      },
-      {
-        "start_step": 948,
-        "end_step": 956
-      },
-      {
-        "start_step": 956,
-        "end_step": 964
-      },
-      {
-        "start_step": 964,
-        "end_step": 972
-      },
-      {
-        "start_step": 972,
-        "end_step": 980
-      },
-      {
-        "start_step": 980,
-        "end_step": 988
-      },
-      {
-        "start_step": 988,
-        "end_step": 996
-      },
-      {
-        "start_step": 996,
-        "end_step": 1004
-      },
-      {
-        "start_step": 1004,
-        "end_step": 1012
-      },
-      {
-        "start_step": 1012,
-        "end_step": 1020
-      },
-      {
-        "start_step": 1020,
-        "end_step": 1028
-      },
-      {
-        "start_step": 1028,
-        "end_step": 1036
-      }
-    ]
+    "method": "One video frame per physics step at 30 Hz: frame k shows the state after step k + 1, so each call spans start_step / 30 to end_step / 30 seconds."
   },
   "scope": "Complete archived public tool-call sequence and initial task prompt. Response summaries are preserved; the execution video is not a reconstruction of all model input images."
 }

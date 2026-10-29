@@ -235,7 +235,7 @@ function initBehavior() {
   // Every quoted line is verbatim from the episode's run.log. Lines with `src: 'model'`
   // are the agent's own action descriptions, carried by the numbered tool call; all
   // other lines were supplied to it. `t` is the call's start in the recording, taken from
-  // the episode record's video_start (the recordings run at 32 physics steps per second).
+  // the episode record's video_start, to 0.01 s (one frame per physics step at 30 fps).
   const entries = {
     apple: {
       heading: 'A failed transport changes the next attempt',
@@ -246,20 +246,20 @@ function initBehavior() {
         {
           src: 'model',
           call: 10,
-          t: 13.75,
+          t: 14.67,
           text: 'The finger gap closed during transport, indicating the apple slipped. Move the empty hand clear to locate the apple before retrying.',
           note: 'The slip is inferred from the gripper gap rather than from any failure signal the harness returns.',
         },
         {
           src: 'model',
           call: 11,
-          t: 15.5,
+          t: 16.53,
           text: 'Withdraw to a wider view of the tabletop to locate the slipped apple without disturbing the bowl.',
         },
         {
           src: 'model',
           call: 17,
-          t: 25.75,
+          t: 27.33,
           text: 'Carry the apple a short distance left and forward using the arm alone, avoiding the earlier base-motion slip.',
           note: 'Transport is re-planned without the base motion that preceded the first slip.',
         },
@@ -279,21 +279,21 @@ function initBehavior() {
         {
           src: 'model',
           call: 45,
-          t: 74.5,
+          t: 79.47,
           text: 'Sweep remaining beans with broad finger sides into the jar',
           note: 'Sweeping edge commanded to z = 0.150 m. The beans are not displaced.',
         },
         {
           src: 'model',
           call: 46,
-          t: 77.75,
+          t: 82.93,
           text: 'Lower scraping edge to actual tabletop height and repeat sweep',
           note: 'The agent applies the supplied caveat and re-issues the same sweep 25 mm lower, at z = 0.125 m.',
         },
         {
           src: 'model',
           call: 47,
-          t: 83.25,
+          t: 88.8,
           text: 'Tilt fingertips down to reach beans while keeping palm above tabletop',
           note: 'Height alone does not recover the contact, so the wrist angle changes next.',
         },
@@ -318,14 +318,14 @@ function initBehavior() {
         {
           src: 'model',
           call: 8,
-          t: 8.5,
+          t: 8.8,
           text: 'Carry the secured fruit above the small cup, not the large jug.',
           note: 'The demonstrated destination is set aside in favor of the one named in the live instruction.',
         },
         {
           src: 'model',
           call: 12,
-          t: 14.75,
+          t: 15.47,
           text: 'Recover the fruit that landed behind the cup.',
           note: 'The destination is chosen correctly, but the release misses it; the episode ends incomplete at Score 0.600.',
         },
